@@ -1,0 +1,90 @@
+Package Report
+
+-----------------------------------------------------------------------------
+Document:
+Name: THYNK Broucher_A5_Artwork.ai
+Color Mode: CMYK color
+Color Profile: none
+Ruler Units: millimeters
+Artboard Dimensions: 335.1 mm x 248.1 mm
+Show Images in Outline Mode: OFF
+Highlight Substituted Fonts: OFF
+Highlight Substituted Glyphs: OFF
+Preserve Text Editability
+Simulate Colored Paper: OFF
+
+-----------------------------------------------------------------------------
+Spot Color Objects:
+
+-----------------------------------------------------------------------------
+Missing Fonts:NONE
+
+-----------------------------------------------------------------------------
+Protected Fonts that were not packaged:NONE
+
+-----------------------------------------------------------------------------
+Fonts:
+Bebas Neue Regular (TrueType)
+Myriad Pro (OTF)
+Montserrat Bold (TrueType)
+Indian Rupee Font (TrueType)
+LIBRARY 3 AM (OTF)
+Source Sans Variable Semibold (OTF)
+Montserrat SemiBold (TrueType)
+Montserrat Medium (TrueType)
+Montserrat Regular (TrueType)
+
+-----------------------------------------------------------------------------
+Embedded Fonts:
+NONE
+
+-----------------------------------------------------------------------------
+Missing Links:
+NONE
+
+-----------------------------------------------------------------------------
+Linked Images:
+
+/Users/ashish/Downloads/THYNK_Broucher/Links/ChatGPT Image Jun 14, 2026, 07_09_21 PM.jpg
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 8055K, 2532 by 1086 pixels
+Dimensions: 468.695 by 201.028 points 
+Resolution: 388.961 by 388.961 pixels per inch
+
+
+/Users/ashish/Downloads/THYNK_Broucher/Links/ChatGPT Image Jun 7, 2026, 12_53_57 PM.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 13224K, 2254 by 1502 pixels
+Dimensions: 324.955 by 216.541 points 
+Resolution: 499.417 by 499.417 pixels per inch
+
+
+/Users/ashish/Downloads/THYNK_Broucher/Links/ChatGPT Image Jun 13, 2026, 07_42_15 PM Topaz Gigapixel 2x scale.psd
+Type: Transparent RGB
+Bits per Pixel: 32
+Channels: 4
+Size: 24578K, 2110 by 2982 pixels
+Dimensions: 443.912 by 627.367 points 
+Resolution: 342.23 by 342.23 pixels per inch
+
+
+/Users/ashish/Downloads/THYNK_Broucher/Links/Cover page.psd
+Type: CMYK
+Bits per Pixel: 32
+Channels: 4
+Size: 15025K, 2480 by 1551 pixels
+Dimensions: 368.509 by 230.467 points 
+Resolution: 484.547 by 484.547 pixels per inch
+
+
+/Users/ashish/Downloads/THYNK_Broucher/Links/ChatGPT Image Jun 14, 2026, 07_22_45 PM.png
+Type: RGB
+Bits per Pixel: 24
+Channels: 3
+Size: 4609K, 941 by 1672 pixels
+Dimensions: 177.469 by 315.333 points 
+Resolution: 381.768 by 381.768 pixels per inch

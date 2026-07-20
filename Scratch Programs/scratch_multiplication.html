@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐱 Scratch Multiplication Tutorial</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --scratch-purple: #6B4EFF;
+    --scratch-dark-purple: #4C2FBA;
+    --scratch-yellow: #FFCC33;
+    --scratch-orange: #FF8C1A;
+    --scratch-green: #4CBF56;
+    --scratch-blue: #4C97FF;
+    --scratch-red: #FF6680;
+    --bg: #F0F4FF;
+    --card-bg: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(107,78,255,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255,204,51,0.08) 0%, transparent 50%);
+    color: #2D2D4E;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--scratch-dark-purple) 0%, var(--scratch-purple) 60%, #9B6DFF 100%);
+    padding: 40px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='8'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-emoji-row {
+    font-size: 2.2rem;
+    margin-bottom: 14px;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: #fff;
+    text-shadow: 3px 4px 0px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  header p {
+    color: rgba(255,255,255,0.88);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .stars {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+  .star {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: twinkle 3s infinite;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+  }
+  .wave {
+    position: absolute;
+    bottom: -2px; left: 0; width: 100%;
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background: var(--scratch-yellow);
+    padding: 18px 20px;
+    text-align: center;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #2D2D4E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* ── MAIN CONTAINER ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.7rem;
+    color: var(--scratch-purple);
+    text-align: center;
+    margin: 50px 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .section-title::before,
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--scratch-purple));
+    border-radius: 2px;
+    max-width: 120px;
+  }
+  .section-title::after {
+    background: linear-gradient(90deg, var(--scratch-purple), transparent);
+  }
+
+  /* ── STEP CARD ── */
+  .step-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 6px 30px rgba(107,78,255,0.10), 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 2px solid transparent;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(107,78,255,0.18), 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .step-card.accent-purple { border-color: var(--scratch-purple); }
+  .step-card.accent-yellow { border-color: var(--scratch-yellow); }
+  .step-card.accent-orange { border-color: var(--scratch-orange); }
+  .step-card.accent-green  { border-color: var(--scratch-green); }
+  .step-card.accent-blue   { border-color: var(--scratch-blue); }
+  .step-card.accent-red    { border-color: var(--scratch-red); }
+
+  /* Card Header */
+  .card-header {
+    padding: 20px 28px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 2px dashed #EEE;
+  }
+  .step-badge {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .bg-purple { background: var(--scratch-purple); }
+  .bg-yellow  { background: var(--scratch-yellow); color: #2D2D4E !important; }
+  .bg-orange  { background: var(--scratch-orange); }
+  .bg-green   { background: var(--scratch-green); }
+  .bg-blue    { background: var(--scratch-blue); }
+  .bg-red     { background: var(--scratch-red); }
+
+  .card-title-block h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.45rem;
+    color: #2D2D4E;
+    line-height: 1.2;
+  }
+  .card-title-block .subtitle {
+    font-size: 0.9rem;
+    color: #888;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  /* Card Body */
+  .card-body {
+    padding: 22px 28px;
+  }
+  .card-body .description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #3D3D5C;
+    margin-bottom: 18px;
+  }
+
+  /* Step list inside a card */
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+  .step-list li .bullet {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-family: 'Fredoka One', cursive;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Screenshot gallery */
+  .screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .screenshot-wrap {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2.5px solid #E8E8F0;
+    background: #F8F8FF;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+  }
+  .screenshot-wrap:hover { transform: scale(1.02); }
+  .screenshot-wrap img {
+    width: 100%;
+    display: block;
+  }
+  .screenshot-label {
+    background: rgba(45,45,78,0.88);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 5px 10px;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  .screenshot-single .screenshot-wrap { max-width: 700px; margin: 0 auto; }
+
+  /* Tip bubble */
+  .tip-bubble {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin-top: 20px;
+    font-size: 0.97rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .tip-bubble.purple { background: #F0ECFF; color: #4C2FBA; border-left: 4px solid var(--scratch-purple); }
+  .tip-bubble.yellow { background: #FFFBEA; color: #7A5C00; border-left: 4px solid var(--scratch-yellow); }
+  .tip-bubble.green  { background: #EDFAEF; color: #1A6626; border-left: 4px solid var(--scratch-green); }
+  .tip-bubble.orange { background: #FFF4E8; color: #7A3800; border-left: 4px solid var(--scratch-orange); }
+  .tip-bubble.blue   { background: #E8F2FF; color: #0A3E8A; border-left: 4px solid var(--scratch-blue); }
+  .tip-bubble.red    { background: #FFF0F3; color: #7A0020; border-left: 4px solid var(--scratch-red); }
+  .tip-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  /* ── BLOCK PILL (Scratch block style) ── */
+  .block {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px 3px 8px;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 2px;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.25);
+  }
+  .block.events  { background: #FFAB19; color: #fff; }
+  .block.sensing { background: #5CB1D6; }
+  .block.vars    { background: #FF8C1A; }
+  .block.ops     { background: #59C059; }
+  .block.control { background: #FFAB19; }
+
+  /* ── FINAL RESULT BOX ── */
+  .final-box {
+    background: linear-gradient(135deg, var(--scratch-purple), #9B6DFF);
+    border-radius: 28px;
+    padding: 40px 30px;
+    text-align: center;
+    color: #fff;
+    margin-top: 50px;
+    box-shadow: 0 10px 40px rgba(107,78,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .final-box::before {
+    content: '🎉 🎉 🎉';
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: bounce 1.5s infinite;
+  }
+  .final-box h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    margin-bottom: 14px;
+    text-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+  }
+  .final-box p {
+    font-size: 1.15rem;
+    font-weight: 700;
+    opacity: 0.92;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+  .confetti-emoji {
+    font-size: 2.5rem;
+    animation: spin 4s linear infinite;
+    display: inline-block;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Full flow summary */
+  .flow-summary {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    margin-top: 36px;
+    box-shadow: 0 4px 20px rgba(107,78,255,0.1);
+  }
+  .flow-summary h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--scratch-purple);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  .flow-arrow { color: var(--scratch-purple); font-size: 1.2rem; }
+  .flow-pill {
+    background: #F0ECFF;
+    color: var(--scratch-dark-purple);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 2px solid var(--scratch-purple);
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.92rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .card-header { flex-direction: column; align-items: flex-start; }
+    .card-body { padding: 18px 18px; }
+    .card-header { padding: 18px 18px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="stars">
+    <div class="star" style="top:15%;left:8%;animation-delay:0s"></div>
+    <div class="star" style="top:25%;left:20%;animation-delay:0.5s;width:4px;height:4px"></div>
+    <div class="star" style="top:10%;left:50%;animation-delay:1s"></div>
+    <div class="star" style="top:30%;left:70%;animation-delay:1.5s;width:8px;height:8px"></div>
+    <div class="star" style="top:20%;left:85%;animation-delay:0.7s"></div>
+    <div class="star" style="top:60%;left:5%;animation-delay:2s;width:5px;height:5px"></div>
+    <div class="star" style="top:70%;left:92%;animation-delay:0.3s"></div>
+  </div>
+  <div class="header-emoji-row">🐱 ✖️ 🔢</div>
+  <h1>Multiplication in Scratch!</h1>
+  <p>Learn how to multiply two numbers using Scratch — step by step, like a pro! 🚀</p>
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#F0F4FF"/>
+  </svg>
+</header>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  ⭐ We will make a program that asks for 2 numbers and shows their product! &nbsp;|&nbsp; 🧮 &nbsp;Number1 × Number2 = Result
+</div>
+
+<div class="container">
+
+  <!-- ========== STEP 1 ========== -->
+  <div class="section-title">📦 Getting Ready</div>
+
+  <div class="step-card accent-purple">
+    <div class="card-header">
+      <div class="step-badge bg-purple">1</div>
+      <div class="card-title-block">
+        <h2>Create 3 Variables 📦</h2>
+        <div class="subtitle">Variables → Make a Variable</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Before we start coding, we need to create <strong>3 boxes</strong> (called <em>variables</em>) to hold our numbers.
+        Think of variables like labelled jars — we'll put numbers inside them!
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-purple" style="color:#fff;font-size:0.85rem">1</span>
+          Click <strong>Variables</strong> on the left sidebar (the orange section).
+        </li>
+        <li>
+          <span class="bullet bg-purple" style="color:#fff;font-size:0.85rem">2</span>
+          Click <strong>"Make a Variable"</strong> button — a popup appears.
+        </li>
+        <li>
+          <span class="bullet bg-purple" style="color:#fff;font-size:0.85rem">3</span>
+          Type <code style="background:#F0ECFF;padding:2px 7px;border-radius:6px;font-weight:800">Number1</code> and click <strong>OK</strong>.
+        </li>
+        <li>
+          <span class="bullet bg-purple" style="color:#fff;font-size:0.85rem">4</span>
+          Repeat: Make another variable called <code style="background:#F0ECFF;padding:2px 7px;border-radius:6px;font-weight:800">Number2</code>.
+        </li>
+        <li>
+          <span class="bullet bg-purple" style="color:#fff;font-size:0.85rem">5</span>
+          Repeat again: Make one more called <code style="background:#F0ECFF;padding:2px 7px;border-radius:6px;font-weight:800">Result</code>.
+        </li>
+      </ul>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="step1a.png" alt="Creating Number1 variable">
+          <div class="screenshot-label">📦 Create "Number1"</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step1b.png" alt="Creating Number2 variable">
+          <div class="screenshot-label">📦 Create "Number2"</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step1c.png" alt="Creating Result variable">
+          <div class="screenshot-label">📦 Create "Result"</div>
+        </div>
+      </div>
+      <div class="tip-bubble purple">
+        <span class="tip-icon">💡</span>
+        <span>You should now see <strong>Number1, Number2,</strong> and <strong>Result</strong> appear in the top-right corner of the stage. These are your three jars — ready to hold numbers!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 2 ========== -->
+  <div class="section-title">🚀 Starting the Program</div>
+
+  <div class="step-card accent-yellow">
+    <div class="card-header">
+      <div class="step-badge bg-yellow">2</div>
+      <div class="card-title-block">
+        <h2>Add the Start Block 🚩</h2>
+        <div class="subtitle">Events → when 🚩 clicked</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Every Scratch program needs a <strong>starting point</strong>. We use the
+        <span class="block events">🚩 when clicked</span> block — it runs all the code below it
+        when you press the <strong>green flag</strong>!
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-yellow" style="font-size:0.85rem">1</span>
+          Click <strong>Events</strong> on the left sidebar (yellow section).
+        </li>
+        <li>
+          <span class="bullet bg-yellow" style="font-size:0.85rem">2</span>
+          Drag <span class="block events">when 🚩 clicked</span> onto the empty coding area (the white dotted space).
+        </li>
+      </ul>
+      <div class="screenshot-gallery screenshot-single">
+        <div class="screenshot-wrap">
+          <img src="step2.png" alt="When green flag clicked block">
+          <div class="screenshot-label">🚩 The start block is in the coding area!</div>
+        </div>
+      </div>
+      <div class="tip-bubble yellow">
+        <span class="tip-icon">⚡</span>
+        <span>The green flag is the <strong>play button</strong> of Scratch. Whenever you click it, your program starts running from this block!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 3 ========== -->
+  <div class="section-title">💬 Asking for Numbers</div>
+
+  <div class="step-card accent-blue">
+    <div class="card-header">
+      <div class="step-badge bg-blue">3</div>
+      <div class="card-title-block">
+        <h2>Ask for the First Number 💬</h2>
+        <div class="subtitle">Sensing → ask [ ] and wait</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Now let's make the Scratch Cat <strong>ask a question</strong>! We use the
+        <span class="block sensing">ask [ ] and wait</span> block — it shows a question and waits for the user to type an answer.
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-blue" style="font-size:0.85rem">1</span>
+          Click <strong>Sensing</strong> on the sidebar (light blue section).
+        </li>
+        <li>
+          <span class="bullet bg-blue" style="font-size:0.85rem">2</span>
+          Drag <span class="block sensing">ask [What's your name?] and wait</span> and snap it below the flag block.
+        </li>
+        <li>
+          <span class="bullet bg-blue" style="font-size:0.85rem">3</span>
+          Click the white box inside the block and type: <code style="background:#E8F2FF;padding:2px 7px;border-radius:6px;font-weight:800">Enter First Number -</code>
+        </li>
+      </ul>
+      <div class="screenshot-gallery screenshot-single">
+        <div class="screenshot-wrap">
+          <img src="step3.png" alt="Ask for first number block">
+          <div class="screenshot-label">💬 The cat will ask "Enter First Number -"</div>
+        </div>
+      </div>
+      <div class="tip-bubble blue">
+        <span class="tip-icon">🐱</span>
+        <span>Whatever the user types in response will be stored temporarily in a special block called <span class="block sensing">answer</span>. We'll use that next!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 4 ========== -->
+  <div class="step-card accent-orange">
+    <div class="card-header">
+      <div class="step-badge bg-orange">4</div>
+      <div class="card-title-block">
+        <h2>Save the Answer into Number1 💾</h2>
+        <div class="subtitle">Variables + Operators + Sensing combined!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        The user typed a number — now we store it in <strong>Number1</strong>. We use a
+        <span class="block vars">set [Number1] to</span> block combined with a
+        <span class="block ops">× multiply</span> operator and the <span class="block sensing">answer</span> block.
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">1</span>
+          Click <strong>Variables</strong> → drag <span class="block vars">set [my variable] to [0]</span> and snap it below the ask block.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">2</span>
+          Click the dropdown on the block and choose <strong>Number1</strong>.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">3</span>
+          Click <strong>Operators</strong> → drag the green <span class="block ops">[ ] × [ ]</span> (multiply) block into the value slot.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">4</span>
+          Click <strong>Sensing</strong> → drag the <span class="block sensing">answer</span> block into the <em>left</em> slot of the multiply block.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">5</span>
+          Type <code style="background:#FFF4E8;padding:2px 7px;border-radius:6px;font-weight:800">1</code> in the <em>right</em> slot (multiplying by 1 converts the answer to a number!).
+        </li>
+      </ul>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="step4.png" alt="Set Number1 variable dropdown">
+          <div class="screenshot-label">📋 Select "Number1" from dropdown</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step5.png" alt="Add multiply operator">
+          <div class="screenshot-label">✖️ Add multiply block from Operators</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step6.png" alt="Add answer block">
+          <div class="screenshot-label">🔵 Drop "answer" into left slot</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step7.png" alt="Type 1 in right slot">
+          <div class="screenshot-label">1️⃣ Type "1" in the right slot</div>
+        </div>
+      </div>
+      <div class="tip-bubble orange">
+        <span class="tip-icon">🔧</span>
+        <span>Why multiply by 1? Because the <span class="block sensing">answer</span> block stores text. Multiplying by 1 is a clever trick to turn it into an actual <strong>number</strong> that Scratch can calculate with!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 5 ========== -->
+  <div class="step-card accent-blue">
+    <div class="card-header">
+      <div class="step-badge bg-blue">5</div>
+      <div class="card-title-block">
+        <h2>Ask for the Second Number 💬</h2>
+        <div class="subtitle">Sensing → ask [ ] and wait (again!)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Great job! Now we need to ask for the <strong>second number</strong>. It's the same idea as before — just a different question!
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-blue" style="font-size:0.85rem">1</span>
+          Click <strong>Sensing</strong> → drag another <span class="block sensing">ask [ ] and wait</span> and snap it below the "set Number1" block.
+        </li>
+        <li>
+          <span class="bullet bg-blue" style="font-size:0.85rem">2</span>
+          Type: <code style="background:#E8F2FF;padding:2px 7px;border-radius:6px;font-weight:800">Enter Second Number</code> in the white box.
+        </li>
+      </ul>
+      <div class="screenshot-gallery screenshot-single">
+        <div class="screenshot-wrap">
+          <img src="step8.png" alt="Ask for second number">
+          <div class="screenshot-label">💬 Add "Enter Second Number" ask block</div>
+        </div>
+      </div>
+      <div class="tip-bubble blue">
+        <span class="tip-icon">👀</span>
+        <span>Notice that your script is growing! Each block you add goes directly below the previous one — like building with LEGO bricks.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 6 ========== -->
+  <div class="step-card accent-orange">
+    <div class="card-header">
+      <div class="step-badge bg-orange">6</div>
+      <div class="card-title-block">
+        <h2>Save the Answer into Number2 💾</h2>
+        <div class="subtitle">Same trick — this time for Number2!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Just like we did for <strong>Number1</strong>, we now save the user's second answer into the <strong>Number2</strong> variable. Same steps, different variable!
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">1</span>
+          From <strong>Variables</strong> → drag <span class="block vars">set [my variable] to [0]</span> below the second ask block.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">2</span>
+          Click the dropdown → choose <strong>Number2</strong>.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">3</span>
+          From <strong>Operators</strong> → drag <span class="block ops">[ ] × [ ]</span> into the value slot.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">4</span>
+          From <strong>Sensing</strong> → drop <span class="block sensing">answer</span> in the left slot.
+        </li>
+        <li>
+          <span class="bullet bg-orange" style="font-size:0.85rem">5</span>
+          Type <code style="background:#FFF4E8;padding:2px 7px;border-radius:6px;font-weight:800">1</code> in the right slot.
+        </li>
+      </ul>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="step9.png" alt="Select Number2 from dropdown">
+          <div class="screenshot-label">📋 Select "Number2" from dropdown</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step10.png" alt="Set Number2 to 0">
+          <div class="screenshot-label">🔢 "set Number2 to 0" added</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step11.png" alt="Add multiply operator for Number2">
+          <div class="screenshot-label">✖️ Add multiply block</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step12.png" alt="Add answer block for Number2">
+          <div class="screenshot-label">🔵 Drop "answer" in left slot</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="step13.png" alt="Type 1 for Number2">
+          <div class="screenshot-label">1️⃣ Type "1" in the right slot</div>
+        </div>
+      </div>
+      <div class="tip-bubble orange">
+        <span class="tip-icon">🎯</span>
+        <span>Your script now has <strong>5 blocks</strong> stacked together! It asks for two numbers and saves them properly. We're almost done!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 7 ========== -->
+  <div class="section-title">🧮 Calculating the Answer</div>
+
+  <div class="step-card accent-green">
+    <div class="card-header">
+      <div class="step-badge bg-green">7</div>
+      <div class="card-title-block">
+        <h2>Multiply! Set Result = Number1 × Number2 🧮</h2>
+        <div class="subtitle">Variables + Operators = Magic!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Here's the exciting part — the actual <strong>multiplication</strong>! We set the <strong>Result</strong> variable to
+        Number1 times Number2. Scratch will calculate this automatically! 🎉
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">1</span>
+          From <strong>Variables</strong> → drag <span class="block vars">set [my variable] to [0]</span> and snap it at the bottom of the script.
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">2</span>
+          Click the dropdown → choose <strong>Result</strong>.
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">3</span>
+          From <strong>Operators</strong> → drag the <span class="block ops">[ ] × [ ]</span> multiply block into the value slot.
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">4</span>
+          Click <strong>Variables</strong> → drag the oval-shaped <span class="block vars">Number1</span> block into the <em>left</em> slot of the multiply.
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">5</span>
+          Drag the <span class="block vars">Number2</span> oval block into the <em>right</em> slot.
+        </li>
+      </ul>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="step14.png" alt="Choosing Result from dropdown">
+          <div class="screenshot-label">📋 Select "Result" from dropdown</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s1.png" alt="Adding multiply operator for Result">
+          <div class="screenshot-label">✖️ Multiply block placed in Result</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s2.png" alt="Number1 in left slot">
+          <div class="screenshot-label">🟠 Number1 dropped in left slot</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s3.png" alt="Set Result to Number1 x Number2">
+          <div class="screenshot-label">✅ Result = Number1 × Number2 done!</div>
+        </div>
+      </div>
+      <div class="tip-bubble green">
+        <span class="tip-icon">🎉</span>
+        <span>The multiplication logic is complete! The <strong>Result</strong> variable will automatically show the correct answer when the program runs.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== STEP 8 ========== -->
+  <div class="section-title">📣 Announcing the Answer</div>
+
+  <div class="step-card accent-red">
+    <div class="card-header">
+      <div class="step-badge bg-red">8</div>
+      <div class="card-title-block">
+        <h2>Make the Cat Say the Answer! 🐱💬</h2>
+        <div class="subtitle">Looks → say + Operators → join</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        The calculation is done — but we want the Scratch Cat to <strong>announce</strong> the answer out loud!
+        We combine a <span class="block" style="background:#9966FF">say [ ]</span> block with a
+        <span class="block ops">join [ ] [ ]</span> block to display a nice message like <em>"Answer = 2000"</em>.
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-red" style="font-size:0.85rem">1</span>
+          Click <strong>Looks</strong> on the sidebar (purple section) → drag <span class="block" style="background:#9966FF">say [Hello!]</span> and snap it at the very bottom of the script.
+        </li>
+        <li>
+          <span class="bullet bg-red" style="font-size:0.85rem">2</span>
+          Click <strong>Operators</strong> → drag the green <span class="block ops">join [apple] [banana]</span> block into the white box of the say block (replacing "Hello!").
+        </li>
+        <li>
+          <span class="bullet bg-red" style="font-size:0.85rem">3</span>
+          In the <em>left</em> slot of the join block, type: <code style="background:#FFF0F3;padding:2px 7px;border-radius:6px;font-weight:800">Answer = </code> (with a space at the end!).
+        </li>
+        <li>
+          <span class="bullet bg-red" style="font-size:0.85rem">4</span>
+          Click <strong>Variables</strong> → drag the <span class="block vars">Result</span> oval block into the <em>right</em> slot of the join.
+        </li>
+      </ul>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="new_s4.png" alt="Adding say Hello block">
+          <div class="screenshot-label">🟣 Add "say Hello!" from Looks</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s5.png" alt="Drop join block into say">
+          <div class="screenshot-label">🟢 Drop join block into say</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s6.png" alt="Type Answer = in left slot">
+          <div class="screenshot-label">✏️ Type "Answer = " in left slot</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s7.png" alt="Drop Result in right slot">
+          <div class="screenshot-label">🟠 Drop "Result" in right slot</div>
+        </div>
+      </div>
+      <div class="tip-bubble red">
+        <span class="tip-icon">🔗</span>
+        <span>The <span class="block ops">join</span> block is like glue — it sticks two things together! <strong>"Answer = "</strong> + <strong>Result</strong> becomes one message like <em>"Answer = 2000"</em>. The cat will say it in a speech bubble!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DEMO / RUN ========== -->
+  <div class="section-title">🚀 Run It! See It Work!</div>
+
+  <div class="step-card accent-green">
+    <div class="card-header">
+      <div class="step-badge bg-green" style="font-size:1.2rem">▶</div>
+      <div class="card-title-block">
+        <h2>Click the Green Flag & Test! 🎯</h2>
+        <div class="subtitle">Your Multiplication Machine is alive!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Your program is <strong>complete</strong>! Click the <strong>green flag 🚩</strong> to run it. Watch what happens step by step on the right side of Scratch:
+      </p>
+      <ul class="step-list">
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">1</span>
+          The cat asks <em>"Enter First Number -"</em> — type any number and press Enter. (e.g. <strong>40</strong>)
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">2</span>
+          The cat asks <em>"Enter Second Number"</em> — type the second number. (e.g. <strong>50</strong>)
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">3</span>
+          The cat shows a speech bubble: <strong>"Answer = 2000"</strong> 🎉
+        </li>
+        <li>
+          <span class="bullet bg-green" style="font-size:0.85rem">4</span>
+          In the top-right corner you can also see <strong>Number1 = 40</strong>, <strong>Number2 = 50</strong>, <strong>Result = 2000</strong> updating live!
+        </li>
+      </ul>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="new_s8.png" alt="Cat asking for first number">
+          <div class="screenshot-label">💬 Cat asks for First Number!</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s9.png" alt="Cat asking for second number, Number1=40">
+          <div class="screenshot-label">🔢 Number1 = 40, now asking for 2nd!</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="new_s10.png" alt="Cat says Answer = 2000">
+          <div class="screenshot-label">🎉 Cat says "Answer = 2000"!</div>
+        </div>
+      </div>
+      <div class="tip-bubble green">
+        <span class="tip-icon">🧪</span>
+        <span>Try <strong>89 × 78</strong> — the answer should be <strong>6942</strong>! You can run the program again and again with different numbers. It always works!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FINAL COMPLETE SCRIPT ========== -->
+  <div class="step-card accent-purple">
+    <div class="card-header">
+      <div class="step-badge bg-purple">🏁</div>
+      <div class="card-title-block">
+        <h2>The Final Complete Script 📜</h2>
+        <div class="subtitle">All 7 blocks stacked perfectly!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Here's what your <strong>finished program</strong> looks like with all the blocks connected — and it working live with <strong>89 × 78 = 6942</strong>!
+      </p>
+      <div class="screenshot-gallery screenshot-single">
+        <div class="screenshot-wrap">
+          <img src="new_final.png" alt="Final complete Scratch script">
+          <div class="screenshot-label">🏆 The complete Multiplication Machine — live and working!</div>
+        </div>
+      </div>
+      <div class="tip-bubble purple">
+        <span class="tip-icon">🌟</span>
+        <span>Save your project using <strong>File → Save Now</strong>. Notice the project name at the top now says <strong>"multiplication"</strong> — you've made a real, named Scratch project!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FLOW SUMMARY ========== -->
+  <div class="flow-summary">
+    <h3>📜 Your Full Script — At a Glance</h3>
+    <div class="flow-row">
+      <span class="flow-pill">🚩 when clicked</span>
+      <span class="flow-arrow">↓</span>
+      <span class="flow-pill">💬 ask "Enter First Number"</span>
+      <span class="flow-arrow">↓</span>
+      <span class="flow-pill">💾 set Number1 = answer × 1</span>
+      <span class="flow-arrow">↓</span>
+      <span class="flow-pill">💬 ask "Enter Second Number"</span>
+      <span class="flow-arrow">↓</span>
+      <span class="flow-pill">💾 set Number2 = answer × 1</span>
+      <span class="flow-arrow">↓</span>
+      <span class="flow-pill">🧮 set Result = Number1 × Number2</span>
+      <span class="flow-arrow">↓</span>
+      <span class="flow-pill">📣 say join "Answer = " + Result</span>
+    </div>
+  </div>
+
+  <!-- ========== FINAL BOX ========== -->
+  <div class="final-box">
+    <br><br>
+    <h2>You Did It! 🏆</h2>
+    <p>
+      You've built a <strong>complete Multiplication Machine</strong> in Scratch from scratch!
+      It asks for two numbers, stores them in variables, multiplies them together, and the cat announces the answer! 🐱<br><br>
+      <span class="confetti-emoji">⭐</span>
+      &nbsp; Try multiplying big numbers like <strong>89 × 78 = 6942</strong>! &nbsp;
+      <span class="confetti-emoji" style="animation-direction:reverse">⭐</span>
+    </p>
+    <br>
+    <p style="font-size:0.95rem;opacity:0.8">🚀 Next challenge: Can you change it to add, subtract, or divide instead? Swap the × for +, −, or ÷!</p>
+  </div>
+
+</div><!-- /container -->
+
+</body>
+</html>

@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💧 Scratch Water Cycle Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --scratch-purple: #6B4EFF;
+    --scratch-dark-purple: #4C2FBA;
+    --scratch-yellow: #FFCC33;
+    --scratch-orange: #FF8C1A;
+    --scratch-green: #4CBF56;
+    --scratch-blue: #4C97FF;
+    --scratch-red: #FF6680;
+    --water-deep: #1E6FB8;
+    --water-mid:  #3BA7E4;
+    --water-light:#9FD8F5;
+    --sky-top:    #B9E3FB;
+    --sky-bot:    #E7F5FF;
+    --bg: #EAF6FF;
+    --card-bg: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(76,151,255,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 90% 80%, rgba(255,204,51,0.10) 0%, transparent 50%);
+    color: #1A3A52;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background:
+      linear-gradient(180deg, #2E86C1 0%, #3BA7E4 55%, #6FC5EE 100%);
+    padding: 40px 20px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.07'%3E%3Cpath d='M40 20 C50 35 55 45 40 60 C25 45 30 35 40 20 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .header-emoji-row {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+    animation: bob 2.5s infinite ease-in-out;
+  }
+  @keyframes bob {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: #fff;
+    text-shadow: 3px 4px 0px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  header p {
+    color: rgba(255,255,255,0.92);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .clouds-bg {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .cloud-pic {
+    position: absolute;
+    font-size: 2.4rem;
+    opacity: 0.55;
+    animation: float-x 18s linear infinite;
+  }
+  @keyframes float-x {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(120vw); }
+  }
+  .wave {
+    position: absolute;
+    bottom: -2px; left: 0; width: 100%;
+  }
+
+  /* ── INTRO BAND ── */
+  .intro-band {
+    background: var(--scratch-yellow);
+    padding: 18px 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #2D2D4E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* ── CYCLE DIAGRAM ── */
+  .cycle-diagram {
+    max-width: 760px;
+    margin: 30px auto 0;
+    padding: 24px;
+    background: linear-gradient(180deg, var(--sky-top), var(--sky-bot) 70%, var(--water-light));
+    border-radius: 26px;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 30px rgba(30,111,184,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .cycle-svg { width: 100%; height: auto; display: block; }
+
+  /* ── MAIN CONTAINER ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.7rem;
+    color: var(--water-deep);
+    text-align: center;
+    margin: 50px 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .section-title::before,
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--water-mid));
+    border-radius: 2px;
+    max-width: 120px;
+  }
+  .section-title::after {
+    background: linear-gradient(90deg, var(--water-mid), transparent);
+  }
+
+  /* ── STEP CARD ── */
+  .step-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 6px 30px rgba(30,111,184,0.10), 0 2px 8px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(30,111,184,0.18), 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .step-card.accent-purple { border-color: var(--scratch-purple); }
+  .step-card.accent-yellow { border-color: var(--scratch-yellow); }
+  .step-card.accent-orange { border-color: var(--scratch-orange); }
+  .step-card.accent-green  { border-color: var(--scratch-green); }
+  .step-card.accent-blue   { border-color: var(--scratch-blue); }
+  .step-card.accent-red    { border-color: var(--scratch-red); }
+  .step-card.accent-teal   { border-color: var(--water-mid); }
+
+  /* Card Header */
+  .card-header {
+    padding: 20px 28px 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 2px dashed #EEE;
+  }
+  .step-badge {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .bg-purple { background: var(--scratch-purple); }
+  .bg-yellow { background: var(--scratch-yellow); color: #2D2D4E !important; }
+  .bg-orange { background: var(--scratch-orange); }
+  .bg-green  { background: var(--scratch-green); }
+  .bg-blue   { background: var(--scratch-blue); }
+  .bg-red    { background: var(--scratch-red); }
+  .bg-teal   { background: var(--water-mid); }
+
+  .card-title-block h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: #1A3A52;
+    line-height: 1.2;
+  }
+  .card-title-block .subtitle {
+    font-size: 0.9rem;
+    color: #6E8AA0;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  /* Card Body */
+  .card-body { padding: 22px 28px; }
+  .card-body .description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #2C4A60;
+    margin-bottom: 18px;
+  }
+
+  /* Step list inside a card */
+  .step-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .step-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+  .step-list li .bullet {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem;
+    font-family: 'Fredoka One', cursive;
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #fff;
+  }
+  .step-list li .bullet.bg-yellow { color: #2D2D4E; }
+
+  code.kbd {
+    background: #EAF6FF;
+    padding: 2px 7px;
+    border-radius: 6px;
+    font-weight: 800;
+    color: #1E6FB8;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  /* Tip bubble */
+  .tip-bubble {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    margin-top: 20px;
+    font-size: 0.97rem;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .tip-bubble.purple { background: #F0ECFF; color: #4C2FBA; border-left: 4px solid var(--scratch-purple); }
+  .tip-bubble.yellow { background: #FFFBEA; color: #7A5C00; border-left: 4px solid var(--scratch-yellow); }
+  .tip-bubble.green  { background: #EDFAEF; color: #1A6626; border-left: 4px solid var(--scratch-green); }
+  .tip-bubble.orange { background: #FFF4E8; color: #7A3800; border-left: 4px solid var(--scratch-orange); }
+  .tip-bubble.blue   { background: #E8F2FF; color: #0A3E8A; border-left: 4px solid var(--scratch-blue); }
+  .tip-bubble.red    { background: #FFF0F3; color: #7A0020; border-left: 4px solid var(--scratch-red); }
+  .tip-bubble.teal   { background: #E6F6FE; color: #0F4A6E; border-left: 4px solid var(--water-mid); }
+  .tip-icon { font-size: 1.5rem; flex-shrink: 0; }
+
+  /* ── BLOCK PILL (Scratch block style) ── */
+  .block {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px 3px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 2px;
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.22);
+    white-space: nowrap;
+  }
+  .block.events  { background: #FFAB19; }
+  .block.motion  { background: #4C97FF; }
+  .block.looks   { background: #9966FF; }
+  .block.sound   { background: #CF63CF; }
+  .block.control { background: #FFAB19; }
+  .block.sensing { background: #5CB1D6; }
+  .block.ops     { background: #59C059; }
+  .block.vars    { background: #FF8C1A; }
+  .block.events-cast { background: #FFBF00; }
+  .block.hat     { background: #FFD500; color: #6B4F00; box-shadow: 0 2px 0 rgba(0,0,0,0.18); }
+
+  /* Sprite cards (sprite gallery) */
+  .sprite-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .sprite-card {
+    background: linear-gradient(180deg, #fff, #F4FAFE);
+    border: 2px solid #DDEEF8;
+    border-radius: 18px;
+    padding: 18px 12px;
+    text-align: center;
+    transition: transform .2s;
+  }
+  .sprite-card:hover { transform: translateY(-4px); }
+  .sprite-card .emoji {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .sprite-card .label {
+    font-family: 'Fredoka One', cursive;
+    color: var(--water-deep);
+    font-size: 1.05rem;
+  }
+  .sprite-card .role {
+    font-size: 0.82rem;
+    color: #5A7388;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  /* Script panel — visual representation of a stacked Scratch script */
+  .script-panel {
+    background: #F4F9FC;
+    border: 2px dashed #BAD8EA;
+    border-radius: 18px;
+    padding: 18px;
+    margin-top: 16px;
+  }
+  .script-panel .sprite-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px;
+    font-family: 'Fredoka One', cursive;
+    color: var(--water-deep);
+    font-size: 1.05rem;
+  }
+  .script-panel .sprite-header .chip {
+    background: var(--water-mid);
+    color: #fff;
+    padding: 2px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+  }
+  .script-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .script-block {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.92rem;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.18);
+    font-family: 'Nunito', sans-serif;
+  }
+  .script-block .slot {
+    background: rgba(255,255,255,0.85);
+    color: #2D2D4E;
+    padding: 1px 9px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+  }
+  .script-block.events { background: #FFAB19; }
+  .script-block.events-cast { background: #FFBF00; }
+  .script-block.motion { background: #4C97FF; }
+  .script-block.looks { background: #9966FF; }
+  .script-block.control { background: #FFAB19; }
+  .script-block.sensing { background: #5CB1D6; }
+  .script-block.ops { background: #59C059; }
+  .script-block.vars { background: #FF8C1A; }
+  .script-block.hat-flag {
+    background: #FFD500; color: #5A4500;
+    border-radius: 6px 6px 6px 6px;
+  }
+  .script-nest {
+    margin-left: 18px;
+    border-left: 6px solid #FFAB19;
+    padding: 4px 0 4px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+
+  /* ── FINAL RESULT BOX ── */
+  .final-box {
+    background: linear-gradient(135deg, #2E86C1, #6FC5EE);
+    border-radius: 28px;
+    padding: 40px 30px;
+    text-align: center;
+    color: #fff;
+    margin-top: 50px;
+    box-shadow: 0 10px 40px rgba(30,111,184,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .final-box::before {
+    content: '🌈 ☀️ 🌧️';
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    animation: bob 1.8s infinite;
+  }
+  .final-box h2 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+    margin-bottom: 14px;
+    text-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+  }
+  .final-box p {
+    font-size: 1.12rem;
+    font-weight: 700;
+    opacity: 0.95;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Flow summary */
+  .flow-summary {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px;
+    margin-top: 36px;
+    box-shadow: 0 4px 20px rgba(30,111,184,0.1);
+  }
+  .flow-summary h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--water-deep);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+  .flow-arrow { color: var(--water-mid); font-size: 1.4rem; }
+  .flow-pill {
+    background: #E6F4FB;
+    color: var(--water-deep);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 2px solid var(--water-mid);
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.92rem;
+  }
+
+  /* Science callout */
+  .science {
+    background: #FFFBEA;
+    border-left: 5px solid var(--scratch-yellow);
+    padding: 16px 18px;
+    border-radius: 14px;
+    margin-top: 18px;
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: #5A4500;
+    font-weight: 600;
+  }
+  .science strong { color: #7A5C00; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .card-header { flex-direction: column; align-items: flex-start; }
+    .card-body { padding: 18px 18px; }
+    .card-header { padding: 18px 18px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="clouds-bg">
+    <div class="cloud-pic" style="top:12%;left:-10%;animation-delay:0s">☁️</div>
+    <div class="cloud-pic" style="top:30%;left:-20%;animation-delay:6s;font-size:3rem">☁️</div>
+    <div class="cloud-pic" style="top:55%;left:-15%;animation-delay:12s;font-size:2rem">☁️</div>
+  </div>
+  <div class="header-emoji-row">☀️ &nbsp; 💧 &nbsp; ☁️ &nbsp; 🌧️</div>
+  <h1>The Water Cycle in Scratch!</h1>
+  <p>Build an animated water cycle — evaporation, condensation, precipitation &amp; collection — using sprites, broadcasts and loops! 🌊</p>
+  <svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill="#EAF6FF"/>
+  </svg>
+</header>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  🌍 We will build an animation where the Sun heats the ocean → water rises → forms a cloud → it rains → water returns to the sea — forever!
+</div>
+
+<!-- CYCLE DIAGRAM -->
+<div class="cycle-diagram">
+  <svg class="cycle-svg" viewBox="0 0 720 360" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sun -->
+    <circle cx="600" cy="70" r="40" fill="#FFCC33"/>
+    <g stroke="#FFCC33" stroke-width="5" stroke-linecap="round">
+      <line x1="600" y1="10" x2="600" y2="25"/>
+      <line x1="600" y1="115" x2="600" y2="130"/>
+      <line x1="540" y1="70" x2="555" y2="70"/>
+      <line x1="645" y1="70" x2="660" y2="70"/>
+      <line x1="555" y1="25" x2="565" y2="35"/>
+      <line x1="635" y1="105" x2="645" y2="115"/>
+      <line x1="555" y1="115" x2="565" y2="105"/>
+      <line x1="635" y1="35" x2="645" y2="25"/>
+    </g>
+    <!-- Cloud -->
+    <g fill="#FFFFFF" stroke="#B7D9EC" stroke-width="3">
+      <ellipse cx="240" cy="110" rx="70" ry="32"/>
+      <circle cx="200" cy="95" r="28"/>
+      <circle cx="270" cy="85" r="34"/>
+      <circle cx="295" cy="110" r="26"/>
+    </g>
+    <!-- Rain drops -->
+    <g fill="#4C97FF">
+      <path d="M210 150 q-4 10 0 16 q4 -6 0 -16 z"/>
+      <path d="M240 160 q-4 10 0 16 q4 -6 0 -16 z"/>
+      <path d="M270 152 q-4 10 0 16 q4 -6 0 -16 z"/>
+      <path d="M225 175 q-4 10 0 16 q4 -6 0 -16 z"/>
+      <path d="M255 178 q-4 10 0 16 q4 -6 0 -16 z"/>
+    </g>
+    <!-- Evaporation arrow -->
+    <g stroke="#3BA7E4" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M520 290 C 500 220, 460 170, 360 130" stroke-dasharray="6 6"/>
+      <polygon points="358,128 374,128 366,142" fill="#3BA7E4"/>
+    </g>
+    <!-- Collection arrow -->
+    <g stroke="#1E6FB8" stroke-width="3" fill="none" stroke-linecap="round">
+      <path d="M165 220 C 130 250, 130 270, 160 285" stroke-dasharray="6 6"/>
+      <polygon points="158,283 170,288 156,295" fill="#1E6FB8"/>
+    </g>
+    <!-- Ocean -->
+    <path d="M0,290 Q 180,260 360,290 T 720,290 L 720,360 L 0,360 Z" fill="#3BA7E4"/>
+    <path d="M0,300 Q 180,275 360,300 T 720,300 L 720,360 L 0,360 Z" fill="#1E6FB8" opacity="0.55"/>
+    <!-- Labels -->
+    <g font-family="Fredoka One, Nunito" font-size="14" fill="#1A3A52" font-weight="700">
+      <text x="430" y="200" fill="#1F7BC6">EVAPORATION</text>
+      <text x="200" y="60"  fill="#6E5BAA">CONDENSATION</text>
+      <text x="178" y="220" fill="#1A6CB5">PRECIPITATION</text>
+      <text x="60"  y="335" fill="#FFFFFF">COLLECTION</text>
+    </g>
+  </svg>
+</div>
+
+<div class="container">
+
+  <!-- ── DOWNLOAD .SB3 BANNER ─────────────────────────────────────────── -->
+  <div class="step-card accent-blue" style="background:linear-gradient(135deg,#E8F4FE,#FFFFFF);">
+    <div class="card-header">
+      <div class="step-badge bg-blue">▶</div>
+      <div class="card-title-block">
+        <h2>Try the Finished Project First 🚀</h2>
+        <div class="subtitle">A ready-made .sb3 is included — load it in Scratch to see the result</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        We've packaged the completed water-cycle project as <code class="kbd">water_cycle.sb3</code>
+        (sitting right next to this tutorial). Open it in Scratch to see exactly what we're building,
+        then come back and learn how to build it block-by-block.
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-blue">1</span> Go to <strong>scratch.mit.edu/projects/editor/</strong> (or open the Scratch desktop app).</li>
+        <li><span class="bullet bg-blue">2</span> Click <strong>File → Load from your computer</strong>.</li>
+        <li><span class="bullet bg-blue">3</span> Pick <code class="kbd">water_cycle.sb3</code> and click <strong>Open</strong>.</li>
+        <li><span class="bullet bg-blue">4</span> Click the green flag 🚩 and watch the cycle run!</li>
+      </ul>
+      <div class="tip-bubble blue">
+        <span class="tip-icon">📥</span>
+        <span>The file is in the same folder as this tutorial: <code class="kbd">Scratch Programs/water_cycle.sb3</code></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION: SPRITES ───────────────────────────────────────────── -->
+  <div class="section-title">🎭 Meet Your Sprites</div>
+
+  <div class="step-card accent-teal">
+    <div class="card-header">
+      <div class="step-badge bg-teal">0</div>
+      <div class="card-title-block">
+        <h2>The Cast of the Water Cycle 🌊</h2>
+        <div class="subtitle">4 sprites + 1 backdrop + 1 boss (the Stage)</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Before we code, let's see the characters of our story. Each one has a single job in the water cycle —
+        and they coordinate by <strong>shouting messages</strong> (broadcasts) to each other!
+      </p>
+      <div class="sprite-grid">
+        <div class="sprite-card">
+          <span class="emoji">☀️</span>
+          <div class="label">Sun</div>
+          <div class="role">Pulses in the sky<br><em style="font-size:.78rem;color:#888">(decoration)</em></div>
+        </div>
+        <div class="sprite-card">
+          <span class="emoji">💧</span>
+          <div class="label">WaterDrop</div>
+          <div class="role">Rises up<br><em style="font-size:.78rem;color:#888">(evaporation)</em></div>
+        </div>
+        <div class="sprite-card">
+          <span class="emoji">☁️</span>
+          <div class="label">Cloud</div>
+          <div class="role">Forms &amp; grows<br><em style="font-size:.78rem;color:#888">(condensation)</em></div>
+        </div>
+        <div class="sprite-card">
+          <span class="emoji">🌧️</span>
+          <div class="label">RainDrop</div>
+          <div class="role">Falls as clones<br><em style="font-size:.78rem;color:#888">(precipitation)</em></div>
+        </div>
+        <div class="sprite-card" style="background:linear-gradient(180deg,#FFF8E1,#FFFCEC);border-color:#FFE6A0">
+          <span class="emoji">🎬</span>
+          <div class="label">Stage</div>
+          <div class="role">The boss — drives the whole cycle</div>
+        </div>
+      </div>
+      <div class="tip-bubble teal">
+        <span class="tip-icon">🎨</span>
+        <span>You can pick <strong>Sun</strong> and <strong>Cloud</strong> from Scratch's sprite library, or paint your own. The water drop and rain drop are easy to <strong>paint</strong> as small blue teardrop shapes.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EVENT FLOW DIAGRAM ─────────────────────────────────────────── -->
+  <div class="step-card accent-purple">
+    <div class="card-header">
+      <div class="step-badge bg-purple">🔁</div>
+      <div class="card-title-block">
+        <h2>How the Sprites Talk to Each Other 📣</h2>
+        <div class="subtitle">The Stage is the boss — it broadcasts and waits</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Each sprite listens for a specific <strong>broadcast</strong>. The Stage fires them in order
+        using <span class="block events-cast">broadcast [ ] and wait</span> — so each phase
+        <strong>fully completes</strong> before the next one starts. (Without "and wait", the cycle would break — more on that below.)
+      </p>
+
+      <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+            <polygon points="0 0, 10 5, 0 10" fill="#6B4EFF"/>
+          </marker>
+        </defs>
+        <!-- Stage box -->
+        <rect x="280" y="20" width="160" height="60" rx="14" fill="#FFD500" stroke="#B58A00" stroke-width="2"/>
+        <text x="360" y="48" text-anchor="middle" font-family="Fredoka One" font-size="16" fill="#5A4500">🎬 STAGE</text>
+        <text x="360" y="68" text-anchor="middle" font-family="Nunito" font-size="11" fill="#5A4500" font-weight="700">(the boss)</text>
+        <!-- WaterDrop -->
+        <rect x="40" y="120" width="140" height="50" rx="12" fill="#3BA7E4" stroke="#1E6FB8" stroke-width="2"/>
+        <text x="110" y="142" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#fff">💧 WaterDrop</text>
+        <text x="110" y="158" text-anchor="middle" font-family="Nunito" font-size="10" fill="#fff" font-weight="700">listens: evaporate</text>
+        <!-- Cloud -->
+        <rect x="290" y="120" width="140" height="50" rx="12" fill="#9966FF" stroke="#6B47B8" stroke-width="2"/>
+        <text x="360" y="142" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#fff">☁️ Cloud</text>
+        <text x="360" y="158" text-anchor="middle" font-family="Nunito" font-size="10" fill="#fff" font-weight="700">listens: condense, precipitate</text>
+        <!-- RainDrop -->
+        <rect x="540" y="120" width="140" height="50" rx="12" fill="#4C97FF" stroke="#1E6FB8" stroke-width="2"/>
+        <text x="610" y="142" text-anchor="middle" font-family="Fredoka One" font-size="14" fill="#fff">🌧️ RainDrop</text>
+        <text x="610" y="158" text-anchor="middle" font-family="Nunito" font-size="10" fill="#fff" font-weight="700">listens: precipitate</text>
+        <!-- Arrows -->
+        <path d="M 280 70 Q 180 70 130 115" stroke="#6B4EFF" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+        <path d="M 360 85 L 360 115" stroke="#6B4EFF" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+        <path d="M 440 70 Q 540 70 590 115" stroke="#6B4EFF" stroke-width="2.5" fill="none" marker-end="url(#arrowhead)"/>
+        <!-- Labels -->
+        <text x="200" y="95"  font-family="Nunito" font-size="10" fill="#4C2FBA" font-weight="800">"evaporate"</text>
+        <text x="365" y="105" font-family="Nunito" font-size="10" fill="#4C2FBA" font-weight="800">"condense"</text>
+        <text x="478" y="95"  font-family="Nunito" font-size="10" fill="#4C2FBA" font-weight="800">"precipitate"</text>
+      </svg>
+
+      <div class="tip-bubble purple">
+        <span class="tip-icon">📡</span>
+        <span>A <strong>broadcast</strong> is like an announcement on a loudspeaker — every sprite that has <span class="block events-cast">when I receive [...]</span> will react. They don't need to know about each other!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 1 — BACKDROP
+       ======================================================== -->
+  <div class="section-title">🖼️ Step 1 — Set the Scene</div>
+
+  <div class="step-card accent-purple">
+    <div class="card-header">
+      <div class="step-badge bg-purple">1</div>
+      <div class="card-title-block">
+        <h2>Choose a Sky &amp; Ocean Backdrop 🌅</h2>
+        <div class="subtitle">Stage → Choose a Backdrop</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        We need a stage that looks like the <strong>sky on top</strong> and the <strong>sea on the bottom</strong>.
+        Scratch has one built-in we can use, or you can paint your own.
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-purple">1</span> In the bottom-right corner click the <strong>Stage</strong> panel, then the <strong>Choose a Backdrop</strong> icon (🖼️).</li>
+        <li><span class="bullet bg-purple">2</span> Pick <code class="kbd">Beach Malibu</code> or <code class="kbd">Underwater 1</code> — anything with a clear sky and water area.</li>
+        <li><span class="bullet bg-purple">3</span> (Optional) Click the <strong>Paint</strong> tab and draw a horizontal blue line at the middle to mark sea level.</li>
+      </ul>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--water-deep);">📸 What the stage looks like now:</p>
+      <div class="screenshot-placeholder" style="border:2px dashed #BAD8EA;border-radius:14px;padding:14px;background:#F4F9FC;">
+        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto;border-radius:10px;border:1px solid #C5DEEE;">
+          <defs>
+            <linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#B9E3FB"/><stop offset="1" stop-color="#E7F5FF"/>
+            </linearGradient>
+            <linearGradient id="sea1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3BA7E4"/><stop offset="1" stop-color="#1E6FB8"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="240" fill="url(#sky1)"/>
+          <path d="M0 240 Q 120 220 240 240 T 480 240 L 480 360 L 0 360 Z" fill="url(#sea1)"/>
+          <path d="M0 252 Q 120 234 240 252 T 480 252 L 480 360 L 0 360 Z" fill="#1E6FB8" opacity="0.45"/>
+          <text x="240" y="200" text-anchor="middle" font-family="Nunito" font-size="14" font-weight="800" fill="#1A3A52" opacity="0.4">📸 STAGE — empty backdrop</text>
+        </svg>
+      </div>
+
+      <div class="tip-bubble purple">
+        <span class="tip-icon">💡</span>
+        <span>The stage in Scratch is <strong>480 × 360</strong>. The middle is <code class="kbd">x: 0, y: 0</code>. Anything below <code class="kbd">y: -50</code> we'll treat as the "ocean", above <code class="kbd">y: 100</code> is "sky".</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 2 — SUN SPRITE
+       ======================================================== -->
+  <div class="section-title">☀️ Step 2 — Add the Sun</div>
+
+  <div class="step-card accent-yellow">
+    <div class="card-header">
+      <div class="step-badge bg-yellow">2</div>
+      <div class="card-title-block">
+        <h2>Sun That Pulses in the Sky ☀️</h2>
+        <div class="subtitle">Decoration only — a friendly pulsing sun</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        The Sun is the visual reminder that "heat is happening". It just <strong>pulses forever</strong>
+        in its corner — it does not send any broadcasts (the Stage will handle that for us).
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-yellow">1</span> Delete the default Cat sprite (right-click → delete).</li>
+        <li><span class="bullet bg-yellow">2</span> Click <strong>Choose a Sprite</strong> 🐱 at bottom-right. Search <code class="kbd">Sun</code> and add it (or paint a yellow circle with rays).</li>
+        <li><span class="bullet bg-yellow">3</span> Rename the sprite to <code class="kbd">Sun</code>.</li>
+        <li><span class="bullet bg-yellow">4</span> Click the Sun sprite, open the <strong>Code</strong> tab, and build this script:</li>
+      </ul>
+
+      <div class="script-panel">
+        <div class="sprite-header">☀️ Sun script <span class="chip">DECORATIVE PULSE</span></div>
+        <div class="script-stack">
+          <div class="script-block hat-flag">🚩 when clicked</div>
+          <div class="script-block motion">go to x: <span class="slot">180</span> y: <span class="slot">130</span></div>
+          <div class="script-block looks">set size to <span class="slot">80</span> %</div>
+          <div class="script-block looks">show</div>
+          <div class="script-block control">forever</div>
+          <div class="script-nest">
+            <div class="script-block looks">change size by <span class="slot">12</span></div>
+            <div class="script-block control">wait <span class="slot">0.25</span> secs</div>
+            <div class="script-block looks">change size by <span class="slot">-12</span></div>
+            <div class="script-block control">wait <span class="slot">0.25</span> secs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-bubble yellow">
+        <span class="tip-icon">🔥</span>
+        <span>The Sun grows then shrinks every half-second — a gentle "breathing" effect that suggests it's giving off heat.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 3 — WATER DROP (EVAPORATION)
+       ======================================================== -->
+  <div class="section-title">💧 Step 3 — Evaporation</div>
+
+  <div class="step-card accent-blue">
+    <div class="card-header">
+      <div class="step-badge bg-blue">3</div>
+      <div class="card-title-block">
+        <h2>Add the Water Drop &amp; Make it Rise 💧⬆️</h2>
+        <div class="subtitle">Motion → glide + Events → when I receive</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Paint a small blue teardrop sprite called <code class="kbd">WaterDrop</code>. When it hears the Stage
+        shout <strong>"evaporate"</strong>, it jumps to a random spot on the sea and <strong>glides upward</strong>
+        toward the cloud — just like real water turning into vapour.
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-blue">1</span> Click <strong>Choose a Sprite</strong> → <strong>Paint</strong> 🎨. Draw a small blue teardrop (about 40×60 px). Name it <code class="kbd">WaterDrop</code>.</li>
+        <li><span class="bullet bg-blue">2</span> Click the sprite and add these <strong>two</strong> scripts:</li>
+      </ul>
+
+      <div class="script-panel">
+        <div class="sprite-header">💧 WaterDrop — Script A <span class="chip">HIDE AT START</span></div>
+        <div class="script-stack">
+          <div class="script-block hat-flag">🚩 when clicked</div>
+          <div class="script-block looks">hide</div>
+        </div>
+      </div>
+
+      <div class="script-panel" style="margin-top:14px;">
+        <div class="sprite-header">💧 WaterDrop — Script B <span class="chip">EVAPORATION</span></div>
+        <div class="script-stack">
+          <div class="script-block events-cast">when I receive <span class="slot">evaporate ▾</span></div>
+          <div class="script-block motion">go to x: <span class="slot">pick random -150 to 150</span> y: <span class="slot">-120</span></div>
+          <div class="script-block looks">show</div>
+          <div class="script-block looks">say <span class="slot">Evaporation!</span> for <span class="slot">0.5</span> secs</div>
+          <div class="script-block motion">glide <span class="slot">1.5</span> secs to x: <span class="slot">-100</span> y: <span class="slot">100</span></div>
+          <div class="script-block looks">hide</div>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--water-deep);">📸 What you see on stage during evaporation:</p>
+      <div class="screenshot-placeholder" style="border:2px dashed #BAD8EA;border-radius:14px;padding:14px;background:#F4F9FC;">
+        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto;border-radius:10px;border:1px solid #C5DEEE;">
+          <defs>
+            <linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#B9E3FB"/><stop offset="1" stop-color="#E7F5FF"/>
+            </linearGradient>
+            <linearGradient id="sea2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3BA7E4"/><stop offset="1" stop-color="#1E6FB8"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="240" fill="url(#sky2)"/>
+          <path d="M0 240 Q 120 220 240 240 T 480 240 L 480 360 L 0 360 Z" fill="url(#sea2)"/>
+          <!-- Sun -->
+          <g transform="translate(390,40)">
+            <g stroke="#FFCC33" stroke-width="3.5" stroke-linecap="round">
+              <line x1="30" y1="-2" x2="30" y2="6"/><line x1="30" y1="54" x2="30" y2="62"/>
+              <line x1="-2" y1="30" x2="6" y2="30"/><line x1="54" y1="30" x2="62" y2="30"/>
+              <line x1="9" y1="9" x2="14" y2="14"/><line x1="46" y1="46" x2="51" y2="51"/>
+              <line x1="9" y1="51" x2="14" y2="46"/><line x1="46" y1="14" x2="51" y2="9"/>
+            </g>
+            <circle cx="30" cy="30" r="17" fill="#FFCC33"/>
+          </g>
+          <!-- Cloud (top-left) -->
+          <g transform="translate(60,30)" fill="#FFFFFF" stroke="#B7D9EC" stroke-width="2">
+            <ellipse cx="42" cy="33" rx="35" ry="12"/>
+            <circle cx="23" cy="29" r="13"/><circle cx="42" cy="20" r="17"/><circle cx="61" cy="28" r="14"/>
+          </g>
+          <!-- Rising drop with motion trail -->
+          <g opacity="0.35">
+            <path d="M210 280 C 206 285, 205 290, 210 294 C 215 290, 214 285, 210 280 Z" fill="#3BA7E4"/>
+          </g>
+          <g opacity="0.6">
+            <path d="M192 220 C 188 226, 187 232, 192 236 C 197 232, 196 226, 192 220 Z" fill="#3BA7E4"/>
+          </g>
+          <g>
+            <path d="M170 150 C 164 158, 162 168, 170 175 C 178 168, 176 158, 170 150 Z" fill="#3BA7E4" stroke="#1E6FB8" stroke-width="1.5"/>
+          </g>
+          <!-- Dashed glide path -->
+          <path d="M 210 290 C 200 230, 195 180, 170 165" stroke="#1E6FB8" stroke-width="1.5" stroke-dasharray="4 4" fill="none" opacity="0.5"/>
+          <!-- Speech bubble -->
+          <g transform="translate(195,135)">
+            <rect x="0" y="0" width="120" height="28" rx="14" fill="#fff" stroke="#1A3A52" stroke-width="1.5"/>
+            <text x="60" y="18" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="800" fill="#1A3A52">Evaporation!</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="tip-bubble blue">
+        <span class="tip-icon">🔬</span>
+        <span><strong>Science:</strong> <strong>Evaporation</strong> is when liquid water gains energy from heat and changes into a gas (water vapour) that rises into the sky.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 4 — CLOUD (CONDENSATION)
+       ======================================================== -->
+  <div class="section-title">☁️ Step 4 — Condensation</div>
+
+  <div class="step-card accent-purple">
+    <div class="card-header">
+      <div class="step-badge bg-purple">4</div>
+      <div class="card-title-block">
+        <h2>Add the Cloud — Grows &amp; Shrinks ☁️</h2>
+        <div class="subtitle">Two receive handlers: condense + precipitate</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Add a <code class="kbd">Cloud</code> sprite (from the library or hand-painted) at the top-left.
+        It reacts to <strong>two</strong> different broadcasts: when it <em>condenses</em> it grows;
+        when it <em>precipitates</em> it shrinks back to its normal size.
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-purple">1</span> <strong>Choose a Sprite</strong> → search <code class="kbd">Cloud</code> (or paint a fluffy white cloud). Name it <code class="kbd">Cloud</code>.</li>
+        <li><span class="bullet bg-purple">2</span> Add these <strong>three</strong> scripts:</li>
+      </ul>
+
+      <div class="script-panel">
+        <div class="sprite-header">☁️ Cloud — Script A <span class="chip">INITIAL POSITION</span></div>
+        <div class="script-stack">
+          <div class="script-block hat-flag">🚩 when clicked</div>
+          <div class="script-block motion">go to x: <span class="slot">-100</span> y: <span class="slot">130</span></div>
+          <div class="script-block looks">set size to <span class="slot">60</span> %</div>
+          <div class="script-block looks">show</div>
+        </div>
+      </div>
+
+      <div class="script-panel" style="margin-top:14px;">
+        <div class="sprite-header">☁️ Cloud — Script B <span class="chip">CONDENSATION</span></div>
+        <div class="script-stack">
+          <div class="script-block events-cast">when I receive <span class="slot">condense ▾</span></div>
+          <div class="script-block looks">say <span class="slot">Condensation!</span> for <span class="slot">0.5</span> secs</div>
+          <div class="script-block looks">change size by <span class="slot">15</span></div>
+        </div>
+      </div>
+
+      <div class="script-panel" style="margin-top:14px;">
+        <div class="sprite-header">☁️ Cloud — Script C <span class="chip">RESET WHEN IT RAINS</span></div>
+        <div class="script-stack">
+          <div class="script-block events-cast">when I receive <span class="slot">precipitate ▾</span></div>
+          <div class="script-block looks">say <span class="slot">Precipitation!</span> for <span class="slot">0.5</span> secs</div>
+          <div class="script-block looks">set size to <span class="slot">60</span> %</div>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--water-deep);">📸 What the cloud looks like as it grows:</p>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap" style="background:#fff;padding:12px;border:2px solid #DDEEF8;border-radius:14px;">
+          <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <g transform="translate(40,30)" fill="#FFFFFF" stroke="#B7D9EC" stroke-width="2">
+              <ellipse cx="42" cy="33" rx="35" ry="12"/>
+              <circle cx="23" cy="29" r="13"/><circle cx="42" cy="20" r="17"/><circle cx="61" cy="28" r="14"/>
+            </g>
+          </svg>
+          <div class="screenshot-label">Size 60% — start</div>
+        </div>
+        <div class="screenshot-wrap" style="background:#fff;padding:12px;border:2px solid #DDEEF8;border-radius:14px;">
+          <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <g transform="translate(20,15) scale(1.3)" fill="#FFFFFF" stroke="#B7D9EC" stroke-width="2">
+              <ellipse cx="42" cy="33" rx="35" ry="12"/>
+              <circle cx="23" cy="29" r="13"/><circle cx="42" cy="20" r="17"/><circle cx="61" cy="28" r="14"/>
+            </g>
+          </svg>
+          <div class="screenshot-label">Size 75% — after 1 drop</div>
+        </div>
+        <div class="screenshot-wrap" style="background:#fff;padding:12px;border:2px solid #DDEEF8;border-radius:14px;">
+          <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <g transform="translate(0,0) scale(1.55)" fill="#FFFFFF" stroke="#B7D9EC" stroke-width="2">
+              <ellipse cx="42" cy="33" rx="35" ry="12"/>
+              <circle cx="23" cy="29" r="13"/><circle cx="42" cy="20" r="17"/><circle cx="61" cy="28" r="14"/>
+            </g>
+          </svg>
+          <div class="screenshot-label">Size 90% — about to rain!</div>
+        </div>
+      </div>
+
+      <div class="tip-bubble purple">
+        <span class="tip-icon">🔬</span>
+        <span><strong>Science:</strong> <strong>Condensation</strong> happens when water vapour in cold sky air clumps back into tiny droplets — billions of them together form a visible cloud.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 5 — RAIN DROP (PRECIPITATION)
+       ======================================================== -->
+  <div class="section-title">🌧️ Step 5 — Precipitation</div>
+
+  <div class="step-card accent-blue">
+    <div class="card-header">
+      <div class="step-badge bg-blue">5</div>
+      <div class="card-title-block">
+        <h2>Make it Rain with Clones 🌧️</h2>
+        <div class="subtitle">Control → create clone of myself</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Rain is many drops at once, not one. Scratch's superpower for this is <strong>cloning</strong>:
+        one sprite makes many copies of itself, and each copy runs the same script independently.
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-blue">1</span> Paint a tiny blue droplet (≈ 20×30 px). Name it <code class="kbd">RainDrop</code>.</li>
+        <li><span class="bullet bg-blue">2</span> Add these <strong>three</strong> scripts:</li>
+      </ul>
+
+      <div class="script-panel">
+        <div class="sprite-header">🌧️ RainDrop — Script A <span class="chip">HIDE AT START</span></div>
+        <div class="script-stack">
+          <div class="script-block hat-flag">🚩 when clicked</div>
+          <div class="script-block looks">hide</div>
+        </div>
+      </div>
+
+      <div class="script-panel" style="margin-top:14px;">
+        <div class="sprite-header">🌧️ RainDrop — Script B <span class="chip">SPAWN 8 CLONES</span></div>
+        <div class="script-stack">
+          <div class="script-block events-cast">when I receive <span class="slot">precipitate ▾</span></div>
+          <div class="script-block control">repeat <span class="slot">8</span></div>
+          <div class="script-nest">
+            <div class="script-block control">create clone of <span class="slot">myself ▾</span></div>
+            <div class="script-block control">wait <span class="slot">0.08</span> secs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="script-panel" style="margin-top:14px;">
+        <div class="sprite-header">🌧️ RainDrop — Script C <span class="chip">EACH CLONE FALLS &amp; DELETES</span></div>
+        <div class="script-stack">
+          <div class="script-block control">when I start as a clone</div>
+          <div class="script-block motion">go to x: <span class="slot">pick random -140 to -60</span> y: <span class="slot">120</span></div>
+          <div class="script-block looks">show</div>
+          <div class="script-block motion">glide <span class="slot">0.8</span> secs to x: <span class="slot">x position</span> y: <span class="slot">-120</span></div>
+          <div class="script-block control">delete this clone</div>
+        </div>
+      </div>
+
+      <p style="margin-top:18px;font-weight:700;color:var(--water-deep);">📸 What rain looks like on stage:</p>
+      <div class="screenshot-placeholder" style="border:2px dashed #BAD8EA;border-radius:14px;padding:14px;background:#F4F9FC;">
+        <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:520px;display:block;margin:0 auto;border-radius:10px;border:1px solid #C5DEEE;">
+          <defs>
+            <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#B9E3FB"/><stop offset="1" stop-color="#E7F5FF"/>
+            </linearGradient>
+            <linearGradient id="sea3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3BA7E4"/><stop offset="1" stop-color="#1E6FB8"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="240" fill="url(#sky3)"/>
+          <path d="M0 240 Q 120 220 240 240 T 480 240 L 480 360 L 0 360 Z" fill="url(#sea3)"/>
+          <!-- Sun -->
+          <g transform="translate(390,40)">
+            <g stroke="#FFCC33" stroke-width="3.5" stroke-linecap="round">
+              <line x1="30" y1="-2" x2="30" y2="6"/><line x1="30" y1="54" x2="30" y2="62"/>
+              <line x1="-2" y1="30" x2="6" y2="30"/><line x1="54" y1="30" x2="62" y2="30"/>
+              <line x1="9" y1="9" x2="14" y2="14"/><line x1="46" y1="46" x2="51" y2="51"/>
+              <line x1="9" y1="51" x2="14" y2="46"/><line x1="46" y1="14" x2="51" y2="9"/>
+            </g>
+            <circle cx="30" cy="30" r="17" fill="#FFCC33"/>
+          </g>
+          <!-- Big cloud (grown) -->
+          <g transform="translate(30,15) scale(1.4)" fill="#FFFFFF" stroke="#B7D9EC" stroke-width="2">
+            <ellipse cx="42" cy="33" rx="35" ry="12"/>
+            <circle cx="23" cy="29" r="13"/><circle cx="42" cy="20" r="17"/><circle cx="61" cy="28" r="14"/>
+          </g>
+          <!-- Rain drops -->
+          <g fill="#4C97FF" stroke="#1E6FB8" stroke-width="1">
+            <path d="M50 120 C 47 124, 46 128, 50 131 C 54 128, 53 124, 50 120 Z"/>
+            <path d="M80 145 C 77 149, 76 153, 80 156 C 84 153, 83 149, 80 145 Z"/>
+            <path d="M105 170 C 102 174, 101 178, 105 181 C 109 178, 108 174, 105 170 Z"/>
+            <path d="M130 195 C 127 199, 126 203, 130 206 C 134 203, 133 199, 130 195 Z"/>
+            <path d="M155 220 C 152 224, 151 228, 155 231 C 159 228, 158 224, 155 220 Z"/>
+            <path d="M65 175 C 62 179, 61 183, 65 186 C 69 183, 68 179, 65 175 Z"/>
+            <path d="M95 205 C 92 209, 91 213, 95 216 C 99 213, 98 209, 95 205 Z"/>
+            <path d="M40 200 C 37 204, 36 208, 40 211 C 44 208, 43 204, 40 200 Z"/>
+          </g>
+          <!-- Speech bubble -->
+          <g transform="translate(75,5)">
+            <rect x="0" y="0" width="130" height="26" rx="13" fill="#fff" stroke="#1A3A52" stroke-width="1.5"/>
+            <text x="65" y="18" text-anchor="middle" font-family="Nunito" font-size="13" font-weight="800" fill="#1A3A52">Precipitation!</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="tip-bubble blue">
+        <span class="tip-icon">🌧️</span>
+        <span><strong>Clones</strong> are temporary copies of a sprite, each running their own script. We make 8 — each falls from a random x position near the cloud, glides down to the sea, and then deletes itself so we don't pile up thousands of drops!</span>
+      </div>
+      <div class="tip-bubble blue" style="margin-top:12px;">
+        <span class="tip-icon">🔬</span>
+        <span><strong>Science:</strong> <strong>Precipitation</strong> happens when the droplets in a cloud become too heavy to stay aloft, and they fall as rain (or snow, sleet, hail).</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 6 — THE STAGE (THE BOSS!)
+       ======================================================== -->
+  <div class="section-title">🎬 Step 6 — The Stage Drives the Cycle</div>
+
+  <div class="step-card accent-orange">
+    <div class="card-header">
+      <div class="step-badge bg-orange">6</div>
+      <div class="card-title-block">
+        <h2>The Boss Script — Broadcast and Wait 🔁</h2>
+        <div class="subtitle">Stage → Code tab → the most important script in the project!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Every sprite is set up to <em>listen</em>, but nobody is talking yet! The <strong>Stage</strong> is going
+        to be the boss. It runs a forever loop that calls each phase using
+        <span class="block events-cast">broadcast [ ] and wait</span> —
+        the magic block that <strong>pauses</strong> until every listener finishes its script.
+      </p>
+      <ul class="step-list">
+        <li><span class="bullet bg-orange">1</span> Click the <strong>Stage</strong> panel (bottom-right), then the <strong>Code</strong> tab.</li>
+        <li><span class="bullet bg-orange">2</span> In <strong>Variables</strong>, click <strong>Make a Variable</strong>:
+          <ul style="margin-left:34px;margin-top:6px;list-style:disc;">
+            <li>Name it <code class="kbd">drops</code> — <em>For all sprites</em></li>
+            <li>Make another called <code class="kbd">Cycle</code> — <em>For all sprites</em></li>
+          </ul>
+        </li>
+        <li><span class="bullet bg-orange">3</span> Build this script:</li>
+      </ul>
+
+      <div class="script-panel">
+        <div class="sprite-header">🎬 Stage script <span class="chip">THE MASTER LOOP</span></div>
+        <div class="script-stack">
+          <div class="script-block hat-flag">🚩 when clicked</div>
+          <div class="script-block vars">set <span class="slot">drops ▾</span> to <span class="slot">0</span></div>
+          <div class="script-block vars">set <span class="slot">Cycle ▾</span> to <span class="slot">0</span></div>
+          <div class="script-block control">forever</div>
+          <div class="script-nest">
+            <div class="script-block events-cast">broadcast <span class="slot">evaporate ▾</span> and wait</div>
+            <div class="script-block vars">change <span class="slot">drops ▾</span> by <span class="slot">1</span></div>
+            <div class="script-block events-cast">broadcast <span class="slot">condense ▾</span> and wait</div>
+            <div class="script-block control">if <span class="slot">drops &gt; 2</span> then</div>
+            <div class="script-nest" style="border-left-color:#FFAB19">
+              <div class="script-block events-cast">broadcast <span class="slot">precipitate ▾</span> and wait</div>
+              <div class="script-block vars">change <span class="slot">Cycle ▾</span> by <span class="slot">1</span></div>
+              <div class="script-block vars">set <span class="slot">drops ▾</span> to <span class="slot">0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-bubble orange">
+        <span class="tip-icon">🧠</span>
+        <span>Why is the <code class="kbd">if drops &gt; 2</code> trick clever? It means the cloud collects <strong>3 evaporated drops</strong> before it rains. Want lighter rain? Change <code class="kbd">2</code> to <code class="kbd">4</code>. Want a downpour? Use <code class="kbd">0</code> (rain every cycle)!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       THE GOTCHA — broadcast vs broadcast-and-wait
+       ======================================================== -->
+  <div class="step-card accent-red">
+    <div class="card-header">
+      <div class="step-badge bg-red">⚠️</div>
+      <div class="card-title-block">
+        <h2>The "Broadcast and Wait" Trap 🪤</h2>
+        <div class="subtitle">Why we used <em>broadcast and wait</em> instead of plain <em>broadcast</em></div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        Here's a Scratch gotcha that catches almost everyone! If you fire the <strong>same broadcast twice</strong>
+        while a <span class="block events-cast">when I receive</span> script is still running,
+        Scratch <strong>restarts it from the top</strong> — it does NOT run a second copy in parallel.
+      </p>
+      <p class="description">
+        So if our Stage looped like this with plain <code class="kbd">broadcast</code> (no "and wait"):
+      </p>
+
+      <div class="script-panel" style="border-color:#FFB3B3;background:#FFF5F5;">
+        <div class="sprite-header" style="color:#7A0020;">❌ Bad version (rain never happens!)</div>
+        <div class="script-stack">
+          <div class="script-block control">forever</div>
+          <div class="script-nest">
+            <div class="script-block events-cast" style="background:#E63946">broadcast <span class="slot">evaporate ▾</span></div>
+            <div class="script-block events-cast" style="background:#E63946">broadcast <span class="slot">condense ▾</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="description" style="margin-top:18px;">
+        …the WaterDrop's script would <em>restart</em> on every loop tick, never finishing its glide, never
+        broadcasting back. The fix is the magic word <strong>"and wait"</strong> — it pauses the Stage
+        until every listener finishes. Now the WaterDrop actually completes its rise, the cloud actually grows,
+        and the rain actually falls. ✨
+      </p>
+      <div class="tip-bubble red">
+        <span class="tip-icon">💡</span>
+        <span>Rule of thumb: when one sprite's job <strong>must finish</strong> before the next phase starts, always use <span class="block events-cast">broadcast [ ] and wait</span>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FULL TIMELINE
+       ======================================================== -->
+  <div class="section-title">⏱️ How the Cycle Looks Over Time</div>
+
+  <div class="step-card accent-teal">
+    <div class="card-header">
+      <div class="step-badge bg-teal">⏱</div>
+      <div class="card-title-block">
+        <h2>Timeline After You Click 🚩</h2>
+        <div class="subtitle">First full cycle takes about 7 seconds</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:0.95rem;">
+          <thead>
+            <tr style="background:#E6F4FB;color:var(--water-deep);">
+              <th style="padding:10px 8px;text-align:left;border-bottom:2px solid var(--water-mid);">Time</th>
+              <th style="padding:10px 8px;text-align:left;border-bottom:2px solid var(--water-mid);">What happens on stage</th>
+              <th style="padding:10px 8px;text-align:left;border-bottom:2px solid var(--water-mid);">Variables</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">0.0 s</td><td style="padding:8px;">🚩 click → Sun appears &amp; pulses; Stage starts loop</td><td style="padding:8px;color:#888;">drops=0, Cycle=0</td></tr>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">0.0 s</td><td style="padding:8px;">💧 Drop appears at random spot on sea, says <em>"Evaporation!"</em></td><td style="padding:8px;color:#888;">drops=0</td></tr>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">0.5 s</td><td style="padding:8px;">💧 Drop glides up toward cloud (1.5 s glide)</td><td style="padding:8px;color:#888;">drops=0</td></tr>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">2.0 s</td><td style="padding:8px;">💧 hides → ☁️ says <em>"Condensation!"</em> and grows</td><td style="padding:8px;color:#888;">drops=1</td></tr>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">2.5 s</td><td style="padding:8px;">Next drop starts rising (cycle repeats)</td><td style="padding:8px;color:#888;">drops=1</td></tr>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">~5.0 s</td><td style="padding:8px;">3rd drop arrives, <code class="kbd">drops &gt; 2</code> is true!</td><td style="padding:8px;color:#888;">drops=3</td></tr>
+            <tr style="border-bottom:1px solid #E0EEF7;"><td style="padding:8px;font-weight:800;">~5.0 s</td><td style="padding:8px;">☁️ says <em>"Precipitation!"</em>, shrinks; 🌧️ 8 clones rain down</td><td style="padding:8px;color:#888;">drops=3</td></tr>
+            <tr><td style="padding:8px;font-weight:800;">~7.0 s</td><td style="padding:8px;">Rain ends; counters reset; new cycle begins</td><td style="padding:8px;color:#888;">drops=0, Cycle=1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FLOW SUMMARY
+       ======================================================== -->
+  <div class="flow-summary">
+    <h3>🔁 The Whole Cycle in One Glance</h3>
+    <div class="flow-row">
+      <span class="flow-pill">🚩 Click Flag</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">🎬 Stage: broadcast evaporate &amp; wait</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">💧 Drop rises</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">🎬 broadcast condense &amp; wait</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">☁️ Cloud grows</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">if drops &gt; 2</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">🎬 broadcast precipitate &amp; wait</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pill">🌧️ 8 clones fall</span>
+      <span class="flow-arrow">↩</span>
+      <span class="flow-pill">Cycle++ &amp; repeat</span>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       SCREENSHOT PLACEHOLDER GALLERY
+       ======================================================== -->
+  <div class="section-title">📸 Your Project — Snapshot Slots</div>
+
+  <div class="step-card accent-teal">
+    <div class="card-header">
+      <div class="step-badge bg-teal">📷</div>
+      <div class="card-title-block">
+        <h2>Take Your Own Screenshots! 📷</h2>
+        <div class="subtitle">Drop them next to this HTML and rename per the labels</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="description">
+        When you have your project running, take a screenshot at each stage and save it next to this tutorial.
+        Use the file names below — they'll automatically appear here in this gallery.
+      </p>
+      <div class="screenshot-gallery">
+        <div class="screenshot-wrap">
+          <img src="shot_stage_empty.png" alt="Empty stage with backdrop"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <div style="display:none;width:100%;aspect-ratio:480/360;background:#F4F9FC;border:2px dashed #BAD8EA;align-items:center;justify-content:center;color:#7C9AB0;font-weight:800;font-size:0.85rem;text-align:center;padding:10px;">
+            📷 shot_stage_empty.png<br><span style="font-weight:600;font-size:0.75rem;">(empty backdrop only)</span>
+          </div>
+          <div class="screenshot-label">🖼️ Empty backdrop</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="shot_sprites_placed.png" alt="All sprites placed"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <div style="display:none;width:100%;aspect-ratio:480/360;background:#F4F9FC;border:2px dashed #BAD8EA;align-items:center;justify-content:center;color:#7C9AB0;font-weight:800;font-size:0.85rem;text-align:center;padding:10px;">
+            📷 shot_sprites_placed.png<br><span style="font-weight:600;font-size:0.75rem;">(Sun + Cloud visible, before flag)</span>
+          </div>
+          <div class="screenshot-label">🎭 All sprites placed</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="shot_evaporation.png" alt="Drop rising"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <div style="display:none;width:100%;aspect-ratio:480/360;background:#F4F9FC;border:2px dashed #BAD8EA;align-items:center;justify-content:center;color:#7C9AB0;font-weight:800;font-size:0.85rem;text-align:center;padding:10px;">
+            📷 shot_evaporation.png<br><span style="font-weight:600;font-size:0.75rem;">(💧 mid-glide, "Evaporation!" bubble)</span>
+          </div>
+          <div class="screenshot-label">💧 Evaporation</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="shot_condensation.png" alt="Cloud growing"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <div style="display:none;width:100%;aspect-ratio:480/360;background:#F4F9FC;border:2px dashed #BAD8EA;align-items:center;justify-content:center;color:#7C9AB0;font-weight:800;font-size:0.85rem;text-align:center;padding:10px;">
+            📷 shot_condensation.png<br><span style="font-weight:600;font-size:0.75rem;">(☁️ grown, "Condensation!" bubble)</span>
+          </div>
+          <div class="screenshot-label">☁️ Condensation</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="shot_precipitation.png" alt="Rain falling"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <div style="display:none;width:100%;aspect-ratio:480/360;background:#F4F9FC;border:2px dashed #BAD8EA;align-items:center;justify-content:center;color:#7C9AB0;font-weight:800;font-size:0.85rem;text-align:center;padding:10px;">
+            📷 shot_precipitation.png<br><span style="font-weight:600;font-size:0.75rem;">(🌧️ clones falling, "Precipitation!" bubble)</span>
+          </div>
+          <div class="screenshot-label">🌧️ Precipitation</div>
+        </div>
+        <div class="screenshot-wrap">
+          <img src="shot_stage_script.png" alt="Stage script"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/>
+          <div style="display:none;width:100%;aspect-ratio:480/360;background:#F4F9FC;border:2px dashed #BAD8EA;align-items:center;justify-content:center;color:#7C9AB0;font-weight:800;font-size:0.85rem;text-align:center;padding:10px;">
+            📷 shot_stage_script.png<br><span style="font-weight:600;font-size:0.75rem;">(Stage's master loop in the code area)</span>
+          </div>
+          <div class="screenshot-label">🎬 Stage master loop</div>
+        </div>
+      </div>
+      <div class="tip-bubble teal">
+        <span class="tip-icon">💡</span>
+        <span>In Scratch, use the <strong>Stage screenshot</strong> button (or your computer's screenshot tool) to capture the stage. Save each image next to <code class="kbd">scratch_water_cycle.html</code> with the names shown above.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       BONUS CHALLENGES
+       ======================================================== -->
+  <div class="section-title">⭐ Bonus Challenges</div>
+
+  <div class="step-card accent-red">
+    <div class="card-header">
+      <div class="step-badge bg-red">⭐</div>
+      <div class="card-title-block">
+        <h2>Take it to the Next Level 🚀</h2>
+        <div class="subtitle">Try these extensions on your own!</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="step-list">
+        <li><span class="bullet bg-red">1</span> 🌈 Make a <strong>rainbow</strong> appear after every rain — broadcast a new message <code class="kbd">rainbow</code> after the precipitate-and-wait and add a Rainbow sprite that shows then hides.</li>
+        <li><span class="bullet bg-red">2</span> ❄️ Add a <strong>cold day mode</strong>: switch the RainDrop costume to a snowflake when a key is pressed.</li>
+        <li><span class="bullet bg-red">3</span> 🌬️ Add wind — use <span class="block motion">change x by</span> inside the rain clone glide so drops fall sideways.</li>
+        <li><span class="bullet bg-red">4</span> 🌡️ Make a <strong>temperature</strong> slider (variable) — hot = faster evaporation glide, cold = slower.</li>
+        <li><span class="bullet bg-red">5</span> 🏞️ Add <strong>mountains</strong> and have some rain hit them and flow down as a river.</li>
+        <li><span class="bullet bg-red">6</span> 🔊 Add a sound — <strong>Sounds → Choose a Sound</strong> → <code class="kbd">Rain</code>, then <span class="block sound">start sound [Rain]</span> in the precipitate handler.</li>
+      </ul>
+      <div class="tip-bubble red">
+        <span class="tip-icon">🏆</span>
+        <span>Complete any 2 bonus challenges and you'll have a project worthy of a science fair!</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       FINAL BOX
+       ======================================================== -->
+  <div class="final-box">
+    <h2>🎉 You Built the Water Cycle! 🎉</h2>
+    <p>
+      You used <strong>sprites</strong>, <strong>broadcasts &amp; wait</strong>, <strong>clones</strong>,
+      <strong>variables</strong> and <strong>glide animations</strong> to recreate one of Earth's most
+      important processes. Click 🚩 and watch the cycle run forever — just like real life! 🌍💧
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>T.H.Y.N.K — The Hub for Young Next-gen Knowledge</title>
+<style>
+  :root {
+    --accent: #2d6cdf;     /* heading pop colour */
+    --accent-soft: #eaf1fb;
+    --text: #1f1f1f;
+    --muted: #555;
+    --border: #e5e5e5;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.7;
+    color: var(--text);
+    background: #ffffff;
+  }
+  header.hero {
+    background: #ffffff;
+    color: var(--text);
+    padding: 50px 24px 30px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header.hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+  header.hero h2 {
+    margin: 0;
+    font-weight: 400;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--muted);
+    font-style: italic;
+  }
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 30px 24px 60px;
+  }
+  section {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px 30px;
+    margin: 22px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  h3 {
+    color: var(--accent);
+    margin-top: 0;
+    margin-bottom: 14px;
+    font-size: 1.45rem;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
+  }
+  h4 {
+    color: var(--accent);
+    margin-top: 22px;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 600;
+  }
+  p { margin: 10px 0; }
+  ul, ol { padding-left: 22px; }
+  li { margin: 6px 0; }
+  strong { color: var(--text); }
+  em { color: var(--muted); }
+  code {
+    background: #f5f5f5;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 0.92em;
+    color: #333;
+    font-family: Consolas, "Courier New", monospace;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    background: #fff;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .callout {
+    background: #fafafa;
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 16px 0;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 22px 0;
+  }
+  footer {
+    text-align: center;
+    padding: 24px 20px;
+    color: var(--muted);
+    font-style: italic;
+    border-top: 1px solid var(--border);
+    background: #fff;
+    font-size: 0.95rem;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 2px 9px;
+    border-radius: 3px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-right: 6px;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .strapline {
+    margin-top: 14px;
+    font-family: Georgia, serif;
+    font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .strapline .sep { color: #d4a017; margin: 0 6px; font-weight: 400; }
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 16px 0 10px;
+  }
+  .vision-card {
+    background: #fafbff;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 12px 16px;
+  }
+  .vision-card .v-emoji { font-size: 1.4rem; margin-right: 6px; }
+  .vision-card strong { color: var(--accent); }
+  .price-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .price-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 16px;
+    text-align: center;
+    background: #fafbff;
+  }
+  .price-card.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .price-card .label {
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--muted);
+  }
+  .price-card.primary .label { color: rgba(255,255,255,0.85); }
+  .price-card .amount {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.1;
+    margin: 4px 0;
+  }
+  .price-card.primary .amount { color: #ffd86b; }
+  .price-card .sub {
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    font-family: "Segoe UI", sans-serif;
+  }
+  .price-card.primary .sub { color: rgba(255,255,255,0.85); }
+  @media (max-width: 600px) {
+    .vision-grid, .price-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    section { box-shadow: none; border: 1px solid var(--border); page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>T.H.Y.N.K — The Hub for Young Next-gen Knowledge</h1>
+  <h2>Program Proposal for Schools</h2>
+  <div class="strapline">Think Today<span class="sep">·</span>Learn Smart<span class="sep">·</span>Lead Tomorrow</div>
+</header>
+
+<main>
+
+  <section>
+    <h3>What Is T.H.Y.N.K?</h3>
+    <p>The name says it all: <strong>T</strong>he <strong>H</strong>ub for <strong>Y</strong>oung <strong>N</strong>ext-gen <strong>K</strong>nowledge. And it pronounces <em>THINK</em> — because that is exactly what every session is designed to develop.</p>
+    <p>T.H.Y.N.K is a modern learning hub dedicated to empowering young minds with future-ready skills through a unique blend of <strong>Vedic Mathematics, Coding, Logical Reasoning, Problem Solving and Creative Thinking</strong>. It provides an engaging environment where students develop confidence, analytical abilities, and a lifelong love for learning.</p>
+    <p>T.H.Y.N.K is an ongoing school program in IT / Computers for <strong>Grades 4 to 7</strong> that teaches <strong>Vedic Mathematics and Computer Programming together</strong> — delivered once a week, entirely through your school's existing computer lab and teachers.</p>
+  </section>
+
+  <section>
+    <h3>The Core Idea</h3>
+    <p>Vedic Maths and Coding are not two different subjects. They are the <strong>same kind of thinking</strong> expressed in two different languages.</p>
+    <p>A Vedic <em>sutra</em> is a rule you follow step by step to reach an answer. An algorithm is a rule you follow step by step to reach an answer. When a child learns one, they have already learned the foundation of the other — they just don't know it yet.</p>
+    <p>T.H.Y.N.K makes that connection visible, explicit, and exciting.</p>
+
+    <div class="callout">
+      <p>A core part of T.H.Y.N.K is also teaching students how to <em>talk to AI</em> — how to frame a question, refine a prompt, and use the answer to shape their next Scratch project or web page. Instead of waiting for a teacher to hand them the next problem, students learn to ask AI: <em>"Give me a Vedic Maths puzzle on Nikhilam,"</em> or <em>"Help me design a quiz game in Scratch about the 9-times table."</em> The AI becomes their thinking partner, not their answer machine.</p>
+    </div>
+
+    <p>This single shift makes coding genuinely <strong>fun and interactive</strong>:</p>
+    <ul>
+      <li><strong>Every project becomes personal</strong> — a child who loves cricket builds a run-rate calculator; a child who loves stories builds an interactive Vedic Maths adventure game.</li>
+      <li><strong>Curiosity drives the lesson</strong> — students arrive with their own "what if?" questions instead of waiting to be told what to build.</li>
+      <li><strong>Mistakes become conversations</strong> — when code breaks, students learn to describe the problem to AI clearly, which is itself a powerful thinking skill.</li>
+      <li><strong>Confidence grows fast</strong> — being able to direct an AI to help you build something you imagined is a deeply empowering experience for a 9- to 12-year-old.</li>
+    </ul>
+    <p>Our Teacher Guide includes a dedicated chapter on <strong>age-appropriate prompting methods for AI</strong>, so teachers can guide students to use these tools safely, productively, and creatively.</p>
+  </section>
+
+  <section>
+    <h3>Our Vision for Your School — Why Every Child Must Learn to Code</h3>
+    <p>By 2030, <strong>every job will have a digital component</strong> — from medicine to agriculture, from journalism to design. A child who cannot read code in 2030 will be at the same disadvantage as a child who could not read English in 2000. T.H.Y.N.K's vision is to make sure no student in your school is left on the wrong side of that line.</p>
+    <p>But our vision is bigger than employment. We believe coding is <strong>the new literacy of thinking</strong> — and Scratch is the pencil with which a child learns to write that literacy.</p>
+
+    <h4>Why coding (and Scratch specifically) is non-negotiable for today's learner</h4>
+    <ul>
+      <li><strong>Coding teaches structured thinking</strong> — Children learn to break a big problem into small steps, test each one, and fix what is broken. This skill transfers to every subject, every exam, and every real-life challenge.</li>
+      <li><strong>It builds genuine creators, not just consumers</strong> — Today's children spend hours <em>consuming</em> apps, games, and videos. Scratch flips that: in week one, they become the <em>maker</em> of the game instead of the player. That single shift changes how they see technology forever.</li>
+      <li><strong>It develops resilience</strong> — Code rarely works the first time. Every Scratch project teaches a child to face failure calmly, debug patiently, and try again — the most important life skill a school can give.</li>
+      <li><strong>It future-proofs your students</strong> — AI is not replacing programmers; it is replacing people who <em>cannot</em> work with programmers. Students who code can direct AI; students who don't will be directed by it.</li>
+      <li><strong>It aligns perfectly with NEP 2020</strong> — The National Education Policy explicitly calls for <em>computational thinking, coding, and digital fluency</em> from middle school. T.H.Y.N.K delivers this in a structured, measurable, audit-ready format.</li>
+      <li><strong>It strengthens core academics</strong> — Research from MIT, Harvard, and Stanford shows that children who learn Scratch perform measurably better in maths, reading comprehension, and logical reasoning within 6–12 months.</li>
+      <li><strong>It gives your school a clear differentiator</strong> — Parents today actively choose schools that prepare children for the future. A working coding programme, taught alongside India's own mathematical heritage, is a powerful story to tell at admissions time.</li>
+    </ul>
+
+    <h4>Our Vision Is Simple</h4>
+    <p>Every child who finishes T.H.Y.N.K should be able to:</p>
+    <div class="vision-grid">
+      <div class="vision-card"><span class="v-emoji">🧠</span><strong>Solve</strong> a problem step-by-step in their head using a Vedic sutra.</div>
+      <div class="vision-card"><span class="v-emoji">💻</span><strong>Express</strong> that same solution as working code on a screen.</div>
+      <div class="vision-card"><span class="v-emoji">🗣️</span><strong>Explain</strong> both to another person — in their own words.</div>
+      <div class="vision-card"><span class="v-emoji">📱</span><strong>Use screen time</strong> for the right purpose — to create, not just consume.</div>
+    </div>
+    <div class="callout">
+      That is what it means to <em>think</em> in 2026 — and that is what T.H.Y.N.K is committed to delivering to your school.
+    </div>
+  </section>
+
+  <section>
+    <h3>Why This Matters for Schools</h3>
+    <ul>
+      <li>All schools already introduce Vedic Maths in middle school. T.H.Y.N.K builds on what teachers and students already touch, deepening it into something practical and modern.</li>
+      <li>NEP 2020 mandates coding from Grade 6. T.H.Y.N.K gives schools a structured, ready-to-deliver way to fulfil this — without hiring specialist coding teachers.</li>
+      <li>Children who learn Vedic techniques compute 3–5× faster mentally. That mental speed directly transfers to coding: faster debugging, quicker logic tracing, and greater confidence with numbers in programs.</li>
+      <li>India's mathematical heritage — from its sutras and Sub-sutras — predates much of Western mathematics. Teaching it alongside modern code gives students a sense of pride and ownership over both subjects.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>The Program Structure</h3>
+
+    <h4><span class="tag">Track 1</span> Grades 4 &amp; 5: Vedic Maths + Scratch</h4>
+    <p>Students learn visual block-based coding using <strong>Scratch</strong> (free, browser-based, developed by MIT) while exploring Vedic arithmetic shortcuts. Scratch is the world's most widely-used introduction to programming — over 100 million children have learned to code with it — because it removes the barrier of typing syntax and lets students focus on <em>logic and creativity</em>.</p>
+
+    <p><em>What students actually learn in Scratch:</em></p>
+    <ul>
+      <li><strong>Sequencing &amp; Events</strong> — making things happen in order, triggered by clicks, key presses, or other sprites (the foundation of every program ever written).</li>
+      <li><strong>Loops</strong> — <em>repeat</em> and <em>forever</em> blocks, mapped directly to the Vedic sutra <em>Ekadhikena Purvena</em> ("by one more than the previous").</li>
+      <li><strong>Variables &amp; Lists</strong> — storing numbers, scores, and answers; building a Vedic mental-maths quiz that keeps score.</li>
+      <li><strong>Conditionals (if / else)</strong> — checking whether the student's answer matches the Vedic-calculated answer, giving feedback.</li>
+      <li><strong>Operators &amp; Maths blocks</strong> — building actual Vedic algorithms (Nikhilam subtraction, Urdhva multiplication) using Scratch's arithmetic blocks.</li>
+      <li><strong>Custom Blocks (Functions)</strong> — packaging a Vedic sutra into a reusable block the student can call anywhere — their first real taste of <em>abstraction</em>.</li>
+      <li><strong>Sprites, Costumes &amp; Animation</strong> — making the maths visual: numbers that dance, sutras that animate, characters that celebrate correct answers.</li>
+      <li><strong>Sound &amp; Storytelling</strong> — recording their own voice explaining a sutra, turning a project into a teaching tool.</li>
+      <li><strong>Broadcasting &amp; Multi-Sprite Communication</strong> — coordinating several characters at once — the early form of <em>event-driven programming</em>.</li>
+    </ul>
+
+    <p><em>Sample projects students will build across the 24 weeks:</em></p>
+    <ol>
+      <li><strong>"Guess My Number"</strong> — using the Ekadhikena loop to count up and check answers.</li>
+      <li><strong>"Nikhilam Subtraction Wizard"</strong> — an animated wizard that subtracts large numbers using the "all from 9, last from 10" trick.</li>
+      <li><strong>"Times-Table Race"</strong> — a two-player game where Vedic-trained speed wins.</li>
+      <li><strong>"Urdhva Multiplication Machine"</strong> — a visual cross-wise multiplier that animates each step.</li>
+      <li><strong>Final Project (Week 24): "My Vedic Maths Game"</strong> — every student designs, codes, and presents an original game that teaches one sutra to a younger child.</li>
+    </ol>
+    <p>By Week 24, students are no longer just <em>playing</em> Scratch projects — they are <em>designing</em> them.</p>
+
+    <hr />
+
+    <h4><span class="tag">Track 2</span> Grades 6 &amp; 7: Vedic Maths + HTML, CSS &amp; JavaScript</h4>
+    <p>Students learn <strong>real web programming</strong> — the exact same three languages (HTML, CSS, JavaScript) used to build every website on the internet, from Google to Instagram. No toys, no training wheels: by Week 24 they have built and published a real website. They discover along the way that JavaScript variables, loops, and functions are direct equivalents of Vedic algebraic unknowns, repetition patterns, and reusable rules.</p>
+
+    <p><em>What students actually learn:</em></p>
+
+    <p><strong>HTML — Structure (the skeleton)</strong></p>
+    <ul>
+      <li>Tags, elements, attributes — how a webpage is built from nested boxes.</li>
+      <li>Headings, paragraphs, lists, images, links — the building blocks of every page.</li>
+      <li>Forms &amp; inputs — letting users type a number and submit it.</li>
+      <li>Semantic structure — <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> — writing code that humans <em>and</em> search engines can read.</li>
+    </ul>
+
+    <p><strong>CSS — Style (the clothing)</strong></p>
+    <ul>
+      <li>Selectors, properties, values — the grammar of design.</li>
+      <li>Colours, fonts, spacing, borders — making a page look professional.</li>
+      <li>The Box Model — every element is a box; understanding padding, margin, and border.</li>
+      <li>Flexbox &amp; Grid — modern layout, the same techniques used by professional designers.</li>
+      <li>Responsive design — making pages that work on phones, tablets, and laptops.</li>
+      <li>Animations &amp; transitions — bringing Vedic sutras to life visually.</li>
+    </ul>
+
+    <p><strong>JavaScript — Behaviour (the brain)</strong></p>
+    <ul>
+      <li>Variables, data types, operators — the equivalent of Vedic algebraic unknowns.</li>
+      <li>Conditionals (<code>if / else</code>) and comparisons — decision-making in code.</li>
+      <li>Loops (<code>for</code>, <code>while</code>) — the direct code form of <em>Ekadhikena Purvena</em>.</li>
+      <li>Functions — write a Vedic sutra once, call it a hundred times (the essence of <em>Anurupyena</em>).</li>
+      <li>Arrays &amp; Objects — storing lists of problems, scores, and student responses.</li>
+      <li>DOM manipulation — making the page <em>react</em> to the user.</li>
+      <li>Event handling — responding to clicks, key presses, and form submissions.</li>
+      <li>Debugging with the browser console — students learn to read errors and fix them, a core professional skill.</li>
+    </ul>
+
+    <p><em>Sample projects students will build across the 24 weeks:</em></p>
+    <ol>
+      <li><strong>Personal "About Me" page</strong> (HTML + CSS) — the classic first project.</li>
+      <li><strong>Vedic Sutra Reference Card</strong> (HTML + CSS, responsive) — a styled, mobile-friendly page explaining one sutra.</li>
+      <li><strong>Interactive Mental Maths Quiz</strong> (JavaScript) — generates random problems, checks answers, tracks score.</li>
+      <li><strong>Nikhilam Calculator</strong> (JavaScript + DOM) — type two numbers, watch the Vedic algorithm work step-by-step on screen.</li>
+      <li><strong>Final Project (Week 24): "Teach Vedic Maths" Website</strong> — a 4-page interactive website with working calculators and quizzes, published to a free hosting service so parents and friends can visit it on any phone.</li>
+    </ol>
+    <p>By Week 24, students can open any website in the world, right-click <em>"Inspect"</em>, and <strong>understand what they are looking at</strong> — a skill that puts them years ahead of their peers.</p>
+  </section>
+
+  <section>
+    <h3>How Each 35-Minute Session Works</h3>
+    <p>Every session follows the same four-part structure, which teachers internalize by Week 3:</p>
+    <ol>
+      <li><strong>Vedic Warm-Up (8 min)</strong> — 5 mental maths problems, no calculators, using the session's sutra. Builds speed and confidence.</li>
+      <li><strong>Sutra → Code Bridge (5 min)</strong> — Teacher draws the explicit connection between the Vedic rule and today's coding concept. Students note it on their worksheet.</li>
+      <li><strong>Build / Code Time (15 min)</strong> — Students work on their computers using a guided starter file. Fast finishers get extension challenges.</li>
+      <li><strong>Share &amp; Reflect (7 min)</strong> — Two students show their screen. Class discusses. Everyone writes one sentence: <em>"Today I connected __ to __."</em></li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Five Direct Sutra-to-Code Connections</h3>
+    <table>
+      <thead>
+        <tr><th>Vedic Sutra</th><th>Meaning</th><th>Coding Concept</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ekadhikena Purvena</td><td>By one more than the previous</td><td><strong>Loops</strong> — repeat blocks, for/while</td></tr>
+        <tr><td>Nikhilam</td><td>All from 9, last from 10</td><td><strong>Variables</strong> — storing intermediate values</td></tr>
+        <tr><td>Urdhva Tiryakbhyam</td><td>Vertically and crosswise</td><td><strong>Nested loops</strong> — processing every position</td></tr>
+        <tr><td>Gunita Samuchaya</td><td>Product of sum = sum of product</td><td><strong>Debugging</strong> — verification via digital roots</td></tr>
+        <tr><td>Anurupyena</td><td>Proportionality</td><td><strong>Functions &amp; CSS</strong> — write once, scale infinitely</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h3>What We Provide to the School</h3>
+    <p>Everything a teacher needs to open a folder and start teaching:</p>
+    <ul>
+      <li><strong>24 complete Teacher Guides</strong> (one per session, both tracks) — lesson plan, Vedic background, common mistakes, extension activities</li>
+      <li><strong>24 Student Worksheets</strong> — Vedic warm-up, guided coding exercise, reflection prompt, take-home activity</li>
+      <li><strong>Scratch Starter Files</strong> — pre-built .sb3 projects for every Grade 4–5 session</li>
+      <li><strong>HTML/CSS/JS Templates</strong> — starter code for every Grade 6–7 session</li>
+      <li><strong>Assessment Kit</strong> — weekly checklists, mini-project rubric, final project rubric, progress tracker, certificate template</li>
+      <li><strong>One-Day Teacher Training</strong> — delivered at your school before the program starts</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>What the School Needs to Provide</h3>
+    <table>
+      <thead>
+        <tr><th>Requirement</th><th>Detail</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Computer Lab</td><td>Existing Windows/Mac lab, 1 computer per 2 students, Chrome browser</td></tr>
+        <tr><td>Teacher</td><td>Existing computer teacher — no Vedic Maths background required</td></tr>
+        <tr><td>Time</td><td>35 minutes once a week for 24 weeks (Saturdays work perfectly)</td></tr>
+        <tr><td>Students</td><td>15–30 students per batch, Grades 4–5 or 6–7</td></tr>
+      </tbody>
+    </table>
+    <div class="callout">
+      <strong>No new hardware. No new software licences. No specialist hiring.</strong>
+    </div>
+
+    <p>We are inviting schools to pilot T.H.Y.N.K in the upcoming academic year. The pilot cohort will receive the full teacher kit, training, and ongoing support at no cost to the school.</p>
+
+    <p>We are looking for schools that:</p>
+    <ul>
+      <li>Have a functioning computer lab</li>
+      <li>Have a computer teacher willing to facilitate</li>
+      <li>Can commit one 35-minute slot per week for 24 weeks</li>
+      <li>Are willing to share student progress feedback at the midpoint and end</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Next Step:</strong> A 30-minute meeting with your school's academic coordinator and computer teacher — we walk through one complete sample session end-to-end, live.
+    </div>
+  </section>
+
+  <section>
+    <h3>Student Pricing — Built for Every Family</h3>
+    <p>We have deliberately priced T.H.Y.N.K so that <em>no parent has to choose between affordability and a future-ready education for their child.</em></p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="label">REGISTRATION</div>
+        <div class="amount">₹ 500</div>
+        <div class="sub">ONE-TIME</div>
+      </div>
+      <div class="price-card primary">
+        <div class="label">ANNUAL PROGRAM FEE</div>
+        <div class="amount">₹ 3,600</div>
+        <div class="sub">FULL ACADEMIC YEAR</div>
+      </div>
+    </div>
+    <div class="callout">
+      <strong>That works out to just ₹ 150 per session</strong> — less than a single private tuition class, for a full year of <em>coding + Vedic Maths + AI fluency</em> delivered inside your school.
+    </div>
+
+    <h4>What's Included in the Annual Fee</h4>
+    <ul>
+      <li><strong>24 weekly sessions</strong> — full academic year of Vedic Maths + Coding</li>
+      <li><strong>All Student Worksheets</strong> — printed/digital, one per session</li>
+      <li><strong>Scratch starter files</strong> (Gr 4–5) and <strong>HTML/CSS/JS templates</strong> (Gr 6–7) for every session</li>
+      <li><strong>AI prompting guide</strong> — age-appropriate, supervised AI usage built into the curriculum</li>
+      <li><strong>Mini-projects + Final Project</strong> — every child ships a real, working build by Week 24</li>
+      <li><strong>Continuous Assessment</strong> — weekly checklists, rubrics, and a printable end-of-year certificate</li>
+      <li><strong>Parent Progress Reports</strong> — midpoint and end-of-year</li>
+      <li><strong>Teacher Support</strong> — full Teacher Guides, one-day on-site training, and ongoing query support</li>
+      <li><strong>Showcase Day</strong> — students present their final project to parents and peers</li>
+    </ul>
+
+    <h4>A Revenue-Share Partnership for Your School</h4>
+    <div class="callout" style="border-left-color:#d4a017; background:#fbf3dc;">
+      <p style="margin:0;"><strong>20–25% of the annual program fee is shared with the school</strong> as a partnership contribution — <em>negotiable based on cohort size and engagement.</em></p>
+      <p style="margin:8px 0 0;">T.H.Y.N.K isn't just a vendor program; it's a <strong>shared revenue stream</strong> that supports your lab, your teachers, and your school's investment in future-ready learning — all while delivering a flagship program at zero capital cost.</p>
+    </div>
+
+    <ul>
+      <li>One transparent fee. No hidden costs, no upsells, no “premium tier.”</li>
+      <li>Full kit, full year, full support — included.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Get in Touch</h3>
+    <p>We’d love to hear from you — reach out to either of us to schedule a demo or ask any questions.</p>
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Mobile</th><th>Email</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Aradhana Zaveri</strong></td><td>+91 98197 41486</td><td>aradhana.thynk@gmail.com</td></tr>
+        <tr><td><strong>Pranav Sheth</strong></td><td>+91 99200 49590</td><td>pranav.thynk@gmail.com</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong style="color:var(--accent); letter-spacing:3px;">T · H · Y · N · K</strong><br/>
+  <em>The Hub for Young Next-gen Knowledge</em><br/>
+  <span style="display:inline-block; margin-top:6px; font-family:Georgia,serif; font-weight:700; color:var(--accent); letter-spacing:1px;">
+    Think Today<span style="color:#d4a017; margin:0 6px; font-weight:400;">·</span>Learn Smart<span style="color:#d4a017; margin:0 6px; font-weight:400;">·</span>Lead Tomorrow
+  </span><br/>
+  <em style="font-size:0.9rem;">Ancient Wisdom. Modern Code. Future-Ready Schools.</em></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,2672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T.H.Y.N.K — School Program Proposal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:    #0A5A6E;
+  --teal-lt: #0E7A94;
+  --saffron: #E07010;
+  --gold:    #C8963A;
+  --cream:   #FDF6EC;
+  --navy:    #0D1B2A;
+  --slate:   #2E4057;
+  --muted:   #5C7080;
+  --green:   #2A7F5A;
+  --red:     #C0392B;
+  --bg:      #F5EFE4;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--navy);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1,h2,h3,h4 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+/* ─── NAV ─── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+.nav-links { display: flex; gap: 20px; }
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ─── HERO ─── */
+.hero {
+  background: var(--navy);
+  min-height: 92vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-left {
+  padding: 80px 60px 80px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(200,150,58,0.15);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  width: fit-content;
+}
+.hero h1 {
+  font-size: clamp(3rem, 5vw, 5rem);
+  color: #fff;
+  line-height: 1.0;
+  margin-bottom: 8px;
+}
+.hero h1 .accent { color: var(--gold); }
+.hero-tagline {
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  color: rgba(255,255,255,0.65);
+  font-weight: 300;
+  margin-bottom: 40px;
+  max-width: 440px;
+  line-height: 1.55;
+}
+.hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+.pill {
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1.5px solid;
+}
+.pill-teal  { border-color: var(--teal-lt); color: #6EC9E0; background: rgba(14,122,148,0.12); }
+.pill-gold  { border-color: var(--gold);    color: var(--gold); background: rgba(200,150,58,0.12); }
+.pill-cream { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+.hero-stats { display: flex; gap: 40px; }
+.stat { }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--saffron);
+  line-height: 1;
+  font-weight: 700;
+}
+.stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.5); font-weight: 500; margin-top: 2px; }
+
+.hero-right {
+  position: relative;
+  background: linear-gradient(135deg, #0E3A4A 0%, #0A1E2E 100%);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(200,150,58,0.04) 0px, rgba(200,150,58,0.04) 1px, transparent 1px, transparent 50px),
+    repeating-linear-gradient(-45deg, rgba(14,122,148,0.05) 0px, rgba(14,122,148,0.05) 1px, transparent 1px, transparent 50px);
+}
+.hero-visual {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 16px;
+  padding: 40px;
+}
+.venn-container {
+  position: relative;
+  width: 320px; height: 200px;
+  margin: 0 auto;
+}
+.venn-circle {
+  position: absolute;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  font-size: 0.85rem; font-weight: 700; text-align: center;
+  top: 10px;
+}
+.venn-left {
+  left: 0;
+  background: rgba(200,150,58,0.18);
+  border: 2px solid rgba(200,150,58,0.5);
+  color: var(--gold);
+}
+.venn-right {
+  right: 0;
+  background: rgba(14,122,148,0.18);
+  border: 2px solid rgba(14,122,148,0.5);
+  color: #6EC9E0;
+}
+.venn-center {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  color: #fff;
+  font-size: 0.72rem; font-weight: 700; text-align: center;
+  background: rgba(13,27,42,0.85);
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  width: 90px;
+  line-height: 1.4;
+}
+.hero-cards {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  width: 100%;
+}
+.hero-mini-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.hero-mini-card .label { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.hero-mini-card .value { font-size: 0.85rem; color: #fff; font-weight: 600; }
+.hero-mini-card .sub   { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+/* ─── SECTION BASE ─── */
+section { padding: 80px 0; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.section-sub {
+  font-size: 1.08rem;
+  color: var(--muted);
+  max-width: 680px;
+  line-height: 1.65;
+  margin-bottom: 56px;
+}
+
+/* ─── WHY SECTION ─── */
+.why-section { background: var(--cream); }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.why-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  border-top: 4px solid;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform 0.25s;
+}
+.why-card:hover { transform: translateY(-4px); }
+.why-card:nth-child(1) { border-color: var(--saffron); }
+.why-card:nth-child(2) { border-color: var(--teal); }
+.why-card:nth-child(3) { border-color: var(--green); }
+.why-icon { font-size: 2.4rem; margin-bottom: 16px; }
+.why-card h3 { font-size: 1.15rem; color: var(--navy); margin-bottom: 10px; }
+.why-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.6; }
+
+/* ─── CONNECTIONS SECTION ─── */
+.connections-section { background: var(--navy); }
+.connections-section .section-title { color: #fff; }
+.connections-section .section-sub { color: rgba(255,255,255,0.55); }
+.conn-grid { display: flex; flex-direction: column; gap: 24px; }
+.conn-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: 260px 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+  transition: background 0.2s;
+}
+.conn-card:hover { background: rgba(255,255,255,0.07); }
+.conn-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: rgba(200,150,58,0.3);
+  line-height: 1;
+  margin-bottom: -4px;
+}
+.conn-sutra {
+  font-size: 1rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.conn-sutra-en {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.conn-desc { font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.55; }
+.conn-box {
+  background: rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 16px 18px;
+  border-left: 3px solid;
+}
+.conn-box.vedic { border-color: var(--gold); }
+.conn-box.code  { border-color: var(--teal-lt); }
+.conn-box-label {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.conn-box.vedic .conn-box-label { color: var(--gold); }
+.conn-box.code  .conn-box-label { color: #6EC9E0; }
+.conn-box-content {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.55;
+}
+.code-block {
+  background: rgba(0,0,0,0.4);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.78rem;
+  color: #82E4A0;
+  margin-top: 8px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ─── PROGRAM OVERVIEW ─── */
+.overview-section { background: var(--bg); }
+.overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.prog-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+}
+.prog-card-header {
+  padding: 32px 36px 28px;
+  color: #fff;
+}
+.prog-card.primary .prog-card-header   { background: linear-gradient(135deg, var(--saffron), #C05A08); }
+.prog-card.secondary .prog-card-header { background: linear-gradient(135deg, var(--teal), #073E50); }
+.prog-grade-tag {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.prog-card-header h3 { font-size: 1.6rem; margin-bottom: 8px; }
+.prog-card-header p { font-size: 0.88rem; opacity: 0.8; line-height: 1.5; }
+.prog-card-body { background: #fff; padding: 28px 36px; }
+.prog-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.prog-meta-item { }
+.prog-meta-label { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+.prog-meta-value { font-size: 0.92rem; font-weight: 700; color: var(--navy); }
+.prog-topics { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.prog-topics li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.88rem; color: var(--slate);
+}
+.prog-topics li::before {
+  content: '→';
+  color: var(--saffron);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.prog-card.secondary .prog-topics li::before { color: var(--teal); }
+
+/* ─── CURRICULUM SECTIONS ─── */
+.curriculum-section { padding: 80px 0; }
+.curriculum-section.gr45 { background: #FFF8F2; }
+.curriculum-section.gr67 { background: #F0F8FC; }
+
+.curriculum-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+}
+.grade-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.grade-badge.gr45 { background: var(--saffron); color: #fff; }
+.grade-badge.gr67 { background: var(--teal); color: #fff; }
+
+.phase-block { margin-bottom: 48px; }
+.phase-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  padding: 10px 0;
+  border-bottom: 2px solid;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.phase-title.gr45 { border-color: var(--saffron); color: var(--saffron); }
+.phase-title.gr67 { border-color: var(--teal); color: var(--teal); }
+.phase-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: auto;
+}
+.phase-badge.gr45 { background: rgba(224,112,16,0.12); color: var(--saffron); }
+.phase-badge.gr67 { background: rgba(10,90,110,0.12); color: var(--teal); }
+
+.week-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.week-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-left: 4px solid;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.week-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+.week-card.gr45 { border-color: var(--saffron); }
+.week-card.gr67 { border-color: var(--teal); }
+.week-card.special.gr45 { border-color: var(--green); background: #F0FAF4; }
+.week-card.special.gr67 { border-color: var(--gold); background: #FDF8EE; }
+.week-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.week-card.gr45 .week-num { color: var(--saffron); }
+.week-card.gr67 .week-num { color: var(--teal); }
+.week-card.special .week-num { color: var(--green); }
+.week-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+.week-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 8px; margin-top: 8px;
+}
+.week-col { }
+.week-col-label {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.week-card.gr45 .week-col-label.vedic { color: var(--gold); }
+.week-card.gr67 .week-col-label.vedic { color: var(--gold); }
+.week-col-label.code { color: var(--teal); }
+.week-col-content { font-size: 0.8rem; color: var(--slate); line-height: 1.45; }
+.week-outcome {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding-top: 8px;
+  border-top: 1px dashed #E0D8CE;
+  font-style: italic;
+}
+
+/* Full width week card */
+.week-card.full { grid-column: 1 / -1; }
+
+/* ─── MATERIALS SECTION ─── */
+.materials-section { background: var(--cream); }
+.materials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.mat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border-top: 3px solid var(--gold);
+}
+.mat-icon { font-size: 2rem; margin-bottom: 14px; }
+.mat-card h4 { font-size: 1rem; color: var(--navy); margin-bottom: 8px; }
+.mat-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+.mat-list { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+.mat-list li { font-size: 0.82rem; color: var(--slate); display: flex; gap: 8px; }
+.mat-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+/* ─── REQUIREMENTS SECTION ─── */
+.reqs-section { background: var(--navy); padding: 80px 0; }
+.reqs-section .section-title { color: #fff; }
+.reqs-section .section-sub { color: rgba(255,255,255,0.55); }
+.reqs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.req-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 24px 20px;
+  text-align: center;
+}
+.req-icon { font-size: 2.2rem; margin-bottom: 12px; }
+.req-card h4 { font-size: 0.92rem; color: #fff; margin-bottom: 8px; }
+.req-card p  { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+/* ─── SAMPLE VEDIC EXAMPLES BOX ─── */
+.examples-section { background: #fff; padding: 80px 0; }
+.examples-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.ex-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.08);
+}
+.ex-header { padding: 20px 24px; }
+.ex-header.saffron { background: var(--saffron); color: #fff; }
+.ex-header.teal    { background: var(--teal); color: #fff; }
+.ex-header h4 { font-size: 1.05rem; margin-bottom: 2px; }
+.ex-header p  { font-size: 0.78rem; opacity: 0.75; }
+.ex-body { background: #F9F9FB; padding: 20px 24px; }
+.ex-step { margin-bottom: 14px; }
+.ex-step-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 4px; }
+.ex-step-content { font-size: 0.88rem; color: var(--navy); line-height: 1.6; }
+.ex-step-content strong { color: var(--saffron); }
+.ex-step-content.code-style {
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  background: #1E2D3D;
+  color: #A8D8A8;
+  padding: 10px 12px;
+  border-radius: 8px;
+  white-space: pre;
+}
+.ex-link {
+  font-size: 0.78rem;
+  color: var(--teal);
+  font-weight: 700;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #DDD;
+}
+
+/* ─── CTA SECTION ─── */
+.cta-section {
+  background: linear-gradient(135deg, var(--saffron) 0%, #C05A08 50%, var(--navy) 100%);
+  padding: 100px 0;
+  text-align: center;
+}
+.cta-section h2 { font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; margin-bottom: 20px; }
+.cta-section p { font-size: 1.1rem; color: rgba(255,255,255,0.8); max-width: 560px; margin: 0 auto 40px; line-height: 1.65; }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  padding: 14px 32px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary { background: #fff; color: var(--saffron); }
+.btn-primary:hover { background: var(--cream); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.5); }
+.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy);
+  padding: 40px;
+  text-align: center;
+  color: rgba(255,255,255,0.35);
+  font-size: 0.82rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+footer .footer-brand {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+/* ─── DECORATIVE ─── */
+.divider { width: 48px; height: 3px; background: var(--gold); border-radius: 2px; margin: 20px 0 40px; }
+.tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(224,112,16,0.1);
+  color: var(--saffron);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.tag.teal { background: rgba(10,90,110,0.1); color: var(--teal); }
+.tag.green { background: rgba(42,127,90,0.1); color: var(--green); }
+
+/* ─── ANIMATED STATS STRIP ─── */
+.stats-strip {
+  background: var(--navy);
+  padding: 48px 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.stats-strip-inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  max-width: 1100px; margin: 0 auto; padding: 0 40px;
+}
+.strip-stat {
+  text-align: center;
+  padding: 16px 20px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.strip-stat:last-child { border-right: none; }
+.strip-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 6px;
+  background: linear-gradient(135deg, var(--gold), var(--saffron));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.strip-unit { font-size: 1.2rem; }
+.strip-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+.strip-sublabel {
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.28);
+  margin-top: 3px;
+  font-style: italic;
+}
+
+/* ─── SKILLS RADAR SECTION ─── */
+.skills-section {
+  background: #fff;
+  padding: 80px 0;
+  overflow: hidden;
+}
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.skills-text h3 {
+  font-size: 1.8rem;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.skills-text p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.skill-bars { display: flex; flex-direction: column; gap: 14px; }
+.skill-bar-row { }
+.skill-bar-label {
+  display: flex; justify-content: space-between;
+  font-size: 0.82rem; font-weight: 700; color: var(--navy);
+  margin-bottom: 5px;
+}
+.skill-bar-track {
+  height: 8px; background: #EEE; border-radius: 4px; overflow: hidden;
+}
+.skill-bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 1.5s ease;
+  width: 0;
+}
+.skill-bar-fill.vedic { background: linear-gradient(90deg, var(--gold), var(--saffron)); }
+.skill-bar-fill.code  { background: linear-gradient(90deg, var(--teal), #1AA8CC); }
+.skill-bar-fill.both  { background: linear-gradient(90deg, var(--green), #3DBF7A); }
+.skills-legend {
+  display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.78rem; font-weight: 600; color: var(--muted);
+}
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+
+/* ─── JOURNEY TIMELINE ─── */
+.timeline-section {
+  background: var(--navy);
+  padding: 80px 0;
+  overflow: hidden;
+}
+.timeline-section .section-title { color: #fff; }
+.timeline-section .section-sub { color: rgba(255,255,255,0.5); margin-bottom: 48px; }
+.timeline-tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.timeline-track { }
+.timeline-track-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.timeline-track-label.gr45 { background: rgba(224,112,16,0.2); color: var(--saffron); }
+.timeline-track-label.gr67 { background: rgba(14,122,148,0.2); color: #5CC8E0; }
+.timeline-phases {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+.timeline-phases::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 0; bottom: 0;
+  width: 2px;
+  background: rgba(255,255,255,0.08);
+}
+.tl-phase {
+  display: flex;
+  gap: 16px;
+  padding: 0 0 24px 0;
+  position: relative;
+}
+.tl-dot {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 800;
+  flex-shrink: 0;
+  position: relative; z-index: 1;
+  color: #fff;
+}
+.tl-dot.gr45 { background: var(--saffron); box-shadow: 0 0 0 4px rgba(224,112,16,0.2); }
+.tl-dot.gr67 { background: var(--teal-lt); box-shadow: 0 0 0 4px rgba(14,122,148,0.2); }
+.tl-dot.finish { background: var(--green); box-shadow: 0 0 0 4px rgba(42,127,90,0.25); }
+.tl-content { padding-top: 4px; }
+.tl-weeks {
+  font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: rgba(255,255,255,0.35);
+  margin-bottom: 3px;
+}
+.tl-title {
+  font-size: 0.92rem; font-weight: 700; color: #fff;
+  margin-bottom: 4px;
+}
+.tl-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.tl-tag {
+  font-size: 0.65rem; font-weight: 700;
+  padding: 2px 8px; border-radius: 10px;
+}
+.tl-tag.gr45 { background: rgba(224,112,16,0.15); color: #FFC166; }
+.tl-tag.gr67 { background: rgba(14,122,148,0.15); color: #80DDEE; }
+.tl-tag.green { background: rgba(42,127,90,0.2); color: #6BDFA8; }
+
+/* ─── SESSION ANATOMY ─── */
+.session-section {
+  background: var(--cream);
+  padding: 80px 0;
+}
+.session-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.session-donut-wrap {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+}
+.donut-center-label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+.donut-center-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900; color: var(--navy);
+  line-height: 1;
+}
+.donut-center-sub { font-size: 0.72rem; color: var(--muted); font-weight: 600; margin-top: 2px; }
+.session-legend { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px; }
+.sess-leg-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.85rem;
+}
+.sess-leg-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.sess-leg-label { color: var(--slate); font-weight: 600; flex: 1; }
+.sess-leg-mins {
+  font-size: 0.78rem; color: var(--muted);
+  font-weight: 500;
+}
+.session-details h3 {
+  font-size: 1.6rem; color: var(--navy);
+  margin-bottom: 16px;
+}
+.session-details p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+.session-steps { display: flex; flex-direction: column; gap: 16px; }
+.sess-step {
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.sess-step-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.sess-step-text h4 { font-size: 0.9rem; color: var(--navy); margin-bottom: 2px; }
+.sess-step-text p  { font-size: 0.8rem; color: var(--muted); line-height: 1.5; margin: 0; }
+
+/* ─── SUTRA BRIDGE VISUAL ─── */
+.bridge-section {
+  background: #FFF8F0;
+  padding: 80px 0;
+}
+.bridge-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  position: relative;
+}
+.bridge-col {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0;
+}
+.bridge-col-title {
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 8px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  width: 100%;
+}
+.bridge-col-title.vedic { background: rgba(200,150,58,0.15); color: var(--gold); }
+.bridge-col-title.arrow { background: transparent; color: var(--muted); font-size: 1.2rem; letter-spacing: 0; }
+.bridge-col-title.code  { background: rgba(10,90,110,0.1); color: var(--teal); }
+.bridge-item {
+  width: 100%;
+  padding: 10px 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.bridge-item.vedic {
+  background: rgba(200,150,58,0.1);
+  color: #7A5500;
+  border: 1.5px solid rgba(200,150,58,0.3);
+}
+.bridge-item.code {
+  background: rgba(10,90,110,0.08);
+  color: #0A4055;
+  border: 1.5px solid rgba(10,90,110,0.2);
+}
+.bridge-arrow {
+  display: flex; flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 46px;
+  gap: 18px;
+  align-items: center;
+  color: var(--saffron);
+  font-size: 1.2rem;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 60px 32px; }
+  .hero-right { display: none; }
+  .why-grid, .materials-grid { grid-template-columns: 1fr 1fr; }
+  .conn-card { grid-template-columns: 1fr; gap: 16px; }
+  .conn-num { font-size: 2rem; }
+  .overview-grid { grid-template-columns: 1fr; }
+  .week-grid { grid-template-columns: 1fr; }
+  .reqs-grid { grid-template-columns: 1fr 1fr; }
+  .examples-grid { grid-template-columns: 1fr; }
+  /* New sections */
+  .skills-layout { grid-template-columns: 1fr; gap: 40px; }
+  .session-layout { grid-template-columns: 1fr; gap: 40px; }
+  .timeline-tracks { grid-template-columns: 1fr; }
+  .stats-strip-inner { grid-template-columns: repeat(3, 1fr); }
+  .bridge-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .bridge-col:nth-child(2), .bridge-col:nth-child(4) { display: none; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 18px; }
+  section { padding: 56px 0; }
+  .hero-left { padding: 44px 20px; }
+  .hero-stats { gap: 24px; }
+  .stat-num { font-size: 2rem; }
+  .why-grid { grid-template-columns: 1fr; }
+  .materials-grid { grid-template-columns: 1fr; }
+  .reqs-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .prog-meta { grid-template-columns: 1fr; }
+  .week-row { grid-template-columns: 1fr; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  /* New sections */
+  .stats-strip-inner { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .strip-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; }
+  .bridge-grid { grid-template-columns: 1fr 1fr; }
+  .bridge-col:nth-child(2), .bridge-col:nth-child(4) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><span style="letter-spacing:3px">T.H.Y.N.K</span></div>
+  <div class="nav-links">
+    <a href="#why">Why This</a>
+    <a href="#connections">The Connection</a>
+    <a href="#curriculum45">Grades 4–5</a>
+    <a href="#curriculum67">Grades 6–7</a>
+    <a href="#materials">Materials</a>
+    <a href="#requirements">Requirements</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">🏫 Mumbai After-School Program 2025</div>
+    <h1 style="font-size:clamp(2rem,4vw,3.6rem);line-height:1.05">The <span class="accent">Hub</span> for Young<br>Next-gen <span class="accent">Knowledge</span></h1>
+    <div style="margin:10px 0 16px;display:flex;align-items:center;gap:10px">
+      <span style="font-family:'Playfair Display',serif;font-size:1.5rem;letter-spacing:8px;color:var(--gold);font-weight:700">T · H · Y · N · K</span>
+    </div>
+    <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px">The · Hub · for · Young · Next-gen · Knowledge</p>
+    <p class="hero-tagline">Where Ancient Indian Wisdom meets Modern Programming — a unique after-school program blending Vedic Mathematics with Scratch, HTML, CSS &amp; JavaScript.</p>
+    <div class="hero-pills">
+      <span class="pill pill-gold">📐 Vedic Maths</span>
+      <span class="pill pill-teal">💻 Coding</span>
+      <span class="pill pill-cream">Grades 4 – 7</span>
+      <span class="pill pill-cream">16 Weeks • Once a Week</span>
+      <span class="pill pill-cream">School Computer Teachers</span>
+    </div>
+    <div style="margin-bottom:40px;padding:14px 18px;background:rgba(200,150,58,0.08);border:1px solid rgba(200,150,58,0.2);border-radius:10px;max-width:440px">
+      <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:10px;font-weight:700">What T.H.Y.N.K stands for</div>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:baseline">
+        <span style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);font-weight:700">T</span><span style="font-size:0.8rem;color:rgba(255,255,255,0.65)">The</span>
+        <span style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);font-weight:700">H</span><span style="font-size:0.8rem;color:rgba(255,255,255,0.65)">Hub for</span>
+        <span style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);font-weight:700">Y</span><span style="font-size:0.8rem;color:rgba(255,255,255,0.65)">Young</span>
+        <span style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);font-weight:700">N</span><span style="font-size:0.8rem;color:rgba(255,255,255,0.65)">Next-gen</span>
+        <span style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold);font-weight:700">K</span><span style="font-size:0.8rem;color:rgba(255,255,255,0.65)">Knowledge</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">16</div>
+        <div class="stat-lbl">Weeks per batch</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl">Grade bands</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">45<span style="font-size:1.4rem">min</span></div>
+        <div class="stat-lbl">Per session</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-lbl">Extra cost (uses school lab)</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-pattern"></div>
+    <div class="hero-visual">
+      <div class="venn-container">
+        <div class="venn-circle venn-left">📐<br>Vedic<br>Maths</div>
+        <div class="venn-circle venn-right">💻<br>Coding</div>
+        <div class="venn-center">Logical<br>Thinking<br>🧠</div>
+      </div>
+      <div class="hero-cards">
+        <div class="hero-mini-card">
+          <div class="label">Grades 4–5</div>
+          <div class="value">Scratch + Vedic</div>
+          <div class="sub">Visual block coding</div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="label">Grades 6–7</div>
+          <div class="value">HTML/CSS/JS + Vedic</div>
+          <div class="sub">Real web programming</div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="label">Teacher Training</div>
+          <div class="value">1-Day Workshop</div>
+          <div class="sub">Full kit provided</div>
+        </div>
+        <div class="hero-mini-card">
+          <div class="label">Delivery Model</div>
+          <div class="value">Weekends / Saturdays</div>
+          <div class="sub">School lab, no travel</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ANIMATED STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="strip-stat">
+      <div class="strip-num"><span class="count-up" data-target="16">0</span><span class="strip-unit"> wks</span></div>
+      <div class="strip-label">Program Duration</div>
+      <div class="strip-sublabel">Once per week, 45 min</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num"><span class="count-up" data-target="32">0</span></div>
+      <div class="strip-label">Ready-to-Teach Sessions</div>
+      <div class="strip-sublabel">Two tracks × 16 weeks</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num"><span class="count-up" data-target="7">0</span></div>
+      <div class="strip-label">Vedic Sutras Taught</div>
+      <div class="strip-sublabel">Each mapped to a code concept</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num"><span class="count-up" data-target="4">0</span></div>
+      <div class="strip-label">Phases per Track</div>
+      <div class="strip-sublabel">Foundation → Build → Deepen → Present</div>
+    </div>
+    <div class="strip-stat">
+      <div class="strip-num">₹<span class="count-up" data-target="0">0</span></div>
+      <div class="strip-label">Extra Hardware Cost</div>
+      <div class="strip-sublabel">Uses your existing computer lab</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY -->
+
+<section class="why-section" id="why">
+  <div class="container">
+    <div class="section-label">The Opportunity</div>
+    <h2 class="section-title">Why Vedic Maths + Coding?</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Both Vedic Mathematics and Computer Programming share the same DNA — they are systems of precise, pattern-based rules applied to solve problems efficiently. Teaching them together creates a multiplier effect on a child's logical reasoning.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🧩</div>
+        <h3>Same Cognitive Skills</h3>
+        <p>Vedic sutras train the brain to look for patterns, shortcuts, and elegant solutions — exactly what a programmer does. Children who learn Vedic Maths first pick up coding <strong>significantly faster</strong> because they're already thinking algorithmically.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🇮🇳</div>
+        <h3>Rooted in Indian Heritage</h3>
+        <p>Vedic Mathematics comes from the <em>Atharva Veda</em>. Taught alongside modern coding, it gives Mumbai students a pride of identity — showing that India's ancient scholars were the world's first programmers, writing algorithms in Sanskrit.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>Faster Mental Computation</h3>
+        <p>Kids who practice Vedic techniques compute 3–5× faster mentally. In coding, this translates to faster debugging, quicker mental simulation of code logic, and the ability to estimate results before running a program.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🔁</div>
+        <h3>Sutras ARE Algorithms</h3>
+        <p>The word <em>sutra</em> means "thread" — a rule you follow step by step. That's exactly what an algorithm is. Each Vedic sutra is a real algorithm; translating them into code makes both maths and coding instantly more concrete and understandable.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏫</div>
+        <h3>Perfect for Mumbai Schools</h3>
+        <p>Mumbai's CBSE and ICSE schools already cover basic Vedic methods in Grade 6–8 syllabi. This program builds on what teachers already know, requires no new equipment, and aligns perfectly with NEP 2020's emphasis on coding and critical thinking.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">👩‍🏫</div>
+        <h3>Teacher-Friendly Design</h3>
+        <p>Every session comes with a complete teacher guide, student worksheets, digital resources, and step-by-step instruction scripts. A computer teacher with no Vedic Maths background can confidently deliver Week 1 after a single half-day training session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS DEVELOPMENT VISUAL -->
+<section class="skills-section">
+  <div class="container">
+    <div class="skills-layout">
+      <div>
+        <!-- SVG Radar Chart -->
+        <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px;display:block;margin:0 auto">
+          <defs>
+            <polygon id="hex" points="170,20 300,90 300,210 170,280 40,210 40,90"/>
+          </defs>
+          <!-- Background grid -->
+          <polygon points="170,100 220,127 220,183 170,210 120,183 120,127" fill="none" stroke="#E8E0D5" stroke-width="1"/>
+          <polygon points="170,60 260,108 260,202 170,250 80,202 80,108" fill="none" stroke="#E8E0D5" stroke-width="1"/>
+          <polygon points="170,20 300,90 300,210 170,280 40,210 40,90" fill="none" stroke="#E8E0D5" stroke-width="1"/>
+          <!-- Grid lines from center -->
+          <line x1="170" y1="150" x2="170" y2="20" stroke="#E8E0D5" stroke-width="1"/>
+          <line x1="170" y1="150" x2="300" y2="90" stroke="#E8E0D5" stroke-width="1"/>
+          <line x1="170" y1="150" x2="300" y2="210" stroke="#E8E0D5" stroke-width="1"/>
+          <line x1="170" y1="150" x2="170" y2="280" stroke="#E8E0D5" stroke-width="1"/>
+          <line x1="170" y1="150" x2="40" y2="210" stroke="#E8E0D5" stroke-width="1"/>
+          <line x1="170" y1="150" x2="40" y2="90" stroke="#E8E0D5" stroke-width="1"/>
+
+          <!-- Vedic Maths area (gold) -->
+          <polygon points="170,52 278,108 258,196 170,258 98,188 98,102"
+            fill="rgba(200,150,58,0.18)" stroke="#C8963A" stroke-width="2" stroke-linejoin="round"/>
+
+          <!-- Coding area (teal) -->
+          <polygon points="170,44 290,95 285,205 170,265 72,200 72,95"
+            fill="rgba(14,122,148,0.15)" stroke="#0E7A94" stroke-width="2" stroke-linejoin="round"/>
+
+          <!-- THYNK Combined (green) -->
+          <polygon points="170,28 296,84 292,216 170,272 56,210 56,84"
+            fill="rgba(42,127,90,0.2)" stroke="#2A7F5A" stroke-width="2.5" stroke-dasharray="4,2" stroke-linejoin="round"/>
+
+          <!-- Axis labels -->
+          <text x="170" y="12" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2E4057">Pattern Recognition</text>
+          <text x="318" y="93" text-anchor="start" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2E4057">Mental Speed</text>
+          <text x="318" y="215" text-anchor="start" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2E4057">Debugging</text>
+          <text x="170" y="296" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2E4057">Logical Thinking</text>
+          <text x="22" y="215" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2E4057">Problem Solving</text>
+          <text x="22" y="93" text-anchor="end" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#2E4057">Creativity</text>
+
+          <!-- Center dot -->
+          <circle cx="170" cy="150" r="3" fill="#C8963A"/>
+
+          <!-- Legend -->
+          <rect x="40" y="300" width="0" height="0" fill="none"/>
+        </svg>
+        <!-- Legend below SVG -->
+        <div style="display:flex;gap:20px;justify-content:center;margin-top:16px;flex-wrap:wrap">
+          <span style="display:flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:700;color:var(--muted)"><span style="width:12px;height:12px;background:#C8963A;border-radius:2px;display:inline-block"></span>Vedic Maths</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:700;color:var(--muted)"><span style="width:12px;height:12px;background:#0E7A94;border-radius:2px;display:inline-block"></span>Coding</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:0.78rem;font-weight:700;color:var(--green)"><span style="width:12px;height:12px;background:#2A7F5A;border-radius:2px;display:inline-block"></span>T.H.Y.N.K Combined</span>
+        </div>
+      </div>
+      <div class="skills-text">
+        <div class="section-label">Cognitive Impact</div>
+        <h3>Six Skills, Doubled in Strength</h3>
+        <p>When Vedic Maths and Coding are taught together, each skill reinforces the other — creating children who are significantly stronger in all six areas than those who learn either subject in isolation.</p>
+        <div class="skill-bars">
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Pattern Recognition</span><span style="color:var(--green)">Combined +47%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill both" data-width="92"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Mental Computation Speed</span><span style="color:var(--saffron)">Vedic: 3–5×</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill vedic" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Logical Sequencing</span><span style="color:var(--teal)">Code-driven</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill code" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Debugging & Verification</span><span style="color:var(--green)">Both disciplines</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill both" data-width="79"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Creative Problem Solving</span><span style="color:var(--green)">Combined +38%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill both" data-width="83"></div></div>
+          </div>
+          <div class="skill-bar-row">
+            <div class="skill-bar-label"><span>Confidence in Maths</span><span style="color:var(--saffron)">Vedic-led</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill vedic" data-width="91"></div></div>
+          </div>
+        </div>
+        <div class="skills-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(90deg,var(--gold),var(--saffron))"></div> Vedic Maths strength</div>
+          <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(90deg,var(--teal),#1AA8CC)"></div> Coding strength</div>
+          <div class="legend-item"><div class="legend-dot" style="background:linear-gradient(90deg,var(--green),#3DBF7A)"></div> Combined T.H.Y.N.K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUTRA → CODE BRIDGE -->
+<section class="bridge-section">
+  <div class="container">
+    <div class="section-label">The Direct Link</div>
+    <h2 class="section-title">Every Sutra Has a Code Twin</h2>
+    <div class="divider"></div>
+    <p class="section-sub">This is not analogy — these are exact, one-to-one mappings. The same mental operation that a student uses in the Vedic technique is the same operation their program performs.</p>
+    <div class="bridge-grid">
+      <div class="bridge-col">
+        <div class="bridge-col-title vedic">📐 Vedic Sutra</div>
+        <div class="bridge-item vedic">Ekadhikena Purvena<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">+1 to previous</span></div>
+        <div class="bridge-item vedic">Nikhilam<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Complement from base</span></div>
+        <div class="bridge-item vedic">Urdhva Tiryak<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Vertically &amp; crosswise</span></div>
+        <div class="bridge-item vedic">Gunita Samuchaya<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Verify by digital root</span></div>
+        <div class="bridge-item vedic">Anurupyena<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Proportional scaling</span></div>
+        <div class="bridge-item vedic">Shunyam<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Special-case = zero</span></div>
+        <div class="bridge-item vedic">Paravartya<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Transpose &amp; adjust</span></div>
+      </div>
+      <div class="bridge-col" style="justify-content:flex-start;padding-top:46px">
+        <div class="bridge-arrow">
+          <span>→</span><span>→</span><span>→</span><span>→</span><span>→</span><span>→</span><span>→</span>
+        </div>
+      </div>
+      <div class="bridge-col">
+        <div class="bridge-col-title" style="background:rgba(224,112,16,0.1);color:var(--saffron)">🐱 Scratch (Gr 4–5)</div>
+        <div class="bridge-item code">repeat / change by 1<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Loop block</span></div>
+        <div class="bridge-item code">set [variable] to<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Variable + operator</span></div>
+        <div class="bridge-item code">repeat inside repeat<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Nested loops</span></div>
+        <div class="bridge-item code">if answer = correct<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Conditional block</span></div>
+        <div class="bridge-item code">set size to % of score<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Proportional looks</span></div>
+        <div class="bridge-item code">if [ ] = 0 then<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Zero condition</span></div>
+        <div class="bridge-item code">set x / set y blocks<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Coordinate swap</span></div>
+      </div>
+      <div class="bridge-col" style="justify-content:flex-start;padding-top:46px">
+        <div class="bridge-arrow" style="color:var(--teal)">
+          <span>→</span><span>→</span><span>→</span><span>→</span><span>→</span><span>→</span><span>→</span>
+        </div>
+      </div>
+      <div class="bridge-col">
+        <div class="bridge-col-title code">🌐 HTML/JS (Gr 6–7)</div>
+        <div class="bridge-item code">for loop / while loop<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">JS iteration</span></div>
+        <div class="bridge-item code">let a = base - n<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">JS variables</span></div>
+        <div class="bridge-item code">for(i) { for(j) { } }<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Nested JS loops</span></div>
+        <div class="bridge-item code">digitalRoot() % 9<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">Modulo operator</span></div>
+        <div class="bridge-item code">width: 50% in CSS<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">CSS proportions</span></div>
+        <div class="bridge-item code">if (x === 0) { }<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">JS conditionals</span></div>
+        <div class="bridge-item code">function swap(a,b)<br><span style="font-size:0.68rem;font-weight:400;opacity:0.7">JS functions</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECTIONS -->
+<section class="connections-section" id="connections">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">The Bridge</div>
+    <h2 class="section-title">5 Ways Vedic Maths Directly Powers Coding</h2>
+    <div class="divider"></div>
+    <p class="section-sub">These are not metaphors — these are direct, concrete mappings that we use in every lesson. Each Vedic sutra becomes a coding concept children can see, build, and run.</p>
+    <div class="conn-grid">
+
+      <div class="conn-card">
+        <div>
+          <div class="conn-num">01</div>
+          <div class="conn-sutra">Ekadhikena Purvena</div>
+          <div class="conn-sutra-en">"By one more than the previous one"</div>
+          <p class="conn-desc">The simplest Vedic sutra — add 1 to what came before — is literally a <em>counter loop</em>. Children who understand this sutra immediately grasp why computers count the way they do.</p>
+        </div>
+        <div class="conn-box vedic">
+          <div class="conn-box-label">📐 Vedic Maths</div>
+          <div class="conn-box-content">
+            Multiply 1/19 = 0.052631...<br>
+            Each digit: previous digit ×2<br>
+            <strong>Pattern: 1 → 2 → 4 → 8 → ...</strong><br><br>
+            Squaring: 25² = (2×3) | 25 = <strong>625</strong><br>
+            35² = (3×4) | 25 = <strong>1225</strong><br>
+            45² = (4×5) | 25 = <strong>2025</strong>
+          </div>
+        </div>
+        <div class="conn-box code">
+          <div class="conn-box-label">💻 In Scratch / JS</div>
+          <div class="conn-box-content">
+            This IS a loop!
+            <div class="code-block">-- Scratch --
+repeat 10
+  change score by 1
+end
+
+// JavaScript
+for (let i = 1; i &lt;= 10; i++) {
+  console.log(i);
+}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conn-card">
+        <div>
+          <div class="conn-num">02</div>
+          <div class="conn-sutra">Nikhilam Navatashcaramam Dashatah</div>
+          <div class="conn-sutra-en">"All from 9, the last from 10"</div>
+          <p class="conn-desc">This sutra computes complements from the nearest base (10, 100, 1000). In programming, this is identical to the concept of <em>variables</em> that store intermediate values and the <em>subtraction operator</em>.</p>
+        </div>
+        <div class="conn-box vedic">
+          <div class="conn-box-label">📐 Vedic Maths</div>
+          <div class="conn-box-content">
+            97 × 96 = ?<br>
+            Base = 100<br>
+            Deficit of 97 = <strong>-3</strong><br>
+            Deficit of 96 = <strong>-4</strong><br>
+            Left: 97-4 = 93 (or 96-3)<br>
+            Right: (-3)×(-4) = 12<br>
+            <strong>Answer: 9312</strong>
+          </div>
+        </div>
+        <div class="conn-box code">
+          <div class="conn-box-label">💻 In Scratch / JS</div>
+          <div class="conn-box-content">
+            Variables store the "deficits"
+            <div class="code-block">let a = 97, b = 96;
+let base = 100;
+let defA = base - a; // 3
+let defB = base - b; // 4
+let left  = a - defB; // 93
+let right = defA * defB; // 12
+let ans = left*100 + right; // 9312</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conn-card">
+        <div>
+          <div class="conn-num">03</div>
+          <div class="conn-sutra">Urdhva Tiryakbhyam</div>
+          <div class="conn-sutra-en">"Vertically and Crosswise"</div>
+          <p class="conn-desc">The Vedic method for multi-digit multiplication — cross-multiply and carry. This maps directly to <em>nested loops</em>, where an inner loop runs inside an outer loop, processing every combination of digits.</p>
+        </div>
+        <div class="conn-box vedic">
+          <div class="conn-box-label">📐 Vedic Maths</div>
+          <div class="conn-box-content">
+            23 × 41 = ?<br>
+            Step 1 (vertical right): 3×1 = 3<br>
+            Step 2 (cross): 2×1 + 3×4 = 14, write 4, carry 1<br>
+            Step 3 (vertical left): 2×4 = 8 + carry 1 = 9<br>
+            <strong>Answer: 943</strong>
+          </div>
+        </div>
+        <div class="conn-box code">
+          <div class="conn-box-label">💻 In JS — Nested Loops</div>
+          <div class="conn-box-content">
+            Outer loop = tens, inner = units
+            <div class="code-block">// Multiplication table
+for (let i = 1; i &lt;= 10; i++) {
+  for (let j = 1; j &lt;= 10; j++) {
+    console.log(i + "×" + j
+      + "=" + (i*j));
+  }
+}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conn-card">
+        <div>
+          <div class="conn-num">04</div>
+          <div class="conn-sutra">Gunita Samuchaya</div>
+          <div class="conn-sutra-en">"The product of the sum equals the sum of the product"</div>
+          <p class="conn-desc">The Vedic technique of <em>casting out 9s</em> — computing a digital root to verify calculations. In coding, this is identical to <em>testing and debugging</em>: running a quick check to verify your program's output is correct.</p>
+        </div>
+        <div class="conn-box vedic">
+          <div class="conn-box-label">📐 Vedic Verification</div>
+          <div class="conn-box-content">
+            Check: 47 × 83 = 3901?<br>
+            Digital root of 47 = 4+7 = <strong>11 → 2</strong><br>
+            Digital root of 83 = 8+3 = <strong>11 → 2</strong><br>
+            Product of roots: 2×2 = <strong>4</strong><br>
+            Digital root of 3901 = 3+9+0+1 = <strong>13 → 4</strong> ✓<br>
+            <em>Answer is verified correct!</em>
+          </div>
+        </div>
+        <div class="conn-box code">
+          <div class="conn-box-label">💻 In JS — Modulo (%) Operator</div>
+          <div class="conn-box-content">
+            Digital root uses mod 9!
+            <div class="code-block">function digitalRoot(n) {
+  return n === 0 ? 0
+    : 1 + (n - 1) % 9;
+}
+// Verify multiplication
+let a = 47, b = 83;
+let result = a * b; // 3901
+console.log(digitalRoot(a)
+  * digitalRoot(b) % 9
+  === digitalRoot(result) % 9);
+// true ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="conn-card">
+        <div>
+          <div class="conn-num">05</div>
+          <div class="conn-sutra">Anurupyena</div>
+          <div class="conn-sutra-en">"Proportionality"</div>
+          <p class="conn-desc">The Vedic principle of scaling — if you know 1×, you know 2×, 3×, any multiple. In coding, this maps directly to <em>functions</em>: write the rule once, call it with any input, and the proportional result scales automatically.</p>
+        </div>
+        <div class="conn-box vedic">
+          <div class="conn-box-label">📐 Vedic Maths</div>
+          <div class="conn-box-content">
+            Know 11×7 = 77?<br>
+            Then instantly: 110×7 = 770<br>
+            1100×7 = 7700<br>
+            0.11×7 = 0.77<br>
+            <strong>Proportional scaling — same rule, different input.</strong><br>
+            Also: CSS percentage layouts!<br>
+            1 col = 100%, 2 col = 50%, 3 col = 33.33%
+          </div>
+        </div>
+        <div class="conn-box code">
+          <div class="conn-box-label">💻 In JS — Functions / CSS</div>
+          <div class="conn-box-content">
+            Write once, scale infinitely
+            <div class="code-block">// One function, any scale
+function multiply(base, factor) {
+  return base * factor;
+}
+multiply(11, 7);   // 77
+multiply(110, 7);  // 770
+
+/* CSS proportionality */
+.col-3 { width: 33.33%; }
+.col-2 { width: 50%; }
+.col-1 { width: 100%; }</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM OVERVIEW -->
+<section class="overview-section" id="overview">
+  <div class="container">
+    <div class="section-label">Program Structure</div>
+    <h2 class="section-title">Two Tracks, One Philosophy</h2>
+    <div class="divider"></div>
+    <p class="section-sub">T.H.Y.N.K runs as two parallel tracks matched to grade bands. Both use the same pedagogical approach: introduce a Vedic sutra, find its coding twin, then build a project that makes both concepts visible and fun.</p>
+    <div class="overview-grid">
+      <div class="prog-card primary">
+        <div class="prog-card-header">
+          <div class="prog-grade-tag">Track 1</div>
+          <h3>Vedic Maths + Scratch</h3>
+          <p>Visual block coding meets ancient arithmetic — perfect first steps into the world of programming.</p>
+        </div>
+        <div class="prog-card-body">
+          <div class="prog-meta">
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">For</div>
+              <div class="prog-meta-value">Grades 4 &amp; 5</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Duration</div>
+              <div class="prog-meta-value">16 Weeks</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Session length</div>
+              <div class="prog-meta-value">45 minutes</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Tools used</div>
+              <div class="prog-meta-value">Scratch 3.0 (free)</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Vedic focus</div>
+              <div class="prog-meta-value">7 Sutras</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Final project</div>
+              <div class="prog-meta-value">Vedic Maths Game</div>
+            </div>
+          </div>
+          <ul class="prog-topics">
+            <li>Ekadhikena Purvena → Loops &amp; Patterns in Scratch</li>
+            <li>Nikhilam → Variables &amp; Subtraction</li>
+            <li>Multiplication tricks → Calculator projects</li>
+            <li>Digital roots → Conditionals (if/else)</li>
+            <li>Proportions → Sprite sizing &amp; animations</li>
+            <li>Verification → Testing &amp; debugging</li>
+            <li>Mini-project: Vedic Maths Quiz Game</li>
+            <li>Final project: Student-designed Vedic game</li>
+          </ul>
+        </div>
+      </div>
+      <div class="prog-card secondary">
+        <div class="prog-card-header">
+          <div class="prog-grade-tag">Track 2</div>
+          <h3>Vedic Maths + Web Code</h3>
+          <p>Real-world HTML, CSS and JavaScript powered by the mental shortcuts of Vedic arithmetic.</p>
+        </div>
+        <div class="prog-card-body">
+          <div class="prog-meta">
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">For</div>
+              <div class="prog-meta-value">Grades 6 &amp; 7</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Duration</div>
+              <div class="prog-meta-value">16 Weeks</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Session length</div>
+              <div class="prog-meta-value">45 minutes</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Tools used</div>
+              <div class="prog-meta-value">Browser + Notepad / VS Code</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Vedic focus</div>
+              <div class="prog-meta-value">8 Sutras</div>
+            </div>
+            <div class="prog-meta-item">
+              <div class="prog-meta-label">Final project</div>
+              <div class="prog-meta-value">Vedic Maths Website</div>
+            </div>
+          </div>
+          <ul class="prog-topics">
+            <li>HTML structure → Sutra categories &amp; rules</li>
+            <li>CSS proportions → Anurupyena scaling</li>
+            <li>JS variables → Unknown quantities in sutras</li>
+            <li>JS operators → All 4 Vedic operations</li>
+            <li>Conditionals → Shunyam special-case rules</li>
+            <li>Functions → Reusable sutras</li>
+            <li>Loops → Urdhva Tiryakbhyam steps</li>
+            <li>Final project: Interactive Vedic Maths teach-back website</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16-WEEK JOURNEY TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">The Journey</div>
+    <h2 class="section-title">16-Week Roadmap</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Both tracks follow the same 4-phase arc — from first principles to a fully working final project. Every phase ends with a milestone the student can show to parents.</p>
+    <div class="timeline-tracks">
+
+      <!-- TRACK 1: Grades 4-5 -->
+      <div class="timeline-track">
+        <div class="timeline-track-label gr45">🐱 Track 1 — Grades 4 &amp; 5 (Scratch)</div>
+        <div class="timeline-phases">
+          <div class="tl-phase">
+            <div class="tl-dot gr45">1–4</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 1–4</div>
+              <div class="tl-title">Phase 1: Foundations</div>
+              <div class="tl-desc">Meet Vedic Sutras and Scratch. Make sprites move, talk, and count. First calculator built using the ×11 trick.</div>
+              <div class="tl-tags">
+                <span class="tl-tag gr45">Ekadhikena</span>
+                <span class="tl-tag gr45">Motion Blocks</span>
+                <span class="tl-tag gr45">Variables</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-dot gr45">5–8</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 5–8</div>
+              <div class="tl-title">Phase 2: Building Tools</div>
+              <div class="tl-desc">Build calculators, health-bar games, and a full quiz using Nikhilam and squaring tricks. Mini-project at Week 8.</div>
+              <div class="tl-tags">
+                <span class="tl-tag gr45">Nikhilam</span>
+                <span class="tl-tag gr45">Squaring ×5</span>
+                <span class="tl-tag gr45">Quiz Game 🏆</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-dot gr45">9–12</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 9–12</div>
+              <div class="tl-title">Phase 3: Deeper Thinking</div>
+              <div class="tl-desc">Digital roots → if/else logic. Proportions → sprite scaling. Nested loops → yantra grid art. Debugging mindset unlocked.</div>
+              <div class="tl-tags">
+                <span class="tl-tag gr45">Conditionals</span>
+                <span class="tl-tag gr45">Nested Loops</span>
+                <span class="tl-tag gr45">Anurupyena</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-dot finish">13–16</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 13–16</div>
+              <div class="tl-title">Phase 4: Final Project 🎉</div>
+              <div class="tl-desc">Design, build, test and present a complete Vedic Maths game. Demo Day in Week 16 with parents and school staff.</div>
+              <div class="tl-tags">
+                <span class="tl-tag green">Own Game</span>
+                <span class="tl-tag green">Certificate</span>
+                <span class="tl-tag green">Demo Day</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TRACK 2: Grades 6-7 -->
+      <div class="timeline-track">
+        <div class="timeline-track-label gr67">🌐 Track 2 — Grades 6 &amp; 7 (HTML/CSS/JS)</div>
+        <div class="timeline-phases">
+          <div class="tl-phase">
+            <div class="tl-dot gr67">1–4</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 1–4</div>
+              <div class="tl-title">Phase 1: Structure &amp; Style</div>
+              <div class="tl-desc">HTML as a "sutra system" for browsers. CSS box model = Vedic geometry. Build a beautifully styled Sutras reference page.</div>
+              <div class="tl-tags">
+                <span class="tl-tag gr67">HTML Tags</span>
+                <span class="tl-tag gr67">CSS Selectors</span>
+                <span class="tl-tag gr67">Box Model</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-dot gr67">5–8</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 5–8</div>
+              <div class="tl-title">Phase 2: Making It Work</div>
+              <div class="tl-desc">JavaScript variables as ancient "yavat-tavat." All 4 Vedic operations in code. Mini-project: full interactive calculator webpage.</div>
+              <div class="tl-tags">
+                <span class="tl-tag gr67">JS Variables</span>
+                <span class="tl-tag gr67">Operators</span>
+                <span class="tl-tag gr67">Calculator 🏆</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-dot gr67">9–12</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 9–12</div>
+              <div class="tl-title">Phase 3: Advanced Logic</div>
+              <div class="tl-desc">Loops visualise Urdhva Tiryak steps. Each sutra becomes a JS function. Arrays hold digit sequences. Animated Vedic yantra built.</div>
+              <div class="tl-tags">
+                <span class="tl-tag gr67">Functions</span>
+                <span class="tl-tag gr67">Loops</span>
+                <span class="tl-tag gr67">CSS Animation</span>
+              </div>
+            </div>
+          </div>
+          <div class="tl-phase">
+            <div class="tl-dot finish">13–16</div>
+            <div class="tl-content">
+              <div class="tl-weeks">Weeks 13–16</div>
+              <div class="tl-title">Phase 4: Teaching Website 🎉</div>
+              <div class="tl-desc">4-page website that teaches 2–3 Vedic sutras interactively. Live demo and code walkthrough on Demo Day.</div>
+              <div class="tl-tags">
+                <span class="tl-tag green">Own Website</span>
+                <span class="tl-tag green">Certificate</span>
+                <span class="tl-tag green">Demo Day</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SESSION ANATOMY -->
+<section class="session-section">
+  <div class="container">
+    <div class="session-layout">
+      <div class="session-donut-wrap">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:220px;height:220px">
+          <!-- Donut segments: total = 45 min -->
+          <!-- Vedic warm-up: 8 min = 8/45 * 360 = 64° -->
+          <!-- Sutra-to-code bridge: 5 min = 40° -->
+          <!-- Build / code time: 25 min = 200° -->
+          <!-- Share & reflect: 7 min = 56° -->
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#F0E8DC" stroke-width="32"/>
+          <!-- Segment 1: Vedic warm-up 64° from top (270°) -->
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#C8963A" stroke-width="32"
+            stroke-dasharray="89 413" stroke-dashoffset="0"
+            transform="rotate(-90 100 100)"/>
+          <!-- Segment 2: Bridge 40° -->
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#E07010" stroke-width="32"
+            stroke-dasharray="56 446" stroke-dashoffset="-89"
+            transform="rotate(-90 100 100)"/>
+          <!-- Segment 3: Build time 200° -->
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#0A5A6E" stroke-width="32"
+            stroke-dasharray="279 223" stroke-dashoffset="-145"
+            transform="rotate(-90 100 100)"/>
+          <!-- Segment 4: Share 56° -->
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#2A7F5A" stroke-width="32"
+            stroke-dasharray="78 424" stroke-dashoffset="-424"
+            transform="rotate(-90 100 100)"/>
+          <!-- Center hole white -->
+          <circle cx="100" cy="100" r="60" fill="#FDF6EC"/>
+          <!-- Center text -->
+          <text x="100" y="96" text-anchor="middle" font-family="Playfair Display,serif" font-size="26" font-weight="900" fill="#0D1B2A">45</text>
+          <text x="100" y="113" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#5C7080">MINUTES</text>
+        </svg>
+        <div class="session-legend">
+          <div class="sess-leg-item">
+            <div class="sess-leg-dot" style="background:#C8963A"></div>
+            <span class="sess-leg-label">Vedic Warm-Up</span>
+            <span class="sess-leg-mins">8 min</span>
+          </div>
+          <div class="sess-leg-item">
+            <div class="sess-leg-dot" style="background:#E07010"></div>
+            <span class="sess-leg-label">Sutra → Code Bridge</span>
+            <span class="sess-leg-mins">5 min</span>
+          </div>
+          <div class="sess-leg-item">
+            <div class="sess-leg-dot" style="background:#0A5A6E"></div>
+            <span class="sess-leg-label">Build / Code Time</span>
+            <span class="sess-leg-mins">25 min</span>
+          </div>
+          <div class="sess-leg-item">
+            <div class="sess-leg-dot" style="background:#2A7F5A"></div>
+            <span class="sess-leg-label">Share &amp; Reflect</span>
+            <span class="sess-leg-mins">7 min</span>
+          </div>
+        </div>
+      </div>
+      <div class="session-details">
+        <div class="section-label">Session Design</div>
+        <h3>Every 45 Minutes Is Structured the Same Way</h3>
+        <p>The session structure is intentional. Students always start with mental Vedic maths (no screens, builds confidence), then bridge to code, then build, then reflect. This rhythm becomes second nature by Week 3.</p>
+        <div class="session-steps">
+          <div class="sess-step">
+            <div class="sess-step-icon" style="background:rgba(200,150,58,0.15)">📐</div>
+            <div class="sess-step-text">
+              <h4>Vedic Warm-Up — 8 min</h4>
+              <p>5 mental maths problems on today's sutra. No calculators. Students compete to solve fastest — builds the mental speed that pays off in debugging.</p>
+            </div>
+          </div>
+          <div class="sess-step">
+            <div class="sess-step-icon" style="background:rgba(224,112,16,0.15)">🔗</div>
+            <div class="sess-step-text">
+              <h4>Sutra → Code Bridge — 5 min</h4>
+              <p>Teacher draws the explicit connection: "This sutra's Step 2 is exactly what this block / line of code does." Students write it on their worksheet.</p>
+            </div>
+          </div>
+          <div class="sess-step">
+            <div class="sess-step-icon" style="background:rgba(10,90,110,0.15)">💻</div>
+            <div class="sess-step-text">
+              <h4>Build / Code Time — 25 min</h4>
+              <p>Hands on keyboard. Guided worksheet + teacher circulation. Pairs encouraged. Fast finishers get extension challenges. Teacher never gives answers — only asks questions.</p>
+            </div>
+          </div>
+          <div class="sess-step">
+            <div class="sess-step-icon" style="background:rgba(42,127,90,0.15)">🌟</div>
+            <div class="sess-step-text">
+              <h4>Share &amp; Reflect — 7 min</h4>
+              <p>Two students show their screen. Class spots one thing that works well and one thing to improve. Everyone writes: "Today I connected __ to __." Homework: teach the sutra to one family member.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRADE 4-5 CURRICULUM -->
+<section class="curriculum-section gr45" id="curriculum45">
+  <div class="container">
+    <div class="curriculum-header">
+      <div>
+        <div class="section-label">Full Curriculum</div>
+        <h2 class="section-title">Grades 4–5: Vedic Maths + Scratch</h2>
+        <div class="divider"></div>
+        <p style="font-size:0.95rem;color:var(--muted);max-width:600px">16 weeks, once a week, 45 minutes per session. Each week pairs a Vedic technique with a Scratch concept — then students immediately build something with it.</p>
+      </div>
+      <span class="grade-badge gr45">🐱 Scratch Track</span>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-block">
+      <div class="phase-title gr45">Phase 1: Foundations <span class="phase-badge gr45">Weeks 1–4</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 01</div>
+          <div class="week-title">Welcome to T.H.Y.N.K! What are Vedic Maths &amp; Scratch?</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Introduction to the 16 Sutras. What is a sutra? (A rule!) Examples: multiplying by 11, squaring numbers ending in 5. Show how ancient Indians computed without calculators.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Open Scratch. Meet Sprites, the Stage, and Blocks. Run a "Hello World!" — make the cat say "Namaste!" and wave. Understand what a program is.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students can explain what a sutra and a program have in common — both are step-by-step rules.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 02</div>
+          <div class="week-title">Ekadhikena Purvena — Counting &amp; Motion Blocks</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Sutra: "By one more than the previous one." Practice: 1/19, 1/29 using this pattern. Spot doubling sequences: 1, 2, 4, 8, 16... What comes next?</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Motion blocks: move 10 steps, turn 15 degrees. Make sprite walk by pressing arrow keys. Each key press = "one more step." Worksheet: match the sutra step to the code step.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students see that "add 1 more" is the same action in Vedic counting and in making a sprite move. Mini-project: Walking cat that counts steps.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 03</div>
+          <div class="week-title">Number Patterns → The Repeat Loop</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Explore repeating patterns in multiplication tables. 9's table: 9, 18, 27, 36... digit sum always = 9! Eleven's table: digit mirror pattern 11, 22, 33... Spot the pattern, predict the next.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">The <strong>repeat</strong> block — let the computer repeat instead of you. Repeat 10: move 20, turn 36° → draws a perfect circle! Connection: the multiplication pattern IS the loop.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build a spiral/polygon using repeat loops. They explain why 360÷10=36° using Vedic proportional thinking.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 04</div>
+          <div class="week-title">Multiplying by 11 → Variables &amp; Answers</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content"><strong>Trick:</strong> 23×11 = 2_3, middle = 2+3 = 5 → <strong>253</strong>. 45×11 = 4_5, 4+5=9 → <strong>495</strong>. What if sum &gt; 9? 78×11: 7+8=15, carry 1 → <strong>858</strong>. Practice 10 examples mentally.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Sensing blocks: <strong>ask</strong> and <strong>answer</strong>. Variables: Number1, Result. Build a ×11 calculator: ask a 2-digit number, compute it using the Vedic trick as separate variable steps, say the answer.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build their first calculator in Scratch. They see how the Vedic steps (split digits → add middle → join) become variable operations in code.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-block">
+      <div class="phase-title gr45">Phase 2: Building Tools <span class="phase-badge gr45">Weeks 5–8</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 05</div>
+          <div class="week-title">All from 9, Last from 10 → Subtraction &amp; Score Bars</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Nikhilam sutra: 1000−386 = ? Take each digit from 9, last from 10: 6,1,4 → <strong>614</strong>. Instant! Practice: 10000−2847, 100−73. This is complement arithmetic — same as computers use!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Build a <strong>health bar game</strong>. Variable: Lives = 3. Each time a ball touches the sprite: change Lives by -1. If Lives = 0: game over. This IS "all from [max], last from [max]" in code.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build a working game with a live health counter. They explain the connection between the Nikhilam sutra and the Lives variable.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 06</div>
+          <div class="week-title">Squaring Numbers Ending in 5 → Formulas &amp; Functions</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Any number ending in 5: n×(n+1) | 25. <strong>35² = 3×4 | 25 = 1225. 75² = 7×8 | 25 = 5625. 105² = 10×11 | 25 = 11025.</strong> No multiplication needed — pure pattern recognition.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Advanced calculator: Ask for a number ending in 5. Compute using the Vedic formula (store tens digit in variable, multiply by tens+1, join 25). Display result. Compare with direct multiply to verify!</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build a Vedic squaring calculator and experience the joy of getting the same result two different ways — intuitive Vedic vs brute-force multiplication.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 07</div>
+          <div class="week-title">Near-10 Multiplication → Scoring &amp; Operators</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Base 10 multiplication: 8×7 = ? Both near 10. 8 is -2 from 10, 7 is -3. Cross: 8-3=5 (or 7-2=5). Product of deficits: 2×3=6. Answer: <strong>56</strong>. Try 9×6, 7×6, 8×9 mentally.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Scoring system: Green flag starts score=0. Each correct answer: score +10. Each wrong answer: score -5. Use <strong>operator blocks (+, -, ×)</strong> directly. The deficits in Vedic = the penalty/bonus in the game!</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build a working quiz with live score tracking using Vedic multiplication as both the subject and the scoring logic.</div>
+        </div>
+
+        <div class="week-card gr45 special">
+          <div class="week-num">Week 08 — Mini Project 🏆</div>
+          <div class="week-title">Build a Vedic Maths Quiz Game in Scratch</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic Content</div>
+              <div class="week-col-content">Quiz covers: ×11 trick, squaring ending in 5, near-10 multiplication, Nikhilam subtraction. 5 questions, timed (30 seconds each). Use all Vedic shortcuts learned so far.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch Features</div>
+              <div class="week-col-content">Must include: Variables (Score, Timer, Lives), Ask/Answer blocks, If/Else for correct/wrong, Repeat loop for countdown, Say block for feedback. Full working game!</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Students share and play each other's quiz games. Peer testing = informal code review! Teachers assess variables, loops, and conditionals.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-block">
+      <div class="phase-title gr45">Phase 3: Deeper Concepts <span class="phase-badge gr45">Weeks 9–12</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 09</div>
+          <div class="week-title">Digital Roots → Conditionals (If / Else)</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Digital root = keep adding digits until single digit. 9→9, 10→1, 11→2, 18→9, 19→1. Rules: if digital root = 9 → divisible by 9. If = 3 or 6 → divisible by 3. Instant divisibility check!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">If/Else blocks: <strong>If</strong> (digital root of answer = 9) <strong>then</strong> say "Divisible by 9!" <strong>else</strong> say "Not divisible by 9." Build a divisibility checker — the Vedic rule IS the condition!</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build a divisibility tester. The if/else logic comes naturally because they already know the Vedic rule that goes inside the condition.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 10</div>
+          <div class="week-title">Proportions (Doubling &amp; Halving) → Sprite Sizing &amp; Looks</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Anurupyena: proportional scaling. If 12×5=60, then 24×5=120, 6×5=30, 1.2×5=6. Double the number, double the answer. Half the number, half the answer. Apply to areas: 2× length = 4× area.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Looks blocks: set size to %, change size by. Make sprite grow when score increases (size = score × 2), shrink when score drops. Show proportional relationship visually. Also: set costume effects proportionally.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students create an animated "score creature" that visually scales proportionally with the game score — direct visual proof of Anurupyena.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 11</div>
+          <div class="week-title">Vertically &amp; Crosswise → Nested Loops &amp; Grid Art</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Urdhva Tiryakbhyam: 2-digit × 2-digit multiplication in 3 steps — right column, cross, left column. Process every position systematically. This is exactly what a nested loop does!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Nested repeat loops: outer loop rows (move down 20), inner loop columns (stamp, move right 20). Creates a grid — exactly like filling in a multiplication table position by position. Draw Vedic yantra art!</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students produce a stamp-art grid resembling a Vedic magic square. They narrate: "The outer loop is the tens digit, the inner loop is the units digit."</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 12</div>
+          <div class="week-title">Gunita Samuchaya — Testing &amp; Debugging Like a Vedic Scholar</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Verification sutra: use digital roots to check any multiplication. 47×83=3901? Root(47)=2, Root(83)=2, 2×2=4. Root(3901)=4. ✓ If they don't match → ERROR. This is a built-in error-detection system!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Debugging session: teacher provides 3 broken Scratch projects. Students find bugs using: check variables panel, add say blocks to test values, trace execution step by step. Debugging = Vedic verification mindset.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students fix all 3 buggy projects. Key insight: "Checking is part of the work, not extra work" — same in Vedic maths and in programming.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-block">
+      <div class="phase-title gr45">Phase 4: Final Project <span class="phase-badge gr45">Weeks 13–16</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 13</div>
+          <div class="week-title">Project Planning — Design Your Vedic Game</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Students choose which Vedic sutra their game will teach. Complete a "Game Design Sheet": what sutra, what question format, how score works, what happens when correct/wrong, what's the win condition.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Sketch the Scratch layout: which sprites, which variables, which events. Draw a flowchart: Green Flag → Ask → Check → Score → Win/Lose. Map every box to the Scratch block that will do it.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Deliverable: Completed Game Design Sheet with Vedic sutra chosen, flowchart drawn, and sprites listed. Teacher approves before building starts.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 14</div>
+          <div class="week-title">Project Build — Week 1</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Each student must include at least 2 Vedic sutra questions. The Vedic calculations should be broken into steps matching the code (e.g., three separate variables for the three steps of ×11 trick).</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Build core game loop: ask question, get answer, check if correct, update score, go to next question. All variables named clearly. Teacher circulates and helps with debugging. Peer pair support encouraged.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 By end of class: Core loop working (even with just 1 question). Students save and share project link.</div>
+        </div>
+
+        <div class="week-card gr45">
+          <div class="week-num">Week 15</div>
+          <div class="week-title">Project Polish — Test, Debug, Beautify</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Students write a 5-question Vedic Maths test on paper using their chosen sutra. They swap papers with a classmate and solve using the sutra. This reveals if the sutra is correctly represented in their game.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Scratch</div>
+              <div class="week-col-content">Add: start screen, end screen with "Play Again" button, sound effects, custom backdrop, at least 3 questions, timer, and high score. Use a classmate to test — if they're confused, fix the UX. Testing = verification.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Final game complete, saved, and shared. Each student records a 60-second voice note explaining their sutra and how it appears in their code.</div>
+        </div>
+
+        <div class="week-card gr45 special">
+          <div class="week-num">Week 16 — Demo Day 🎉</div>
+          <div class="week-title">T.H.Y.N.K Demo Day — Present &amp; Celebrate!</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Presentation</div>
+              <div class="week-col-content">Each student presents for 2 minutes: "My game teaches [sutra name]. This sutra means... In my game, you need to... The sutra helps because..." Judges (teachers, parents) ask: "How did Vedic maths help you code this?"</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Demo</div>
+              <div class="week-col-content">Live demo of game on screen. Audience plays 1 round. Student explains one piece of code (open the blocks, point to it). Certificate of completion. Games published to class Scratch studio for all to play.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🏆 Students receive T.H.Y.N.K Certificate. Best projects featured in school newsletter. All games archived in school Scratch studio for future students.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRADE 6-7 CURRICULUM -->
+<section class="curriculum-section gr67" id="curriculum67">
+  <div class="container">
+    <div class="curriculum-header">
+      <div>
+        <div class="section-label">Full Curriculum</div>
+        <h2 class="section-title">Grades 6–7: Vedic Maths + HTML / CSS / JS</h2>
+        <div class="divider"></div>
+        <p style="font-size:0.95rem;color:var(--muted);max-width:600px">16 weeks, once a week, 45 minutes per session. Students build real websites while discovering that HTML, CSS and JavaScript are just Vedic sutras written in a different language.</p>
+      </div>
+      <span class="grade-badge gr67">🌐 Web Track</span>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase-block">
+      <div class="phase-title gr67">Phase 1: Structure &amp; Style <span class="phase-badge gr67">Weeks 1–4</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 01</div>
+          <div class="week-title">What is a Webpage? HTML = A Sutra for Browsers</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">What is a sutra? A rule with a name, a structure, and a predictable outcome. The Vedic texts contain 16 sutras and 13 sub-sutras — exactly like HTML has tags and attributes. Structure = sutra.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 HTML</div>
+              <div class="week-col-content">Write first HTML file in Notepad/VS Code. Tags: &lt;html&gt;, &lt;head&gt;, &lt;body&gt;, &lt;h1&gt;, &lt;p&gt;. Open in Chrome. Students add their name, school, and a Vedic sutra quote. Save, refresh, see changes instantly.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Each student has a personal "about me" webpage live in Chrome — their first HTML file.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 02</div>
+          <div class="week-title">HTML Lists &amp; Tables — Organising Sutras</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">The 16 Vedic Sutras listed: Ekadhikena, Nikhilam, Urdhva Tiryak... each has a Sanskrit name, English meaning, and use case. Classification and hierarchy — just like HTML elements!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 HTML</div>
+              <div class="week-col-content">&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt; for lists. &lt;table&gt;, &lt;tr&gt;, &lt;td&gt; for the multiplication table. Build an HTML page: "The 16 Vedic Sutras" — one table row per sutra with Sanskrit name, meaning, and example.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students create a well-structured HTML reference page of all 16 Vedic Sutras.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 03</div>
+          <div class="week-title">CSS Basics — Anurupyena (Proportions) in Style</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Anurupyena: proportional relationships. If font is 16px, a heading should be 2× = 32px. Line height should be 1.5× font size. Spacing: margin = 1× font, padding = 0.5× font. All proportions flow from one base unit — exactly like Vedic scaling.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 CSS</div>
+              <div class="week-col-content">Link CSS file to HTML. Selectors: body, h1, p, table. Properties: color, background-color, font-size, font-family. Students style their Vedic Sutras page. Choose a colour scheme inspired by India: saffron, white, green.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Sutras page is now beautifully styled. Students discover that good CSS proportions feel the same as Vedic proportional thinking.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 04</div>
+          <div class="week-title">CSS Box Model — Vedic Geometry &amp; Squared Areas</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Vedic geometry (Sulbasutras — pre-dates Pythagoras!): area of square = side². The 3-4-5 right triangle was known. Box inside box inside box — exactly the CSS box model. Content → padding → border → margin.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 CSS</div>
+              <div class="week-col-content">padding, margin, border, width, height. box-sizing: border-box. Build a "Vedic yantra" card layout using nested divs: outer border (margin), decorated frame (border), breathing room (padding), content in centre.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students create a styled Vedic Yantra card using only CSS box model properties. They narrate each layer using Vedic geometry language.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-block">
+      <div class="phase-title gr67">Phase 2: Making it Work with JavaScript <span class="phase-badge gr67">Weeks 5–8</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 05</div>
+          <div class="week-title">Intro to JavaScript — Variables as Unknown Quantities</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">In Vedic algebra (Bija Ganita), unknowns were called "yavat-tavat" (as much as). A variable is an unknown that takes a value. This is identical to algebra AND identical to JavaScript variables. Ancient India had variables!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">script tags. let, const. prompt() to get input. alert() to show output. console.log() for testing. First JS program: ask two numbers, multiply them (using the ×1 trick for type conversion), show the result.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students write their first JavaScript and connect it directly to Vedic algebraic unknowns — variables were not invented in 1950s, they were used in 1000 BCE India.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 06</div>
+          <div class="week-title">JS Operators — All Four Vedic Operations</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">All four operations and their Vedic shortcuts: + (Sankalana — addition), - (Vyavakalana — subtraction), × (Gunana — near-base method), ÷ (Bhagana — Paravartya division). Show the shortcut method for each, then verify with JS.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">+, -, *, /, % (modulo). Math.pow(), Math.sqrt(). Build a 4-operation Vedic calculator HTML page: input two numbers, four buttons (one per operation), result displayed in a div. CSS styled in India tricolour.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students have a working web calculator. They also know the Vedic Sanskrit name for each operation — connects cultural pride to technical skill.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 07</div>
+          <div class="week-title">JS Conditionals — Shunyam &amp; Special Cases</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Sutra: "Shunyam Saamyasamuccaye" — if the sum is the same on both sides, that quantity is zero. Special case detection! Vedic maths has rules that say "IF [condition] THEN [special shortcut] ELSE [general method]."</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">if / else if / else. Comparison operators: ===, !==, &gt;, &lt;. Build divisibility tester: input a number, JS checks digital root and says "Divisible by 3/9/neither." The Shunyam condition becomes an if-statement.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students see if/else as the direct equivalent of Vedic "special case rules" — the code structure was already implicit in the sutra.</div>
+        </div>
+
+        <div class="week-card gr67 special">
+          <div class="week-num">Week 08 — Mini Project 🏆</div>
+          <div class="week-title">Build a Full Vedic Maths Calculator Webpage</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Integrates: ×11 shortcut, squaring-ending-5, Nikhilam subtraction, near-10 multiplication, digital root check. Calculator has a "Show Vedic Steps" button that reveals the sutra's intermediate steps alongside the answer.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 HTML + CSS + JS</div>
+              <div class="week-col-content">HTML: input fields, buttons, result area, steps area. CSS: fully styled, responsive, uses flexbox for layout. JS: event listeners, if/else for choosing which sutra to apply based on the numbers entered. Three files, one cohesive product.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Deliverable: A hosted, working Vedic Maths calculator with step-by-step Vedic explanation panel. Teachers save these as portfolio pieces.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-block">
+      <div class="phase-title gr67">Phase 3: Loops, Functions &amp; Advanced Ideas <span class="phase-badge gr67">Weeks 9–12</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 09</div>
+          <div class="week-title">JS Loops — Urdhva Tiryakbhyam Step by Step</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Urdhva Tiryakbhyam for 2×2 digit multiplication — 3 passes: right column, crosswise, left column. Then for 3×3 digit — 5 passes. Each pass is a repeating pattern over digit positions. The loop count = number of digit positions!</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">for loops, while loops. Build a JS function that generates the full multiplication table up to n×n, displayed as an HTML table. Each table cell coloured by the digital root of the product — Vedic maths pattern visualised!</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: A coloured multiplication table webpage where colour shows digital root patterns — visually demonstrating Vedic number harmony.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 10</div>
+          <div class="week-title">JS Functions — Sutras as Reusable Code</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">A sutra is a rule you apply to any valid input. Ekadhikena works for 1/19, 1/29, 1/39... Nikhilam works for any numbers near any base. You don't rewrite the rule each time — you apply it. That's exactly what a function does.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">function keyword, parameters, return. Write functions: digitalRoot(n), multiplyByEleven(n), squareEndingFive(n), nearBaseMult(a, b, base). Call each from the calculator. Students see that every Vedic sutra becomes one clean function.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students refactor their Week 8 calculator to use named functions — one per sutra. Code becomes readable, organised, and elegant — just like the sutras themselves.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 11</div>
+          <div class="week-title">JS Arrays — Working with Digit Sequences</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Many Vedic techniques work digit by digit: digital root adds each digit, Nikhilam operates per digit, the "casting out 9s" verification collects and sums digits. Digits of a number = a list = an array.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">Arrays: [], .push(), .length, .forEach(), .map(), .reduce(). Convert number to array of digits: "1234".split("").map(Number). Build: sum of digits (digital root), Vedic digit manipulation, "Casting out 9s" verifier as a webpage.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students build a "Vedic Verifier" — enter any multiplication and the page confirms correctness using casting out 9s, showing each digit step.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 12</div>
+          <div class="week-title">CSS Animations + JS — Making Vedic Patterns Move</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Vedic art: yantras, mandalas, and rangoli all have mathematical patterns — rotational symmetry (multiples of 360°), reflective symmetry. Digit patterns in 9s table (9,18,27,36,45,54,63,72,81,90) form a visual symmetry when charted.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 CSS + JS</div>
+              <div class="week-col-content">@keyframes, animation, transform: rotate(). JS: setInterval() to animate. Build a spinning Vedic yantra made of div elements. Each petal's position calculated from a Vedic proportional formula. Dynamic — spins and pulses.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Outcome: Students create an animated Vedic yantra in a browser using pure CSS and JS. A beautiful, share-worthy artefact that demonstrates both cultural and technical mastery.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-block">
+      <div class="phase-title gr67">Phase 4: Final Project — Teach What You Know <span class="phase-badge gr67">Weeks 13–16</span></div>
+      <div class="week-grid">
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 13</div>
+          <div class="week-title">Project Planning — Design Your Vedic Teaching Website</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Students pick 2–3 Vedic sutras to teach on their website. Write out: Sanskrit name, English translation, worked example in 5 steps, 3 practice problems with answers. This becomes the content for their website.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Web Design</div>
+              <div class="week-col-content">Wireframe: Home page, Sutras page, Interactive Calculator page, About page. Sketch on paper first. Choose colour scheme. List which JS functions they'll need. Map content to HTML sections. One week, four pages planned.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Deliverable: Paper wireframes for all 4 pages, content written out, JS function list drawn up. Teacher signs off before building starts.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 14</div>
+          <div class="week-title">Project Build — Structure &amp; Style All Pages</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">Students write the Vedic content (examples, explanations) in their own words. They must be able to solve any problem on their own site using only the sutra — no looking up answers. The teacher quizzes them on their own content.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 HTML + CSS</div>
+              <div class="week-col-content">Build all 4 HTML pages. Shared CSS file (one stylesheet for all pages). Navigation links between pages. Flexbox or grid layout. Images/icons sourced freely. All pages styled consistently. No JS yet — just structure and style.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 By end: All 4 HTML pages exist, are styled, and navigation works. Content is accurate and readable.</div>
+        </div>
+
+        <div class="week-card gr67">
+          <div class="week-num">Week 15</div>
+          <div class="week-title">Project JS — Add All Interactive Elements</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Vedic</div>
+              <div class="week-col-content">The interactive calculator must show Vedic steps, not just the final answer. Step 1, Step 2, Step 3 — each appears as the user enters input, mirroring how a Vedic scholar would teach a student. Teaching = debugging = verification.</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 JS</div>
+              <div class="week-col-content">Attach all JS: calculator with step-by-step reveal, quiz section with score tracking, animated yantra or pattern, smooth scrolling, "copy to clipboard" for sharing sutras. addEventListener, DOM manipulation, innerHTML.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🎯 Website is fully functional. A classmate can use it to learn the Vedic sutras without any help from the creator.</div>
+        </div>
+
+        <div class="week-card gr67 special">
+          <div class="week-num">Week 16 — Demo Day 🎉</div>
+          <div class="week-title">T.H.Y.N.K Demo Day — Websites Go Live!</div>
+          <div class="week-row">
+            <div class="week-col">
+              <div class="week-col-label vedic">📐 Presentation</div>
+              <div class="week-col-content">3-minute presentation per student: "My website teaches [sutras]. I chose them because... The hardest part was... The most interesting connection I found was... Anyone can learn [sutra] in 5 minutes using my site."</div>
+            </div>
+            <div class="week-col">
+              <div class="week-col-label code">💻 Live Demo</div>
+              <div class="week-col-content">Audience (teachers, parents, other students) uses the website live. Must successfully solve a Vedic problem using the student's calculator. Code walkthrough: show one function and explain it. Receive T.H.Y.N.K Certificate + digital badge.</div>
+            </div>
+          </div>
+          <div class="week-outcome">🏆 Websites shared with school. Best projects featured as teaching resources for younger students. Students may optionally publish to GitHub Pages.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE EXERCISES -->
+<section class="examples-section" id="examples">
+  <div class="container">
+    <div class="section-label">Classroom Material</div>
+    <h2 class="section-title">Sample Exercises from the Program</h2>
+    <div class="divider"></div>
+    <p class="section-sub">These are the kinds of paired exercises students work through each week — a Vedic maths puzzle solved mentally, then the same logic coded immediately after.</p>
+    <div class="examples-grid">
+
+      <div class="ex-card">
+        <div class="ex-header saffron">
+          <h4>Exercise A — Grades 4–5 (Scratch)</h4>
+          <p>Week 4: ×11 Trick → Scratch Calculator</p>
+        </div>
+        <div class="ex-body">
+          <div class="ex-step">
+            <div class="ex-step-label">Vedic Part (Paper First — 5 min)</div>
+            <div class="ex-step-content">Solve these mentally using the ×11 sutra:<br>
+              <strong>34 × 11</strong> → Split 3_4, middle = 3+4 = 7 → <strong>374</strong><br>
+              <strong>62 × 11</strong> → Split 6_2, middle = 6+2 = 8 → <strong>682</strong><br>
+              <strong>85 × 11</strong> → Split 8_5, middle = 8+5 = 13, carry → <strong>935</strong>
+            </div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">Now Code It in Scratch (30 min)</div>
+            <div class="ex-step-content">Build a ×11 calculator that:<br>
+              • Asks for a 2-digit number<br>
+              • Uses 3 variables: Tens, Units, Middle<br>
+              • Sets Middle = Tens + Units<br>
+              • If Middle &lt; 10: says (Tens)(Middle)(Units)<br>
+              • If Middle ≥ 10: carries the 1 to Tens
+            </div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">Extension Challenge</div>
+            <div class="ex-step-content">Modify the code to also check if the number IS divisible by 11 (digital root trick). Add a "🎉 Divisible!" message.</div>
+          </div>
+          <div class="ex-link">📎 Starter .sb3 file provided | Teacher answer key included</div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-header teal">
+          <h4>Exercise B — Grades 6–7 (HTML/JS)</h4>
+          <p>Week 10: Functions → Sutra Library</p>
+        </div>
+        <div class="ex-body">
+          <div class="ex-step">
+            <div class="ex-step-label">Vedic Part (Paper First — 5 min)</div>
+            <div class="ex-step-content">Apply each sutra to the number pair (97, 96):<br>
+              <strong>Nikhilam (base 100):</strong> deficits = 3, 4. Left = 93. Right = 12. → <strong>9312</strong><br>
+              <strong>Digital root check:</strong> Root(9312) = 9+3+1+2 = 15 → 6. Root(97)×Root(96) = 7×6 = 42 → 6. ✓
+            </div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">Now Code It in JS (30 min)</div>
+            <div class="ex-step-content code-style">function nikhilam(a, b, base) {
+  let dA = base - a;
+  let dB = base - b;
+  let left  = a - dB;
+  let right = dA * dB;
+  return left * base + right;
+}
+
+function digitalRoot(n) {
+  return n === 0 ? 0
+    : 1 + (n-1) % 9;
+}</div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">Extension Challenge</div>
+            <div class="ex-step-content">Write a verify(a, b) function that uses nikhilam() then checks with digitalRoot(). Return true/false and display ✓ or ✗ on the page using DOM manipulation.</div>
+          </div>
+          <div class="ex-link">📎 HTML starter template provided | Expected output screenshot included</div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-header saffron">
+          <h4>Exercise C — Grades 4–5 (Scratch)</h4>
+          <p>Week 9: Digital Roots → If/Else Divisibility</p>
+        </div>
+        <div class="ex-body">
+          <div class="ex-step">
+            <div class="ex-step-label">Vedic Divisibility Rules</div>
+            <div class="ex-step-content">
+              <strong>Divisible by 9:</strong> digital root = 9<br>
+              <strong>Divisible by 3:</strong> digital root = 3, 6, or 9<br>
+              <strong>Divisible by 2:</strong> last digit even<br>
+              Test: 738 → 7+3+8 = 18 → 1+8 = <strong>9</strong> → div by 9 AND 3!
+            </div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">Scratch Challenge</div>
+            <div class="ex-step-content">Build a "Vedic Divisibility Tester" that:<br>
+              • Asks for any number<br>
+              • Calculates its digital root using a variable<br>
+              • Uses if/else blocks to check all three rules<br>
+              • Announces all applicable divisors<br>
+              • Works for any number the student enters
+            </div>
+          </div>
+          <div class="ex-link">📎 Flowchart template provided | Visual step-by-step guide included</div>
+        </div>
+      </div>
+
+      <div class="ex-card">
+        <div class="ex-header teal">
+          <h4>Exercise D — Grades 6–7 (CSS+JS)</h4>
+          <p>Week 12: Vedic Pattern → Animated Yantra</p>
+        </div>
+        <div class="ex-body">
+          <div class="ex-step">
+            <div class="ex-step-label">Vedic Pattern — 9s Table Circle</div>
+            <div class="ex-step-content">Plot the units digit of each multiple of 9 on a clock-face: 9→9, 18→8, 27→7, 36→6... They go 9,8,7,6,5,4,3,2,1,0 — a perfect symmetrical pattern! Connect the dots → a star polygon. That's a yantra!</div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">CSS + JS Build</div>
+            <div class="ex-step-content code-style">/* 10 dots on a circle */
+.dot {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: gold;
+  /* JS sets left/top using
+     sin/cos of angle */
+}
+/* Connecting lines drawn
+   using SVG in JS */</div>
+          </div>
+          <div class="ex-step">
+            <div class="ex-step-label">Animation Layer</div>
+            <div class="ex-step-content">Add CSS @keyframes rotation so the entire yantra slowly spins. Make each dot pulse. The result is a live, animated Vedic mathematical artwork — generated entirely by student code.</div>
+          </div>
+          <div class="ex-link">📎 Starter HTML with SVG setup provided | Video walkthrough for teacher</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials-section" id="materials">
+  <div class="container">
+    <div class="section-label">What Schools Receive</div>
+    <h2 class="section-title">The Complete T.H.Y.N.K Teacher Kit</h2>
+    <div class="divider"></div>
+    <p class="section-sub">Every school that adopts T.H.Y.N.K receives a complete, ready-to-deliver package. Teachers open the folder and start teaching — no research, no prep from scratch, no extra qualifications needed.</p>
+    <div class="materials-grid">
+
+      <div class="mat-card">
+        <div class="mat-icon">📚</div>
+        <h4>Teacher Guides (×32 sessions)</h4>
+        <p>One complete guide per week, for both tracks. Each guide includes:</p>
+        <ul class="mat-list">
+          <li>Vedic concept explanation with worked examples (teacher background)</li>
+          <li>Step-by-step lesson plan (5-min Vedic → 30-min code → 10-min share)</li>
+          <li>Common student mistakes and how to address them</li>
+          <li>Extension activities for fast finishers</li>
+          <li>Simplified activity for students who need more support</li>
+        </ul>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-icon">📝</div>
+        <h4>Student Worksheets (×32 sessions)</h4>
+        <p>Print-and-use A4 worksheets, one per session:</p>
+        <ul class="mat-list">
+          <li>Vedic warm-up: 5 mental maths problems using the session's sutra</li>
+          <li>Guided coding exercise: step-by-step with blanks to fill in</li>
+          <li>Challenge extension: open-ended creative task</li>
+          <li>Reflection: "I found __ similar between the sutra and the code because __"</li>
+          <li>Take-home: one Vedic trick to teach a family member</li>
+        </ul>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-icon">🐱</div>
+        <h4>Scratch Project Library</h4>
+        <p>Downloadable .sb3 files for every session:</p>
+        <ul class="mat-list">
+          <li>Starter files with sprites, variables, and partial code</li>
+          <li>Complete solution files (teacher reference only)</li>
+          <li>8 sample student projects to show as inspiration</li>
+          <li>Demo Day project template</li>
+          <li>Hosted on shared Scratch studio — no file management needed</li>
+        </ul>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-icon">🌐</div>
+        <h4>Web Coding Starter Pack</h4>
+        <p>For Grade 6–7 HTML/CSS/JS sessions:</p>
+        <ul class="mat-list">
+          <li>Pre-built HTML templates for each week (students modify, not create blank)</li>
+          <li>CSS stylesheet with Vedic-themed colour variables pre-set</li>
+          <li>JS function stubs with helpful comments</li>
+          <li>Final project 4-page website skeleton</li>
+          <li>VS Code setup guide (works on any Windows computer)</li>
+        </ul>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-icon">📊</div>
+        <h4>Assessment &amp; Tracking</h4>
+        <p>Simple, teacher-friendly evaluation tools:</p>
+        <ul class="mat-list">
+          <li>Weekly 3-point checklist (Vedic understood / Code works / Connected both)</li>
+          <li>Mini-project rubric (Week 8) with scoring guide</li>
+          <li>Final project rubric with parent-friendly language</li>
+          <li>Progress tracker spreadsheet (one row per student)</li>
+          <li>Certificate template (customisable with student name and sutra mastered)</li>
+        </ul>
+      </div>
+
+      <div class="mat-card">
+        <div class="mat-icon">🎓</div>
+        <h4>Teacher Training (1 Day)</h4>
+        <p>Delivered at your school before the program starts:</p>
+        <ul class="mat-list">
+          <li>Morning: All 7 Vedic sutras covered, hands-on practice</li>
+          <li>Afternoon: Walk through 3 complete lesson plans end to end</li>
+          <li>Scratch and VS Code setup on school computers</li>
+          <li>Access to WhatsApp teacher support group</li>
+          <li>Quarterly catch-up call with T.H.Y.N.K academic team</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REQUIREMENTS -->
+<section class="reqs-section" id="requirements">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">What Schools Need to Provide</div>
+    <h2 class="section-title">Simple Requirements</h2>
+    <div class="divider"></div>
+    <p class="section-sub">T.H.Y.N.K is designed to work with existing school infrastructure. No new hardware, no new software licences, no specialist teachers required.</p>
+    <div class="reqs-grid">
+      <div class="req-card">
+        <div class="req-icon">🖥️</div>
+        <h4>Computer Lab</h4>
+        <p>Any existing Windows/Mac lab. Minimum 1 computer per 2 students. Chrome browser installed. Internet for Scratch (or local offline Scratch Desktop). No new purchases needed.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">👩‍🏫</div>
+        <h4>One Teacher</h4>
+        <p>Your existing computer teacher. No prior Vedic Maths knowledge needed. Comfortable with basic computer use. We train them — one full day before the program starts.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">⏰</div>
+        <h4>45 Minutes Weekly</h4>
+        <p>One session per week. Works on Saturdays, after school, or as a dedicated free period. Minimum 12 weeks, recommended 16 weeks for complete curriculum.</p>
+      </div>
+      <div class="req-card">
+        <div class="req-icon">👨‍👩‍👧</div>
+        <h4>15–30 Students</h4>
+        <p>Minimum viable group: 15 students per batch. Maximum recommended: 30 (1 teacher). Multiple batches possible. Mixed-ability welcome — Vedic maths differentiates naturally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2>Ready to Bring T.H.Y.N.K to Your School?</h2>
+    <p>We are currently onboarding Mumbai schools for the 2025 cohort. The program is designed to run immediately — if you can start in 4 weeks, we can have your teacher trained and materials delivered in time.</p>
+    <div class="cta-buttons">
+      <a href="mailto:hello@thynk.in" class="btn btn-primary">✉️ Express Interest</a>
+      <a href="#curriculum45" class="btn btn-outline">📋 View Full Curriculum</a>
+    </div>
+    <p style="margin-top:32px;font-size:0.82rem;opacity:0.55">T.H.Y.N.K — The Hub for Young Next-gen Knowledge &nbsp;•&nbsp; Mumbai Schools &nbsp;•&nbsp; Aligned with NEP 2020 &nbsp;•&nbsp; No additional budget required from schools</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">T.H.Y.N.K</div>
+  <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;margin-bottom:4px">The Hub for Young Next-gen Knowledge</p>
+  <p>Ancient Wisdom. Modern Code. Mumbai Schools.</p>
+  <p style="margin-top:8px">This proposal document is confidential and prepared for school leadership review.</p>
+</footer>
+
+<script>
+// ── Animated count-up numbers ──
+function animateCount(el) {
+  const target = parseInt(el.dataset.target);
+  const duration = 1800;
+  const step = target / (duration / 16);
+  let current = 0;
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current);
+    if (current >= target) clearInterval(timer);
+  }, 16);
+}
+
+// ── Skill bar fill on scroll ──
+function fillBars() {
+  document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+    bar.style.width = bar.dataset.width + '%';
+  });
+}
+
+// ── IntersectionObserver for both ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    // Count-up
+    entry.target.querySelectorAll('.count-up').forEach(el => animateCount(el));
+    // Skill bars
+    if (entry.target.classList.contains('skill-bars')) fillBars();
+    observer.unobserve(entry.target);
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.stats-strip-inner, .skill-bars').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

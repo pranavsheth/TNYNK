@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>T.H.Y.N.K — Scratch Workbook Series · Grades 4 &amp; 5 · Table of Contents</title>
+<style>
+  /* ============ PAGE / PRINT SETUP ============ */
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #4a4a5e;
+    --accent: #0b5fff;
+    --accent-dark: #053a9e;
+    --accent-soft: #eaf1ff;
+    --gold: #d4a017;
+    --gold-soft: #fff7e0;
+    --line: #e3e3eb;
+    --bg-cream: #faf7f2;
+    --bg-tint: #f5f8ff;
+    --vedic: #b8336a;
+    --vedic-soft: #fbe7ee;
+    --fun: #2a9d8f;
+    --fun-soft: #e0f4f1;
+    --mixed: #6c5ce7;
+    --mixed-soft: #ede9ff;
+  }
+
+  html, body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: #cfd2d8;
+    line-height: 1.5;
+    font-size: 10.5pt;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    margin: 16px auto;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    padding: 16mm 14mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page > .pagefoot { margin-top: auto; }
+
+  /* ============ COVER ============ */
+  .cover { padding: 0; overflow: hidden; }
+  .cover-hero {
+    background: linear-gradient(160deg, #0a1a3a 0%, #102a5e 55%, #0b5fff 100%);
+    color: #fff;
+    padding: 26mm 22mm 18mm;
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  .cover-hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 80% 60%, rgba(212,160,23,0.10) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 40% 80%, rgba(255,255,255,0.05) 0 1px, transparent 1.5px);
+    background-size: 18mm 18mm, 22mm 22mm, 26mm 26mm;
+    pointer-events: none;
+  }
+  .cover-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 10pt;
+    color: var(--gold);
+    margin-bottom: 8mm;
+    position: relative;
+  }
+  .cover-wordmark {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 44pt;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #fff;
+    position: relative;
+  }
+  .cover-wordmark .dot { color: var(--gold); margin: 0 2px; font-weight: 400; }
+  .cover-tag {
+    margin-top: 6mm;
+    font-size: 14pt;
+    font-style: italic;
+    color: #cfd9ff;
+    position: relative;
+  }
+  .cover-title {
+    margin-top: 16mm;
+    font-family: Georgia, serif;
+    font-size: 28pt;
+    color: #fff;
+    position: relative;
+    line-height: 1.15;
+  }
+  .cover-title em { color: var(--gold); font-style: normal; }
+  .cover-sub {
+    margin-top: 6mm;
+    font-size: 12pt;
+    color: #cfd9ff;
+    position: relative;
+  }
+
+  .cover-panel {
+    flex: 1 1 auto;
+    background: var(--bg-cream);
+    padding: 14mm 22mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover-panel h3 {
+    font-family: Georgia, serif;
+    font-size: 16pt;
+    color: var(--ink);
+    margin-bottom: 4mm;
+  }
+  .cover-panel p { color: var(--ink-soft); font-size: 11pt; }
+  .cover-books {
+    margin-top: 8mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+  }
+  .book-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 6mm 7mm;
+    border-radius: 2mm;
+  }
+  .book-card.b2 { border-left-color: var(--gold); }
+  .book-card .label {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .book-card.b2 .label { color: var(--gold); }
+  .book-card .title {
+    font-family: Georgia, serif;
+    font-size: 14pt;
+    color: var(--ink);
+    margin: 2mm 0 1mm;
+  }
+  .book-card .meta { font-size: 9.5pt; color: var(--ink-soft); }
+
+  /* ============ INNER PAGES ============ */
+  .ph {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4mm;
+    margin-bottom: 6mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .ph h1 {
+    font-family: Georgia, serif;
+    font-size: 22pt;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .ph h1 .accent { color: var(--accent); }
+  .ph .crumb {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+  }
+
+  .lead {
+    background: var(--bg-tint);
+    border-left: 3px solid var(--accent);
+    padding: 4mm 5mm;
+    font-size: 10.5pt;
+    color: var(--ink);
+    margin-bottom: 6mm;
+  }
+
+  h2.section {
+    font-family: Georgia, serif;
+    font-size: 14pt;
+    color: var(--ink);
+    margin: 6mm 0 3mm;
+    padding-bottom: 1mm;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* ============ LEGEND CHIPS ============ */
+  .chip {
+    display: inline-block;
+    font-size: 8.5pt;
+    font-weight: 700;
+    padding: 0.6mm 2mm;
+    border-radius: 2mm;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .chip.vedic { background: var(--vedic-soft); color: var(--vedic); }
+  .chip.fun   { background: var(--fun-soft);   color: var(--fun); }
+  .chip.mixed { background: var(--mixed-soft); color: var(--mixed); }
+
+  .legend {
+    display: flex;
+    gap: 6mm;
+    flex-wrap: wrap;
+    margin: 4mm 0 6mm;
+    font-size: 10pt;
+    color: var(--ink-soft);
+  }
+  .legend .item { display: flex; align-items: center; gap: 2mm; }
+
+  .stars { color: var(--gold); letter-spacing: 1px; }
+  .stars .off { color: #d8d8e0; }
+
+  /* ============ SESSION TABLE ============ */
+  table.toc {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin-bottom: 4mm;
+  }
+  table.toc thead th {
+    background: var(--ink);
+    color: #fff;
+    text-align: left;
+    padding: 2.5mm 3mm;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  table.toc tbody td {
+    padding: 2.5mm 3mm;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.toc tbody tr:nth-child(even) td { background: #fafbfe; }
+  table.toc .num {
+    font-family: Georgia, serif;
+    font-size: 11pt;
+    font-weight: 700;
+    color: var(--accent);
+    width: 10mm;
+    text-align: center;
+  }
+  table.toc .title-cell {
+    font-weight: 600;
+    color: var(--ink);
+    width: 52mm;
+  }
+  table.toc .title-cell .sub {
+    display: block;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-size: 9pt;
+    margin-top: 0.5mm;
+  }
+  table.toc .concept { color: var(--ink); width: 44mm; font-size: 9pt; }
+  table.toc .vedic-link { color: var(--ink-soft); font-size: 9pt; }
+  table.toc .diff { width: 22mm; text-align: center; }
+  table.toc .type { width: 18mm; }
+
+  /* ============ SKILL LADDER ============ */
+  .ladder {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4mm;
+    margin-top: 4mm;
+  }
+  .rung {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: 2mm;
+    padding: 4mm;
+  }
+  .rung.r2 { border-top-color: #4a86ff; }
+  .rung.r3 { border-top-color: var(--gold); }
+  .rung.r4 { border-top-color: var(--vedic); }
+  .rung .stage {
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  .rung h4 {
+    font-family: Georgia, serif;
+    font-size: 12pt;
+    color: var(--ink);
+    margin: 2mm 0 3mm;
+  }
+  .rung ul { list-style: none; padding: 0; }
+  .rung li {
+    font-size: 9pt;
+    color: var(--ink);
+    padding: 1mm 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .rung li:last-child { border-bottom: none; }
+
+  /* ============ SUTRA MAP ============ */
+  table.sutra {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin-top: 4mm;
+  }
+  table.sutra th {
+    background: var(--vedic);
+    color: #fff;
+    text-align: left;
+    padding: 2.5mm 3mm;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  table.sutra td {
+    padding: 3mm;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.sutra tr:nth-child(even) td { background: #fcf6f9; }
+  table.sutra .sname {
+    font-family: Georgia, serif;
+    font-size: 11pt;
+    color: var(--vedic);
+    font-weight: 700;
+  }
+  table.sutra .smeaning { color: var(--ink-soft); font-size: 9pt; font-style: italic; }
+
+  /* ============ HOW SESSION WORKS ============ */
+  .four-part {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin: 4mm 0;
+  }
+  .step {
+    background: var(--bg-tint);
+    border-left: 3px solid var(--accent);
+    padding: 4mm 5mm;
+    border-radius: 1mm;
+  }
+  .step .ribbon {
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .step h4 {
+    font-family: Georgia, serif;
+    font-size: 12pt;
+    color: var(--ink);
+    margin: 1mm 0 2mm;
+  }
+  .step .min {
+    float: right;
+    background: var(--accent);
+    color: #fff;
+    font-size: 8.5pt;
+    padding: 0.5mm 2.5mm;
+    border-radius: 10mm;
+    font-weight: 700;
+  }
+  .step p { font-size: 9.5pt; color: var(--ink-soft); }
+
+  .pagefoot {
+    border-top: 1px solid var(--line);
+    margin-top: 8mm;
+    padding-top: 3mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5pt;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .pagefoot .brand .dot { color: var(--gold); }
+
+  /* ============ BOOK DIVIDER ============ */
+  .divider-page {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(160deg, #0a1a3a 0%, #102a5e 70%, #0b5fff 100%);
+    color: #fff;
+  }
+  .divider-page.b2 {
+    background: linear-gradient(160deg, #3a1a0a 0%, #6e2a10 50%, #d4a017 110%);
+  }
+  .divider-page .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: var(--gold);
+    font-size: 11pt;
+    margin-bottom: 6mm;
+  }
+  .divider-page.b2 .eyebrow { color: #fff7e0; }
+  .divider-page h2 {
+    font-family: Georgia, serif;
+    font-size: 36pt;
+    line-height: 1.1;
+    margin-bottom: 4mm;
+  }
+  .divider-page h2 em { color: var(--gold); font-style: normal; }
+  .divider-page.b2 h2 em { color: #fff; }
+  .divider-page p.kicker {
+    font-size: 14pt;
+    font-style: italic;
+    color: #cfd9ff;
+    max-width: 140mm;
+    margin: 0 auto;
+  }
+  .divider-page.b2 p.kicker { color: #ffe9c2; }
+  .divider-stats {
+    margin-top: 16mm;
+    display: flex;
+    gap: 12mm;
+    justify-content: center;
+  }
+  .divider-stats .stat {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6mm 9mm;
+    border-radius: 2mm;
+    min-width: 36mm;
+  }
+  .divider-stats .stat .n {
+    font-family: Georgia, serif;
+    font-size: 28pt;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .divider-page.b2 .stat .n { color: #fff; }
+  .divider-stats .stat .l {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 9pt;
+    color: #cfd9ff;
+    margin-top: 2mm;
+  }
+  .divider-page.b2 .stat .l { color: #ffe9c2; }
+
+</style>
+</head>
+<body>
+
+<!-- =============================================================
+     PAGE 1 · COVER
+============================================================= -->
+<section class="page cover">
+  <div class="cover-hero">
+    <div class="cover-eyebrow">Workbook Series · Volumes 1 &amp; 2</div>
+    <div class="cover-wordmark">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K</div>
+    <div class="cover-tag">Think Today · Learn Smart · Lead Tomorrow</div>
+    <div class="cover-title">The Scratch Workbook Series<br/>for <em>Grades 4 &amp; 5</em></div>
+    <div class="cover-sub">Vedic Maths · Coding · Creative Thinking — 48 sessions across two years</div>
+  </div>
+  <div class="cover-panel">
+    <h3>Two books. One journey. From first sprite to first game.</h3>
+    <p>Each workbook contains 24 weekly 35-minute sessions designed to be taught in any school computer lab. Every session blends a Vedic Maths warm-up, a coding concept, a guided build, and a moment to share &mdash; so children leave the room as creators, not just consumers.</p>
+    <div class="cover-books">
+      <div class="book-card">
+        <div class="label">Book 1 · Grade 4</div>
+        <div class="title">Foundations</div>
+        <div class="meta">Sprites &middot; Motion &middot; Loops &middot; Variables &middot; Doubling, Halving &amp; Ekadhikena</div>
+      </div>
+      <div class="book-card b2">
+        <div class="label">Book 2 · Grade 5</div>
+        <div class="title">Builders</div>
+        <div class="meta">Conditionals &middot; Lists &middot; Custom Blocks &middot; Nikhilam, Urdhva &amp; Anurupyena</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 2 · HOW EACH SESSION WORKS + LEGEND
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>How Every <span class="accent">Session</span> Works</h1>
+    <div class="crumb">Workbook Guide · Page 02</div>
+  </div>
+
+  <div class="lead">
+    Both workbooks follow the same predictable rhythm. Once a teacher delivers it three times, it runs itself. Once a child experiences it three times, they arrive ready to think.
+  </div>
+
+  <div class="four-part">
+    <div class="step">
+      <span class="min">8 min</span>
+      <div class="ribbon">Step 1</div>
+      <h4>Vedic Warm-Up</h4>
+      <p>Five mental-maths problems, no calculators, using the session's sutra. Builds speed, focus and confidence before the screens come on.</p>
+    </div>
+    <div class="step">
+      <span class="min">5 min</span>
+      <div class="ribbon">Step 2</div>
+      <h4>Sutra &harr; Code Bridge</h4>
+      <p>Teacher draws the explicit link: "the rule you just used by hand is exactly what these blocks do on screen." Students record it on their worksheet.</p>
+    </div>
+    <div class="step">
+      <span class="min">15 min</span>
+      <div class="ribbon">Step 3</div>
+      <h4>Build / Code Time</h4>
+      <p>Students open the day's Scratch starter file and follow the guided build. Fast finishers tackle the extension challenge printed at the bottom of the page.</p>
+    </div>
+    <div class="step">
+      <span class="min">7 min</span>
+      <div class="ribbon">Step 4</div>
+      <h4>Share &amp; Reflect</h4>
+      <p>Two students show their screen. Class discusses. Everyone writes one sentence: <em>"Today I connected ___ to ___."</em></p>
+    </div>
+  </div>
+
+  <h2 class="section">Reading the Table of Contents</h2>
+  <div class="legend">
+    <div class="item"><span class="chip vedic">Vedic</span> &mdash; project teaches or applies a Vedic sutra</div>
+    <div class="item"><span class="chip fun">Fun</span> &mdash; creative project: game, animation, story</div>
+    <div class="item"><span class="chip mixed">Mixed</span> &mdash; review, mini-project or showcase</div>
+    <div class="item"><span class="stars">★★★<span class="off">★★</span></span> &mdash; difficulty (1 easiest &middot; 5 hardest)</div>
+  </div>
+
+  <h2 class="section">What's Inside Each Session Page (in the printed workbook)</h2>
+  <ul style="font-size:10pt; color:var(--ink); padding-left:6mm;">
+    <li style="margin:1mm 0;">▸ The day's Vedic warm-up (5 problems, with worked answers in the Teacher Guide)</li>
+    <li style="margin:1mm 0;">▸ The "Sutra &amp; Code Bridge" infographic for that concept</li>
+    <li style="margin:1mm 0;">▸ Step-by-step build instructions with screenshots of the Scratch blocks</li>
+    <li style="margin:1mm 0;">▸ A debug box: <em>"If your sprite does X, check Y."</em></li>
+    <li style="margin:1mm 0;">▸ An extension challenge for fast finishers</li>
+    <li style="margin:1mm 0;">▸ A reflection prompt and a take-home idea</li>
+  </ul>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K Workbook Series</div>
+    <div>Grades 4 &amp; 5 · Scratch · Table of Contents</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 3 · BOOK 1 DIVIDER
+============================================================= -->
+<section class="page divider-page">
+  <div class="eyebrow">Book One</div>
+  <h2>Grade 4 &middot; <em>Foundations</em></h2>
+  <p class="kicker">From "what is a sprite?" to "I can build a maths game." Twenty-four sessions that turn nine-year-olds into confident creators.</p>
+  <div class="divider-stats">
+    <div class="stat"><div class="n">24</div><div class="l">Sessions</div></div>
+    <div class="stat"><div class="n">12</div><div class="l">Vedic Builds</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">Pure Fun</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Mini / Final</div></div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 4 · BOOK 1 ToC PART A (Sessions 1-12)
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>Book 1 · <span class="accent">Grade 4</span> · Sessions 1&ndash;12</h1>
+    <div class="crumb">Foundations · Term One</div>
+  </div>
+  <div class="lead">
+    <strong>Term arc:</strong> Sessions 1&ndash;4 introduce the Scratch stage and basic motion. Sessions 5&ndash;8 add costumes, randomness and the very first variables. Sessions 9&ndash;12 unlock loops &mdash; and with them, the first real Vedic-Code bridge: <em>Ekadhikena Purvena</em>.
+  </div>
+
+  <table class="toc">
+    <thead>
+      <tr>
+        <th>#</th><th>Project / Title</th><th>Type</th><th>Scratch Concepts</th><th>Vedic Link</th><th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">01</td><td class="title-cell">Hello, Scratch!<span class="sub">Meet the Cat</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Stage, sprites, "when flag clicked", say block</td><td class="vedic-link">&mdash; (Scratch onboarding)</td><td class="diff stars">★<span class="off">★★★★</span></td></tr>
+      <tr><td class="num">02</td><td class="title-cell">The Dancing Sprite<span class="sub">First animation</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Motion: glide, turn, point in direction</td><td class="vedic-link">&mdash;</td><td class="diff stars">★<span class="off">★★★★</span></td></tr>
+      <tr><td class="num">03</td><td class="title-cell">Walk Around the Stage<span class="sub">Coordinates intro</span></td><td><span class="chip fun">Fun</span></td><td class="concept">x/y coordinates, move N steps, edge detection</td><td class="vedic-link">Number line &amp; place sense</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">04</td><td class="title-cell">Costume Change Magic<span class="sub">Looks &amp; appearance</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Costumes, next costume, wait, show/hide</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">05</td><td class="title-cell">Roll the Dice<span class="sub">Hello, randomness</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Pick random, say number, costume swap</td><td class="vedic-link">Single-digit recognition; even / odd warm-up</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">06</td><td class="title-cell">Doubling Dragon<span class="sub">2× anything</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">First variable, set/change, simple operator block</td><td class="vedic-link">Doubling sutra (2× tables, mental maths)</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">07</td><td class="title-cell">Halving Hero<span class="sub">Half of anything</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Variables, division operator, ask &amp; answer</td><td class="vedic-link">Halving as the inverse of doubling</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">08</td><td class="title-cell">Counting Caterpillar<span class="sub">First loop</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">"repeat 10" loop, change variable inside loop</td><td class="vedic-link">Ekadhikena Purvena &mdash; "by one more than the previous"</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">09</td><td class="title-cell">Skip-Counting Frog<span class="sub">Loops with steps</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Repeat with variable step, change-by</td><td class="vedic-link">Times tables as repeated addition</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">10</td><td class="title-cell">Underwater Adventure<span class="sub">Build a scene</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Backdrops, multiple sprites, layering</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">11</td><td class="title-cell">Catch the Falling Apple<span class="sub">First arcade game</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Forever loop, key press, "if on edge bounce"</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">12</td><td class="title-cell">Maths Race · 2× Table<span class="sub">First quiz</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Variables + repeat + ask/answer + score</td><td class="vedic-link">Doubling = the 2× table at speed</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K · Book 1</div>
+    <div>Grade 4 · Foundations · Term 1</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 5 · BOOK 1 ToC PART B (Sessions 13-24)
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>Book 1 · <span class="accent">Grade 4</span> · Sessions 13&ndash;24</h1>
+    <div class="crumb">Foundations · Term Two</div>
+  </div>
+  <div class="lead">
+    <strong>Term arc:</strong> Sessions 13&ndash;16 introduce the first sutra-driven calculator (Nikhilam from 100). Sessions 17&ndash;20 widen into multi-sprite games and the 11&times; magic. The last four sessions are mini-projects, polish &amp; a public Showcase.
+  </div>
+
+  <table class="toc">
+    <thead>
+      <tr>
+        <th>#</th><th>Project / Title</th><th>Type</th><th>Scratch Concepts</th><th>Vedic Link</th><th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">13</td><td class="title-cell">The 9-Times Trick<span class="sub">Fingers &amp; code</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Variables, ask/answer, simple operators</td><td class="vedic-link">Nikhilam intro &mdash; the 9× pattern (digits add to 9)</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">14</td><td class="title-cell">Talking Sprite Tells a Joke<span class="sub">Interactive dialogue</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Ask &amp; wait, "answer" block, branching responses</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">15</td><td class="title-cell">Mental Maths Quiz · +/&minus;<span class="sub">First scoreboard</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Ask, variables, score counter, repeat</td><td class="vedic-link">Quick addition / subtraction sutras</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">16</td><td class="title-cell">Nikhilam Peek<span class="sub">Subtract from 100</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Variables, operator blocks, animated steps</td><td class="vedic-link">Nikhilam &mdash; <em>all from 9, last from 10</em></td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">17</td><td class="title-cell">Story Time · My Pet<span class="sub">First narrated story</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Multiple sprites, say/think, switch backdrop</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">18</td><td class="title-cell">Star Catcher Game<span class="sub">Score &amp; lives</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Forever, "if touching", score variable</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">19</td><td class="title-cell">The 11&times; Magic<span class="sub">Add the neighbours</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Operators, ask/answer, animated reveal</td><td class="vedic-link">"Add neighbours" sub-sutra for &times;11</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">20</td><td class="title-cell">Greeting Card Maker<span class="sub">First creative tool</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Backdrops, sound, broadcast intro</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">21</td><td class="title-cell">Mini Project · Times-Table Trainer<span class="sub">Speed practice</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Combine variables + ask + repeat + timer</td><td class="vedic-link">Speed using every sutra learned in Term 1</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">22</td><td class="title-cell">Mini Project · Animated Story<span class="sub">Tell my tale</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Combine sprites + sound + broadcast</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">23</td><td class="title-cell">Polish &amp; Practice<span class="sub">Make it shine</span></td><td><span class="chip mixed">Mixed</span></td><td class="concept">Debugging, comments, presentation prep</td><td class="vedic-link">Self-review of all sutras</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">24</td><td class="title-cell">Showcase Day!<span class="sub">Present &amp; celebrate</span></td><td><span class="chip mixed">Mixed</span></td><td class="concept">Demo to peers / parents, certificates</td><td class="vedic-link">Pick &amp; explain one sutra-project</td><td class="diff stars">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K · Book 1</div>
+    <div>Grade 4 · Foundations · Term 2</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 6 · BOOK 2 DIVIDER
+============================================================= -->
+<section class="page divider-page b2">
+  <div class="eyebrow">Book Two</div>
+  <h2>Grade 5 &middot; <em>Builders</em></h2>
+  <p class="kicker">From "I can build a maths game" to "I can teach a sutra through a game I designed myself." This is where coders are born.</p>
+  <div class="divider-stats">
+    <div class="stat"><div class="n">24</div><div class="l">Sessions</div></div>
+    <div class="stat"><div class="n">13</div><div class="l">Vedic Builds</div></div>
+    <div class="stat"><div class="n">7</div><div class="l">Pure Fun</div></div>
+    <div class="stat"><div class="n">4</div><div class="l">Mini / Final</div></div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 7 · BOOK 2 ToC PART A (Sessions 1-12)
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>Book 2 · <span class="accent">Grade 5</span> · Sessions 1&ndash;12</h1>
+    <div class="crumb">Builders · Term One</div>
+  </div>
+  <div class="lead">
+    <strong>Term arc:</strong> Sessions 1&ndash;3 recap and unlock the operator workshop. Sessions 4&ndash;7 build decision-making and the full Nikhilam Wizard. Sessions 8&ndash;12 introduce nested loops &mdash; the gateway to the headline build of Grade 5: the <em>Urdhva Tiryakbhyam</em> 2-digit multiplier.
+  </div>
+
+  <table class="toc">
+    <thead>
+      <tr>
+        <th>#</th><th>Project / Title</th><th>Type</th><th>Scratch Concepts</th><th>Vedic Link</th><th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">01</td><td class="title-cell">Welcome Back!<span class="sub">Scratch recap quiz</span></td><td><span class="chip mixed">Mixed</span></td><td class="concept">Review: events, motion, costumes, variables</td><td class="vedic-link">Quick mental warm-up of Grade 4 sutras</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">02</td><td class="title-cell">Build Your Own Avatar<span class="sub">Make it personal</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Costume editor, paint tools, vector vs bitmap</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★<span class="off">★★★</span></td></tr>
+      <tr><td class="num">03</td><td class="title-cell">The Operator Workshop<span class="sub">+ &minus; &times; &divide; mod</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">All operator blocks, modulo, rounding</td><td class="vedic-link">Verifying answers with digital roots</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">04</td><td class="title-cell">If This, Then That<span class="sub">First decision</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">if / else, comparisons, logical operators</td><td class="vedic-link">Even-or-odd Vedic check (last digit rule)</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">05</td><td class="title-cell">Right or Wrong?<span class="sub">Quiz with feedback</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">if/else + ask/answer + score + sound</td><td class="vedic-link">Mental-maths checker</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+      <tr><td class="num">06</td><td class="title-cell">Maze Runner<span class="sub">Steer with arrows</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Arrow-key control, "if touching colour", restart</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">07</td><td class="title-cell">The Nikhilam Wizard<span class="sub">Subtract from any base</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Variables + if/else + animated step display</td><td class="vedic-link">Nikhilam full algorithm (100, 1000, any base)</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">08</td><td class="title-cell">Pong-Style Bounce Game<span class="sub">First two-paddle game</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Edge detect, paddle, score, win condition</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">09</td><td class="title-cell">Times-Table Race · 2 Player<span class="sub">Speed showdown</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Two-player input, separate scores, timer</td><td class="vedic-link">Speed using sutras from Grade 4</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">10</td><td class="title-cell">Nested Loops · Pattern Maker<span class="sub">Loops inside loops</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Loop within loop, pen blocks, grid drawing</td><td class="vedic-link">Urdhva intro &mdash; rows &times; columns thinking</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">11</td><td class="title-cell">The Urdhva Multiplier<span class="sub">2-digit &times; 2-digit, on screen</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Nested loops + variables + animated cross-lines</td><td class="vedic-link">Urdhva Tiryakbhyam &mdash; <em>vertically and crosswise</em></td><td class="diff stars">★★★★★</td></tr>
+      <tr><td class="num">12</td><td class="title-cell">Music &amp; Sound Studio<span class="sub">Compose your tune</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Sound blocks, record-yourself, play sequence</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★<span class="off">★★</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K · Book 2</div>
+    <div>Grade 5 · Builders · Term 1</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 8 · BOOK 2 ToC PART B (Sessions 13-24)
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>Book 2 · <span class="accent">Grade 5</span> · Sessions 13&ndash;24</h1>
+    <div class="crumb">Builders · Term Two</div>
+  </div>
+  <div class="lead">
+    <strong>Term arc:</strong> Sessions 13&ndash;15 introduce <strong>lists</strong> and <em>Anurupyena</em> (proportion). Sessions 16&ndash;19 unlock <strong>broadcasting</strong>, <strong>custom blocks</strong> and <strong>digital-root debugging</strong>. The final five sessions are real projects &mdash; ending with <em>"My Vedic Maths Game"</em> and the public Showcase.
+  </div>
+
+  <table class="toc">
+    <thead>
+      <tr>
+        <th>#</th><th>Project / Title</th><th>Type</th><th>Scratch Concepts</th><th>Vedic Link</th><th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">13</td><td class="title-cell">Lists · Spelling Bee<span class="sub">Hello, list blocks</span></td><td><span class="chip fun">Fun</span></td><td class="concept">Make a list, "item of list", random pick</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">14</td><td class="title-cell">Lists · Vedic Sutra Quiz Bank<span class="sub">Build the question bank</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">List of questions + answers, random draw, score</td><td class="vedic-link">Sutra vocabulary review (16 main sutras)</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">15</td><td class="title-cell">Anurupyena Scaler<span class="sub">Same rule, different size</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Variables + multiplier slider + visual scale</td><td class="vedic-link">Anurupyena &mdash; <em>proportionality</em></td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">16</td><td class="title-cell">Broadcast Magic<span class="sub">Talking sprites</span></td><td><span class="chip fun">Fun</span></td><td class="concept">broadcast, "when I receive", role separation</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">17</td><td class="title-cell">Two-Sprite Tutor<span class="sub">Teacher + student characters</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Broadcast + dialogue + score + costume change</td><td class="vedic-link">A sprite teaches one sutra, another solves it</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">18</td><td class="title-cell">Digital Root Detective<span class="sub">Verify any answer</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Modulo, while-style loop, define-block</td><td class="vedic-link">Gunita Samuchaya &mdash; verification by digital roots</td><td class="diff stars">★★★★★</td></tr>
+      <tr><td class="num">19</td><td class="title-cell">My First Custom Block<span class="sub">Make a function</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Define-block with parameters, reuse</td><td class="vedic-link">Anurupyena revisited &mdash; <em>write once, scale infinitely</em></td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">20</td><td class="title-cell">Debugging Detective<span class="sub">Find the broken sutra</span></td><td><span class="chip mixed">Mixed</span></td><td class="concept">Read code, find bugs, fix, document</td><td class="vedic-link">Use digital roots to spot wrong answers</td><td class="diff stars">★★★★<span class="off">★</span></td></tr>
+      <tr><td class="num">21</td><td class="title-cell">Mini Project · Vedic Calculator<span class="sub">Choose your sutra</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Custom block + UI + score + sound</td><td class="vedic-link">Student picks Nikhilam <em>or</em> Urdhva &mdash; builds it</td><td class="diff stars">★★★★★</td></tr>
+      <tr><td class="num">22</td><td class="title-cell">Mini Project · Story Game<span class="sub">Multiple endings</span></td><td><span class="chip fun">Fun</span></td><td class="concept">if/else + broadcast + variable-driven endings</td><td class="vedic-link">&mdash;</td><td class="diff stars">★★★★★</td></tr>
+      <tr><td class="num">23</td><td class="title-cell">Final Project Build<span class="sub">"My Vedic Maths Game"</span></td><td><span class="chip vedic">Vedic</span></td><td class="concept">Full project &mdash; all concepts to date</td><td class="vedic-link">Self-chosen sutra, designed to teach a Grade 3 child</td><td class="diff stars">★★★★★</td></tr>
+      <tr><td class="num">24</td><td class="title-cell">Showcase &amp; Certificate Day<span class="sub">Present &amp; celebrate</span></td><td><span class="chip mixed">Mixed</span></td><td class="concept">Demo, peer feedback, parent visit</td><td class="vedic-link">Explain the sutra you taught through code</td><td class="diff stars">&mdash;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K · Book 2</div>
+    <div>Grade 5 · Builders · Term 2</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 9 · CONCEPT LADDER (Skill Progression)
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>The <span class="accent">Skill Ladder</span></h1>
+    <div class="crumb">How concepts build across both books</div>
+  </div>
+  <div class="lead">
+    Each rung of the ladder builds directly on the last. Nothing is taught twice from scratch &mdash; every Grade 5 concept stands on a Grade 4 foundation. This is what makes the program <em>spiral</em> instead of repetitive.
+  </div>
+
+  <div class="ladder">
+    <div class="rung">
+      <div class="stage">Rung 1 · Book 1, Sessions 1&ndash;8</div>
+      <h4>Express &amp; Move</h4>
+      <ul>
+        <li>Stage, sprites, costumes</li>
+        <li>"When flag clicked", say, wait</li>
+        <li>Motion: glide, turn, x/y</li>
+        <li>Pick random</li>
+        <li>First variable (set / change)</li>
+        <li>Doubling &amp; halving (Vedic)</li>
+      </ul>
+    </div>
+    <div class="rung r2">
+      <div class="stage">Rung 2 · Book 1, Sessions 9&ndash;24</div>
+      <h4>Repeat &amp; Ask</h4>
+      <ul>
+        <li>"repeat" and "forever" loops</li>
+        <li>Ask &amp; answer (input)</li>
+        <li>Score variables</li>
+        <li>Multiple sprites &amp; backdrops</li>
+        <li>Broadcast (introduction only)</li>
+        <li>Ekadhikena, Nikhilam-from-100, &times;9, &times;11 (Vedic)</li>
+      </ul>
+    </div>
+    <div class="rung r3">
+      <div class="stage">Rung 3 · Book 2, Sessions 1&ndash;12</div>
+      <h4>Decide &amp; Loop Deeper</h4>
+      <ul>
+        <li>All operators incl. modulo</li>
+        <li>if / else &amp; comparisons</li>
+        <li>Logical operators (and / or / not)</li>
+        <li>Nested loops</li>
+        <li>Two-player input</li>
+        <li>Full Nikhilam &amp; Urdhva multiplication (Vedic)</li>
+      </ul>
+    </div>
+    <div class="rung r4">
+      <div class="stage">Rung 4 · Book 2, Sessions 13&ndash;24</div>
+      <h4>Abstract &amp; Ship</h4>
+      <ul>
+        <li>Lists (item of, length of, random)</li>
+        <li>Broadcast / receive (full)</li>
+        <li>Custom blocks (functions w/ params)</li>
+        <li>Debugging methodology</li>
+        <li>Project-based final build</li>
+        <li>Anurupyena, digital-root verification (Vedic)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section">Difficulty Curve at a Glance</h2>
+  <p style="font-size:10pt; color:var(--ink-soft); margin-bottom:3mm;">
+    Both books deliberately start gently and ramp into harder territory in the final term. By Session 24 of Book 2, students are working at a level normally seen in Grade 7 worksheets &mdash; but they reach it without ever feeling stuck, because every concept was introduced two sessions before it was needed.
+  </p>
+  <table class="toc">
+    <thead>
+      <tr>
+        <th>Stage</th><th>Sessions</th><th>Typical Difficulty</th><th>What a child can do by the end</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="title-cell">Book 1 · Term 1</td><td>G4 · 1&ndash;12</td><td class="diff stars">★&ndash;★★★<span class="off">★★</span></td><td>Move sprites, use variables, build a doubling/halving demo and a 2&times; quiz.</td></tr>
+      <tr><td class="title-cell">Book 1 · Term 2</td><td>G4 · 13&ndash;24</td><td class="diff stars">★★★&ndash;★★★★<span class="off">★</span></td><td>Build a Nikhilam-from-100 calculator, a small game, and present a mini-project.</td></tr>
+      <tr><td class="title-cell">Book 2 · Term 1</td><td>G5 · 1&ndash;12</td><td class="diff stars">★★★&ndash;★★★★★</td><td>Use conditionals, nested loops, and animate a full 2-digit Urdhva multiplication.</td></tr>
+      <tr><td class="title-cell">Book 2 · Term 2</td><td>G5 · 13&ndash;24</td><td class="diff stars">★★★★&ndash;★★★★★</td><td>Use lists, custom blocks &amp; broadcasts to ship an original sutra-teaching game.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K Workbook Series</div>
+    <div>Concept ladder · Grades 4 &amp; 5</div>
+  </div>
+</section>
+
+
+<!-- =============================================================
+     PAGE 10 · VEDIC SUTRA COVERAGE MAP
+============================================================= -->
+<section class="page">
+  <div class="ph">
+    <h1>Vedic Sutra <span class="accent">Coverage Map</span></h1>
+    <div class="crumb">Which sutras appear, where, and why</div>
+  </div>
+  <div class="lead">
+    The two books cover six core sutras &mdash; chosen because each one maps cleanly onto a fundamental coding concept. By the end of Grade 5, every child has used each of these sutras both <em>by hand</em> and <em>in code</em>.
+  </div>
+
+  <table class="sutra">
+    <thead>
+      <tr><th>Sutra</th><th>Meaning</th><th>Coding Concept</th><th>Where it lands in the workbook</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="sname">Doubling / Halving</div><div class="smeaning">(warm-up sub-sutras)</div></td>
+        <td>2&times; and &divide;2 done mentally in one breath.</td>
+        <td>First variables &amp; first operators</td>
+        <td>Book 1 · Sessions 6, 7, 12</td>
+      </tr>
+      <tr>
+        <td><div class="sname">Ekadhikena Purvena</div><div class="smeaning">"By one more than the previous"</div></td>
+        <td>The pattern that powers counting and recurring decimals.</td>
+        <td>Loops &mdash; <code>repeat</code>, <code>forever</code>, change-by</td>
+        <td>Book 1 · Sessions 8, 9, 21</td>
+      </tr>
+      <tr>
+        <td><div class="sname">Nikhilam Navatashcaramam Dashatah</div><div class="smeaning">"All from 9, last from 10"</div></td>
+        <td>Subtraction from any power-of-ten base in seconds.</td>
+        <td>Variables &middot; if/else &middot; animated step display</td>
+        <td>Book 1 · Sessions 13, 16 &middot; Book 2 · Session 7</td>
+      </tr>
+      <tr>
+        <td><div class="sname">Urdhva Tiryakbhyam</div><div class="smeaning">"Vertically and crosswise"</div></td>
+        <td>Multi-digit multiplication in one line.</td>
+        <td>Nested loops &middot; coordinate thinking</td>
+        <td>Book 2 · Sessions 10, 11, 21</td>
+      </tr>
+      <tr>
+        <td><div class="sname">Anurupyena</div><div class="smeaning">"Proportionately"</div></td>
+        <td>Same rule applied across different sizes / bases.</td>
+        <td>Custom blocks (functions) &middot; CSS scale (later)</td>
+        <td>Book 2 · Sessions 15, 19</td>
+      </tr>
+      <tr>
+        <td><div class="sname">Gunita Samuchaya</div><div class="smeaning">"The product of the sums equals the sum of the products"</div></td>
+        <td>Verification &mdash; check whether an answer is even possible.</td>
+        <td>Debugging via digital roots &middot; modulo</td>
+        <td>Book 2 · Sessions 18, 20</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">The 60 / 40 Promise</h2>
+  <p style="font-size:10pt; color:var(--ink-soft);">
+    Across the two books, roughly <strong>25 of the 48 sessions</strong> are explicitly Vedic-themed (52%) and <strong>16 are pure-fun creative builds</strong> (33%) &mdash; with the remaining 7 reserved for mini-projects and showcases. This intentional balance keeps Vedic Maths central without ever turning Scratch class into "another maths period". Children come for the games and leave fluent in sutras.
+  </p>
+
+  <h2 class="section">What's Next After Book 2?</h2>
+  <p style="font-size:10pt; color:var(--ink); margin-bottom:2mm;">
+    A child who finishes both Scratch workbooks is ready for the <strong>Grades 6&ndash;7 track</strong>: real web programming with HTML, CSS and JavaScript &mdash; where the same sutras reappear as <code>functions</code>, <code>for</code> loops, and <code>DOM</code> manipulation.
+  </p>
+  <p style="font-size:10pt; color:var(--ink-soft);">
+    From Scratch blocks to real code, the journey stays the same: <em>think the sutra, write the code, ship the project.</em>
+  </p>
+
+  <div class="pagefoot">
+    <div class="brand">T<span class="dot">.</span>H<span class="dot">.</span>Y<span class="dot">.</span>N<span class="dot">.</span>K Workbook Series</div>
+    <div>Sutra coverage map &middot; End of Table of Contents</div>
+  </div>
+</section>
+
+</body>
+</html>
