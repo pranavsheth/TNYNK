@@ -1,6 +1,6 @@
   /* ============================================================
      PAGE / PRINT SETUP
-     Paper: A4 — 210 × 297 mm
+     Paper: A4 ï¿½ 210 ï¿½ 297 mm
      ============================================================ */
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -197,7 +197,7 @@
   }
   .ph h1 {
     font-family: Georgia, serif;
-    font-size: 23.5pt;
+    font-size: 20pt;
     line-height: 1.1;
     color: var(--navy);
   }
@@ -211,7 +211,7 @@
   }
   .ph .crumb b { color: var(--navy); display: block; font-size: 11.5pt; letter-spacing: 1px; }
 
-  /* Homework badge — flag mini-projects as take-home work */
+  /* Homework badge ï¿½ flag mini-projects as take-home work */
   .hw-badge {
     display: inline-flex;
     align-items: center;
@@ -232,11 +232,43 @@
     white-space: nowrap;
   }
   .hw-badge::before {
-    content: "??";
+    content: "\01F4D2";
     font-size: 12pt;
     filter: drop-shadow(0 0.4mm 0.6mm rgba(0,0,0,0.25));
   }
   .hw-badge.hw-crumb {
+    margin-left: 0;
+    margin-top: 2mm;
+    display: inline-flex;
+  }
+
+
+    /* classwork badge ï¿½ flag mini-projects as take-home work */
+  .cw-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5mm;
+    background: linear-gradient(135deg, #03f016 0%, #04ee5e 100%);
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 1.2mm 3mm;
+    border-radius: 20mm;
+    box-shadow: 0 1.2mm 2.5mm rgba(230, 57, 70, 0.28);
+    border: 1.2px solid #b8202f;
+    vertical-align: middle;
+    margin-left: 3mm;
+    white-space: nowrap;
+  }
+  .cw-badge::before {
+    content: "\01F4D2";
+    font-size: 12pt;
+    filter: drop-shadow(0 0.4mm 0.6mm rgba(24, 194, 2, 0.25));
+  }
+  .cw-badge.hw-crumb {
     margin-left: 0;
     margin-top: 2mm;
     display: inline-flex;
@@ -613,6 +645,248 @@
     margin: 1mm 0 2mm;
   }
   .activity ol { padding-left: 6mm; font-size: 12pt; }
+
+  /* 2.2A worksheet page (Tables 1 to 9) */
+  .vedic-sheet-page {
+    background:
+      radial-gradient(circle at 16% 11%, rgba(46,196,182,0.10) 0, rgba(46,196,182,0) 30%),
+      radial-gradient(circle at 84% 22%, rgba(255,183,3,0.12) 0, rgba(255,183,3,0) 28%),
+      var(--bg-paper);
+  }
+  .vedic-sheet-hero {
+    background: linear-gradient(145deg, #fff6dd 0%, #ffe8a8 100%);
+    border-color: #f3cf6a;
+    border-left-color: var(--gold);
+  }
+  .vedic-sheet-hero .star {
+    background: linear-gradient(145deg, #f2b302 0%, #d58b07 100%);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15pt;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+  }
+  .vedic-sheet-strip {
+    margin: 3mm 0 3.5mm;
+    padding: 3.2mm 4mm;
+    border: 1.5px solid #d7e8eb;
+    border-radius: 3mm;
+    background: linear-gradient(90deg, #f8fdff 0%, #eef9fb 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4mm;
+    flex-wrap: wrap;
+  }
+  .sheet-ribbon {
+    background: var(--mint);
+    color: #fff;
+    border-radius: 999px;
+    padding: 1.2mm 4mm;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    font-size: 9.5pt;
+    font-weight: 800;
+  }
+  .table-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6mm;
+  }
+  .table-chip {
+    min-width: 10mm;
+    text-align: center;
+    border: 1px solid #c9d8e8;
+    border-radius: 2mm;
+    padding: 0.8mm 2mm;
+    background: #fff;
+    color: var(--navy-2);
+    font-size: 10.5pt;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .table-chip:nth-child(3n+1) { background: #f2fbff; }
+  .table-chip:nth-child(3n+2) { background: #fff8e8; }
+  .table-chip:nth-child(3n)   { background: #f3fff3; }
+  .vedic-sheet-frame {
+    border: 1.6px solid #d7dce8;
+    border-radius: 3.4mm;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1.2mm 3.6mm rgba(10, 26, 58, 0.10);
+  }
+  .sheet-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3mm;
+    padding: 2mm 3.5mm;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: #fff;
+    font-size: 9.8pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+  .sheet-image-wrap {
+    padding: 3.5mm;
+    background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+  }
+  .sheet-image {
+    display: block;
+    width: 100%;
+    max-height: 218mm;
+    object-fit: contain;
+    margin: 0 auto;
+    border: 1px solid #edf0f7;
+    border-radius: 2mm;
+  }
+  .sheet-pdf {
+    display: block;
+    width: 100%;
+    height: 205mm;
+    border: 0;
+    background: #fff;
+    border-radius: 2mm;
+  }
+  .sheet-fallback {
+    padding: 6mm;
+    font-size: 12pt;
+    color: var(--ink);
+  }
+  .sheet-fallback a {
+    color: var(--navy-2);
+    font-weight: 700;
+  }
+  .loop-quiz-html {
+    height: 205mm;
+    overflow: auto;
+    border: 1px solid #edf0f7;
+    border-radius: 2mm;
+    background: #fff;
+    padding: 4mm;
+    color: var(--ink);
+  }
+  .loop-quiz-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 4mm;
+    align-items: flex-start;
+    padding: 3mm 3.5mm;
+    border-radius: 2mm;
+    background: linear-gradient(135deg, #fff7df 0%, #eafcff 100%);
+    border: 1px solid #dcebf0;
+    margin-bottom: 3mm;
+  }
+  .loop-quiz-kicker {
+    font-size: 8.5pt;
+    color: #118f82;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 0.8mm;
+  }
+  .loop-quiz-head h2 {
+    font-family: Georgia, serif;
+    color: var(--navy);
+    font-size: 18pt;
+    line-height: 1.15;
+    margin-bottom: 1mm;
+  }
+  .loop-quiz-head p {
+    color: var(--ink-soft);
+    font-size: 10.5pt;
+    margin: 0;
+  }
+  .loop-quiz-count {
+    min-width: 24mm;
+    border-radius: 2mm;
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    padding: 2mm 3mm;
+  }
+  .loop-quiz-count b {
+    display: block;
+    font-size: 20pt;
+    line-height: 1;
+  }
+  .loop-quiz-count span {
+    display: block;
+    margin-top: 0.8mm;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .loop-quiz-list {
+    list-style-position: outside;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5mm;
+    padding-left: 5mm;
+    margin: 0;
+  }
+  .loop-quiz-list li {
+    border: 1px solid #e4eaf3;
+    border-radius: 2mm;
+    padding: 2.2mm 2.5mm 2.5mm;
+    background: #fbfdff;
+    break-inside: avoid;
+  }
+  .loop-quiz-list li::marker {
+    color: var(--gold);
+    font-weight: 900;
+  }
+  .loop-quiz-list p {
+    font-size: 9.4pt;
+    line-height: 1.35;
+    margin-bottom: 1.8mm;
+  }
+  .loop-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2mm;
+  }
+  .loop-options span {
+    border: 1px dashed #cbd7e8;
+    border-radius: 1.6mm;
+    background: #fff;
+    padding: 0.9mm 1.4mm;
+    font-size: 8.8pt;
+    line-height: 1.2;
+    color: var(--navy-2);
+  }
+  .loop-answer-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2mm;
+    align-items: center;
+    margin-top: 3mm;
+    padding: 2.2mm;
+    border-radius: 2mm;
+    background: #f6fff3;
+    border: 1px solid #d6eccc;
+    font-size: 8.8pt;
+  }
+  .loop-answer-key b {
+    color: #32723a;
+    margin-right: 1mm;
+  }
+  .loop-answer-key span {
+    padding: 0.6mm 1.5mm;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #dbe8d5;
+    color: var(--ink);
+  }
+  .vedic-sheet-activity {
+    margin-top: 4mm;
+    border-color: #b9efe9;
+    border-left-color: var(--mint);
+    background: linear-gradient(145deg, #ecfffc 0%, #d9f9f5 100%);
+  }
+  .vedic-sheet-activity .lbl {
+    color: #118f82;
+  }
 
   /* Vedic Maths bridge â€” gold/navy themed link */
   .vedic-bridge {
@@ -1117,7 +1391,7 @@
     box-shadow: 0 1mm 3mm rgba(142, 108, 213, 0.18);
   }
   .ai-box::before {
-    content: "??";
+    content: "ðŸ¤–";   /* Robot */
     position: absolute;
     left: 4mm;
     top: 4mm;
@@ -1518,7 +1792,7 @@
   }
 
   /* ============================================================
-     VEDIC ADDITION — WRITEUP HELPERS & PRACTICE WORKSHEET
+     VEDIC ADDITION ï¿½ WRITEUP HELPERS & PRACTICE WORKSHEET
      ============================================================ */
   .add-methods {
     display: grid;
@@ -1630,7 +1904,7 @@
 
   .aw-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 4mm 5mm;
   }
   .aw-cell {
@@ -1672,15 +1946,22 @@
     position: absolute;
     left: 0;
   }
+  .aw-stack .row.multiply::before {
+  content: "\00D7";  /* multiplication sign Ã— */
+  color: var(--grape);
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+}
   .aw-stack .row.times::before {
-    content: "\00D7";  /* × */
+    content: "\00D7";  /* ï¿½ */
     color: var(--rose);
     font-weight: 700;
     position: absolute;
     left: 0;
   }
   .aw-stack .row.divide::before {
-    content: "\00F7";  /* ÷ */
+    content: "\00F7";  /* ï¿½ */
     color: var(--grape);
     font-weight: 700;
     position: absolute;
@@ -1814,7 +2095,7 @@
   }
 
   /* ============================================================
-     MULTIPLICATION WORKSHEETS  (Vedic × 11, × 99, × 999, warm-up)
+     MULTIPLICATION WORKSHEETS  (Vedic ï¿½ 11, ï¿½ 99, ï¿½ 999, warm-up)
      ============================================================ */
   .mw-grid {
     display: grid;
@@ -1861,7 +2142,7 @@
   .mw-stack .row { display: block; letter-spacing: 2px; }
   .mw-stack .row.times { position: relative; }
   .mw-stack .row.times::before {
-    content: "×";
+    content: "ï¿½";
     color: var(--rose);
     font-weight: 700;
     position: absolute;
@@ -1877,7 +2158,7 @@
     margin-top: 0.5mm;
   }
 
-  /* Single-line problem list: "78 × 6 = ______" */
+  /* Single-line problem list: "78 ï¿½ 6 = ______" */
   .mw-line-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1972,4 +2253,5 @@
   @media print {
     body { background: #fff; }
     .page { margin: 0; box-shadow: none; }
+    .loop-quiz-html { height: auto; overflow: visible; }
   }
