@@ -1,0 +1,655 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>T.H.Y.N.K â€” Brochure</title>
+<style>
+  /* ============ PAGE / PRINT SETUP ============ */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-soft: #4a4a5e;
+    --accent: #0b5fff;          /* primary pop */
+    --accent-dark: #053a9e;
+    --accent-soft: #eaf1ff;
+    --gold: #d4a017;
+    --line: #e3e3eb;
+    --bg-cream: #faf7f2;
+    --bg-tint: #f5f8ff;
+  }
+
+  html, body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--ink);
+    background: #cfd2d8;
+    line-height: 1.5;
+    font-size: 11pt;
+  }
+
+  /* Each A4 page */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #ffffff;
+    margin: 16px auto;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    padding: 16mm 14mm;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ============ COVER PAGE ============ */
+  .cover {
+    padding: 0;
+    background: linear-gradient(135deg, #053a9e 0%, #0b5fff 60%, #4a90ff 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  .cover::after {
+    content: "";
+    position: absolute;
+    bottom: -160px; left: -160px;
+    width: 460px; height: 460px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .cover-top {
+    padding: 22mm 18mm 0;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-logo {
+    display: inline-block;
+    border: 3px solid var(--gold);
+    padding: 8px 18px;
+    font-size: 13pt;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 30mm;
+  }
+  .cover-title {
+    font-size: 52pt;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .cover-title span { color: var(--gold); }
+  .cover-tagline {
+    font-size: 18pt;
+    font-weight: 300;
+    opacity: 0.95;
+    max-width: 130mm;
+    line-height: 1.3;
+  }
+  .cover-bottom {
+    padding: 0 18mm 22mm;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-pill {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 14px 22px;
+    border-radius: 4px;
+    font-size: 11pt;
+  }
+  .cover-pill strong { display: block; font-size: 16pt; color: var(--gold); letter-spacing: 1px; }
+  .cover-meta { text-align: right; font-size: 10pt; opacity: 0.85; }
+  .cover-meta strong { font-size: 13pt; display: block; letter-spacing: 2px; }
+
+  /* ============ TYPOGRAPHY ============ */
+  h1, h2, h3, h4 { font-weight: 700; color: var(--ink); }
+
+  .section-label {
+    display: inline-block;
+    font-size: 9pt;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 700;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 22pt;
+    line-height: 1.15;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .section-title em { color: var(--accent); font-style: normal; }
+  .lead {
+    font-size: 11.5pt;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    max-width: 175mm;
+  }
+
+  p { margin-bottom: 8px; }
+  strong { color: var(--ink); }
+
+  /* ============ CARDS / GRID ============ */
+  .grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 14px;
+    position: relative;
+  }
+  .card.tint   { background: var(--bg-tint); border-color: #d6e3ff; }
+  .card.cream  { background: var(--bg-cream); border-color: #eee2cf; }
+  .card.accent {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .card.accent h4, .card.accent .num { color: #fff; }
+
+  .card h4 {
+    font-size: 10.5pt;
+    color: var(--accent);
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+  .card p { font-size: 9.8pt; line-height: 1.4; color: var(--ink-soft); margin: 0; }
+
+  .num {
+    display: inline-block;
+    font-size: 18pt;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  /* ============ FEATURE ROWS ============ */
+  .feature-row {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .feature-row:last-child { border-bottom: none; }
+  .feature-icon {
+    flex: 0 0 38px;
+    height: 38px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14pt;
+  }
+  .feature-body { flex: 1; }
+  .feature-body h4 { font-size: 11pt; margin-bottom: 2px; }
+  .feature-body p { font-size: 9.8pt; color: var(--ink-soft); margin: 0; }
+
+  /* ============ TABLES ============ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 10pt;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  tr:nth-child(even) td { background: #fafbff; }
+
+  /* ============ TRACK BLOCKS ============ */
+  .track {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: #fff;
+    border-left: 5px solid var(--accent);
+  }
+  .track.alt { border-left-color: var(--gold); }
+  .track-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .track-tag {
+    background: var(--accent);
+    color: #fff;
+    font-size: 8.5pt;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .track.alt .track-tag { background: var(--gold); }
+  .track h3 { font-size: 14pt; color: var(--ink); }
+  .track .sub { font-size: 10pt; color: var(--ink-soft); margin-bottom: 8px; }
+
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .chip {
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    border: 1px solid #cfdcff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .track.alt .chip { background: #fbf3dc; color: #6b4a00; border-color: #ecd693; }
+
+  /* ============ CALLOUT ============ */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 14px 0;
+    font-size: 10.5pt;
+    border-radius: 4px;
+  }
+  .callout strong { color: var(--accent-dark); }
+
+  /* ============ SESSION TIMELINE ============ */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .tstep {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    padding: 12px;
+    text-align: center;
+    border-radius: 0 0 4px 4px;
+  }
+  .tstep .min {
+    font-size: 16pt;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .tstep h4 { font-size: 10.5pt; margin: 4px 0; }
+  .tstep p { font-size: 9pt; color: var(--ink-soft); margin: 0; }
+
+  /* ============ BACK COVER / CTA ============ */
+  .cta-page {
+    background: linear-gradient(180deg, #fff 0%, var(--accent-soft) 100%);
+  }
+  .cta-box {
+    background: var(--ink);
+    color: #fff;
+    padding: 28px 30px;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  .cta-box h3 { color: #fff; font-size: 18pt; margin-bottom: 8px; }
+  .cta-box p { color: #d4d7e0; font-size: 11pt; }
+  .cta-box .gold { color: var(--gold); font-weight: 700; }
+
+  /* ============ FOOTER STRIP ============ */
+  .pagefoot {
+    position: absolute;
+    bottom: 8mm;
+    left: 14mm;
+    right: 14mm;
+    border-top: 1px solid var(--line);
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 8.5pt;
+    color: #888;
+    letter-spacing: 1px;
+  }
+  .pagefoot strong { color: var(--accent); letter-spacing: 2px; }
+
+  ul.tight { list-style: none; padding: 0; }
+  ul.tight li {
+    padding: 5px 0 5px 22px;
+    position: relative;
+    font-size: 10pt;
+  }
+  ul.tight li::before {
+    content: "â–¸";
+    color: var(--accent);
+    position: absolute;
+    left: 6px;
+    font-weight: 700;
+  }
+
+  /* ============ PRINT ============ */
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; }
+  }
+</style>
+<!-- THYNK_A4_PRINT_STYLES -->
+<style>
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .page,
+  .sheet,
+  .a4,
+  .slide {
+    width: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  table {
+    max-width: 100% !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  p,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 : COVER ============ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-logo">T Â· H Â· Y Â· N Â· K</div>
+    <div class="cover-title">The Hub<br/>for <span>Young</span><br/>Next-gen<br/>Knowledge</div>
+    <div class="cover-tagline">Where ancient Vedic wisdom meets modern code â€” an after-school program for Grades 4â€“7.</div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-pill">
+      Program Proposal<br/>
+      <strong>For Schools</strong>
+    </div>
+    <div class="cover-meta">
+      <strong>2026 â€“ 27</strong>
+      Academic Year Pilot Cohort
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 : CORE IDEA + VISION ============ -->
+<div class="page">
+  <div class="section-label">01 Â· THE CORE IDEA</div>
+  <h2 class="section-title">Two languages. <em>The same kind of thinking.</em></h2>
+  <p class="lead">A Vedic <em>sutra</em> is a rule you follow step by step to reach an answer. An algorithm is a rule you follow step by step to reach an answer. T.H.Y.N.K makes that connection visible, explicit, and exciting.</p>
+
+  <div class="grid grid-2">
+    <div class="card tint">
+      <h4>VEDIC MATHS</h4>
+      <p>Mental arithmetic shortcuts drawn from sixteen ancient sutras â€” 3â€“5Ã— faster computation, sharper number sense, and structured logical thinking.</p>
+    </div>
+    <div class="card tint">
+      <h4>COMPUTER PROGRAMMING</h4>
+      <p>Visual coding in Scratch (Gr 4â€“5) and real web programming with HTML, CSS &amp; JavaScript (Gr 6â€“7) â€” the foundations of every modern application.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Kids form their own questions using AI.</strong> Students learn to turn their curiosity into prompts, and their prompts into working code â€” making the AI their thinking partner, not their answer machine. The Teacher Guide includes a dedicated chapter on age-appropriate AI prompting.
+  </div>
+
+  <div class="section-label" style="margin-top:18px;">02 Â· OUR VISION</div>
+  <h2 class="section-title">Why every child <em>must</em> learn to code.</h2>
+
+  <div class="grid grid-2">
+    <div class="card"><span class="num">01</span><h4>Structured Thinking</h4><p>Break big problems into small steps, test, and fix â€” a skill that transfers to every subject.</p></div>
+    <div class="card"><span class="num">02</span><h4>Creators, Not Consumers</h4><p>Children flip from playing apps to <em>making</em> them â€” changing how they see technology forever.</p></div>
+    <div class="card"><span class="num">03</span><h4>Resilience</h4><p>Code rarely works the first time. Every project builds patience and a calm-under-failure mindset.</p></div>
+    <div class="card"><span class="num">04</span><h4>Future-Proofing</h4><p>AI replaces those who can't work with it. Students who code can <em>direct</em> AI, not be directed by it.</p></div>
+    <div class="card"><span class="num">05</span><h4>NEP 2020 Aligned</h4><p>Structured, measurable, audit-ready delivery of computational thinking from middle school onward.</p></div>
+    <div class="card"><span class="num">06</span><h4>Stronger Academics</h4><p>Research shows measurable gains in maths, reading and reasoning within 6â€“12 months of coding.</p></div>
+  </div>
+
+  <div class="pagefoot"><strong>T.H.Y.N.K</strong><span>2 Â· Core Idea &amp; Vision</span></div>
+</div>
+
+<!-- ============ PAGE 3 : THE TWO TRACKS ============ -->
+<div class="page">
+  <div class="section-label">03 Â· THE PROGRAM</div>
+  <h2 class="section-title">Two tracks, one philosophy: <em>build to learn.</em></h2>
+  <p class="lead">24 weekly sessions per track. Each session is 35 minutes. By Week 24, every child has shipped a real, working project they can show their parents.</p>
+
+  <!-- Track 1 -->
+  <div class="track">
+    <div class="track-head">
+      <h3>Vedic Maths + Scratch</h3>
+      <span class="track-tag">TRACK 1 Â· GRADES 4 &amp; 5</span>
+    </div>
+    <p class="sub">Visual block-based coding from MIT â€” used by 100M+ children worldwide.</p>
+    <p style="font-size:9.8pt; color:var(--ink-soft);"><strong>Concepts taught:</strong></p>
+    <div class="chip-list">
+      <span class="chip">Sequencing &amp; Events</span>
+      <span class="chip">Loops</span>
+      <span class="chip">Variables &amp; Lists</span>
+      <span class="chip">Conditionals</span>
+      <span class="chip">Operators</span>
+      <span class="chip">Custom Blocks (Functions)</span>
+      <span class="chip">Sprites &amp; Animation</span>
+      <span class="chip">Sound &amp; Storytelling</span>
+      <span class="chip">Broadcasting</span>
+    </div>
+    <p style="font-size:9.8pt; color:var(--ink-soft); margin-top:8px;"><strong>Sample projects:</strong> Guess My Number Â· Nikhilam Subtraction Wizard Â· Times-Table Race Â· Urdhva Multiplication Machine Â· <strong>Final:</strong> "My Vedic Maths Game"</p>
+  </div>
+
+  <!-- Track 2 -->
+  <div class="track alt">
+    <div class="track-head">
+      <h3>Vedic Maths + HTML Â· CSS Â· JavaScript</h3>
+      <span class="track-tag">TRACK 2 Â· GRADES 6 &amp; 7</span>
+    </div>
+    <p class="sub">Real web programming â€” the same three languages that power every website on the internet.</p>
+
+    <div class="grid grid-3" style="margin-top:8px;">
+      <div class="card cream">
+        <h4 style="color:#9a7100;">HTML Â· Structure</h4>
+        <p>Tags, forms, semantic layout, inputs, links â€” the skeleton of every page.</p>
+      </div>
+      <div class="card cream">
+        <h4 style="color:#9a7100;">CSS Â· Style</h4>
+        <p>Selectors, Box Model, Flexbox &amp; Grid, responsive design, animations.</p>
+      </div>
+      <div class="card cream">
+        <h4 style="color:#9a7100;">JavaScript Â· Brain</h4>
+        <p>Variables, loops, functions, arrays, DOM manipulation, events, debugging.</p>
+      </div>
+    </div>
+    <p style="font-size:9.8pt; color:var(--ink-soft); margin-top:8px;"><strong>Sample projects:</strong> Personal "About Me" page Â· Vedic Sutra Reference Card Â· Mental Maths Quiz Â· Nikhilam Calculator Â· <strong>Final:</strong> Published 4-page "Teach Vedic Maths" website.</p>
+  </div>
+
+  <div class="callout" style="background:#fbf3dc; border-color:var(--gold);">
+    <strong>By Week 24:</strong> Grade 4â€“5 students <em>design</em> Scratch projects instead of just playing them. Grade 6â€“7 students can open any website in the world, right-click "Inspect," and understand exactly what they're looking at.
+  </div>
+
+  <div class="pagefoot"><strong>T.H.Y.N.K</strong><span>3 Â· The Program</span></div>
+</div>
+
+<!-- ============ PAGE 4 : SESSION + SUTRA TABLE ============ -->
+<div class="page">
+  <div class="section-label">04 Â· INSIDE A SESSION</div>
+  <h2 class="section-title">How each <em>35-minute</em> class flows.</h2>
+  <p class="lead">A predictable four-part rhythm teachers internalize by Week 3 â€” easy to deliver, easy to assess, easy to love.</p>
+
+  <div class="timeline">
+    <div class="tstep">
+      <span class="min">8 min</span>
+      <h4>Vedic Warm-Up</h4>
+      <p>5 mental maths problems using today's sutra. No calculators.</p>
+    </div>
+    <div class="tstep">
+      <span class="min">5 min</span>
+      <h4>Sutra â†’ Code Bridge</h4>
+      <p>Teacher draws the connection between sutra and coding concept.</p>
+    </div>
+    <div class="tstep">
+      <span class="min">15 min</span>
+      <h4>Build / Code</h4>
+      <p>Students code on guided starter files. Fast finishers get extensions.</p>
+    </div>
+    <div class="tstep">
+      <span class="min">7 min</span>
+      <h4>Share &amp; Reflect</h4>
+      <p>Two students show work. One-line written reflection by every child.</p>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:24px;">05 Â· THE BRIDGE</div>
+  <h2 class="section-title">Five direct <em>sutra-to-code</em> connections.</h2>
+
+  <table>
+    <thead>
+      <tr><th style="width:24%;">Vedic Sutra</th><th style="width:36%;">Meaning</th><th>Coding Concept</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Ekadhikena Purvena</strong></td><td>By one more than the previous</td><td><strong>Loops</strong> â€” repeat blocks, for / while</td></tr>
+      <tr><td><strong>Nikhilam</strong></td><td>All from 9, last from 10</td><td><strong>Variables</strong> â€” storing intermediate values</td></tr>
+      <tr><td><strong>Urdhva Tiryakbhyam</strong></td><td>Vertically and crosswise</td><td><strong>Nested loops</strong> â€” processing every position</td></tr>
+      <tr><td><strong>Gunita Samuchaya</strong></td><td>Product of sum = sum of product</td><td><strong>Debugging</strong> â€” verification via digital roots</td></tr>
+      <tr><td><strong>Anurupyena</strong></td><td>Proportionality</td><td><strong>Functions &amp; CSS</strong> â€” write once, scale infinitely</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout" style="margin-top:18px;">
+    <strong>The result:</strong> Children stop seeing maths and coding as separate subjects. They start seeing them as <em>two windows into the same way of thinking.</em>
+  </div>
+
+  <div class="pagefoot"><strong>T.H.Y.N.K</strong><span>4 Â· Session &amp; Bridge</span></div>
+</div>
+
+<!-- ============ PAGE 5 : WHAT WE PROVIDE / NEED + CTA ============ -->
+<div class="page cta-page">
+  <div class="section-label">06 Â· LOGISTICS</div>
+  <h2 class="section-title">A program that runs on what your school <em>already has.</em></h2>
+
+  <div class="grid grid-2">
+    <div>
+      <h4 style="color:var(--accent); font-size:11pt; letter-spacing:1px; margin-bottom:8px;">WE PROVIDE</h4>
+      <ul class="tight">
+        <li><strong>24 Teacher Guides</strong> â€” full lesson plans, both tracks</li>
+        <li><strong>24 Student Worksheets</strong> â€” warm-up to reflection</li>
+        <li><strong>Scratch Starter Files</strong> â€” .sb3 for every Gr 4â€“5 session</li>
+        <li><strong>HTML/CSS/JS Templates</strong> â€” starter code for Gr 6â€“7</li>
+        <li><strong>Assessment Kit</strong> â€” rubrics, trackers, certificates</li>
+        <li><strong>One-Day Teacher Training</strong> â€” on-site, before launch</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="color:var(--accent); font-size:11pt; letter-spacing:1px; margin-bottom:8px;">SCHOOL PROVIDES</h4>
+      <ul class="tight">
+        <li><strong>Computer Lab</strong> â€” 1 PC per 2 students, Chrome</li>
+        <li><strong>Computer Teacher</strong> â€” no Vedic background needed</li>
+        <li><strong>35 min / week Ã— 24 weeks</strong> â€” Saturdays ideal</li>
+        <li><strong>15â€“30 students</strong> per batch, Gr 4â€“5 or 6â€“7</li>
+        <li><strong>Midpoint &amp; end feedback</strong> from teacher</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:14px; text-align:center; font-size:12pt;">
+    <strong>No new hardware. No new software licences. No specialist hiring.</strong>
+  </div>
+
+  <div class="section-label" style="margin-top:18px;">07 Â· NEXT STEP</div>
+  <div class="cta-box">
+    <h3>Pilot T.H.Y.N.K at your school â€” <span class="gold">at zero cost.</span></h3>
+    <p>The 2026â€“27 pilot cohort receives the complete teacher kit, on-site training, and full-year support free of charge. All we ask in return is a 35-minute weekly slot and honest feedback from your teacher.</p>
+    <p style="margin-top:14px;"><span class="gold">â–¸ Book a 30-minute demo</span> with your academic coordinator and computer teacher â€” we walk through one complete sample session, end-to-end, live.</p>
+  </div>
+
+  <div style="text-align:center; margin-top:30px; font-style:italic; color:var(--ink-soft);">
+    <strong style="color:var(--accent); letter-spacing:3px;">T Â· H Â· Y Â· N Â· K</strong><br/>
+    Ancient Wisdom. Modern Code. Future-Ready Schools.
+  </div>
+
+  <div class="pagefoot"><strong>T.H.Y.N.K</strong><span>5 Â· Logistics &amp; Next Step</span></div>
+</div>
+
+</body>
+</html>
+

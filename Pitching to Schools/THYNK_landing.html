@@ -1,0 +1,1052 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>T.H.Y.N.K â€” Vedic Maths + Coding + AI, taught inside your school</title>
+  <meta name="description" content="A 24-week, once-a-week in-school program for Grades 4â€“7. Vedic Maths, Coding, and AI thinking â€” delivered in your existing computer lab, taught by your existing teacher. â‚¹150/session with 20% revenue share to schools." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ---------- Design tokens (from design-system/thynk/MASTER.md) ---------- */
+    :root {
+      /* Color */
+      --color-primary:      #7C3AED;
+      --color-primary-600:  #6D28D9;
+      --color-on-primary:   #FFFFFF;
+      --color-secondary:    #A78BFA;
+      --color-accent:       #F59E0B;
+      --color-accent-600:   #D97706;
+      --color-background:   #FAF5FF;
+      --color-foreground:   #4C1D95;
+      --color-foreground-2: #1E1B4B;
+      --color-muted:        #ECEEF9;
+      --color-muted-2:      #F5F3FF;
+      --color-border:       #DDD6FE;
+      --color-destructive:  #DC2626;
+      --color-ring:         #7C3AED;
+      --color-surface:      #FFFFFF;
+      --color-success:      #16A34A;
+
+      /* Type */
+      --font-display: 'Baloo 2', 'Segoe UI', system-ui, sans-serif;
+      --font-body:    'Baloo 2', 'Segoe UI', system-ui, sans-serif;
+      --font-accent:  'Comic Neue', 'Baloo 2', cursive;
+
+      /* Space scale (density 4) */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
+      --space-9: 96px;
+
+      /* Radius */
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+      --radius-pill: 999px;
+
+      /* Shadow (soft depth, avoids flat design) */
+      --shadow-sm: 0 1px 2px rgba(76,29,149,.06), 0 1px 3px rgba(76,29,149,.08);
+      --shadow-md: 0 6px 16px rgba(76,29,149,.08), 0 2px 6px rgba(76,29,149,.06);
+      --shadow-lg: 0 20px 40px rgba(76,29,149,.12), 0 8px 16px rgba(76,29,149,.08);
+      --shadow-cta: 0 10px 24px rgba(245,158,11,.35);
+
+      /* Motion */
+      --ease-out: cubic-bezier(.2,.7,.2,1);
+      --dur-1: 150ms;
+      --dur-2: 240ms;
+      --dur-3: 400ms;
+    }
+
+    /* ---------- Reset ---------- */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--color-foreground-2);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #EDE9FE 0%, transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, #FEF3C7 0%, transparent 55%),
+        var(--color-background);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    img, svg { max-width: 100%; display: block; }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { color: var(--color-primary-600); }
+    h1, h2, h3, h4 { font-family: var(--font-display); color: var(--color-foreground); line-height: 1.15; margin: 0 0 var(--space-4); font-weight: 700; letter-spacing: -0.01em; }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+    h3 { font-size: 1.25rem; }
+    p  { margin: 0 0 var(--space-4); }
+    button { font-family: inherit; }
+
+    /* ---------- Layout ---------- */
+    .container { width: min(1180px, 92vw); margin-inline: auto; }
+    section { padding: var(--space-9) 0; position: relative; }
+    section + section { padding-top: var(--space-8); }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-family: var(--font-accent); font-weight: 700;
+      color: var(--color-primary); background: var(--color-muted);
+      border: 1px solid var(--color-border);
+      padding: 6px 14px; border-radius: var(--radius-pill);
+      font-size: .85rem; letter-spacing: .06em; text-transform: uppercase;
+    }
+    .section-head { text-align: center; max-width: 780px; margin: 0 auto var(--space-7); }
+    .section-head p { color: #5B5875; font-size: 1.08rem; }
+    .muted-text { color: #5B5875; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(1.2) blur(10px);
+      -webkit-backdrop-filter: saturate(1.2) blur(10px);
+      background: rgba(250, 245, 255, .78);
+      border-bottom: 1px solid rgba(221, 214, 254, .6);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-3) 0;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; color: var(--color-foreground); font-size: 1.25rem; letter-spacing: -0.01em; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 12px;
+      background: linear-gradient(135deg, #7C3AED, #A78BFA);
+      display: grid; place-items: center; color: white; font-weight: 800;
+      font-family: var(--font-display); font-size: 1rem;
+      box-shadow: var(--shadow-md);
+    }
+    .brand small { font-family: var(--font-accent); color: #6D28D9; font-weight: 400; font-size: .8rem; margin-left: 6px; }
+    .nav ul { display: none; list-style: none; gap: var(--space-6); margin: 0; padding: 0; }
+    .nav ul a { color: var(--color-foreground-2); font-weight: 500; }
+    .nav ul a:hover { color: var(--color-primary); }
+    .nav-cta { display: inline-flex; align-items: center; gap: 8px; }
+    @media (min-width: 900px) { .nav ul { display: flex; } }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 22px; border-radius: var(--radius-pill);
+      font-weight: 700; font-family: var(--font-display); font-size: 1rem;
+      border: 1px solid transparent; cursor: pointer;
+      transition: transform var(--dur-2) var(--ease-out),
+                  box-shadow var(--dur-2) var(--ease-out),
+                  background-color var(--dur-2) var(--ease-out),
+                  color var(--dur-2) var(--ease-out);
+      will-change: transform;
+      text-decoration: none;
+    }
+    .btn:focus-visible { outline: 3px solid var(--color-ring); outline-offset: 3px; }
+    .btn-primary {
+      color: #1E1B4B; background: var(--color-accent);
+      box-shadow: var(--shadow-cta);
+    }
+    .btn-primary:hover { background: var(--color-accent-600); color: #FFF; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(245,158,11,.45); }
+    .btn-secondary {
+      color: var(--color-on-primary); background: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-secondary:hover { background: var(--color-primary-600); transform: translateY(-2px); }
+    .btn-ghost {
+      color: var(--color-primary); background: transparent; border-color: var(--color-border);
+    }
+    .btn-ghost:hover { background: var(--color-muted); transform: translateY(-1px); }
+    .btn-sm { padding: 10px 16px; font-size: .95rem; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative; overflow: hidden;
+      padding: var(--space-9) 0 var(--space-8);
+    }
+    .hero-grid {
+      display: grid; gap: var(--space-7);
+      grid-template-columns: 1fr;
+      align-items: center;
+    }
+    @media (min-width: 980px) {
+      .hero-grid { grid-template-columns: 1.15fr .95fr; gap: var(--space-8); }
+    }
+    .hero h1 span.highlight {
+      background: linear-gradient(120deg, #7C3AED 0%, #EC4899 60%, #F59E0B 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero-tag {
+      font-family: var(--font-accent);
+      font-size: 1.05rem;
+      color: var(--color-primary-600);
+      margin-bottom: var(--space-3);
+    }
+    .hero-lede { font-size: 1.15rem; color: #454063; max-width: 56ch; }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: var(--space-5); margin-top: var(--space-6);
+      color: #4C1D95;
+    }
+    .hero-meta div { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+    .hero-meta svg { color: var(--color-primary); }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative; aspect-ratio: 4/5;
+      max-width: 460px; margin: 0 auto; width: 100%;
+    }
+    .card-stack { position: absolute; inset: 0; }
+    .card {
+      position: absolute; background: var(--color-surface);
+      border: 1px solid var(--color-border); border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: var(--space-5);
+    }
+    .card-sutra { top: 4%; left: 0; width: 62%; transform: rotate(-4deg); }
+    .card-code  { bottom: 6%; right: 0; width: 66%; transform: rotate(3deg); }
+    .card-badge { top: 45%; right: -6%; background: var(--color-accent); color: #1E1B4B; border-color: transparent; padding: 10px 16px; font-family: var(--font-display); font-weight: 800; border-radius: var(--radius-pill); box-shadow: var(--shadow-cta); font-size: .95rem; }
+    .card-title { font-family: var(--font-accent); color: #6D28D9; font-size: .85rem; margin-bottom: 6px; letter-spacing: .05em; text-transform: uppercase; }
+    .card-sutra .expr { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 1.1rem; color: #1E1B4B; font-weight: 600; }
+    .card-code pre {
+      margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: .85rem; color: #1E1B4B; line-height: 1.55;
+      background: #F5F3FF; padding: var(--space-3); border-radius: 12px; overflow: hidden;
+    }
+    .code-kw { color: #7C3AED; font-weight: 700; }
+    .code-str { color: #059669; }
+    .code-num { color: #D97706; }
+
+    .blob {
+      position: absolute; border-radius: 50%; filter: blur(30px); opacity: .55;
+      z-index: 0; pointer-events: none;
+      will-change: transform;
+    }
+    .blob-1 { width: 220px; height: 220px; background: #C4B5FD; top: -40px; left: -60px; }
+    .blob-2 { width: 280px; height: 280px; background: #FDE68A; bottom: -60px; right: -40px; }
+    .hero .container { position: relative; z-index: 1; }
+
+    /* ---------- Marquee band ---------- */
+    .band {
+      background: linear-gradient(90deg, #4C1D95, #7C3AED);
+      color: #EDE9FE; padding: var(--space-4) 0;
+    }
+    .band-inner {
+      display: flex; align-items: center; gap: var(--space-8);
+      flex-wrap: wrap; justify-content: center; text-align: center;
+    }
+    .band-inner strong { color: #FDE68A; }
+    .band-item { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: .95rem; }
+
+    /* ---------- Cards grid ---------- */
+    .grid { display: grid; gap: var(--space-5); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-4 { grid-template-columns: 1fr; }
+    @media (min-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+      .grid-4 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+    .feature-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out);
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, #EDE9FE, #DDD6FE);
+      color: var(--color-primary);
+      display: grid; place-items: center; margin-bottom: var(--space-4);
+      box-shadow: inset 0 0 0 1px rgba(124,58,237,.12);
+    }
+    .feature-card h3 { color: var(--color-foreground); }
+    .feature-card p { color: #4A466A; margin: 0; }
+
+    /* ---------- Core idea (two cards side by side) ---------- */
+    .duel {
+      display: grid; gap: var(--space-4);
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+    @media (min-width: 820px) { .duel { grid-template-columns: 1fr 60px 1fr; align-items: center; } }
+    .duel-card {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); padding: var(--space-6);
+      box-shadow: var(--shadow-md);
+    }
+    .duel-card.left { border-color: #DDD6FE; }
+    .duel-card.right { border-color: #FDE68A; background: linear-gradient(180deg, #FFFBEB, #FEF3C7); }
+    .duel-eq {
+      display: grid; place-items: center; text-align: center;
+      color: var(--color-primary); font-weight: 800; font-family: var(--font-display); font-size: 2rem;
+    }
+    .duel-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .duel-list li { display: flex; gap: 10px; align-items: flex-start; color: #3F3A5E; }
+    .duel-list li svg { flex: 0 0 auto; margin-top: 4px; color: var(--color-primary); }
+    .duel-card.right .duel-list li svg { color: var(--color-accent-600); }
+
+    /* ---------- Levels timeline ---------- */
+    .levels {
+      display: grid; gap: var(--space-4);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) { .levels { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .levels { grid-template-columns: repeat(4, 1fr); } }
+    .level {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--space-5);
+      position: relative; box-shadow: var(--shadow-sm);
+      transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out);
+    }
+    .level:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .level-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--color-primary); color: #fff;
+      font-weight: 800; margin-bottom: var(--space-3);
+      box-shadow: 0 6px 16px rgba(124,58,237,.28);
+    }
+    .level h3 { margin-bottom: 4px; }
+    .level .grade { font-family: var(--font-accent); color: #6D28D9; margin-bottom: var(--space-3); font-weight: 700; }
+    .level p { color: #4A466A; margin: 0; font-size: .95rem; }
+    .level:nth-child(2) .level-num { background: #A78BFA; }
+    .level:nth-child(3) .level-num { background: #F59E0B; color: #1E1B4B; }
+    .level:nth-child(4) .level-num { background: #EC4899; }
+
+    /* ---------- Tracks (2 tracks big cards) ---------- */
+    .tracks { display: grid; gap: var(--space-5); grid-template-columns: 1fr; }
+    @media (min-width: 900px) { .tracks { grid-template-columns: 1fr 1fr; } }
+    .track {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl); padding: var(--space-6);
+      box-shadow: var(--shadow-md); position: relative; overflow: hidden;
+    }
+    .track::after {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit;
+      background: linear-gradient(135deg, transparent 60%, rgba(167,139,250,.18));
+      pointer-events: none;
+    }
+    .track h3 { font-size: 1.4rem; }
+    .track .tag {
+      display: inline-block; font-family: var(--font-accent); font-weight: 700;
+      background: var(--color-muted); color: var(--color-primary);
+      padding: 6px 12px; border-radius: var(--radius-pill);
+      font-size: .8rem; margin-bottom: var(--space-3); letter-spacing: .05em; text-transform: uppercase;
+    }
+    .track ul { padding-left: 1.1em; margin: 0; color: #3F3A5E; }
+    .track ul li { margin-bottom: 6px; }
+    .track ul li b { color: var(--color-foreground); }
+
+    /* ---------- Prodigies ---------- */
+    .prodigies { display: grid; gap: var(--space-4); grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .prodigies { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .prodigies { grid-template-columns: repeat(4, 1fr); } }
+    .prodigy {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--space-5);
+      box-shadow: var(--shadow-sm);
+    }
+    .prodigy .age {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 2rem; color: var(--color-accent-600); line-height: 1;
+    }
+    .prodigy .name { font-weight: 700; color: var(--color-foreground); margin: var(--space-3) 0 6px; }
+    .prodigy p { font-size: .92rem; color: #4A466A; margin: 0; }
+
+    /* ---------- Pricing ---------- */
+    .pricing-wrap {
+      background: linear-gradient(180deg, #FFFFFF, #F5F3FF);
+      border: 1px solid var(--color-border); border-radius: var(--radius-xl);
+      padding: var(--space-7); box-shadow: var(--shadow-lg);
+      display: grid; gap: var(--space-6);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) { .pricing-wrap { grid-template-columns: 1.1fr .9fr; align-items: center; } }
+    .pricing-price {
+      font-family: var(--font-display); font-weight: 800;
+      color: var(--color-foreground);
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      line-height: 1;
+      display: inline-flex; align-items: baseline; gap: 8px;
+      letter-spacing: -0.02em;
+    }
+    .pricing-price small { font-size: 1rem; font-weight: 600; color: #6D28D9; }
+    .pricing-points { list-style: none; padding: 0; margin: var(--space-4) 0; display: grid; gap: 10px; }
+    .pricing-points li { display: flex; gap: 10px; align-items: flex-start; color: #3F3A5E; }
+    .pricing-points li svg { flex: 0 0 auto; color: var(--color-success); margin-top: 3px; }
+    .share-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #FEF3C7; color: #92400E; border: 1px solid #FDE68A;
+      padding: 8px 14px; border-radius: var(--radius-pill); font-weight: 700;
+      font-family: var(--font-accent);
+    }
+
+    /* ---------- Testimonials ---------- */
+    .testimonials { display: grid; gap: var(--space-5); grid-template-columns: 1fr; }
+    @media (min-width: 820px) { .testimonials { grid-template-columns: 1fr 1fr 1fr; } }
+    .quote {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg); padding: var(--space-6);
+      box-shadow: var(--shadow-sm); position: relative;
+    }
+    .quote::before {
+      content: "â€œ"; position: absolute; top: -14px; left: 18px;
+      font-family: Georgia, serif; font-size: 4rem; line-height: 1;
+      color: var(--color-secondary); opacity: .6;
+    }
+    .quote p { color: #3F3A5E; font-style: italic; }
+    .attrib { display: flex; align-items: center; gap: 12px; margin-top: var(--space-4); }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #A78BFA, #7C3AED);
+      color: #fff; font-weight: 800; display: grid; place-items: center;
+      font-family: var(--font-display);
+    }
+    .attrib .who { line-height: 1.2; }
+    .attrib .who b { color: var(--color-foreground); }
+    .attrib .who span { color: #6B6884; font-size: .85rem; }
+
+    /* ---------- FAQ ---------- */
+    .faq details {
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: var(--radius-md); padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--space-3); box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--dur-2) var(--ease-out);
+    }
+    .faq details[open] { box-shadow: var(--shadow-md); }
+    .faq summary {
+      cursor: pointer; list-style: none; font-weight: 700;
+      color: var(--color-foreground); display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: ""; width: 12px; height: 12px; border-right: 2px solid var(--color-primary); border-bottom: 2px solid var(--color-primary);
+      transform: rotate(45deg); transition: transform var(--dur-2) var(--ease-out); flex: 0 0 auto;
+    }
+    .faq details[open] summary::after { transform: rotate(-135deg); }
+    .faq details p { margin: var(--space-3) 0 0; color: #3F3A5E; }
+
+    /* ---------- Final CTA ---------- */
+    .final-cta {
+      background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 60%, #EC4899 120%);
+      color: #FFF; border-radius: var(--radius-xl); padding: var(--space-8);
+      text-align: center; box-shadow: var(--shadow-lg);
+      position: relative; overflow: hidden;
+    }
+    .final-cta h2 { color: #FFF; }
+    .final-cta p { color: #EDE9FE; max-width: 62ch; margin-inline: auto; }
+    .final-cta .btn-primary { color: #1E1B4B; }
+    .final-cta .btn-ghost { color: #FFF; border-color: rgba(255,255,255,.4); }
+    .final-cta .btn-ghost:hover { background: rgba(255,255,255,.12); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: var(--space-7) 0 var(--space-6); color: #6B6884;
+      border-top: 1px solid var(--color-border); margin-top: var(--space-7);
+    }
+    footer .foot { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: space-between; align-items: center; }
+    footer small { color: #6B6884; }
+
+    /* ---------- Reveal on scroll ---------- */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ---------- A11y ---------- */
+    :focus-visible { outline: 3px solid var(--color-ring); outline-offset: 3px; border-radius: 6px; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .skip { position: absolute; left: -9999px; top: 8px; background: #FFF; color: var(--color-primary); padding: 8px 12px; border-radius: 8px; }
+    .skip:focus { left: 8px; z-index: 100; }
+  </style>
+<!-- THYNK_A4_PRINT_STYLES -->
+<style>
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .page,
+  .sheet,
+  .a4,
+  .slide {
+    width: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  table {
+    max-width: 100% !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  p,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+}
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" role="banner">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="T.H.Y.N.K home">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>T.H.Y.N.K <small>Â· think today</small></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#idea">The Idea</a></li>
+          <li><a href="#levels">Levels</a></li>
+          <li><a href="#tracks">Program</a></li>
+          <li><a href="#why">Why Now</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm nav-cta" href="#final-cta">
+        Book a Demo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <span class="blob blob-1 parallax" data-speed="-6" aria-hidden="true"></span>
+      <span class="blob blob-2 parallax" data-speed="8" aria-hidden="true"></span>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <p class="hero-tag">Think Today Â· Learn Smart Â· Lead Tomorrow</p>
+            <h1 id="hero-title">
+              Vedic Maths + Coding + AI â€”<br/>
+              <span class="highlight">taught inside your school.</span>
+            </h1>
+            <p class="hero-lede">
+              A 24-week, once-a-week program for <b>Grades 4â€“7</b> that builds mental-maths speed,
+              structured thinking, and AI fluency together. Delivered in <b>your existing computer lab</b>,
+              by <b>your existing teacher</b>. We bring the curriculum, workbooks, teacher guide, and training.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary" href="#final-cta">
+                Book a School Demo
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a class="btn btn-ghost" href="#tracks">See the Program</a>
+            </div>
+            <div class="hero-meta" role="list">
+              <div role="listitem" title="Program length">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg>
+                24 weeks Â· once a week
+              </div>
+              <div role="listitem" title="Grades">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                Grades 4 â€“ 7
+              </div>
+              <div role="listitem" title="Uses your existing setup">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                Your lab, your teacher
+              </div>
+              <div role="listitem" title="NEP 2020 aligned">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                NEP 2020 aligned
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual reveal" aria-hidden="true">
+            <div class="card-stack">
+              <div class="card card-sutra">
+                <div class="card-title">Vedic sutra</div>
+                <div class="expr">EkÄdhikena PÅ«rveá¹‡a</div>
+                <p style="margin:8px 0 0;color:#4A466A;font-size:.9rem">â€œBy one more than the previous.â€<br/>A step-by-step rule to reach an answer.</p>
+              </div>
+              <div class="card card-code">
+                <div class="card-title">Algorithm</div>
+<pre><span class="code-kw">for</span> i <span class="code-kw">in range</span>(<span class="code-num">1</span>, n):
+  prev = seq[i-<span class="code-num">1</span>]
+  seq.append(prev + <span class="code-num">1</span>)
+<span class="code-kw">return</span> seq  <span class="code-str"># same rule</span></pre>
+              </div>
+              <div class="card card-badge">Same thinking. Two languages.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BAND (proof) ================= -->
+    <section class="band" aria-label="Key facts">
+      <div class="container band-inner">
+        <div class="band-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 4 4 5-6"/></svg>
+          <strong>3â€“5Ã—</strong>&nbsp;faster mental maths
+        </div>
+        <div class="band-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          <strong>Real code</strong>, not toys
+        </div>
+        <div class="band-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6"/><path d="M12 9v6"/><circle cx="12" cy="12" r="10"/></svg>
+          <strong>AI as a thinking partner</strong>&nbsp;â€” safely
+        </div>
+        <div class="band-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
+          <strong>â‚¹150</strong>&nbsp;per session Â· <strong>20%</strong>&nbsp;revenue share to school
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CORE IDEA ================= -->
+    <section id="idea" aria-labelledby="idea-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">The Core Idea</span>
+          <h2 id="idea-title">A Vedic sutra <em>is</em> an algorithm.</h2>
+          <p>Vedic Maths and Coding arenâ€™t two subjects â€” theyâ€™re the same kind of thinking in two languages. When a child learns one, theyâ€™ve already learned the foundation of the other. T.H.Y.N.K makes that connection visible, explicit, and exciting.</p>
+        </div>
+        <div class="duel reveal">
+          <div class="duel-card left">
+            <span class="eyebrow">Vedic SÅ«tra</span>
+            <h3 style="margin-top:14px">A step-by-step rule to reach an answer</h3>
+            <ul class="duel-list">
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Named, memorable, transferable</span></li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Nikhilam, Urdhva, Ekadhikena â€” reusable patterns</span></li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Runs on the childâ€™s mind</span></li>
+            </ul>
+          </div>
+          <div class="duel-eq" aria-hidden="true">=</div>
+          <div class="duel-card right">
+            <span class="eyebrow" style="background:#FDE68A;color:#92400E;border-color:#FCD34D">Algorithm</span>
+            <h3 style="margin-top:14px">A step-by-step rule to reach an answer</h3>
+            <ul class="duel-list">
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Named, testable, reusable</span></li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Loops, conditionals, functions â€” the same patterns</span></li>
+              <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Runs on a computer</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4 LEVELS ================= -->
+    <section id="levels" aria-labelledby="levels-title" style="background:linear-gradient(180deg,transparent,#F5F3FF 40%,transparent);">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">The 4-Level Journey</span>
+          <h2 id="levels-title">One level a year. From Explorer to Innovator.</h2>
+          <p>Each grade earns a title the child carries proudly â€” and each level compounds on the last.</p>
+        </div>
+        <div class="levels">
+          <article class="level reveal">
+            <div class="level-num">1</div>
+            <h3>Young Explorer</h3>
+            <div class="grade">Grade 4 Â· Beginners Basic 1</div>
+            <p>First taste of Vedic sutras and Scratch. Kids build their first working game while learning the â€œAll from 9â€ trick.</p>
+          </article>
+          <article class="level reveal">
+            <div class="level-num">2</div>
+            <h3>Young Builder</h3>
+            <div class="grade">Grade 5 Â· Beginners Basic 2</div>
+            <p>Deeper Scratch: variables, custom blocks, broadcasting. Kids ship a full Vedic-maths quiz game by week 24.</p>
+          </article>
+          <article class="level reveal">
+            <div class="level-num">3</div>
+            <h3>Young Coder</h3>
+            <div class="grade">Grade 6 Â· Intermediate</div>
+            <p>Real code: HTML + CSS + JavaScript. Kids publish their first real webpage â€” a Vedic-maths tool of their own design.</p>
+          </article>
+          <article class="level reveal">
+            <div class="level-num">4</div>
+            <h3>Young Innovator</h3>
+            <div class="grade">Grade 7 Â· Advanced</div>
+            <p>JavaScript + AI prompting. Kids build interactive apps and learn to direct AI as a thinking partner â€” safely.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TRACKS ================= -->
+    <section id="tracks" aria-labelledby="tracks-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Program Structure</span>
+          <h2 id="tracks-title">Two tracks. One connected story.</h2>
+          <p>Every session pairs a Vedic technique with the coding concept that mirrors it â€” so the maths teaches the code and the code teaches the maths.</p>
+        </div>
+        <div class="tracks">
+          <article class="track reveal">
+            <span class="tag">Grades 4 &amp; 5</span>
+            <h3>Vedic Maths + Scratch</h3>
+            <p class="muted-text">Block-based coding by MIT â€” used by 100M+ children worldwide. Kids skip typing syntax and focus on <b>logic and creativity</b>.</p>
+            <ul>
+              <li><b>Sequencing &amp; Events</b> â€” the foundation of every program ever written.</li>
+              <li><b>Loops</b> mapped to <i>Ekadhikena Purvena</i> (â€œby one more than the previousâ€).</li>
+              <li><b>Variables, lists &amp; conditionals</b> â€” score a live Vedic-maths quiz.</li>
+              <li><b>Custom Blocks</b> â€” package a sutra into a reusable function.</li>
+              <li><b>Sprites, sound, broadcasting</b> â€” event-driven programming, made visual.</li>
+            </ul>
+            <p style="margin-top:var(--space-4);color:#4A466A"><b>Sample projects:</b> Guess My Number Â· Nikhilam Wizard Â· Times-Table Race Â· Urdhva Multiplication Machine Â· a final original game every student presents.</p>
+          </article>
+          <article class="track reveal">
+            <span class="tag">Grades 6 &amp; 7</span>
+            <h3>Vedic Maths + HTML Â· CSS Â· JavaScript</h3>
+            <p class="muted-text">Real web programming â€” the same three languages that build Google and Instagram. No toys, no training wheels: by week 24 theyâ€™ve published a real website.</p>
+            <ul>
+              <li><b>HTML</b> â€” semantic structure, forms, inputs; the skeleton of the web.</li>
+              <li><b>CSS</b> â€” selectors, layout, responsive design; the clothing.</li>
+              <li><b>JavaScript</b> â€” variables, loops, functions = Vedic unknowns, patterns, sutras.</li>
+              <li><b>Interactive Vedic tools</b> â€” calculators, animated sutra visualisers, mini-quizzes.</li>
+              <li><b>AI prompting basics</b> â€” how to talk to AI as a co-builder, not an answer machine.</li>
+            </ul>
+            <p style="margin-top:var(--space-4);color:#4A466A"><b>Sample capstones:</b> a personal cricket run-rate site Â· an interactive Vedic-adventure page Â· a maths-quiz web app that scores itself.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHY NOW ================= -->
+    <section id="why" aria-labelledby="why-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why This, Why Now</span>
+          <h2 id="why-title">Six reasons parents and principals nod at the first meeting.</h2>
+        </div>
+        <div class="grid grid-3">
+          <article class="feature-card reveal">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
+            </div>
+            <h3>Future-ready by 2030</h3>
+            <p>Every job will have a digital component. Kids who can read code will lead â€” kids who canâ€™t will be led. AI doesnâ€™t replace coders; it replaces those who canâ€™t work with them.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a7 7 0 0 0-4 12.7V19a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-3.3A7 7 0 0 0 12 3Z"/><path d="M9 22h6"/></svg>
+            </div>
+            <h3>Sharper, faster brains</h3>
+            <p>Vedic kids calculate 3â€“5Ã— faster mentally â€” proven to lift school maths, science, and reasoning scores. Coding adds structured thinking on top.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M8 2v4M16 2v4M2 10h20"/></svg>
+            </div>
+            <h3>Healthy screen time</h3>
+            <p>Kids stop being consumers of apps and start being makers of them. Same screen â€” completely different relationship with technology.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4Z"/></svg>
+            </div>
+            <h3>Grit &amp; confidence</h3>
+            <p>Code rarely runs first try. Kids learn to fail calmly, debug patiently, and try again â€” the single most useful life skill a school can teach.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9a3 3 0 0 0 0 6h6a3 3 0 0 1 0 6H7"/></svg>
+            </div>
+            <h3>Affordable, inside school</h3>
+            <p>â‚¹150 per session for a full year â€” less than a single private tuition class. No commute, no extra tuition fatigue, no logistics on parents.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V8l6-4 6 4v12"/><path d="M10 20v-6h4v6"/></svg>
+            </div>
+            <h3>NEP 2020, done properly</h3>
+            <p>The National Education Policy explicitly calls for computational thinking from middle school. T.H.Y.N.K delivers it â€” structured, measurable, audit-ready.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRODIGIES / SOCIAL PROOF ================= -->
+    <section id="prodigies" aria-labelledby="prodigies-title" style="background:linear-gradient(180deg,transparent,#F5F3FF 30%,transparent 90%);">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Real Indian children Â· Real outcomes</span>
+          <h2 id="prodigies-title">This isnâ€™t theory. Kids just like yours are already on world stages.</h2>
+          <p>Weâ€™re not promising a â‚¹100-crore startup at 16. Weâ€™re saying every one of these children began at the exact age yours is right now â€” with a small, structured, weekly start.</p>
+        </div>
+        <div class="prodigies">
+          <article class="prodigy reveal">
+            <div class="age">16<span style="font-size:1rem;color:#7C3AED"> Â· age</span></div>
+            <div class="name">Pranjali Awasthi</div>
+            <p>Founded Delv.AI â€” valued at ~â‚¹100 crore. Started coding around age 7 with her IIT-engineer father; interned in an AI lab at 13.</p>
+          </article>
+          <article class="prodigy reveal">
+            <div class="age">12<span style="font-size:1rem;color:#7C3AED"> Â· age</span></div>
+            <div class="name">Tanmay Bakshi</div>
+            <p>Became an IBM Watson developer at age 12 after starting code at 5. Published author. Global conference speaker.</p>
+          </article>
+          <article class="prodigy reveal">
+            <div class="age">14<span style="font-size:1rem;color:#7C3AED"> Â· age</span></div>
+            <div class="name">Suhas Gopinath</div>
+            <p>Founded Globals Inc. â€” a global IT firm â€” at just 14. Later recognised by the World Economic Forum.</p>
+          </article>
+          <article class="prodigy reveal">
+            <div class="age">10<span style="font-size:1rem;color:#7C3AED"> Â· &amp; 12</span></div>
+            <div class="name">Shravan &amp; Sanjay Kumaran</div>
+            <p>Chennai brothers â€” among Indiaâ€™s youngest mobile app developers, with apps downloaded worldwide.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRICING ================= -->
+    <section id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Simple, transparent pricing</span>
+          <h2 id="pricing-title">One price. Full year. Everything included.</h2>
+          <p>No hidden extras. No specialist coding teacher to hire. No extra hardware to buy. And 20% revenue share back to the school.</p>
+        </div>
+        <div class="pricing-wrap reveal">
+          <div>
+            <div class="pricing-price">â‚¹150<small>&nbsp;/ session Â· per child</small></div>
+            <p style="margin-top:var(--space-3);color:#5B5875">A full 24-week academic year, taught once a week for ~35 minutes per session.</p>
+            <div class="share-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v6l4-2"/><circle cx="12" cy="14" r="8"/><path d="M12 10v4l3 2"/></svg>
+              20% revenue share to the school
+            </div>
+            <div style="margin-top:var(--space-5);display:flex;flex-wrap:wrap;gap:12px;">
+              <a class="btn btn-primary" href="#final-cta">
+                Book a School Demo
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+              <a class="btn btn-ghost" href="#final-cta">Talk to us as a parent</a>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-top:0">Whatâ€™s included, every week</h3>
+            <ul class="pricing-points">
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Teacher guide â€” every session scripted, timed, ready to teach
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Student workbook â€” one per grade, aligned to the year
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Starter Scratch / HTML files for every project
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Teacher training + monthly refresher â€” we handle upskilling
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Age-appropriate AI-prompting chapter â€” parents love this
+              </li>
+              <li>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                Progress reports the school can share at PTMs
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS ================= -->
+    <section aria-labelledby="test-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">What partners say</span>
+          <h2 id="test-title">Principals and parents, in their own words.</h2>
+        </div>
+        <div class="testimonials">
+          <article class="quote reveal">
+            <p>The connection they draw between Vedic sutras and algorithms is genuinely brilliant. Our Grade 5 kids are noticeably faster at mental maths â€” and the coding class has become the most-asked-for period of the week.</p>
+            <div class="attrib"><div class="avatar" aria-hidden="true">RM</div><div class="who"><b>Rashmi Menon</b><br/><span>Principal, Kâ€“8 school (Pune)</span></div></div>
+          </article>
+          <article class="quote reveal">
+            <p>My daughter used to be scared of maths. Now she builds Scratch games that <em>teach</em> the same tricks to her cousins. The confidence shift in one term has been the biggest surprise as a parent.</p>
+            <div class="attrib"><div class="avatar" aria-hidden="true">AJ</div><div class="who"><b>Amit Joshi</b><br/><span>Parent, Grade 4</span></div></div>
+          </article>
+          <article class="quote reveal">
+            <p>Every session is scripted so my computer teacher walks in ready. No extra planning burden. The monthly training keeps us confident and current.</p>
+            <div class="attrib"><div class="avatar" aria-hidden="true">SK</div><div class="who"><b>Sunita Kapoor</b><br/><span>Head of Middle School</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="container" style="max-width:820px;">
+        <div class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2 id="faq-title">The questions schools ask us first.</h2>
+        </div>
+        <div class="reveal">
+          <details>
+            <summary>Do we need to hire a specialist coding teacher?</summary>
+            <p>No. T.H.Y.N.K is designed to be delivered by your existing computer/maths teacher. Every session is scripted, we run initial training, and there is a monthly refresher included.</p>
+          </details>
+          <details>
+            <summary>What infrastructure do we need?</summary>
+            <p>Just a functional computer lab with one machine per child (or per pair) and a browser. Scratch and our web tools are 100% browser-based. No installs.</p>
+          </details>
+          <details>
+            <summary>How is this different from a Vedic-maths tuition or a coding bootcamp?</summary>
+            <p>Both exist in isolation. T.H.Y.N.K is the only program that teaches them <b>as one thinking skill</b> â€” using each subject to reinforce the other, inside the regular school week.</p>
+          </details>
+          <details>
+            <summary>Is AI safe for a 9-year-old?</summary>
+            <p>Yes, when framed as a thinking partner. Our teacher guide has a dedicated chapter on age-appropriate AI prompting: what to ask, what not to share, and how to treat AI as a co-builder, not an answer machine.</p>
+          </details>
+          <details>
+            <summary>Does it align with NEP 2020?</summary>
+            <p>Fully. NEP 2020 calls for computational thinking, coding, and digital fluency from middle school. Our curriculum, workbooks, and progress reports are mapped to it and audit-ready.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section id="final-cta" aria-labelledby="final-title">
+      <div class="container">
+        <div class="final-cta reveal">
+          <span class="eyebrow" style="background:rgba(255,255,255,.14); color:#FDE68A; border-color:rgba(253,230,138,.35);">Letâ€™s talk</span>
+          <h2 id="final-title" style="margin-top:14px;">Bring T.H.Y.N.K to your school this academic year.</h2>
+          <p>A 20-minute demo is all it takes to see the Vedic-sutra â†” algorithm connection land with kids on screen. Weâ€™ll walk your team through the curriculum, workbooks, and teacher training â€” and answer everything a principal or parent might ask.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top: var(--space-5);">
+            <a class="btn btn-primary" href="mailto:hello@thynk.school?subject=Book%20a%20T.H.Y.N.K%20demo">
+              Book a School Demo
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="mailto:hello@thynk.school?subject=Parent%20enquiry">Iâ€™m a parent â€” tell me more</a>
+          </div>
+          <p style="margin-top: var(--space-5); font-size:.9rem; color:#EDE9FE;">Or write to us at <a href="mailto:hello@thynk.school" style="color:#FDE68A; text-decoration:underline;">hello@thynk.school</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <div class="container foot">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>T.H.Y.N.K</span>
+      </div>
+      <div style="font-family: var(--font-accent); color:#6D28D9;">Think Today Â· Learn Smart Â· Lead Tomorrow</div>
+      <small>Â© <span id="year"></span> T.H.Y.N.K Program. Built for schools in India.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Prefers reduced motion â€” skip animations
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Reveal on scroll
+    if (!reduced && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+    }
+
+    // Parallax on hero blobs (Standard tier, capped for perf)
+    if (!reduced) {
+      const layers = document.querySelectorAll('.parallax');
+      let ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          layers.forEach(el => {
+            const speed = parseFloat(el.dataset.speed || '0');
+            el.style.transform = `translate3d(0, ${y * speed / 20}px, 0)`;
+          });
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  </script>
+</body>
+</html>
+

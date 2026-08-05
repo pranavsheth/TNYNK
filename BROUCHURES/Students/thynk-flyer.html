@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>THYNK — Enrollment Flyer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root{
+    --blue:#2563EB;
+    --purple:#7C3AED;
+    --orange:#F59E0B;
+    --green:#22C55E;
+    --yellow:#FDE68A;
+    --ink:#1E1B3A;
+    --slate:#57536F;
+    --paper:#FFFFFF;
+    --cloud:#F5F7FC;
+  }
+
+  *{box-sizing:border-box;}
+
+  body{
+    margin:0;
+    padding:40px 16px;
+    background:
+      radial-gradient(circle at 12% 8%, #DCEBFF 0%, transparent 45%),
+      radial-gradient(circle at 92% 12%, #FEF3C7 0%, transparent 42%),
+      #FFFFFF;
+    font-family:'Nunito',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    color:var(--ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:36px;
+  }
+
+  .page{display:flex;flex-direction:column;align-items:center;}
+  .page-label{font-family:'Poppins',sans-serif;font-weight:800;font-size:11px;letter-spacing:2px;color:#9CA3AF;text-transform:uppercase;margin-bottom:10px;}
+  .sheet-front{break-after:page;page-break-after:always;}
+
+  .flyer{
+    position:relative;
+    width:794px;
+    max-width:100%;
+    background:var(--paper);
+    border-radius:32px;
+    overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(37,99,235,.35), 0 10px 30px -10px rgba(124,58,237,.2);
+  }
+
+  .page-blob{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;}
+  .page-blob.pb1{width:260px;height:260px;background:#93C5FD;opacity:.18;top:360px;left:-90px;}
+  .page-blob.pb2{width:220px;height:220px;background:var(--yellow);opacity:.28;top:660px;right:-80px;}
+
+  /* ---------- banner ---------- */
+  .banner{
+    position:relative;
+    padding:44px 44px 66px;
+    background:linear-gradient(125deg,var(--blue) 0%, var(--purple) 65%, #6D28D9 100%);
+    color:#fff;
+    overflow:hidden;
+  }
+  .blob{position:absolute;border-radius:50%;filter:blur(46px);z-index:0;}
+  .blob.b1{width:240px;height:240px;background:var(--orange);opacity:.35;top:-80px;right:-50px;}
+  .blob.b2{width:200px;height:200px;background:var(--green);opacity:.3;bottom:-90px;left:-50px;}
+  .blob.b3{width:140px;height:140px;background:var(--yellow);opacity:.25;top:30%;right:26%;}
+  .spark{position:absolute;z-index:1;}
+
+  .banner-text{position:relative;z-index:2;max-width:460px;}
+  .brand-row{display:flex;align-items:center;gap:14px;margin-bottom:4px;}
+  .rocket-badge{font-size:38px;display:inline-block;transform:rotate(-14deg);filter:drop-shadow(0 6px 8px rgba(0,0,0,.25));}
+  .wordmark{font-family:'Poppins',sans-serif;font-weight:900;font-size:50px;letter-spacing:1px;line-height:1;text-shadow:0 4px 10px rgba(0,0,0,.15);}
+  .subtitle{font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:.6px;text-transform:uppercase;opacity:.92;margin:6px 0 16px;}
+  .tagline-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:9px 18px;border-radius:999px;font-weight:700;font-size:14px;}
+
+  .banner-illustration{position:absolute;right:36px;bottom:54px;display:flex;align-items:flex-end;z-index:2;}
+  .illo-kid{font-size:44px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3));}
+
+  .wave{position:absolute;left:0;right:0;bottom:-2px;line-height:0;z-index:1;}
+
+  /* ---------- signature motif divider ---------- */
+  .motif-divider{display:flex;justify-content:center;gap:13px;padding:6px 0 2px;position:relative;z-index:1;}
+  .motif-divider span{width:8px;height:8px;transform:rotate(45deg);border-radius:2px;display:inline-block;}
+  .motif-divider span:nth-child(4n+1){background:var(--blue);}
+  .motif-divider span:nth-child(4n+2){background:var(--purple);}
+  .motif-divider span:nth-child(4n+3){background:var(--orange);}
+  .motif-divider span:nth-child(4n+4){background:var(--green);}
+
+  /* ---------- hook ---------- */
+  .hook{padding:28px 46px 10px;text-align:center;position:relative;z-index:1;}
+  .hook h2{font-family:'Poppins',sans-serif;font-weight:800;font-size:24px;background:linear-gradient(90deg,var(--blue),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;margin:0 0 12px;}
+  .hook p{max-width:560px;margin:0 auto;color:var(--slate);font-size:15px;line-height:1.65;font-weight:600;}
+  .hook p b{color:var(--ink);}
+
+  /* ---------- section titles ---------- */
+  .section-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:21px;text-align:center;margin:22px 0 16px;color:var(--ink);position:relative;z-index:1;}
+
+  /* ---------- programs ---------- */
+  .programs{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 40px;position:relative;z-index:1;}
+  .card{border-radius:20px;padding:20px;transition:transform .2s ease, box-shadow .2s ease;}
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 26px -12px rgba(30,27,58,.25);}
+  .card.coding{background:linear-gradient(160deg,#EEF2FF,#E6E9FF);border:1px solid #D9DFFB;}
+  .card.maths{background:linear-gradient(160deg,#FFF7E6,#FFF0DB);border:1px solid #FBE6C2;}
+  .card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px;box-shadow:0 8px 16px -6px rgba(0,0,0,.25);}
+  .card.coding .card-icon{background:linear-gradient(135deg,var(--blue),var(--purple));}
+  .card.maths .card-icon{background:linear-gradient(135deg,var(--orange),#F97316);}
+  .card h3{font-family:'Poppins',sans-serif;font-weight:800;font-size:18px;margin:0 0 3px;}
+  .card .tagline{font-size:13px;color:var(--slate);font-weight:700;margin:0 0 12px;font-style:italic;}
+  .card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;}
+  .card li{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--ink);}
+  .check{flex:0 0 auto;width:17px;height:17px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:900;}
+  .card.coding .check{background:var(--blue);}
+  .card.maths .check{background:var(--orange);}
+
+  /* ---------- why choose ---------- */
+  .why{padding:6px 36px 4px;position:relative;z-index:1;}
+  .badges{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;}
+  .badge{display:flex;align-items:center;gap:8px;padding:8px 14px 8px 8px;border-radius:999px;font-weight:700;font-size:13px;background:var(--cloud);border:1px solid #E4E9F5;}
+  .badge-icon{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex:0 0 auto;}
+  .badge:nth-child(4n+1) .badge-icon{background:#DCE6FE;}
+  .badge:nth-child(4n+2) .badge-icon{background:#E9DDFB;}
+  .badge:nth-child(4n+3) .badge-icon{background:#FDECC8;}
+  .badge:nth-child(4n+4) .badge-icon{background:#D9F5E1;}
+
+  /* ---------- who can join ---------- */
+  .who{text-align:center;padding:20px 40px 4px;position:relative;z-index:1;}
+  .grades-pill{display:inline-block;font-family:'Poppins',sans-serif;font-weight:800;font-size:19px;color:#fff;background:linear-gradient(90deg,var(--green),#16A34A);padding:9px 24px;border-radius:999px;margin-bottom:10px;box-shadow:0 10px 20px -8px rgba(34,197,94,.5);}
+  .who p{color:var(--slate);font-weight:700;font-size:14px;margin:0;}
+
+  /* ---------- CTA ---------- */
+  .cta{margin-top:22px;background:linear-gradient(115deg,var(--purple),var(--blue) 55%, #0EA5E9 100%);color:#fff;padding:34px 40px;text-align:center;position:relative;z-index:1;}
+  .cta-title{font-family:'Poppins',sans-serif;font-weight:900;font-size:22px;margin-bottom:4px;}
+  .cta-sub{opacity:.9;font-weight:600;font-size:14px;margin-bottom:16px;}
+  .cta-brand{font-family:'Poppins',sans-serif;font-weight:800;font-size:16px;margin-bottom:18px;}
+  .cta-brand span{font-weight:600;opacity:.85;font-size:12.5px;}
+  .contact-row{display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .contact-primary{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--purple);padding:13px 26px;border-radius:14px;font-size:19px;font-weight:900;box-shadow:0 10px 24px -10px rgba(0,0,0,.35);}
+  .contact-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);padding:9px 20px;border-radius:12px;font-size:16px;font-weight:700;letter-spacing:.2px;}
+
+  /* ---------- quiz banner variant (back page) ---------- */
+  .banner.quiz-banner{background:linear-gradient(125deg,var(--orange) 0%, var(--green) 70%, #16A34A 100%);}
+  .quiz-banner .blob.b1{background:var(--blue);}
+  .quiz-banner .blob.b2{background:var(--purple);}
+  .quiz-banner .blob.b3{background:var(--yellow);}
+  .quiz-title{font-family:'Poppins',sans-serif;font-weight:900;font-size:34px;letter-spacing:.3px;line-height:1.15;text-shadow:0 4px 10px rgba(0,0,0,.15);}
+
+  /* ---------- quiz content (back page) ---------- */
+  .quiz-intro{padding:26px 46px 4px;text-align:center;position:relative;z-index:1;}
+  .quiz-intro p{color:var(--slate);font-weight:700;font-size:15px;margin:0;}
+  .quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px 40px 4px;position:relative;z-index:1;}
+  .quiz-card{display:flex;align-items:flex-start;gap:10px;background:var(--cloud);border:1px solid #E4E9F5;border-radius:16px;padding:14px 16px;}
+  .quiz-num{flex:0 0 auto;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-weight:800;font-size:13px;color:#fff;}
+  .quiz-card:nth-child(4n+1) .quiz-num{background:var(--blue);}
+  .quiz-card:nth-child(4n+2) .quiz-num{background:var(--purple);}
+  .quiz-card:nth-child(4n+3) .quiz-num{background:var(--orange);}
+  .quiz-card:nth-child(4n+4) .quiz-num{background:var(--green);}
+  .quiz-q{font-size:13px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:6px;}
+  .quiz-options{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;font-weight:700;color:var(--slate);}
+
+  .score-guide{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:18px 40px 4px;position:relative;z-index:1;}
+  .score-item{display:flex;align-items:center;gap:6px;background:var(--cloud);border:1px solid #E4E9F5;padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:700;}
+
+  .answers-strip{margin:20px 40px 0;padding:14px 18px;border-radius:14px;background:#F1F0FB;border:1px dashed #D9D6F5;text-align:center;position:relative;z-index:1;}
+  .answers-label{font-size:11px;font-weight:800;color:var(--slate);margin-bottom:4px;letter-spacing:.3px;}
+  .answers-list{display:inline-block;transform:rotate(180deg);font-size:12px;font-weight:800;color:var(--ink);letter-spacing:1px;}
+
+  .back-footer{margin-top:24px;background:linear-gradient(115deg,var(--green),var(--blue) 60%, #0EA5E9 100%);color:#fff;padding:20px 40px;text-align:center;position:relative;z-index:1;}
+  .back-footer-brand{font-family:'Poppins',sans-serif;font-weight:800;font-size:15px;margin-bottom:4px;}
+  .back-footer-brand span{font-weight:600;opacity:.85;font-size:12px;}
+  .back-footer-contact{font-size:12.5px;font-weight:700;opacity:.95;}
+
+  @media print{
+    html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    body{background:#fff;padding:0;gap:0;}
+    .page{margin:0;}
+    .page-label{display:none;}
+    .flyer{box-shadow:none;border-radius:0;width:100%;}
+    .card:hover{transform:none;box-shadow:none;}
+  }
+  @page{size:A4;margin:8mm;}
+
+  @media (prefers-reduced-motion: reduce){
+    .card{transition:none;}
+    .card:hover{transform:none;}
+  }
+
+  @media (max-width:560px){
+    .programs{grid-template-columns:1fr;padding:0 24px;}
+    .quiz-grid{grid-template-columns:1fr;padding:14px 24px 4px;}
+    .wordmark{font-size:40px;}
+    .quiz-title{font-size:26px;}
+    .banner{padding:36px 28px 60px;}
+    .why{padding:6px 24px;}
+    .who{padding:20px 24px 4px;}
+    .quiz-intro{padding:22px 24px 4px;}
+    .score-guide{padding:16px 24px 4px;}
+    .answers-strip{margin:16px 24px 0;}
+    .back-footer{padding:18px 24px;}
+    .cta{padding:26px 24px;}
+    .banner-illustration{display:none;}
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-label">Front</div>
+    <div class="flyer sheet-front">
+    <div class="page-blob pb1"></div>
+    <div class="page-blob pb2"></div>
+
+    <div class="banner">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
+      <span class="spark" style="top:24px;left:58%;font-size:16px;">✨</span>
+      <span class="spark" style="top:74px;left:46%;font-size:12px;">⭐</span>
+
+      <div class="banner-text">
+        <div class="brand-row">
+          <span class="rocket-badge">🚀</span>
+          <span class="wordmark">THYNK</span>
+        </div>
+        <div class="subtitle">The Hub for Young Next-gen Knowledge</div>
+        <div class="tagline-pill">🚀 Where Maths Meets Coding. Where Learning Meets Creativity.</div>
+      </div>
+
+      <div class="banner-illustration">
+        <span class="illo-kid">🧑‍💻</span>
+        <span class="illo-kid" style="margin-left:-8px;">🧮</span>
+      </div>
+
+      <svg class="wave" viewBox="0 0 794 70" preserveAspectRatio="none">
+        <path d="M0,38 C130,8 230,64 360,42 C500,18 610,60 794,26 L794,70 L0,70 Z" fill="#FFFFFF"/>
+      </svg>
+    </div>
+
+    <div class="hook">
+      <h2>🧠 Is your child ready for the future?</h2>
+      <p>At THYNK, we don't just teach Coding or Vedic Maths. We help children build <b>logic, creativity, confidence</b> and <b>problem-solving skills</b> that prepare them for tomorrow's AI-driven world.</p>
+    </div>
+
+    <div class="motif-divider" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+    <div class="section-title">🌟 Our Programs</div>
+    <div class="programs">
+      <div class="card coding">
+        <div class="card-icon">💻</div>
+        <h3>Coding for Kids</h3>
+        <div class="tagline">Learn by creating exciting projects!</div>
+        <ul>
+          <li><span class="check">✓</span>Scratch Programming</li>
+          <li><span class="check">✓</span>Game Development</li>
+          <li><span class="check">✓</span>Animation &amp; Stories</li>
+          <li><span class="check">✓</span>Logic Building</li>
+          <li><span class="check">✓</span>Problem Solving</li>
+          <li><span class="check">✓</span>Computational Thinking</li>
+        </ul>
+      </div>
+      <div class="card maths">
+        <div class="card-icon">🧮</div>
+        <h3>Vedic Maths</h3>
+        <div class="tagline">Make calculations faster and smarter!</div>
+        <ul>
+          <li><span class="check">✓</span>Lightning Fast Calculations</li>
+          <li><span class="check">✓</span>Mental Maths Techniques</li>
+          <li><span class="check">✓</span>Speed &amp; Accuracy</li>
+          <li><span class="check">✓</span>Multiplication Tricks</li>
+          <li><span class="check">✓</span>Division Shortcuts</li>
+          <li><span class="check">✓</span>Exam Confidence</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-title">🎯 Why Choose THYNK?</div>
+    <div class="why">
+      <div class="badges">
+        <div class="badge"><span class="badge-icon">👥</span>Small Interactive Batches</div>
+        <div class="badge"><span class="badge-icon">✋</span>Hands-on Learning</div>
+        <div class="badge"><span class="badge-icon">🎨</span>Activity Based Sessions</div>
+        <div class="badge"><span class="badge-icon">📚</span>Age-Appropriate Curriculum</div>
+        <div class="badge"><span class="badge-icon">🧑‍🏫</span>Experienced Mentors</div>
+        <div class="badge"><span class="badge-icon">💡</span>Builds Confidence &amp; Creativity</div>
+        <div class="badge"><span class="badge-icon">🏆</span>Future Ready Skills</div>
+      </div>
+    </div>
+
+    <div class="section-title">👧👦 Who Can Join?</div>
+    <div class="who">
+      <div class="grades-pill">Grades 3 – 8</div>
+      <p>Perfect for children who love to learn, explore and create!</p>
+    </div>
+
+    <div class="motif-divider" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+    <div class="cta">
+      <div class="cta-title">📍 Enroll Today!</div>
+      <div class="cta-sub">Give your child the skills they need for the future.</div>
+      <div class="cta-brand">THYNK <span>— Think • Create • Innovate</span></div>
+      <div class="contact-row">
+        <div class="contact-primary">📞 Call / WhatsApp: +91 XXXXX XXXXX</div>
+        <div class="contact-secondary">📧 pranav.thynk@gmail.com</div>
+        <div class="contact-secondary">📧 aradhana.thynk@gmail.com</div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="page-label">Back — Fun Quiz</div>
+    <div class="flyer">
+      <div class="page-blob pb1"></div>
+      <div class="page-blob pb2"></div>
+
+      <div class="banner quiz-banner">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <span class="spark" style="top:24px;left:58%;font-size:16px;">✨</span>
+        <span class="spark" style="top:74px;left:46%;font-size:12px;">⭐</span>
+
+        <div class="banner-text">
+          <div class="brand-row">
+            <span class="rocket-badge">🧩</span>
+            <span class="quiz-title">Brain Teaser Break!</span>
+          </div>
+          <div class="subtitle">A Fun THYNK Quiz</div>
+          <div class="tagline-pill">🧠 Think you've got what it takes? Try these before you enroll!</div>
+        </div>
+
+        <div class="banner-illustration">
+          <span class="illo-kid">🤔</span>
+          <span class="illo-kid" style="margin-left:-8px;">✏️</span>
+        </div>
+
+        <svg class="wave" viewBox="0 0 794 70" preserveAspectRatio="none">
+          <path d="M0,38 C130,8 230,64 360,42 C500,18 610,60 794,26 L794,70 L0,70 Z" fill="#FFFFFF"/>
+        </svg>
+      </div>
+
+      <div class="quiz-intro">
+        <p>Grab a pencil and give these a go — no pressure, just for fun! ✏️</p>
+      </div>
+
+      <div class="motif-divider" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <div class="quiz-num">1</div>
+          <div>
+            <div class="quiz-q">I am a number. Double me, then add 4 — you get 20. Who am I?</div>
+            <div class="quiz-options"><span>A) 8</span><span>B) 6</span><span>C) 10</span></div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-num">2</div>
+          <div>
+            <div class="quiz-q">What comes next in the pattern? 2, 4, 8, 16, __</div>
+            <div class="quiz-options"><span>A) 24</span><span>B) 32</span><span>C) 20</span></div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-num">3</div>
+          <div>
+            <div class="quiz-q">Using the ×10, ÷2 shortcut, what is 24 × 5?</div>
+            <div class="quiz-options"><span>A) 140</span><span>B) 100</span><span>C) 120</span></div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-num">4</div>
+          <div>
+            <div class="quiz-q">If 🍎 = 1, 🍌 = 2, 🍇 = 3, then 🍎 + 🍇 + 🍌 = ?</div>
+            <div class="quiz-options"><span>A) 6</span><span>B) 5</span><span>C) 7</span></div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-num">5</div>
+          <div>
+            <div class="quiz-q">What has keys but can't open a single lock?</div>
+            <div class="quiz-options"><span>A) A map</span><span>B) A book</span><span>C) A keyboard</span></div>
+          </div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-num">6</div>
+          <div>
+            <div class="quiz-q">I speak without a mouth and hear without ears. What am I?</div>
+            <div class="quiz-options"><span>A) A shadow</span><span>B) An echo</span><span>C) A dream</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="score-guide">
+        <div class="score-item">🌱 0–2 correct: Getting Started!</div>
+        <div class="score-item">⚡ 3–4 correct: Sharp Thinker!</div>
+        <div class="score-item">🏆 5–6 correct: Future THYNK Topper!</div>
+      </div>
+
+      <div class="answers-strip">
+        <div class="answers-label">🙈 No peeking! Answers</div>
+        <div class="answers-list">1-A &nbsp; 2-B &nbsp; 3-C &nbsp; 4-A &nbsp; 5-C &nbsp; 6-B</div>
+      </div>
+
+      <div class="back-footer">
+        <div class="back-footer-brand">THYNK <span>— Think • Create • Innovate</span></div>
+        <div class="back-footer-contact">📞 +91 XXXXX XXXXX &nbsp;·&nbsp; 📧 pranav.thynk@gmail.com</div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

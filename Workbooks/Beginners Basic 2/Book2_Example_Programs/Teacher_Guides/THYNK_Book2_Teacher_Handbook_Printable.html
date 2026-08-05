@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THYNK Book 2 Teacher Handbook</title>
+  <style>
+    :root {
+      --ink: #1f2937;
+      --muted: #4b5563;
+      --line: #d1d5db;
+      --brand: #1d4ed8;
+      --soft: #eff6ff;
+      --panel: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background: #ffffff;
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .cover {
+      border: 2px solid var(--brand);
+      border-radius: 14px;
+      padding: 28px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--soft) 100%);
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      color: var(--brand);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      color: #111827;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #111827;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .meta div {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    .toc {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      background: var(--panel);
+    }
+
+    .toc ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    .chapter {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: #fff;
+      page-break-inside: avoid;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand);
+      background: var(--soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin-bottom: 10px;
+    }
+
+    .mini-file {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .section {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f9fafb;
+      border-left: 4px solid var(--brand);
+      border-radius: 8px;
+    }
+
+    ol, ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    li { margin-bottom: 5px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .note {
+      margin-top: 16px;
+      border: 1px dashed #93c5fd;
+      border-radius: 8px;
+      padding: 10px;
+      background: #f0f9ff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .two-col, .meta {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 25px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; padding: 12mm; }
+      .chapter { page-break-inside: avoid; }
+      .cover { page-break-after: always; }
+    }
+  </style>
+<!-- THYNK_A4_PRINT_STYLES -->
+<style>
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .page,
+  .sheet,
+  .a4,
+  .slide {
+    width: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  table {
+    max-width: 100% !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  p,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="cover">
+      <h1>THYNK Book 2 Teacher Handbook</h1>
+      <div class="subtitle">Mini-Project Teaching Guide (Printable Edition)</div>
+      <p>This handbook combines chapter-wise teacher notes for Book 2 mini-projects. Each chapter includes:</p>
+      <ul>
+        <li>What to demo first</li>
+        <li>Common student errors and quick fixes</li>
+        <li>Rapid troubleshooting checklist</li>
+        <li>Extension challenge and exit ticket</li>
+      </ul>
+      <div class="meta">
+        <div><strong>Program:</strong> THYNK Level 2 - Young Explorer</div>
+        <div><strong>Use With:</strong> Scratch .sb3 reference files</div>
+        <div><strong>Chapters:</strong> 1.2, 2.2, 3.2, 4.2</div>
+        <div><strong>Version Date:</strong> 2026-07-27</div>
+      </div>
+    </section>
+
+    <section class="toc">
+      <h2>Contents</h2>
+      <ul>
+        <li>Chapter 1.2 - Dance Loop</li>
+        <li>Chapter 2.2 - Pattern Artist</li>
+        <li>Chapter 3.2 - One-Minute Story</li>
+        <li>Chapter 4.2 - Final Showreel</li>
+      </ul>
+    </section>
+
+    <section class="chapter">
+      <div class="tag">Chapter 1.2</div>
+      <h3>Dance Loop</h3>
+      <div class="mini-file">Mini-project file: book2_ch1_mini_dance_loop.sb3</div>
+      <div class="section"><strong>Lesson goal (30-40 min):</strong> Build a dance animation using sequence, loop, costume switch, and timing control.</div>
+      <div class="two-col">
+        <div class="section">
+          <strong>What to demo first</strong>
+          <ol>
+            <li>Run once and identify repeated pattern.</li>
+            <li>Show block order: repeat -> turn -> move -> next costume -> wait.</li>
+            <li>Change values live: wait 0.2 to 0.1, move 15 to 30.</li>
+            <li>Re-run and compare smoothness.</li>
+          </ol>
+        </div>
+        <div class="section">
+          <strong>Common errors and quick fixes</strong>
+          <ul>
+            <li>Jumpy movement: reduce move + wait together.</li>
+            <li>Stops too early: increase repeat count.</li>
+            <li>No costume animation: keep next costume inside loop.</li>
+            <li>Sprite drifts away: add edge bounce or lower movement.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <strong>Troubleshooting checklist</strong>
+        <ol>
+          <li>Is when green flag clicked at top?</li>
+          <li>Does repeat wrap all action blocks?</li>
+          <li>Is wait inside loop?</li>
+          <li>Are at least two costumes available?</li>
+        </ol>
+      </div>
+      <div class="note"><strong>Exit ticket:</strong> Which single block change made the biggest visual difference, and why?</div>
+    </section>
+
+    <section class="chapter">
+      <div class="tag">Chapter 2.2</div>
+      <h3>Pattern Artist</h3>
+      <div class="mini-file">Mini-project file: book2_ch2_mini_pattern_artist.sb3</div>
+      <div class="section"><strong>Lesson goal (30-40 min):</strong> Use custom blocks with inputs for reusable geometric pattern logic.</div>
+      <div class="two-col">
+        <div class="section">
+          <strong>What to demo first</strong>
+          <ol>
+            <li>Run once and observe repeated behavior.</li>
+            <li>Show custom blocks: drawLine(len), turnAngle(deg).</li>
+            <li>Show where both blocks are called in repeat.</li>
+            <li>Change turn angle 60 to 45 and compare output.</li>
+          </ol>
+        </div>
+        <div class="section">
+          <strong>Common errors and quick fixes</strong>
+          <ul>
+            <li>Nothing drawn: check pen down before loop.</li>
+            <li>Messy random lines: start with clear and reset position.</li>
+            <li>Input ignored: ensure argument reporter is used in definition.</li>
+            <li>Script too long: move repeated logic into custom blocks.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <strong>Troubleshooting checklist</strong>
+        <ol>
+          <li>Is pen extension enabled?</li>
+          <li>Is pen clear at start?</li>
+          <li>Is pen down before repeat?</li>
+          <li>Do custom blocks use their input parameters?</li>
+        </ol>
+      </div>
+      <div class="note"><strong>Exit ticket:</strong> Why are custom blocks better than copy-pasting long block chains?</div>
+    </section>
+
+    <section class="chapter">
+      <div class="tag">Chapter 3.2</div>
+      <h3>One-Minute Story</h3>
+      <div class="mini-file">Mini-project file: book2_ch3_mini_one_minute_story.sb3</div>
+      <div class="section"><strong>Lesson goal (30-40 min):</strong> Build a short story with timed dialogue, scene transitions, sprite movement, and sound.</div>
+      <div class="two-col">
+        <div class="section">
+          <strong>What to demo first</strong>
+          <ol>
+            <li>Run full story once.</li>
+            <li>Replay and pause at scene transitions.</li>
+            <li>Show sequence: say for seconds -> broadcast -> wait.</li>
+            <li>Modify one timing value and test clarity.</li>
+          </ol>
+        </div>
+        <div class="section">
+          <strong>Common errors and quick fixes</strong>
+          <ul>
+            <li>Dialogue overlap: use say for seconds + short waits.</li>
+            <li>Scene not starting: verify exact message spelling.</li>
+            <li>Sound timing off: use play sound until done.</li>
+            <li>Story confusing: one event and one transition per scene.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <strong>Troubleshooting checklist</strong>
+        <ol>
+          <li>Does each scene end with one clear trigger?</li>
+          <li>Do all receivers match message names exactly?</li>
+          <li>Are waits inserted between major actions?</li>
+          <li>Are beginning and ending lines clearly visible?</li>
+        </ol>
+      </div>
+      <div class="note"><strong>Exit ticket:</strong> Which block most improved story clarity: wait, say duration, or broadcast?</div>
+    </section>
+
+    <section class="chapter">
+      <div class="tag">Chapter 4.2</div>
+      <h3>Final Showreel</h3>
+      <div class="mini-file">Mini-project file: book2_ch4_mini_final_showreel.sb3</div>
+      <div class="section"><strong>Lesson goal (40 min):</strong> Combine animation, custom blocks, sound/story flow, and broadcasts into one polished project.</div>
+      <div class="two-col">
+        <div class="section">
+          <strong>What to demo first</strong>
+          <ol>
+            <li>Run full showreel and identify all four concepts.</li>
+            <li>Show message chain: intro_done -> demo_start -> show_end.</li>
+            <li>Show receiver scripts and custom jump block.</li>
+            <li>Change one value live and retest.</li>
+          </ol>
+        </div>
+        <div class="section">
+          <strong>Common errors and quick fixes</strong>
+          <ul>
+            <li>After renaming message, flow breaks: update all senders/receivers.</li>
+            <li>Custom block fails: verify call input and definition reporter.</li>
+            <li>Too many simultaneous actions: add waits between broadcasts.</li>
+            <li>No ending: confirm show_end broadcast and receiver exist.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <strong>Troubleshooting checklist</strong>
+        <ol>
+          <li>At least 3 broadcast messages?</li>
+          <li>At least one custom block with input?</li>
+          <li>Visible costume animation with timing?</li>
+          <li>At least one sound integrated in flow?</li>
+        </ol>
+      </div>
+      <div class="note"><strong>Exit ticket:</strong> Name one bug fixed today and the concept you used best.</div>
+    </section>
+  </main>
+</body>
+</html>
+

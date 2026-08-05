@@ -1,0 +1,452 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --blue: #2563eb;
+  --purple: #7c3aed;
+  --orange: #f59e0b;
+  --green: #22c55e;
+  --ink: #1b2240;
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito", "Poppins", "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(160deg, #ebf4ff 0%, #f6fbff 48%, #fff8e8 100%);
+  color: var(--ink);
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 10px auto;
+  background: #ffffff;
+  padding: 10mm;
+  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0.26;
+  z-index: 0;
+}
+
+.shape-a {
+  width: 70mm;
+  height: 70mm;
+  background: radial-gradient(circle, #bfdbfe 0%, #93c5fd 75%, transparent 100%);
+  top: -14mm;
+  left: -10mm;
+}
+
+.shape-b {
+  width: 72mm;
+  height: 72mm;
+  background: radial-gradient(circle, #fde68a 0%, #facc15 75%, transparent 100%);
+  right: -14mm;
+  bottom: 26mm;
+}
+
+.shape-c {
+  width: 44mm;
+  height: 44mm;
+  background: radial-gradient(circle, #ddd6fe 0%, #c4b5fd 75%, transparent 100%);
+  right: 48mm;
+  top: 120mm;
+}
+
+.hero,
+.programs,
+.benefits,
+.student-fill,
+.cta {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 6mm;
+  align-items: stretch;
+  border-radius: 5mm;
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 54%, #7c3aed 100%);
+  color: #ffffff;
+  padding: 7mm;
+}
+
+.eyebrow {
+  margin: 0 0 1.8mm;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  font-size: 9.8pt;
+  color: #fde68a;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-size: 37pt;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.5px;
+}
+
+.hero-logo {
+  display: block;
+  width: 72mm;
+  max-width: 100%;
+  height: auto;
+  margin: 0.2mm 0 1.2mm;
+  background: #ffffff;
+  border-radius: 2.5mm;
+  padding: 1.5mm 2.4mm;
+}
+
+.tagline {
+  margin: 2mm 0 2mm;
+  font-size: 13pt;
+  font-weight: 800;
+}
+
+.intro {
+  margin: 0;
+  font-size: 10.8pt;
+  line-height: 1.45;
+}
+
+.join {
+  margin: 2.5mm 0 0;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 1.1mm 3mm;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+.hero-art {
+  border-radius: 4mm;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.08) 100%);
+  min-height: 100%;
+}
+
+.hero-art-canvas {
+  height: 100%;
+  min-height: 86mm;
+  padding: 4.5mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(250, 204, 21, 0.35) 0 14%, transparent 14.5%),
+    radial-gradient(circle at 88% 84%, rgba(34, 197, 94, 0.28) 0 12%, transparent 12.5%),
+    linear-gradient(160deg, rgba(30, 64, 175, 0.58) 0%, rgba(124, 58, 237, 0.58) 100%);
+}
+
+.art-row {
+  display: flex;
+  gap: 2mm;
+  flex-wrap: wrap;
+}
+
+.art-row.top {
+  justify-content: flex-start;
+}
+
+.art-row.bottom {
+  justify-content: center;
+}
+
+.art-pill,
+.art-chip {
+  border-radius: 999px;
+  padding: 1mm 2.7mm;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+.art-pill {
+  font-size: 9.2pt;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.art-chip {
+  font-size: 8.8pt;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.art-center {
+  display: grid;
+  place-items: center;
+  padding: 3mm 0;
+}
+
+.art-screen {
+  width: 100%;
+  max-width: 55mm;
+  border-radius: 3mm;
+  padding: 3mm;
+  background: rgba(255, 255, 255, 0.93);
+  color: #1c2550;
+  box-shadow: 0 8px 20px rgba(12, 25, 76, 0.25);
+}
+
+.art-dot {
+  display: inline-block;
+  width: 2mm;
+  height: 2mm;
+  border-radius: 50%;
+  background: #93c5fd;
+  margin-right: 1mm;
+}
+
+.art-dot:nth-child(2) {
+  background: #facc15;
+}
+
+.art-dot:nth-child(3) {
+  background: #22c55e;
+}
+
+.art-screen p {
+  margin: 1.8mm 0 0.8mm;
+  font-size: 9.5pt;
+  font-weight: 700;
+}
+
+.art-screen strong {
+  font-size: 10.4pt;
+  color: #7c3aed;
+}
+
+.programs {
+  margin-top: 4.5mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4mm;
+}
+
+.program-card {
+  border-radius: 4mm;
+  padding: 4mm;
+  border: 1px solid #dbe7ff;
+  background: #f8fbff;
+  box-shadow: 0 3px 12px rgba(30, 58, 138, 0.08);
+}
+
+.program-card h2 {
+  margin: 0 0 2.4mm;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-size: 15pt;
+  line-height: 1.2;
+}
+
+.program-card ul {
+  margin: 0;
+  padding-left: 5mm;
+}
+
+.program-card li {
+  margin: 1mm 0;
+  font-size: 10.6pt;
+}
+
+.program-card .icon {
+  margin-right: 1.2mm;
+}
+
+.coding {
+  border-top: 5px solid var(--blue);
+}
+
+.coding h2 {
+  color: #1e40af;
+}
+
+.vedic {
+  border-top: 5px solid var(--orange);
+}
+
+.vedic h2 {
+  color: #b45309;
+}
+
+.benefits {
+  margin-top: 3.7mm;
+  border-radius: 4mm;
+  padding: 3.5mm 4mm;
+  border: 1px solid #d5ddff;
+  background: linear-gradient(120deg, #f3f4ff 0%, #f9fbff 100%);
+}
+
+.benefits h3,
+.student-fill h3 {
+  margin: 0 0 2mm;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-size: 14pt;
+  font-weight: 800;
+  color: #2d2b7d;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5mm 3mm;
+}
+
+.benefit-grid p {
+  margin: 0;
+  font-size: 10pt;
+  display: flex;
+  align-items: center;
+  gap: 1.6mm;
+  font-weight: 700;
+}
+
+.student-fill {
+  margin-top: 3.5mm;
+  border-radius: 4mm;
+  padding: 3.3mm 4mm;
+  border: 1px solid #d6efe0;
+  background: linear-gradient(120deg, #effff5 0%, #f7fffb 100%);
+}
+
+.fill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.2mm 3.4mm;
+}
+
+.fill-grid p {
+  margin: 0;
+  font-size: 10.4pt;
+}
+
+.fill-grid strong {
+  color: #15803d;
+}
+
+.cta {
+  margin-top: 4.2mm;
+  border-radius: 5mm;
+  padding: 4mm;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4mm;
+  background: linear-gradient(130deg, #f59e0b 0%, #f97316 48%, #7c3aed 110%);
+  color: #ffffff;
+}
+
+.line-a {
+  margin: 0;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-size: 14pt;
+  font-weight: 800;
+}
+
+.line-b {
+  margin: 0.3mm 0 2mm;
+  font-size: 11.2pt;
+  font-weight: 800;
+}
+
+.cta-copy p {
+  margin: 0.8mm 0;
+  font-size: 10.4pt;
+  line-height: 1.3;
+}
+
+.cta-copy .contact-large {
+  font-size: 12.8pt;
+  line-height: 1.4;
+  font-weight: 800;
+}
+
+.qr {
+  text-align: center;
+  min-width: 31mm;
+}
+
+.qr-box {
+  width: 28mm;
+  height: 28mm;
+  border-radius: 2mm;
+  margin: 0 auto 1.2mm;
+  background:
+    linear-gradient(90deg, #000 12.5%, transparent 12.5%, transparent 25%, #000 25%, #000 37.5%, transparent 37.5%, transparent 50%, #000 50%, #000 62.5%, transparent 62.5%, transparent 75%, #000 75%, #000 87.5%, transparent 87.5%),
+    linear-gradient(#000 12.5%, transparent 12.5%, transparent 25%, #000 25%, #000 37.5%, transparent 37.5%, transparent 50%, #000 50%, #000 62.5%, transparent 62.5%, transparent 75%, #000 75%, #000 87.5%, transparent 87.5%),
+    #fff;
+  background-size: 8px 8px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: "Poppins", "Nunito", sans-serif;
+  font-size: 8pt;
+  font-weight: 800;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+  border: 2px solid #fff;
+}
+
+.qr p {
+  margin: 0;
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .page {
+    margin: 0;
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .page {
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 14px;
+  }
+
+  .hero,
+  .programs,
+  .benefit-grid,
+  .fill-grid,
+  .cta {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-art-canvas {
+    min-height: 56mm;
+  }
+
+  h1 {
+    font-size: 29pt;
+  }
+
+  .qr {
+    justify-self: start;
+  }
+}

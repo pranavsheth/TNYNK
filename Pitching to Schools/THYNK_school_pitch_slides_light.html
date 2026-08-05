@@ -1,0 +1,1377 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>T.H.Y.N.K â€” School Pitch (Light)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     T.H.Y.N.K â€” School Pitch Deck Â· LIGHT / PLAYFUL EDITION
+     Cream paper feel Â· Scratch-block accents Â· Vedic sum doodles
+     Controls:  â† â†’  Space  Home  End  F (fullscreen)  Esc
+     ============================================================ */
+
+  :root {
+    --bg-0: #fdf8ee;               /* warm cream paper */
+    --bg-1: #ffffff;
+    --paper-line: rgba(20,20,50,0.06);
+    --ink: #14142b;                /* deep indigo text */
+    --ink-soft: #4a4a6b;
+    --ink-mute: #8a8aa5;
+
+    --gold: #f5b301;
+    --gold-deep: #d99500;
+    --saffron: #ff8f2a;
+    --coral: #ff5c8a;
+    --cyan: #0ea5b7;
+    --violet: #7c3aed;
+    --green: #10b981;
+    --red: #ef4444;
+
+    --line: rgba(20,20,50,0.10);
+    --card: #ffffff;
+    --card-hi: #fffcf3;
+    --shadow: 0 4px 22px rgba(20,20,50,0.06), 0 1px 3px rgba(20,20,50,0.05);
+    --shadow-hi: 0 10px 40px rgba(20,20,50,0.10), 0 2px 6px rgba(20,20,50,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg-0);
+    color: var(--ink);
+    font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- Deck / Stage ---------- */
+  .deck {
+    position: fixed; inset: 0;
+    display: grid; place-items: center;
+    background:
+      /* subtle notebook rule lines */
+      linear-gradient(to bottom, transparent 0, transparent 39px, var(--paper-line) 39px, var(--paper-line) 40px),
+      radial-gradient(1200px 800px at 15% 8%,   rgba(245,179,1,0.10), transparent 60%),
+      radial-gradient(1000px 700px at 90% 92%,  rgba(124,58,237,0.08), transparent 60%),
+      radial-gradient(900px  600px at 50% 55%,  rgba(14,165,183,0.05), transparent 65%),
+      var(--bg-0);
+  }
+
+  .stage {
+    width: min(100vw, calc(100vh * 16 / 9));
+    height: min(100vh, calc(100vw * 9 / 16));
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-0);
+    box-shadow: 0 20px 80px rgba(20,20,50,0.10);
+  }
+
+  .stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('Thynk-03.png') center 54% / 42vmin auto no-repeat;
+    opacity: 0.06;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stage > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    padding: 5.5vmin 6.5vmin 8vmin;
+    animation: fadeIn 0.45s ease both;
+  }
+  .slide.active { display: flex; flex-direction: column; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(14px) scale(0.995); }
+    to   { opacity: 1; transform: none; }
+  }
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ---------- Decorative background art (per slide) ---------- */
+  .bg-art {
+    position: absolute; inset: 0;
+    z-index: 0; overflow: hidden;
+    pointer-events: none;
+  }
+  .bg-art > * { position: absolute; }
+
+  /* Scratch-style code blocks (SVG built inline) */
+  .scratch-block {
+    filter: drop-shadow(0 4px 10px rgba(20,20,50,0.10));
+    opacity: 0.55;
+    transform-origin: center;
+  }
+
+  /* Vedic sum / hand-written doodle */
+  .doodle {
+    font-family: "Caveat", "Kalam", cursive;
+    color: var(--ink-mute);
+    opacity: 0.35;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+  .doodle.gold  { color: var(--gold-deep); opacity: 0.30; }
+  .doodle.cyan  { color: var(--cyan);      opacity: 0.28; }
+  .doodle.violet{ color: var(--violet);    opacity: 0.25; }
+  .doodle.coral { color: var(--coral);     opacity: 0.28; }
+
+  /* Confetti dots */
+  .dot-deco { border-radius: 50%; opacity: 0.6; }
+
+  /* All actual slide content sits above bg-art */
+  .slide > *:not(.bg-art) { position: relative; z-index: 2; }
+
+  /* ---------- Typography ---------- */
+  h1, h2, h3 { font-family: "Space Grotesk", "Plus Jakarta Sans", sans-serif; letter-spacing: -0.01em; }
+  .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(11px, 1.15vmin, 15px);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    margin-bottom: 2.2vmin;
+    animation: riseIn 0.6s 0.05s ease both;
+  }
+  h1.title { font-size: clamp(28px, 7.2vmin, 84px); font-weight: 800; line-height: 1.02; animation: riseIn 0.6s 0.12s ease both; }
+  h2.title { font-size: clamp(24px, 5.4vmin, 60px); font-weight: 800; line-height: 1.05; margin-bottom: 2vmin; animation: riseIn 0.6s 0.12s ease both; }
+  .lede    { font-size: clamp(15px, 2.1vmin, 24px); color: var(--ink-soft); max-width: 92%; line-height: 1.45; animation: riseIn 0.6s 0.2s ease both; }
+  .grad      { background: linear-gradient(90deg, var(--gold-deep), var(--saffron) 45%, var(--coral)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .grad-cyan { background: linear-gradient(90deg, var(--cyan), var(--violet));                        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  em.hl { color: var(--gold-deep); font-style: normal; font-weight: 700; }
+  em.hc { color: var(--cyan);      font-style: normal; font-weight: 700; }
+  em.hv { color: var(--violet);    font-style: normal; font-weight: 700; }
+  em.hg { color: var(--green);     font-style: normal; font-weight: 700; }
+  em.hp { color: var(--coral);     font-style: normal; font-weight: 700; }
+
+  /* ---------- Chrome ---------- */
+  /* Old per-slide brand chip â€” hidden in favour of a persistent centered logo (see .stage-brand) */
+  .brand { display: none !important; }
+
+  /* Persistent centered logo that shows on every slide */
+  .stage-brand {
+    position: absolute;
+    top: 1.6vmin;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 5vmin;
+    max-height: 46px;
+    min-height: 28px;
+    z-index: 6;
+    pointer-events: none;
+    opacity: 0.95;
+    filter: drop-shadow(0 2px 6px rgba(20,20,50,0.15));
+  }
+  .stage-brand img {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+  /* Hide the small header logo on the hero (hero already shows a large logo). */
+  .stage:has(> .slide.hero.active) > .stage-brand { display: none; }
+
+  .brand-legacy {
+    position: absolute; top: 3.2vmin; left: 4vmin;
+    display: flex; align-items: center; gap: 1.4vmin;
+    font-family: "Space Grotesk", sans-serif; font-weight: 700;
+    letter-spacing: 0.35em;
+    font-size: clamp(11px, 1.4vmin, 16px);
+    color: var(--ink-soft);
+    z-index: 5;
+  }
+  .brand .dot {
+    width: 22px; height: 22px;
+    background: url('Thynk-03.png') center / contain no-repeat;
+    filter: drop-shadow(0 2px 4px rgba(20,20,50,0.15));
+  }
+  .tag {
+    position: absolute; top: 3.2vmin; right: 4vmin;
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(10px, 1.15vmin, 13px);
+    color: var(--ink-mute);
+    letter-spacing: 0.2em;
+    z-index: 5;
+  }
+  .footer {
+    position: absolute; bottom: 2.5vmin; left: 4vmin; right: 4vmin;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(10px, 1.15vmin, 13px);
+    color: var(--ink-mute);
+    letter-spacing: 0.15em;
+    z-index: 5;
+  }
+  .footer .motto { color: var(--ink-soft); letter-spacing: 0.28em; }
+
+  /* progress bar */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--saffron), var(--coral));
+    width: 0%;
+    box-shadow: 0 0 12px rgba(245,179,1,0.6);
+    transition: width 0.35s ease;
+    z-index: 20;
+  }
+
+  /* nav controls */
+  .controls {
+    position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    padding: 8px 12px; border-radius: 999px;
+    z-index: 20;
+    opacity: 0.6; transition: opacity 0.25s ease;
+  }
+  .controls:hover { opacity: 1; }
+  .btn {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--line); background: transparent;
+    color: var(--ink); cursor: pointer;
+    display: grid; place-items: center;
+    font-size: 15px;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .btn:hover { background: rgba(20,20,50,0.06); }
+  .btn:active { transform: scale(0.94); }
+  .counter { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--ink-soft); min-width: 52px; text-align: center; }
+
+  .hint {
+    position: fixed; bottom: 22px; right: 22px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px; color: var(--ink-mute); letter-spacing: 0.15em;
+    z-index: 20; opacity: 0.7;
+  }
+  .hint kbd {
+    display: inline-block; padding: 2px 6px; border-radius: 4px;
+    background: #fff; border: 1px solid var(--line);
+    box-shadow: 0 1px 0 var(--line);
+    font-family: "JetBrains Mono", monospace; font-size: 10px;
+    margin: 0 2px;
+  }
+
+  /* ---------- Reusable blocks ---------- */
+  .grid { display: grid; gap: 2.4vmin; }
+  .g-2 { grid-template-columns: 1fr 1fr; }
+  .g-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .g-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 3vmin 2.8vmin;
+    box-shadow: var(--shadow);
+    animation: riseIn 0.6s ease both;
+    position: relative; overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover { box-shadow: var(--shadow-hi); transform: translateY(-2px); }
+  .card .h {
+    font-family: "Space Grotesk", sans-serif; font-weight: 700;
+    font-size: clamp(15px, 2.2vmin, 26px);
+    margin-bottom: 1vmin; letter-spacing: -0.01em;
+  }
+  .card .p { color: var(--ink-soft); font-size: clamp(12px, 1.55vmin, 18px); line-height: 1.5; }
+  .card .num { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(20px, 3.5vmin, 44px); color: var(--gold-deep); line-height: 1; margin-bottom: 1vmin; }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(245,179,1,0.15); border: 1px solid rgba(245,179,1,0.45);
+    color: var(--gold-deep);
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(10px, 1.2vmin, 13px);
+    letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .pill.cyan   { background: rgba(14,165,183,0.12); border-color: rgba(14,165,183,0.45); color: var(--cyan); }
+  .pill.violet { background: rgba(124,58,237,0.12); border-color: rgba(124,58,237,0.4);  color: var(--violet); }
+
+  .quote {
+    border-left: 4px solid var(--gold);
+    padding: 2vmin 3vmin;
+    background: linear-gradient(90deg, rgba(245,179,1,0.10), transparent);
+    border-radius: 0 12px 12px 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(16px, 2.6vmin, 30px);
+    line-height: 1.35; color: var(--ink);
+  }
+
+  .badge {
+    display: inline-block; padding: 3px 10px;
+    color: #fff;
+    font-family: "JetBrains Mono", monospace;
+    font-size: clamp(10px, 1.2vmin, 13px);
+    font-weight: 700; letter-spacing: 0.12em;
+    border-radius: 6px;
+  }
+
+  /* ---------- Slide 1 Â· Hero ---------- */
+  .hero { justify-content: center; align-items: center; text-align: center; }
+  .hero .logo-mark {
+    display: grid; place-items: center;
+    /* width: clamp(120px, 20vmin, 240px);
+    height: clamp(120px, 20vmin, 240px); */
+    width:50%;
+    margin-bottom: 3vmin;
+    animation: riseIn 0.7s ease both;
+    filter: drop-shadow(0 8px 20px rgba(245,179,1,0.35));
+  }
+  .hero .logo-mark img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .hero h1.mega {
+    font-size: clamp(48px, 12vmin, 150px);
+    font-weight: 800; letter-spacing: 0.08em; line-height: 0.95;
+    margin-bottom: 2vmin;
+    animation: riseIn 0.7s 0.15s ease both;
+  }
+  .hero .motto-big {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: clamp(16px, 2.7vmin, 30px);
+    color: var(--ink-soft);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 4vmin;
+    animation: riseIn 0.7s 0.28s ease both;
+  }
+  .hero .motto-big span { color: var(--gold-deep); font-weight: 700; }
+  .hero .desc {
+    max-width: 70%;
+    font-size: clamp(14px, 2vmin, 22px); color: var(--ink-soft); line-height: 1.55;
+    animation: riseIn 0.7s 0.42s ease both;
+  }
+
+  /* ---------- Stat hero ---------- */
+  .stat-hero { justify-content: center; }
+  .stat-hero .big { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(60px, 20vmin, 260px); line-height: 0.9; letter-spacing: -0.03em; }
+  .stat-hero .small { font-size: clamp(16px, 2.6vmin, 30px); color: var(--ink-soft); margin-top: 2vmin; max-width: 80%; line-height: 1.4; }
+
+  /* ---------- Sutra = Algorithm ---------- */
+  .compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 3vmin; align-items: stretch; margin-top: 3vmin; flex: 1; }
+  .compare .side { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 18px; padding: 3vmin; display: flex; flex-direction: column; gap: 1.2vmin; }
+  .compare .side.left  { border-top: 4px solid var(--gold); }
+  .compare .side.right { border-top: 4px solid var(--cyan); }
+  .compare .side .lbl { font-family: "JetBrains Mono", monospace; font-size: clamp(11px, 1.4vmin, 15px); letter-spacing: 0.25em; text-transform: uppercase; color: var(--ink-mute); }
+  .compare .side h3 { font-size: clamp(22px, 3.5vmin, 42px); font-weight: 800; line-height: 1.05; }
+  .compare .side .steps { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1vmin; margin-top: auto; }
+  .compare .side .steps li { padding: 1.2vmin 1.6vmin; background: var(--bg-0); border: 1px dashed var(--line); border-radius: 8px; font-family: "JetBrains Mono", monospace; font-size: clamp(11px, 1.5vmin, 16px); color: var(--ink-soft); }
+  .compare .equals { display: grid; place-items: center; font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(40px, 8vmin, 90px); color: var(--saffron); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 20px rgba(255,143,42,0.4); }
+    50%      { transform: scale(1.1); text-shadow: 0 0 40px rgba(255,143,42,0.6); }
+  }
+
+  /* ---------- 4 levels ---------- */
+  .levels { grid-template-columns: repeat(4, 1fr); }
+  .level {
+    background: var(--card); border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 18px;
+    padding: 2.5vmin 2vmin;
+    display: flex; flex-direction: column; gap: 1vmin;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .level:hover { transform: translateY(-4px); box-shadow: var(--shadow-hi); }
+  .level .n { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(30px, 5vmin, 60px); line-height: 1; }
+  .level .name { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(15px, 2.1vmin, 24px); margin-top: 0.5vmin; }
+  .level .grade { font-family: "JetBrains Mono", monospace; font-size: clamp(10px, 1.2vmin, 13px); color: var(--ink-mute); letter-spacing: 0.15em; text-transform: uppercase; }
+  .level .desc { font-size: clamp(11px, 1.5vmin, 16px); color: var(--ink-soft); line-height: 1.45; margin-top: 1vmin; }
+  .level.l1 { border-top: 4px solid var(--gold);    } .level.l1 .n { color: var(--gold-deep); }
+  .level.l2 { border-top: 4px solid var(--saffron); } .level.l2 .n { color: var(--saffron); }
+  .level.l3 { border-top: 4px solid var(--cyan);    } .level.l3 .n { color: var(--cyan); }
+  .level.l4 { border-top: 4px solid var(--violet);  } .level.l4 .n { color: var(--violet); }
+
+  /* ---------- Level detail ---------- */
+  .lvl-detail { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4vmin; flex: 1; margin-top: 2vmin; }
+  .lvl-detail .left { display: flex; flex-direction: column; justify-content: center; gap: 1.5vmin; }
+  .lvl-detail .huge { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(48px, 12vmin, 140px); line-height: 0.9; }
+  .lvl-detail .name-big { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(22px, 3.8vmin, 48px); letter-spacing: -0.01em; }
+  .lvl-detail .track { font-family: "JetBrains Mono", monospace; font-size: clamp(11px, 1.4vmin, 15px); color: var(--ink-mute); letter-spacing: 0.2em; text-transform: uppercase; }
+  .lvl-detail ul.feats { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1.4vmin; align-self: center; }
+  .lvl-detail ul.feats li {
+    background: var(--card); border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 12px; padding: 1.8vmin 2.2vmin;
+    font-size: clamp(13px, 1.9vmin, 20px); color: var(--ink);
+    display: flex; gap: 1.2vmin; align-items: flex-start;
+  }
+  .lvl-detail ul.feats li::before { content: 'â–¸'; color: var(--gold-deep); font-weight: 700; flex-shrink: 0; }
+  .outcome {
+    margin-top: 2vmin; padding: 1.6vmin 2vmin;
+    background: linear-gradient(90deg, rgba(245,179,1,0.15), transparent);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    font-size: clamp(13px, 1.9vmin, 20px); color: var(--ink);
+    font-style: italic;
+  }
+
+  /* ---------- Consumer vs Creator ---------- */
+  .flip { display: grid; grid-template-columns: 1fr 1fr; gap: 3vmin; margin-top: 3vmin; flex: 1; }
+  .flip .box { border-radius: 18px; padding: 3vmin; display: flex; flex-direction: column; justify-content: center; text-align: center; box-shadow: var(--shadow); }
+  .flip .box.bad  { background: linear-gradient(180deg, #fff, #ffeef4); border: 1px solid rgba(255,92,138,0.35); }
+  .flip .box.good { background: linear-gradient(180deg, #fff, #eaf9f2); border: 1px solid rgba(16,185,129,0.35); }
+  .flip .box .icon { font-size: clamp(50px, 10vmin, 100px); line-height: 1; margin-bottom: 2vmin; }
+  .flip .box .label { font-family: "JetBrains Mono", monospace; font-size: clamp(11px, 1.4vmin, 15px); letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 1.5vmin; }
+  .flip .box.bad  .label { color: var(--coral); }
+  .flip .box.good .label { color: var(--green); }
+  .flip .box .word { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(32px, 6.5vmin, 72px); line-height: 1; margin-bottom: 2vmin; }
+  .flip .box.bad  .word { color: var(--coral); }
+  .flip .box.good .word { color: var(--green); }
+  .flip .box .sub { font-size: clamp(13px, 1.9vmin, 20px); color: var(--ink-soft); line-height: 1.5; }
+
+  /* ---------- Kids ---------- */
+  .kids { grid-template-columns: repeat(2, 1fr); flex: 1; margin-top: 2vmin; }
+  .kid {
+    background: var(--card); border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 14px; padding: 2vmin 2.4vmin;
+    display: flex; flex-direction: column; gap: 0.7vmin;
+    animation: riseIn 0.6s ease both;
+  }
+  .kid .age { font-family: "JetBrains Mono", monospace; font-size: clamp(11px, 1.4vmin, 15px); color: var(--gold-deep); letter-spacing: 0.15em; }
+  .kid .n { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(16px, 2.3vmin, 26px); }
+  .kid .d { color: var(--ink-soft); font-size: clamp(11px, 1.5vmin, 16px); line-height: 1.45; }
+
+  /* ---------- 7 Reasons ---------- */
+  .reasons7 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.6vmin;
+    flex: 1; align-content: center;
+    margin-top: 1.5vmin;
+  }
+  .reasons7 > .r { grid-column: span 3; }
+  .reasons7 > .r:nth-child(n+5) { grid-column: span 4; }
+  .r {
+    background: var(--card); border: 1px solid var(--line);
+    border-top: 3px solid var(--gold);
+    border-radius: 14px; padding: 2vmin 1.8vmin;
+    display: flex; flex-direction: column; gap: 0.6vmin;
+    box-shadow: var(--shadow);
+    animation: riseIn 0.6s ease both;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .r:hover { transform: translateY(-3px); box-shadow: var(--shadow-hi); }
+  .r:nth-child(1) { border-top-color: var(--gold); }
+  .r:nth-child(2) { border-top-color: var(--saffron); }
+  .r:nth-child(3) { border-top-color: var(--coral); }
+  .r:nth-child(4) { border-top-color: var(--cyan); }
+  .r:nth-child(5) { border-top-color: var(--violet); }
+  .r:nth-child(6) { border-top-color: var(--red); }
+  .r:nth-child(7) { border-top-color: var(--green); }
+  .r .r-top { display: flex; align-items: center; gap: 1vmin; margin-bottom: 0.4vmin; }
+  .r .r-num { font-family: "JetBrains Mono", monospace; font-size: clamp(10px, 1.2vmin, 13px); color: var(--ink-mute); letter-spacing: 0.15em; }
+  .r .r-icon { font-size: clamp(22px, 3vmin, 34px); line-height: 1; }
+  .r .r-h { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(14px, 1.95vmin, 22px); line-height: 1.15; }
+  .r .r-p { color: var(--ink-soft); font-size: clamp(11px, 1.4vmin, 15px); line-height: 1.4; margin-top: 0.4vmin; }
+
+  /* ---------- Numbers ---------- */
+  .numbers { grid-template-columns: repeat(4, 1fr); flex: 1; align-content: center; margin-top: 3vmin; }
+  .metric {
+    text-align: center; padding: 2.5vmin 1.5vmin;
+    border-radius: 16px; background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    animation: riseIn 0.6s ease both;
+  }
+  .metric .n { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(30px, 6vmin, 68px); line-height: 1;
+    background: linear-gradient(180deg, var(--gold-deep), var(--saffron)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .metric .n.cyan  { background: linear-gradient(180deg, var(--cyan), var(--violet)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .metric .n.green { background: linear-gradient(180deg, var(--green), #059669);     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .metric .l { margin-top: 1vmin; font-size: clamp(11px, 1.5vmin, 15px); color: var(--ink-soft); line-height: 1.35; }
+
+  /* ---------- two-col + ring ---------- */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4vmin; margin-top: 2vmin; flex: 1; align-items: center; }
+  .two-col .visual { display: grid; place-items: center; height: 100%; }
+
+  .ring-wrap { position: relative; display: grid; place-items: center; width: 100%; height: 100%; }
+  .ring {
+    width: 45vmin; height: 45vmin; max-width: 460px; max-height: 460px;
+    border-radius: 50%;
+    background: conic-gradient(from -90deg,
+      var(--gold) 0 25%,
+      var(--saffron) 25% 50%,
+      var(--cyan) 50% 75%,
+      var(--violet) 75% 100%);
+    position: relative;
+    filter: drop-shadow(0 12px 40px rgba(20,20,50,0.10));
+    animation: spinIn 1.2s ease both;
+  }
+  @keyframes spinIn { from { transform: rotate(-30deg) scale(0.7); opacity: 0; } to { transform: none; opacity: 1; } }
+  .ring::after { content: ''; position: absolute; inset: 8%; background: var(--bg-0); border-radius: 50%; }
+  .ring-center { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; z-index: 2; }
+  .ring-center .n { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(50px, 10vmin, 110px); line-height: 1; color: var(--gold-deep); }
+  .ring-center .l { font-family: "JetBrains Mono", monospace; font-size: clamp(11px, 1.4vmin, 15px); color: var(--ink-soft); letter-spacing: 0.2em; margin-top: 1vmin; }
+  .ring-label {
+    position: absolute;
+    font-family: "Space Grotesk", sans-serif; font-weight: 700;
+    font-size: clamp(11px, 1.6vmin, 17px);
+    background: #fff; padding: 4px 10px; border-radius: 8px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    z-index: 3;
+  }
+  .ring-label.l1 { top: 6%;    left: 50%; transform: translateX(-50%); color: var(--gold-deep); }
+  .ring-label.l2 { right: 6%;  top: 50%; transform: translateY(-50%); color: var(--saffron); }
+  .ring-label.l3 { bottom: 6%; left: 50%; transform: translateX(-50%); color: var(--cyan); }
+  .ring-label.l4 { left: 6%;   top: 50%; transform: translateY(-50%); color: var(--violet); }
+
+  /* ---------- Q&A ---------- */
+  .qa { display: flex; flex-direction: column; gap: 2vmin; margin-top: 2vmin; }
+  .qa-item { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 14px; padding: 2vmin 2.5vmin; }
+  .qa-item .q { font-family: "Space Grotesk", sans-serif; font-weight: 700; color: var(--coral); font-size: clamp(14px, 2.1vmin, 22px); margin-bottom: 0.8vmin; }
+  .qa-item .a { color: var(--ink-soft); font-size: clamp(12px, 1.7vmin, 18px); line-height: 1.5; }
+
+  /* ---------- Steps ---------- */
+  .steps-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.8vmin; margin-top: 3vmin; flex: 1; align-content: center; }
+  .step { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 14px; padding: 2.4vmin; position: relative; }
+  .step .num { position: absolute; top: -12px; left: -12px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(180deg, var(--gold), var(--saffron)); color: #fff; font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: 18px; box-shadow: var(--shadow); }
+  .step .h { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(14px, 1.9vmin, 20px); margin-bottom: 0.8vmin; }
+  .step .p { font-size: clamp(11px, 1.5vmin, 15px); color: var(--ink-soft); line-height: 1.45; }
+
+  /* ---------- Closing ---------- */
+  .closing { justify-content: center; align-items: center; text-align: center; }
+  .closing .mega { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(30px, 7.5vmin, 84px); line-height: 1.02; letter-spacing: -0.015em; max-width: 92%; margin: 0 auto; }
+  .closing .contact { margin-top: 5vmin; display: flex; justify-content: center; gap: 4vmin; flex-wrap: wrap; }
+  .closing .contact .p-card { text-align: left; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 2.2vmin 3vmin; border-radius: 14px; min-width: 32vmin; }
+  .closing .contact .role { font-family: "JetBrains Mono", monospace; color: var(--gold-deep); font-size: clamp(11px, 1.3vmin, 14px); letter-spacing: 0.2em; text-transform: uppercase; }
+  .closing .contact .nm { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: clamp(18px, 2.8vmin, 30px); margin: 0.5vmin 0; }
+  .closing .contact .cn { color: var(--ink-soft); font-size: clamp(12px, 1.6vmin, 17px); line-height: 1.6; }
+
+  /* ---------- Divider ---------- */
+  .divider { justify-content: center; align-items: flex-start; padding-left: 12vmin; }
+  .divider .num-huge { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(80px, 24vmin, 320px); line-height: 0.85;
+    background: linear-gradient(180deg, var(--gold), var(--saffron) 60%, rgba(255,143,42,0)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.95; }
+  .divider .title-big { font-family: "Space Grotesk", sans-serif; font-weight: 800; font-size: clamp(28px, 6vmin, 68px); margin-top: -2vmin; line-height: 1.05; }
+  .divider .sub { color: var(--ink-soft); font-size: clamp(14px, 2vmin, 22px); margin-top: 2vmin; max-width: 80%; line-height: 1.5; }
+
+  /* ---------- responsive small screens ---------- */
+  @media (max-width: 720px) {
+    .stage { width: 100vw; height: 100vh; }
+    .compare, .lvl-detail, .two-col, .flip { grid-template-columns: 1fr; }
+    .levels, .steps-flow, .numbers, .kids { grid-template-columns: 1fr 1fr; }
+    .reasons7 > .r, .reasons7 > .r:nth-child(n+5) { grid-column: span 6; }
+  }
+</style>
+<!-- THYNK_A4_PRINT_STYLES -->
+<style>
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
+@media print {
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  .page,
+  .sheet,
+  .a4,
+  .slide {
+    width: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+  }
+
+  img,
+  svg,
+  video,
+  canvas,
+  table {
+    max-width: 100% !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid-page;
+    page-break-after: avoid;
+  }
+
+  p,
+  li,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     REUSABLE SVG SPRITES Â· Scratch-block silhouettes
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 'when green flag clicked' hat block -->
+    <symbol id="sb-hat" viewBox="0 0 220 60">
+      <path d="M0,20 Q0,0 20,0 L200,0 Q220,0 220,20 L220,50 Q220,60 210,60 L140,60 L130,55 L90,55 L80,60 L10,60 Q0,60 0,50 Z"
+            fill="#f5b301" stroke="#c48f00" stroke-width="1.5"/>
+      <circle cx="30" cy="30" r="12" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+      <polygon points="26,22 40,30 26,38" fill="#166534"/>
+      <text x="55" y="37" font-family="Segoe UI, sans-serif" font-weight="700" font-size="20" fill="#5a3d00">when clicked</text>
+    </symbol>
+    <!-- 'move 10 steps' motion block -->
+    <symbol id="sb-move" viewBox="0 0 220 44">
+      <path d="M0,0 L60,0 L70,5 L110,5 L120,0 L220,0 L220,34 L120,34 L110,39 L70,39 L60,34 L0,34 Z"
+            fill="#4c97ff" stroke="#3373cc" stroke-width="1.5"/>
+      <text x="12" y="24" font-family="Segoe UI, sans-serif" font-weight="700" font-size="16" fill="#fff">move</text>
+      <rect x="70" y="8" width="42" height="18" rx="9" fill="#fff" stroke="#3373cc"/>
+      <text x="82" y="22" font-family="Segoe UI, sans-serif" font-weight="700" font-size="15" fill="#3373cc">10</text>
+      <text x="120" y="24" font-family="Segoe UI, sans-serif" font-weight="700" font-size="16" fill="#fff">steps</text>
+    </symbol>
+    <!-- 'say Hello!' looks block -->
+    <symbol id="sb-say" viewBox="0 0 220 44">
+      <path d="M0,0 L60,0 L70,5 L110,5 L120,0 L220,0 L220,34 L120,34 L110,39 L70,39 L60,34 L0,34 Z"
+            fill="#9966ff" stroke="#774dcb" stroke-width="1.5"/>
+      <text x="12" y="24" font-family="Segoe UI, sans-serif" font-weight="700" font-size="16" fill="#fff">say</text>
+      <rect x="52" y="8" width="80" height="18" rx="9" fill="#fff" stroke="#774dcb"/>
+      <text x="66" y="22" font-family="Segoe UI, sans-serif" font-weight="700" font-size="14" fill="#774dcb">Hello!</text>
+    </symbol>
+    <!-- 'repeat 5' control C-block -->
+    <symbol id="sb-repeat" viewBox="0 0 220 92">
+      <path d="M0,0 L60,0 L70,5 L110,5 L120,0 L220,0 L220,34 L40,34 L40,58 L220,58 L220,92 L120,92 L110,87 L70,87 L60,92 L0,92 Z"
+            fill="#ff8c1a" stroke="#cc6d00" stroke-width="1.5"/>
+      <text x="12" y="24" font-family="Segoe UI, sans-serif" font-weight="700" font-size="16" fill="#fff">repeat</text>
+      <rect x="70" y="8" width="36" height="18" rx="9" fill="#fff" stroke="#cc6d00"/>
+      <text x="80" y="22" font-family="Segoe UI, sans-serif" font-weight="700" font-size="15" fill="#cc6d00">5</text>
+    </symbol>
+    <!-- 'if <> then' block -->
+    <symbol id="sb-if" viewBox="0 0 220 92">
+      <path d="M0,0 L60,0 L70,5 L110,5 L120,0 L220,0 L220,34 L40,34 L40,58 L220,58 L220,92 L120,92 L110,87 L70,87 L60,92 L0,92 Z"
+            fill="#ffab19" stroke="#c47b00" stroke-width="1.5"/>
+      <text x="12" y="24" font-family="Segoe UI, sans-serif" font-weight="700" font-size="16" fill="#fff">if</text>
+      <polygon points="34,8 74,8 82,17 74,26 34,26 26,17" fill="#fff" stroke="#c47b00"/>
+      <text x="46" y="22" font-family="Segoe UI, sans-serif" font-weight="700" font-size="13" fill="#c47b00">x &gt; 5</text>
+      <text x="98" y="24" font-family="Segoe UI, sans-serif" font-weight="700" font-size="16" fill="#fff">then</text>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+  <div class="stage" id="stage">
+
+    <!-- Persistent centered logo (visible on every slide except the hero) -->
+    <div class="stage-brand" aria-hidden="true"><img src="Thynk-03.png" alt="T.H.Y.N.K"></div>
+
+    <!-- ================ 1 Â· HERO ================ -->
+    <section class="slide hero" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:8%;   left:5%;  width:22vmin; transform:rotate(-8deg);"><use href="#sb-hat"/></svg>
+        <svg class="scratch-block" style="top:22%;  left:8%;  width:20vmin; transform:rotate(-4deg);"><use href="#sb-move"/></svg>
+        <svg class="scratch-block" style="top:32%;  left:8%;  width:20vmin; transform:rotate(-2deg);"><use href="#sb-say"/></svg>
+        <svg class="scratch-block" style="top:14%;  right:5%; width:22vmin; transform:rotate(7deg);"><use href="#sb-repeat"/></svg>
+        <svg class="scratch-block" style="top:38%;  right:6%; width:22vmin; transform:rotate(3deg);"><use href="#sb-if"/></svg>
+        <div class="doodle gold"   style="bottom:20%; left:10%; font-size:5vmin; transform:rotate(-6deg);">25Â² = 625</div>
+        <div class="doodle cyan"   style="bottom:10%; left:22%; font-size:4vmin; transform:rotate(4deg);">998 Ã— 997</div>
+        <div class="doodle violet" style="bottom:14%; right:12%; font-size:4.5vmin; transform:rotate(-3deg);">EkÄdhikena PÅ«rveá¹‡a</div>
+        <div class="doodle coral"  style="bottom:24%; right:8%; font-size:5vmin; transform:rotate(6deg);">aÂ² + bÂ²</div>
+        <span class="dot-deco" style="top:12%; left:45%; width:10px; height:10px; background:var(--gold);"></span>
+        <span class="dot-deco" style="top:20%; left:60%; width:8px;  height:8px;  background:var(--cyan);"></span>
+        <span class="dot-deco" style="bottom:32%; left:40%; width:12px; height:12px; background:var(--violet);"></span>
+      </div>
+      <div class="logo-mark"><img src="Thynk-03.png" alt="T.H.Y.N.K logo"></div>
+      <!-- <h1 class="mega"><span class="grad">T.H.Y.N.K</span></h1> -->
+      <div class="motto-big"><span>Think Today</span> Â· <span>Learn Smart</span> Â· <span>Lead Tomorrow</span></div>
+      <p class="desc">A once-a-week, 35-minute in-school program teaching <em class="hl">Vedic Maths</em>, <em class="hc">Coding</em> &amp; <em class="hv">AI fluency</em> â€” together. For Grades 4 to 7.</p>
+      <div class="footer" style="margin-top: 4vmin;">
+
+        <span>A PROPOSAL FOR YOUR SCHOOL</span>
+        <span class="motto">2026 â€” 2027</span>
+      </div>
+    </section>
+
+    <!-- ================ 2 Â· The problem ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:12%; right:4%; width:16vmin; transform:rotate(6deg); opacity:0.35;"><use href="#sb-say"/></svg>
+        <div class="doodle" style="bottom:22%; left:6%; font-size:5vmin; transform:rotate(-4deg);">ðŸ“± â†’ ðŸŽ®</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">02 / THE PROBLEM</span>
+      <div class="kicker">Today's Reality</div>
+      <h2 class="title">Our children are the <span class="grad">most digital generation</span> in history.<br>Yet they're mostly <em class="hp">consuming</em>, not creating.</h2>
+      <div class="flip">
+        <div class="box bad">
+          <div class="icon">ðŸ“±</div>
+          <div class="label">Today</div>
+          <div class="word">CONSUMER</div>
+          <div class="sub">Hours on YouTube, games, reels.<br>Screen time worries every parent.</div>
+        </div>
+        <div class="box good">
+          <div class="icon">ðŸš€</div>
+          <div class="label">With T.H.Y.N.K</div>
+          <div class="word">CREATOR</div>
+          <div class="sub">Same screen â€” but making games, websites &amp; using AI as a thinking partner.</div>
+        </div>
+      </div>
+      <div class="footer"><span>Think Today Â· Learn Smart Â· Lead Tomorrow</span><span class="motto">02</span></div>
+    </section>
+
+    <!-- ================ 3 Â· Core Idea ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle gold" style="top:20%; left:2%;  font-size:5vmin; transform:rotate(-8deg);">25 Ã— 25 = 625</div>
+        <div class="doodle gold" style="top:36%; left:1%;  font-size:4vmin; transform:rotate(-5deg);">35Â² = 1225</div>
+        <div class="doodle cyan" style="top:22%; right:1%; font-size:4vmin; transform:rotate(6deg);">function solve() {</div>
+        <div class="doodle cyan" style="top:32%; right:2%; font-size:3.5vmin; transform:rotate(4deg);">  return answer;</div>
+        <div class="doodle cyan" style="top:41%; right:1%; font-size:4vmin; transform:rotate(6deg);">}</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">03 / THE CORE IDEA</span>
+      <div class="kicker">One insight Â· Two languages</div>
+      <h2 class="title"><span class="grad">Same thinking.</span><br><span class="grad-cyan">Two languages.</span></h2>
+      <div class="compare">
+        <div class="side left">
+          <span class="lbl">Ancient India</span>
+          <h3>A Vedic Sutra</h3>
+          <p class="lede" style="max-width:100%">A step-by-step rule to reach the answer.</p>
+          <ul class="steps">
+            <li>Ekadhikena Purvena</li>
+            <li>step 1 â†’ step 2 â†’ step 3</li>
+            <li>= result</li>
+          </ul>
+        </div>
+        <div class="equals">=</div>
+        <div class="side right">
+          <span class="lbl">Modern Computing</span>
+          <h3>An Algorithm</h3>
+          <p class="lede" style="max-width:100%">A step-by-step rule to reach the answer.</p>
+          <ul class="steps">
+            <li>function solve()</li>
+            <li>&nbsp;&nbsp;step 1 â†’ step 2 â†’ step 3</li>
+            <li>&nbsp;&nbsp;return result</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer"><span>We make the connection visible.</span><span class="motto">03</span></div>
+    </section>
+
+    <!-- ================ 4 Â· The 30-sec pitch ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:15%; right:3%; width:18vmin; transform:rotate(6deg); opacity:0.3;"><use href="#sb-hat"/></svg>
+        <div class="doodle gold" style="bottom:26%; right:6%; font-size:4.5vmin; transform:rotate(-4deg);">Nikhilam</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">04 / IN ONE PARAGRAPH</span>
+      <div class="kicker">What T.H.Y.N.K is</div>
+      <h2 class="title">Everything, in one line.</h2>
+      <div class="quote" style="margin-top: 3vmin;">
+        "A once-a-week, <em class="hl">35-minute program</em> for Grades 4â€“7 that teaches <em class="hl">Vedic Maths &amp; Coding together</em> â€” using your existing lab and your existing computer teacher. Children learn to think faster, build their own games and websites, and use AI as a <em class="hv">thinking partner</em>."
+      </div>
+      <div class="grid g-3" style="margin-top: 3vmin; flex: 0;">
+        <div class="card"><div class="num">35</div><div class="h">minutes</div><div class="p">once a week, inside school</div></div>
+        <div class="card"><div class="num">24</div><div class="h">weeks</div><div class="p">a full academic year per level</div></div>
+        <div class="card"><div class="num">â‚¹150</div><div class="h">per session</div><div class="p">less than one private tuition class</div></div>
+      </div>
+      <div class="footer"><span>Vedic Maths + Coding + AI Â· together</span><span class="motto">04</span></div>
+    </section>
+
+    <!-- ================ 5 Â· Divider ================ -->
+    <section class="slide divider" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:15%; right:8%; width:22vmin; transform:rotate(8deg);"><use href="#sb-repeat"/></svg>
+        <svg class="scratch-block" style="top:48%; right:12%; width:18vmin; transform:rotate(-4deg);"><use href="#sb-move"/></svg>
+        <div class="doodle violet" style="bottom:16%; right:8%; font-size:5vmin; transform:rotate(-3deg);">Grade 4 â†’ 7</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">05 / OUR JOURNEY</span>
+      <div class="num-huge">04</div>
+      <h2 class="title-big">Level Journey<br><span class="grad">Grade 4 â†’ Grade 7</span></h2>
+      <p class="sub">One level per academic year. Every child moves from playing with blocks to publishing real websites â€” and earns a certificate at each stage.</p>
+      <div class="footer"><span>Explorer â†’ Creator â†’ Innovator â†’ Leader</span><span class="motto">05</span></div>
+    </section>
+
+    <!-- ================ 6 Â· 4 Levels ================ -->
+    <section class="slide" data-slide>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">06 / 4-LEVEL PROGRAM</span>
+      <div class="kicker">A four-year progression</div>
+      <h2 class="title">Every child, a <span class="grad">four-year</span> journey.</h2>
+      <div class="levels grid" style="flex: 1; align-content: center; margin-top: 2vmin;">
+        <div class="level l1">
+          <div class="grade">Grade 4 Â· Level 1</div>
+          <div class="n">01</div>
+          <div class="name">Young Explorer</div>
+          <div class="desc">First taste of Scratch. Builds first 2 working games. Loses fear of maths &amp; computers.</div>
+        </div>
+        <div class="level l2">
+          <div class="grade">Grade 5 Â· Level 2</div>
+          <div class="n">02</div>
+          <div class="name">Young Creator</div>
+          <div class="desc">Designs &amp; builds own game. First guided AI conversations as a thinking partner.</div>
+        </div>
+        <div class="level l3">
+          <div class="grade">Grade 6 Â· Level 3</div>
+          <div class="n">03</div>
+          <div class="name">Young Innovator</div>
+          <div class="desc">Real code: HTML &amp; CSS. Builds a personal website. Becomes builder of the internet.</div>
+        </div>
+        <div class="level l4">
+          <div class="grade">Grade 7 Â· Level 4</div>
+          <div class="n">04</div>
+          <div class="name">Young Leader</div>
+          <div class="desc">Adds JavaScript. Publishes a real website. Presents a Demo Day to parents.</div>
+        </div>
+      </div>
+      <div class="footer"><span>4 levels Â· 4 certificates Â· 1 confident young person</span><span class="motto">06</span></div>
+    </section>
+
+    <!-- ================ 7 Â· Level 1 ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:14%; right:4%; width:20vmin; transform:rotate(6deg);"><use href="#sb-hat"/></svg>
+        <svg class="scratch-block" style="top:30%; right:6%; width:18vmin; transform:rotate(3deg);"><use href="#sb-move"/></svg>
+        <div class="doodle gold" style="bottom:20%; right:8%; font-size:4.5vmin; transform:rotate(-4deg);">2 Ã— 2 = 4</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">07 / LEVEL 1</span>
+      <div class="kicker">Grade 4 Â· Beginners Basic 1</div>
+      <h2 class="title" style="color: var(--gold-deep);">Young Explorer</h2>
+      <div class="lvl-detail">
+        <div class="left">
+          <div class="track">Level 01</div>
+          <div class="huge" style="color: var(--gold-deep);">01</div>
+          <div class="name-big">The First Spark</div>
+          <div class="outcome">The child no longer fears maths or a computer â€” they play with both.</div>
+        </div>
+        <ul class="feats">
+          <li>First introduction to <em class="hl">Scratch</em> â€” drag-and-drop block coding.</li>
+          <li>Builds first <em class="hl">2 working games</em> â€” Guess-My-Number &amp; Times-Table Race.</li>
+          <li>Masters <em class="hl">sequencing, loops, variables</em> â€” the DNA of every language.</li>
+          <li>Vedic foundations: <em class="hl">Ekadhikena Purvena</em> &amp; times-table shortcuts.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Level 1 Â· Young Explorer Â· Grade 4</span><span class="motto">07</span></div>
+    </section>
+
+    <!-- ================ 8 Â· Level 2 ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:14%; right:4%; width:20vmin; transform:rotate(-5deg);"><use href="#sb-if"/></svg>
+        <div class="doodle gold" style="top:44%; right:6%; font-size:4.5vmin; transform:rotate(4deg);">Nikhilam</div>
+        <div class="doodle gold" style="bottom:20%; right:5%; font-size:4vmin; transform:rotate(-3deg);">998 Ã— 997 = 995 006</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">08 / LEVEL 2</span>
+      <div class="kicker">Grade 5 Â· Beginners Basic 2</div>
+      <h2 class="title" style="color: var(--saffron);">Young Creator</h2>
+      <div class="lvl-detail">
+        <div class="left">
+          <div class="track">Level 02</div>
+          <div class="huge" style="color: var(--saffron);">02</div>
+          <div class="name-big">Imagine Â· Build</div>
+          <div class="outcome">The child can imagine a small game and build it on their own.</div>
+        </div>
+        <ul class="feats">
+          <li>Deeper Scratch â€” <em class="hl">conditionals, operators, multiple sprites</em>.</li>
+          <li>Builds a <em class="hl">Nikhilam Subtraction Wizard</em>, an <em class="hl">Urdhva Multiplier</em>, and a Final Project.</li>
+          <li>Vedic: <em class="hl">Nikhilam</em> &amp; <em class="hl">Urdhva-TiryagbhyÄm</em> â€” mental multiplication mastery.</li>
+          <li>First guided <em class="hv">AI conversations</em> â€” as a thinking partner, not an answer machine.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Level 2 Â· Young Creator Â· Grade 5</span><span class="motto">08</span></div>
+    </section>
+
+    <!-- ================ 9 Â· Level 3 ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle cyan" style="top:16%; right:3%; font-size:4vmin; transform:rotate(4deg);">&lt;h1&gt;Hello&lt;/h1&gt;</div>
+        <div class="doodle cyan" style="top:26%; right:2%; font-size:3.5vmin; transform:rotate(2deg);">body { color: #f5b301; }</div>
+        <div class="doodle cyan" style="bottom:22%; right:4%; font-size:4vmin; transform:rotate(-4deg);">&lt;a href="..."&gt;</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">09 / LEVEL 3</span>
+      <div class="kicker">Grade 6 Â· Advanced 1</div>
+      <h2 class="title" style="color: var(--cyan);">Young Innovator</h2>
+      <div class="lvl-detail">
+        <div class="left">
+          <div class="track">Level 03</div>
+          <div class="huge" style="color: var(--cyan);">03</div>
+          <div class="name-big">Builder of the Web</div>
+          <div class="outcome">The child stops being a <em class="hc">consumer</em> of the internet â€” and becomes a <em class="hg">builder</em> of it.</div>
+        </div>
+        <ul class="feats">
+          <li>From blocks to real <em class="hc">typed code</em>. A genuine leap.</li>
+          <li>Learns <em class="hc">HTML &amp; CSS</em> â€” the two languages behind every website.</li>
+          <li>Builds a real <em class="hc">multi-page personal website</em>.</li>
+          <li>Right-click "Inspect" on any site â€” and actually understands what they see.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Level 3 Â· Young Innovator Â· Grade 6</span><span class="motto">09</span></div>
+    </section>
+
+    <!-- ================ 10 Â· Level 4 ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle violet" style="top:14%; right:4%; font-size:4vmin; transform:rotate(4deg);">function calc(x){</div>
+        <div class="doodle violet" style="top:24%; right:4%; font-size:3.5vmin; transform:rotate(2deg);">  return x * x;</div>
+        <div class="doodle violet" style="top:34%; right:4%; font-size:4vmin; transform:rotate(4deg);">}</div>
+        <div class="doodle coral"  style="bottom:20%; right:5%; font-size:4.2vmin; transform:rotate(-4deg);">ðŸš€ Demo Day</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">10 / LEVEL 4</span>
+      <div class="kicker">Grade 7 Â· Advanced 2</div>
+      <h2 class="title" style="color: var(--violet);">Young Leader</h2>
+      <div class="lvl-detail">
+        <div class="left">
+          <div class="track">Level 04</div>
+          <div class="huge" style="color: var(--violet);">04</div>
+          <div class="name-big">Ship &amp; Present</div>
+          <div class="outcome">A real portfolio + the confidence to lead a tech project at school or beyond.</div>
+        </div>
+        <ul class="feats">
+          <li>Adds <em class="hv">JavaScript</em> â€” the language of Google, Instagram, YouTube.</li>
+          <li>Publishes a real <em class="hv">interactive website</em> parents can open on their phone.</li>
+          <li>Uses <em class="hv">AI safely</em> for generation, debugging &amp; explanation.</li>
+          <li>Presents a <em class="hv">3-minute Demo Day</em> to peers &amp; parents.</li>
+        </ul>
+      </div>
+      <div class="footer"><span>Level 4 Â· Young Leader Â· Grade 7</span><span class="motto">10</span></div>
+    </section>
+
+    <!-- ================ 11 Â· Ring ================ -->
+    <section class="slide" data-slide>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">11 / THE COMPLETE JOURNEY</span>
+      <div class="kicker">Four years Â· One young leader</div>
+      <h2 class="title">From <em class="hl">block-dragger</em> to <em class="hv">website publisher</em>.</h2>
+      <div class="two-col">
+        <div>
+          <p class="lede" style="max-width:100%">Every level builds on the last. Every child <em class="hg">progresses visibly</em>.<br>Every year ends with a project the parent can <em class="hg">see and share</em>.</p>
+          <div style="margin-top: 3vmin; display: flex; flex-direction: column; gap: 1.5vmin;">
+            <div style="display:flex; align-items:center; gap:1.2vmin;">
+              <span class="badge" style="background: linear-gradient(180deg,var(--gold),var(--gold-deep)); min-width: 32px; text-align:center;">Y1</span>
+              <span style="font-size: clamp(13px, 1.9vmin, 20px);">Fear disappears. Scratch feels like play.</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:1.2vmin;">
+              <span class="badge" style="background: var(--saffron); min-width: 32px; text-align:center;">Y2</span>
+              <span style="font-size: clamp(13px, 1.9vmin, 20px);">Original ideas â†’ original projects.</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:1.2vmin;">
+              <span class="badge" style="background: var(--cyan); min-width: 32px; text-align:center;">Y3</span>
+              <span style="font-size: clamp(13px, 1.9vmin, 20px);">Real code. Real websites. Real confidence.</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:1.2vmin;">
+              <span class="badge" style="background: var(--violet); min-width: 32px; text-align:center;">Y4</span>
+              <span style="font-size: clamp(13px, 1.9vmin, 20px);">A portfolio. A public Demo Day. A leader.</span>
+            </div>
+          </div>
+        </div>
+        <div class="visual">
+          <div class="ring-wrap">
+            <div class="ring"></div>
+            <div class="ring-center">
+              <div>
+                <div class="n">4</div>
+                <div class="l">YEARS Â· 4 LEVELS</div>
+              </div>
+            </div>
+            <span class="ring-label l1">Explorer</span>
+            <span class="ring-label l2">Creator</span>
+            <span class="ring-label l3">Innovator</span>
+            <span class="ring-label l4">Leader</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>A structured path, not scattered learning</span><span class="motto">11</span></div>
+    </section>
+
+    <!-- ================ 12 Â· Real kids ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle gold"  style="top:14%; left:3%; font-size:4vmin; transform:rotate(-6deg);">ðŸ‡®ðŸ‡³</div>
+        <div class="doodle violet" style="bottom:18%; right:4%; font-size:5vmin; transform:rotate(4deg);">age 13 Â· age 14 Â· age 16</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">12 / THIS IS NOT THEORY</span>
+      <div class="kicker">Indian children are already doing it</div>
+      <h2 class="title">At <em class="hl">13, 14, 16</em> â€” Indian kids are on <span class="grad">world stages</span>.</h2>
+      <div class="kids grid">
+        <div class="kid">
+          <span class="age">STARTED CODING AT 7 Â· FOUNDED STARTUP AT 16</span>
+          <div class="n">Pranjali Awasthi</div>
+          <div class="d">Interned at a university AI lab at 13. Founded <em class="hg">Delv.AI</em>, valued near â‚¹100 crore, backed by global investors.</div>
+        </div>
+        <div class="kid">
+          <span class="age">CODING AT 5 Â· IBM WATSON DEV AT 12</span>
+          <div class="n">Tanmay Bakshi</div>
+          <div class="d">Indian-Canadian teen â€” <em class="hg">IBM Watson developer</em>, published author, global tech-conference speaker.</div>
+        </div>
+        <div class="kid">
+          <span class="age">FOUNDED A GLOBAL IT FIRM AT 14</span>
+          <div class="n">Suhas Gopinath</div>
+          <div class="d">Bengaluru boy who started <em class="hg">Globals Inc.</em> â€” recognised by the World Economic Forum.</div>
+        </div>
+        <div class="kid">
+          <span class="age">AMONG INDIA'S YOUNGEST APP DEVS</span>
+          <div class="n">Shravan &amp; Sanjay Kumaran</div>
+          <div class="d">Chennai brothers â€” apps downloaded worldwide by ages <em class="hg">10 and 12</em>.</div>
+        </div>
+      </div>
+      <p class="lede" style="margin-top: 2vmin; text-align:center; max-width:100%; font-size: clamp(12px, 1.7vmin, 18px);">
+        The pattern is identical: <em class="hl">early exposure â†’ small structured projects â†’ compounding skill â†’ real outcomes by mid-teens.</em>
+      </p>
+      <div class="footer"><span>Your child is the age these children started at.</span><span class="motto">12</span></div>
+    </section>
+
+    <!-- ================ 13 Â· 3-5x stat ================ -->
+    <section class="slide stat-hero" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle gold" style="top:14%; left:6%;  font-size:5vmin; transform:rotate(-7deg);">25Â² = 625</div>
+        <div class="doodle gold" style="top:22%; left:4%;  font-size:4vmin; transform:rotate(-4deg);">35Â² = 1225</div>
+        <div class="doodle gold" style="bottom:16%; left:8%; font-size:4.5vmin; transform:rotate(-6deg);">45Â² = 2025</div>
+        <div class="doodle cyan" style="top:16%; right:6%; font-size:4.5vmin; transform:rotate(5deg);">998 Ã— 997</div>
+        <div class="doodle cyan" style="bottom:18%; right:4%; font-size:5vmin; transform:rotate(-4deg);">â‰ˆ 3 seconds</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">13 / THE SHIFT</span>
+      <div class="kicker">35 minutes a week</div>
+      <div class="big"><span class="grad-cyan">3â€“5Ã—</span></div>
+      <div class="small">
+        Vedic Maths children calculate <em class="hl">3 to 5 times faster</em> mentally than peers using traditional methods.<br>
+        That speed transfers into <em class="hg">school exams, science, Olympiads, and life.</em>
+      </div>
+      <div class="footer"><span>Sharper brain Â· faster thinking Â· calmer under pressure</span><span class="motto">13</span></div>
+    </section>
+
+    <!-- ================ 14 Â· 7 Reasons ================ -->
+    <section class="slide" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:8%; right:3%; width:14vmin; transform:rotate(8deg); opacity:0.28;"><use href="#sb-hat"/></svg>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">14 / WHY YOUR SCHOOL</span>
+      <div class="kicker">7 reasons to say yes</div>
+      <h2 class="title">Plug-and-play. <span class="grad">Audit-ready.</span> Zero risk.</h2>
+      <div class="reasons7">
+        <div class="r">
+          <div class="r-top"><span class="r-icon">ðŸ“‹</span><span class="r-num">01</span></div>
+          <div class="r-h">NEP 2020 Compliant</div>
+          <div class="r-p">Coding, computational thinking &amp; digital fluency â€” delivered in an <em class="hl">audit-ready</em> format.</div>
+        </div>
+        <div class="r">
+          <div class="r-top"><span class="r-icon">ðŸ’°</span><span class="r-num">02</span></div>
+          <div class="r-h">Zero Capital Cost</div>
+          <div class="r-p">Uses your <em class="hl">existing lab, teacher &amp; slot</em>. No hardware, no licences, no hiring.</div>
+        </div>
+        <div class="r">
+          <div class="r-top"><span class="r-icon">ðŸ§­</span><span class="r-num">03</span></div>
+          <div class="r-h">Builds On What You Do</div>
+          <div class="r-p">We <em class="hp">deepen &amp; modernise</em> your Vedic Maths â€” we don't replace, we strengthen.</div>
+        </div>
+        <div class="r">
+          <div class="r-top"><span class="r-icon">ðŸ‘©â€ðŸ«</span><span class="r-num">04</span></div>
+          <div class="r-h">Teacher Empowerment</div>
+          <div class="r-p">Your teacher delivers after a <em class="hc">1-day training</em>. They grow â€” the school retains the skill.</div>
+        </div>
+        <div class="r">
+          <div class="r-top"><span class="r-icon">âœ¨</span><span class="r-num">05</span></div>
+          <div class="r-h">Admissions Differentiator</div>
+          <div class="r-p">"Coding + Vedic Maths + AI" is a <em class="hv">premium, memorable</em> line at every open house &amp; parent meet.</div>
+        </div>
+        <div class="r">
+          <div class="r-top"><span class="r-icon">ðŸ“ˆ</span><span class="r-num">06</span></div>
+          <div class="r-h">Genuine Academic Lift</div>
+          <div class="r-p">Measurable improvement in maths scores &amp; soft skills within <em class="hl">one academic year</em>.</div>
+        </div>
+        <div class="r">
+          <div class="r-top"><span class="r-icon">ðŸ¤</span><span class="r-num">07</span></div>
+          <div class="r-h">Revenue Partnership</div>
+          <div class="r-p"><em class="hg">20% of the annual fee</em> comes back to the school. A flagship program at zero outlay.</div>
+        </div>
+      </div>
+      <div class="footer"><span>A partnership, not a vendor deal</span><span class="motto">14</span></div>
+    </section>
+
+    <!-- ================ 15 Â· 20% stat ================ -->
+    <section class="slide stat-hero" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle" style="top:20%; left:6%; font-size:5vmin; transform:rotate(-6deg); color:var(--green); opacity:0.35;">â‚¹720 Ã— N children</div>
+        <div class="doodle" style="bottom:20%; right:6%; font-size:4.5vmin; transform:rotate(4deg); color:var(--green); opacity:0.35;">school earns Â· every year</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">15 / THE PARTNERSHIP</span>
+      <div class="kicker">Revenue share to the school</div>
+      <div class="big" style="color: var(--green);">20%</div>
+      <div class="small">
+        <em class="hg">Twenty percent</em> of the annual program fee goes back to the school â€” every year, every child, every cohort. <br>
+        A flagship program at <em class="hl">zero capital outlay</em>. That's not a vendor deal. That's a partnership.
+      </div>
+      <div class="footer"><span>Negotiable upward on larger cohorts</span><span class="motto">15</span></div>
+    </section>
+
+    <!-- ================ 16 Â· Numbers ================ -->
+    <section class="slide" data-slide>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">16 / THE NUMBERS</span>
+      <div class="kicker">Everything you'll want to know</div>
+      <h2 class="title">The program, <span class="grad">in numbers</span>.</h2>
+      <div class="numbers grid">
+        <div class="metric"><div class="n">24</div><div class="l">weeks per level<br>(one academic year)</div></div>
+        <div class="metric"><div class="n">35</div><div class="l">minutes<br>once a week</div></div>
+        <div class="metric"><div class="n">4</div><div class="l">levels<br>Grade 4 â†’ 7</div></div>
+        <div class="metric"><div class="n">5+</div><div class="l">working projects<br>per child per year</div></div>
+
+        <div class="metric"><div class="n cyan">â‚¹150</div><div class="l">per session<br>(less than 1 tuition)</div></div>
+        <div class="metric"><div class="n cyan">â‚¹3,600</div><div class="l">annual fee<br>per child</div></div>
+        <div class="metric"><div class="n green">20%</div><div class="l">school<br>revenue share</div></div>
+        <div class="metric"><div class="n green">â‚¹0</div><div class="l">capital outlay<br>for the school</div></div>
+      </div>
+      <div class="footer"><span>15â€“30 students per batch Â· zero new hardware Â· zero software cost</span><span class="motto">16</span></div>
+    </section>
+
+    <!-- ================ 17 Â· Objections ================ -->
+    <section class="slide" data-slide>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">17 / STRAIGHT ANSWERS</span>
+      <div class="kicker">Questions you might have</div>
+      <h2 class="title">Fair questions. <span class="grad">Straight answers.</span></h2>
+      <div class="qa">
+        <div class="qa-item">
+          <div class="q">"We already teach coding / Vedic Maths."</div>
+          <div class="a">Wonderful â€” your children are halfway there. We don't replace; we <em class="hl">deepen and connect</em>. Your existing IT class becomes the prep, T.H.Y.N.K becomes the showcase.</div>
+        </div>
+        <div class="qa-item">
+          <div class="q">"Our computer teacher doesn't know Vedic Maths."</div>
+          <div class="a">Perfectly fine. Our Teacher Guide assumes <em class="hl">zero Vedic background</em>. One-day training covers everything. The teacher learns alongside students for 4 weeks â€” and is confident for life.</div>
+        </div>
+        <div class="qa-item">
+          <div class="q">"What about screen time?"</div>
+          <div class="a">We agree â€” that's exactly why we exist. 35 supervised minutes replacing 35 minutes of <em class="hp">consumption</em> with 35 minutes of <em class="hg">creation</em>.</div>
+        </div>
+        <div class="qa-item">
+          <div class="q">"What if it doesn't work?"</div>
+          <div class="a">A <em class="hl">midpoint review at Week 12</em>. Mutual exit if it's not working. We also offer a <em class="hg">pilot cohort at no cost</em>. If our promises don't show in 12 weeks, we walk away.</div>
+        </div>
+      </div>
+      <div class="footer"><span>We've heard them all. We have answers.</span><span class="motto">17</span></div>
+    </section>
+
+    <!-- ================ 18 Â· 5-year horizon ================ -->
+    <section class="slide" data-slide>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">18 / THE 5-YEAR HORIZON</span>
+      <div class="kicker">Win Â· Win Â· Win</div>
+      <h2 class="title">Five years from now.</h2>
+      <div class="grid g-3" style="margin-top: 2vmin; flex: 1; align-content: center;">
+        <div class="card">
+          <span class="pill">STUDENT</span>
+          <div class="h" style="margin-top: 1.5vmin;">Portfolio-ready teen</div>
+          <div class="p">Enters Grade 9 already knowing <em class="hl">Scratch, HTML, CSS, JavaScript</em>. Mental maths makes NTSE, Olympiads, JEE-Foundation <em class="hg">feel easier</em>. Uses AI to learn faster â€” never to cheat.</div>
+        </div>
+        <div class="card">
+          <span class="pill cyan">PARENT</span>
+          <div class="h" style="margin-top: 1.5vmin;">Confident on tech &amp; maths</div>
+          <div class="p">A child <em class="hc">independent on a computer</em>. Doesn't fear tech or numbers. Screen time becomes an <em class="hg">investment</em>, not a worry. Talks shift from "what did you study?" to <em class="hl">"show me what you made!"</em></div>
+        </div>
+        <div class="card">
+          <span class="pill violet">SCHOOL</span>
+          <div class="h" style="margin-top: 1.5vmin;">A future-ready flagship</div>
+          <div class="p">Known locally as a <em class="hv">future-ready school</em>. Teachers become trainers. Lab used meaningfully. A <em class="hg">case study</em> other schools want to copy â€” and we ensure yours stays first.</div>
+        </div>
+      </div>
+      <div class="footer"><span>Compounding gains for the student, the parent, and the school</span><span class="motto">18</span></div>
+    </section>
+
+    <!-- ================ 19 Â· Next steps ================ -->
+    <section class="slide" data-slide>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">19 / NEXT STEPS</span>
+      <div class="kicker">Simple Â· Structured Â· No risk</div>
+      <h2 class="title">How we <span class="grad">start together</span>.</h2>
+      <div class="steps-flow">
+        <div class="step">
+          <div class="num">1</div>
+          <div class="h">30-min meeting</div>
+          <div class="p">With the academic coordinator and computer teacher â€” we understand your calendar &amp; constraints.</div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div class="h">Live walkthrough</div>
+          <div class="p">We run one <em class="hl">complete sample session</em> for your team â€” workbook, slides &amp; project in hand.</div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div class="h">Free pilot cohort</div>
+          <div class="p">Full kit, full training, full support at <em class="hg">no cost</em> for one batch in the upcoming year.</div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div class="h">Week 12 review</div>
+          <div class="p">Honest feedback both ways. Mutual exit if it's not working. Full roll-out if it is.</div>
+        </div>
+      </div>
+      <p class="lede" style="text-align:center; margin-top: 3vmin; max-width:100%;">
+        We remove every risk from the first step. <em class="hg">You only continue if it works.</em>
+      </p>
+      <div class="footer"><span>Pilot offer valid for the upcoming academic year</span><span class="motto">19</span></div>
+    </section>
+
+    <!-- ================ 20 Â· The Ask ================ -->
+    <section class="slide closing" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <svg class="scratch-block" style="top:12%; left:5%;  width:16vmin; transform:rotate(-10deg);"><use href="#sb-hat"/></svg>
+        <svg class="scratch-block" style="top:20%; right:5%; width:16vmin; transform:rotate(8deg);"><use href="#sb-move"/></svg>
+        <svg class="scratch-block" style="bottom:20%; left:8%;  width:14vmin; transform:rotate(6deg);"><use href="#sb-say"/></svg>
+        <svg class="scratch-block" style="bottom:16%; right:8%; width:16vmin; transform:rotate(-6deg);"><use href="#sb-repeat"/></svg>
+        <div class="doodle gold" style="top:38%; left:3%; font-size:4vmin; transform:rotate(-4deg);">35 min Â· once a week</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">20 / THE ASK</span>
+      <div class="kicker" style="text-align:center;">Our one request</div>
+      <h1 class="mega">Give us <span class="grad">35 minutes</span> a week.</h1>
+      <p class="lede" style="max-width: 78%; text-align:center; margin: 3vmin auto 0; font-size: clamp(16px, 2.4vmin, 28px);">
+        We're not asking you to change anything in your school.<br>
+        We're asking you to <em class="hl">add 35 minutes a week</em> â€” that will change your students <em class="hg">for the next 35 years</em>.
+      </p>
+      <div class="footer"><span>Think Today Â· Learn Smart Â· Lead Tomorrow</span><span class="motto">20</span></div>
+    </section>
+
+    <!-- ================ 21 Â· Contact ================ -->
+    <section class="slide closing" data-slide>
+      <div class="bg-art" aria-hidden="true">
+        <div class="doodle gold"   style="top:16%; left:6%;  font-size:4.5vmin; transform:rotate(-6deg);">Let's build.</div>
+        <div class="doodle violet" style="top:22%; right:6%; font-size:4.5vmin; transform:rotate(5deg);">Let's create.</div>
+        <div class="doodle cyan"   style="bottom:20%; left:8%; font-size:4vmin; transform:rotate(-4deg);">Let's lead.</div>
+      </div>
+      <div class="brand"><span class="dot"></span>T.H.Y.N.K</div>
+      <span class="tag">21 / LET'S BEGIN</span>
+      <div class="kicker" style="text-align:center;">Talk to us</div>
+      <h2 class="mega" style="font-size: clamp(28px, 6vmin, 68px);">Ready to <span class="grad">begin the pilot?</span></h2>
+      <div class="contact">
+        <div class="p-card">
+          <div class="role">Co-Founder</div>
+          <div class="nm">Aradhana Zaveri</div>
+          <div class="cn">ðŸ“± +91 98197 41486<br>âœ‰ï¸ aradhana.thynk@gmail.com</div>
+        </div>
+        <div class="p-card">
+          <div class="role">Co-Founder</div>
+          <div class="nm">Pranav Sheth</div>
+          <div class="cn">ðŸ“± +91 99200 49590<br>âœ‰ï¸ pranav.thynk@gmail.com</div>
+        </div>
+      </div>
+      <p class="lede" style="margin-top: 5vmin; text-align:center; max-width:100%; color: var(--gold-deep); font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: 0.15em; font-size: clamp(14px, 2vmin, 22px);">
+        THANK YOU.
+      </p>
+      <div class="footer"><span>THYNK Â· A future-skills program for Indian schools</span><span class="motto">21</span></div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ---------- Controls ---------- -->
+<div class="controls" title="Navigation">
+  <button class="btn" id="prev" title="Previous (â†)">â€¹</button>
+  <span class="counter" id="counter">1 / 1</span>
+  <button class="btn" id="next" title="Next (â†’)">â€º</button>
+  <button class="btn" id="full" title="Fullscreen (F)">â›¶</button>
+</div>
+<div class="hint">
+  <kbd>â†</kbd><kbd>â†’</kbd> navigate &nbsp; Â· &nbsp; <kbd>F</kbd> fullscreen &nbsp; Â· &nbsp; <kbd>Esc</kbd> exit
+</div>
+
+<script>
+(function () {
+  const slides   = Array.from(document.querySelectorAll('[data-slide]'));
+  const counter  = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const btnPrev  = document.getElementById('prev');
+  const btnNext  = document.getElementById('next');
+  const btnFull  = document.getElementById('full');
+  const stage    = document.getElementById('stage');
+
+  let idx = 0;
+
+  const h = parseInt(location.hash.replace('#', ''), 10);
+  if (!isNaN(h) && h >= 1 && h <= slides.length) idx = h - 1;
+
+  function render() {
+    slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+    counter.textContent = `${idx + 1} / ${slides.length}`;
+    progress.style.width = ((idx + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (idx + 1));
+  }
+  function go(delta) { idx = Math.max(0, Math.min(slides.length - 1, idx + delta)); render(); }
+  function goTo(n)   { idx = Math.max(0, Math.min(slides.length - 1, n));         render(); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End')  { e.preventDefault(); goTo(slides.length - 1); }
+    else if (e.key.toLowerCase() === 'f') { e.preventDefault(); toggleFull(); }
+  });
+
+  btnPrev.addEventListener('click', () => go(-1));
+  btnNext.addEventListener('click', () => go(1));
+  btnFull.addEventListener('click', toggleFull);
+
+  stage.addEventListener('click', (e) => {
+    if (e.target.closest('button, a, input, kbd')) return;
+    const rect = stage.getBoundingClientRect();
+    const rel = (e.clientX - rect.left) / rect.width;
+    if (rel > 0.5) go(1); else go(-1);
+  });
+
+  let touchX = null;
+  stage.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend',   (e) => {
+    if (touchX == null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+    touchX = null;
+  }, { passive: true });
+
+  function toggleFull() {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
+
