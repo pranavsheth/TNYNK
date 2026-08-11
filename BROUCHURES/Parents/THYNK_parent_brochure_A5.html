@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THYNK — A Parent's Guide (Beginners Basic 1)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+
+    :root {
+      --blue: #008AD4;
+      --blue-dark: #00659C;
+      --blue-deep: #023A5C;
+      --blue-soft: #E3F3FC;
+      --gold: #F2A93B;
+      --gold-soft: #FDF1DD;
+      --purple: #7C5CBF;
+      --purple-soft: #EFE8FB;
+      --green: #1FA971;
+      --green-soft: #E1F6EC;
+      --coral: #FF6F59;
+      --coral-soft: #FFE7E1;
+      --ink: #122238;
+      --ink-soft: #54647A;
+      --line: #E4E9F0;
+      --paper: #FFFFFF;
+      --cloud: #F5F8FC;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #D9E1E9;
+      font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 16px;
+    }
+
+    .sheet {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-label {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #8792A3;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .a5 {
+      position: relative;
+      width: 559px;
+      min-height: 794px;
+      max-width: 100%;
+      background: var(--paper);
+      overflow: hidden;
+      box-shadow: 0 24px 50px -20px rgba(2, 58, 92, .35);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brk {
+      break-after: page;
+      page-break-after: always;
+    }
+
+    /* running header / footer on inner pages */
+    .inner-head {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 20px 32px 0;
+    }
+
+    .inner-head img {
+      height: 20px;
+      width: auto;
+      display: block;
+    }
+
+    .inner-head span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 11px;
+      color: var(--blue);
+      letter-spacing: .4px;
+    }
+
+    .page-num {
+      position: absolute;
+      bottom: 14px;
+      right: 22px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      color: #B7C0CC;
+    }
+
+    .page-pad {
+      padding: 18px 32px 30px;
+      flex: 1;
+    }
+
+    .eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin: 0 0 5px;
+    }
+
+    .page-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 21px;
+      color: var(--ink);
+      margin: 0 0 5px;
+      line-height: 1.18;
+    }
+
+    .page-sub {
+      font-size: 11.5px;
+      color: var(--ink-soft);
+      font-weight: 700;
+      line-height: 1.5;
+      margin: 0 0 16px;
+    }
+
+    /* callouts */
+    .callout {
+      border-radius: 14px;
+      padding: 13px 15px;
+      margin-bottom: 12px;
+    }
+
+    .callout .ctag {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 10px;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.55;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .callout.idea {
+      background: var(--gold-soft);
+      border-left: 4px solid var(--gold);
+    }
+
+    .callout.idea .ctag {
+      color: #A9670A;
+    }
+
+    .callout.def {
+      background: var(--cloud);
+      border-left: 4px solid var(--blue);
+    }
+
+    .callout.def .ctag {
+      color: var(--blue-dark);
+    }
+
+    .callout.fact {
+      background: var(--purple-soft);
+      border-left: 4px solid var(--purple);
+    }
+
+    .callout.fact .ctag {
+      color: #5B3D96;
+    }
+
+    .callout.tip {
+      background: var(--coral-soft);
+      border-left: 4px solid var(--coral);
+    }
+
+    .callout.tip .ctag {
+      color: #C6432E;
+    }
+
+    .callout.insight {
+      background: var(--green-soft);
+      border-left: 4px solid var(--green);
+    }
+
+    .callout.insight .ctag {
+      color: #12784E;
+    }
+
+    /* quick view stat panel */
+    .stat-panel {
+      background: linear-gradient(155deg, var(--blue), var(--blue-dark));
+      border-radius: 16px;
+      padding: 18px 18px;
+      color: #fff;
+      margin-top: 6px;
+    }
+
+    .stat-panel h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .7px;
+      margin: 0 0 10px;
+      text-align: center;
+      opacity: .95;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .stat-row:last-child {
+      border-bottom: none;
+    }
+
+    .stat-row .slbl {
+      flex: 0 0 72px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      opacity: .8;
+      letter-spacing: .3px;
+      padding-top: 1px;
+    }
+
+    .stat-row .sval {
+      flex: 1;
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    /* card grid */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+    }
+
+    .mini-card {
+      background: var(--cloud);
+      border-radius: 12px;
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--blue);
+    }
+
+    .mini-card .mc-icon {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .mini-card h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 11.5px;
+      margin: 0 0 3px;
+      color: var(--ink);
+    }
+
+    .mini-card p {
+      font-size: 10px;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .mini-card:nth-child(6n+1) {
+      border-top-color: var(--blue);
+    }
+
+    .mini-card:nth-child(6n+2) {
+      border-top-color: var(--gold);
+    }
+
+    .mini-card:nth-child(6n+3) {
+      border-top-color: var(--coral);
+    }
+
+    .mini-card:nth-child(6n+4) {
+      border-top-color: var(--green);
+    }
+
+    .mini-card:nth-child(6n+5) {
+      border-top-color: var(--purple);
+    }
+
+    .mini-card:nth-child(6n+6) {
+      border-top-color: var(--blue-dark);
+    }
+
+    /* compare strip */
+    .compare {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .compare-box {
+      border-radius: 12px;
+      padding: 11px 13px;
+    }
+
+    .compare-box.human {
+      background: var(--cloud);
+      border: 1px dashed #C7D1DE;
+    }
+
+    .compare-box.code {
+      background: var(--blue-deep);
+      color: #fff;
+    }
+
+    .compare-box .cctag {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin-bottom: 5px;
+      opacity: .7;
+    }
+
+    .compare-box .cline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      line-height: 1.55;
+    }
+
+    .compare-box .cnote {
+      font-size: 9.5px;
+      font-style: italic;
+      margin-top: 5px;
+      opacity: .75;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    /* skill checklist blocks */
+    .skill-block {
+      background: var(--cloud);
+      border-radius: 14px;
+      padding: 13px 15px;
+      margin-bottom: 9px;
+      border: 1px solid var(--line);
+    }
+
+    .skill-block h5 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 12.5px;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+
+    .skill-block ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .skill-block li {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      display: flex;
+      gap: 7px;
+      align-items: flex-start;
+    }
+
+    .skill-block li::before {
+      content: "✓";
+      color: var(--blue);
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+
+    /* numbered list */
+    .num-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 16px;
+    }
+
+    .num-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .num-badge {
+      flex: 0 0 auto;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 11.5px;
+      color: #fff;
+    }
+
+    .num-item:nth-child(4n+1) .num-badge {
+      background: var(--blue);
+    }
+
+    .num-item:nth-child(4n+2) .num-badge {
+      background: var(--gold);
+    }
+
+    .num-item:nth-child(4n+3) .num-badge {
+      background: var(--coral);
+    }
+
+    .num-item:nth-child(4n+4) .num-badge {
+      background: var(--green);
+    }
+
+    .num-item h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      margin: 0 0 2px;
+      color: var(--ink);
+    }
+
+    .num-item p {
+      font-size: 10.5px;
+      color: var(--ink-soft);
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .badge-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .takeaway {
+      background: var(--gold-soft);
+      border: 1px solid #F5D9A6;
+      border-radius: 14px;
+      padding: 13px;
+      text-align: center;
+    }
+
+    .takeaway .ti {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .takeaway h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 11.5px;
+      margin: 0 0 3px;
+      color: var(--ink);
+    }
+
+    .takeaway p {
+      font-size: 9.5px;
+      color: var(--ink-soft);
+      margin: 0;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    /* faq */
+    .faq-item {
+      margin-bottom: 11px;
+    }
+
+    .faq-item .q {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 11.5px;
+      color: var(--blue-dark);
+      margin: 0 0 3px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .faq-item .a {
+      font-size: 10.5px;
+      color: var(--ink-soft);
+      font-weight: 600;
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    /* decorative blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* cover */
+    .cover-a5 {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 44px;
+      background: linear-gradient(165deg, #FFFFFF 0%, var(--blue-soft) 78%, #D7ECFA 100%);
+    }
+
+    .cover-a5 .blob.cb1 {
+      width: 220px;
+      height: 220px;
+      background: var(--gold);
+      opacity: .20;
+      top: -70px;
+      left: -70px;
+    }
+
+    .cover-a5 .blob.cb2 {
+      width: 260px;
+      height: 260px;
+      background: var(--blue);
+      opacity: .14;
+      bottom: -100px;
+      right: -90px;
+    }
+
+    .cover-a5 .blob.cb3 {
+      width: 160px;
+      height: 160px;
+      background: var(--coral);
+      opacity: .14;
+      bottom: 220px;
+      left: -70px;
+    }
+
+    .cover-logo {
+      position: relative;
+      z-index: 1;
+      width: 300px;
+      max-width: 78%;
+      margin-bottom: 30px;
+    }
+
+    .cover-eyebrow {
+      position: relative;
+      z-index: 1;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      margin-bottom: 10px;
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 1;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 14px;
+    }
+
+    .cover-title .accent {
+      color: var(--blue);
+    }
+
+    .cover-sub {
+      position: relative;
+      z-index: 1;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      max-width: 340px;
+      line-height: 1.55;
+      margin: 0 0 26px;
+    }
+
+    .cover-tag {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: .4px;
+      padding: 9px 20px;
+      border-radius: 999px;
+    }
+
+    /* back cover / contact */
+    .back-a5 {
+      background: var(--blue-deep);
+      color: #fff;
+    }
+
+    .back-head {
+      padding: 30px 32px 0;
+      text-align: center;
+    }
+
+    .back-head img {
+      height: 24px;
+    }
+
+    .back-head .btag {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8FCBEE;
+      margin-top: 8px;
+    }
+
+    .contact-people {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 22px 0 18px;
+    }
+
+    .p-card {
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 14px;
+      padding: 12px 16px;
+    }
+
+    .p-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 5px;
+      color: var(--gold);
+    }
+
+    .p-detail {
+      font-size: 11.5px;
+      font-weight: 700;
+      margin-top: 3px;
+      opacity: .95;
+    }
+
+    .org-line {
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 10.5px;
+      letter-spacing: .4px;
+      opacity: .85;
+      margin-top: auto;
+      padding: 0 32px 26px;
+    }
+
+    @media print {
+
+      html,
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body {
+        background: #fff;
+        padding: 0;
+        gap: 0;
+      }
+
+      .sheet {
+        margin: 0;
+      }
+
+      .page-label {
+        display: none;
+      }
+
+      .a5 {
+        box-shadow: none;
+        width: 100%;
+      }
+    }
+
+    @page {
+      size: A5;
+      margin: 0;
+    }
+
+    @media (max-width:600px) {
+      .page-pad {
+        padding: 16px 22px 24px;
+      }
+
+      .inner-head {
+        padding: 18px 22px 0;
+      }
+
+      .cover-a5 {
+        padding: 44px 26px;
+      }
+
+      .cover-title {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ PAGE 1 — COVER ============ -->
+  <div class="sheet">
+    <div class="a5 brk cover-a5">
+      <div class="blob cb1"></div>
+      <div class="blob cb2"></div>
+      <div class="blob cb3"></div>
+      <img class="cover-logo" src="logo4.png" alt="THYNK logo" />
+      <div class="cover-eyebrow">A Parent's Guide</div>
+      <h1 class="cover-title">Coding Meets<br /><span class="accent">Vedic Maths</span></h1>
+      <p class="cover-sub">How THYNK builds thinking, confidence and future-ready skills — explained simply for parents.
+      </p>
+      <div class="cover-tag">Grade 3+ Learners</div>
+    </div>
+  </div>
+
+  <!-- ============ PAGE 2 — BIG IDEA + QUICK VIEW ============ -->
+  <div class="sheet">
+    <div class="a5 brk">
+      <div class="page-pad">
+        <!-- <div class="eyebrow">Why Coding, Why Now</div> -->
+        <h2 class="page-title">The Idea Behind the Program</h2>
+        <p class="page-sub">A quick grounding in what your child is actually learning, and why it matters.</p>
+
+        <div class="callout idea">
+          <div class="ctag">★ Big Idea for Parents</div>
+          <p>Coding teaches children to think in clear steps. A computer only follows precise instructions, so children
+            naturally develop logic, sequencing, and attention to detail.</p>
+        </div>
+
+        <!-- <div class="callout def"><div class="ctag">Simple Definition</div>
+        <p>A <b>computer</b> is a machine that follows instructions exactly. The instructions your child creates are called <b>code</b>.</p></div> -->
+
+        <div class="stat-panel">
+          <h4>Parent Quick View</h4>
+          <div class="stat-row">
+            <div class="slbl">Age</div>
+            <div class="sval">Grade 3+ learners (typically 9–10 years)</div>
+          </div>
+          <div class="stat-row">
+            <div class="slbl">Duration</div>
+            <div class="sval">Beginners Basic 1 module, with term-wise milestones</div>
+          </div>
+          <div class="stat-row">
+            <div class="slbl">Frequency</div>
+            <div class="sval">Weekly guided class, plus light home practice</div>
+          </div>
+          <div class="stat-row">
+            <div class="slbl">Outcomes</div>
+            <div class="sval">Logic, creativity, maths confidence &amp; a project portfolio</div>
+          </div>
+          <div class="stat-row">
+            <div class="slbl">Support</div>
+            <div class="sval">Structured worksheets, feedback &amp; parent guidance</div>
+          </div>
+        </div>
+        <!-- <div class="eyebrow">Everyday Examples</div> -->
+        <br>
+        <h2 class="page-title">Coding Is Already Part of Daily Life</h2>
+        <p class="page-sub">Your child meets code every day, often without realizing it — these examples make it easy to
+          talk about at home.</p>
+
+        <div class="grid2">
+          <div class="mini-card">
+            <h5><span class="mc-icon">📱</span>Mobile Apps</h5>
+            <p>YouTube Kids, WhatsApp and learning apps all run on code.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🎮</span>Video Games</h5>
+            <p>Every jump, score and level follows small coding rules.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🚦</span>Traffic Signals</h5>
+            <p>Red–yellow–green is an automated sequence, just like a loop.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🚗</span>Cars</h5>
+            <p>Modern cars use code for braking, locking and safety alerts.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🤖</span>Robots</h5>
+            <p>From home helpers to factories, robots follow coded steps.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">📺</span>Smart TVs</h5>
+            <p>Search, recommendations and voice control all depend on code.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PAGE 3 — DAILY LIFE ============ -->
+  <!-- <div class="sheet">
+  <div class="page-label">Page 3</div>
+  <div class="a5 brk">
+    <div class="page-pad">
+     
+      <div class="callout fact" style="margin-top:14px;"><div class="ctag">Did You Know?</div>
+        <p>The first known computer programmer was <b>Ada Lovelace</b>, nearly <b>180 years ago</b> — proof that computational thinking has deep roots.</p></div>
+    </div>
+  </div>
+</div> -->
+
+  <!-- ============ PAGE 4 — HOW CODING HELPS ============ -->
+  <div class="sheet">
+    <div class="a5 brk">
+      <div class="page-pad">
+        <!-- <div class="eyebrow">The Benefits</div> -->
+        <h2 class="page-title">How Coding Helps Your Child</h2>
+        <p class="page-sub">Many parents ask, "Is Grade 4 too early?" In practice, this age is ideal for building core
+          life skills early.</p>
+
+        <div class="compare">
+          <div class="compare-box human">
+            <div class="cctag">Everyday Language</div>
+            <div class="cline">"Please bring me a glass of water when you can."</div>
+            <div class="cnote">People infer meaning, even from incomplete instructions.</div>
+          </div>
+          <div class="compare-box code">
+            <div class="cctag">Computer Instructions</div>
+            <div class="cline">Go to kitchen. Open cupboard. Take glass. Go to filter. Press button. Stop at full.</div>
+            <div class="cnote">Computers need exact, step-by-step directions.</div>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="mini-card">
+            <h5><span class="mc-icon">🧠</span>Stronger Thinking</h5>
+            <p>Breaking big problems into small, manageable steps.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🎨</span>Creative Expression</h5>
+            <p>From consuming content to creating games &amp; stories.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🔁</span>Resilience</h5>
+            <p>Learning to debug, improve and persist calmly.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🧩</span>Maths Connection</h5>
+            <p>Loops and patterns show maths at work in real problems.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">👫</span>Collaboration</h5>
+            <p>Sharing projects and feedback builds teamwork habits.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🚀</span>Future Readiness</h5>
+            <p>Tech fluency supports almost every career ahead.</p>
+          </div>
+        </div>
+        <!-- <div class="eyebrow">The Second Pillar</div> -->
+        <br>
+        <h2 class="page-title">Why Vedic Maths + Coding Works</h2>
+        <p class="page-sub">Two disciplines, one shared foundation: pattern, logic and confident practice.</p>
+
+        <div class="callout idea">
+          <div class="ctag">★ Big Idea for Parents</div>
+          <p><b>Vedic Maths</b> develops speed and number confidence, while <b>coding</b> develops logic and structure.
+            Together they strengthen both computation and reasoning.</p>
+        </div>
+
+        <div class="callout def">
+          <div class="ctag">Simple Definition</div>
+          <p>Vedic Maths is a method of arithmetic from <b>ancient India</b>. It uses <b>16 concise sutras</b> to
+            simplify calculations and build strong mental maths habits.</p>
+        </div>
+
+        <h3
+          style="font-family:'Poppins',sans-serif;font-weight:800;font-size:13px;margin:16px 0 10px;color:var(--ink);">
+          Four Ways Vedic Maths Supports Coding</h3>
+        <div class="grid2">
+          <div class="mini-card"><span class="mc-icon">⚡</span>
+            <h5>Faster Mental Maths</h5>
+            <p>More confidence with numbers, less reliance on calculators.</p>
+          </div>
+          <div class="mini-card"><span class="mc-icon">🔍</span>
+            <h5>Pattern Recognition</h5>
+            <p>The same skill children use in loops &amp; algorithms.</p>
+          </div>
+          <div class="mini-card"><span class="mc-icon">🪜</span>
+            <h5>Structured Thinking</h5>
+            <p>Solving complex problems through simple, ordered steps.</p>
+          </div>
+          <div class="mini-card"><span class="mc-icon">💪</span>
+            <h5>Numbers Confidence</h5>
+            <p>Less maths anxiety, more active participation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- ============ PAGE 6 — WHAT YOUR CHILD WILL LEARN ============ -->
+  <div class="sheet">
+    <div class="a5 brk">
+      <div class="page-pad">
+        <!-- <div class="eyebrow">The Curriculum</div> -->
+        <h2 class="page-title">What Your Child Will Learn</h2>
+        <p class="page-sub">By the end of Beginners Basic 1, your child can:</p>
+
+        <div class="skill-block">
+          <h5>✨ Use Scratch with Confidence</h5>
+          <ul>
+            <li>Control sprite movement &amp; appearance</li>
+            <li>Design scene changes using backdrops</li>
+            <li>Add sounds, music &amp; voice effects</li>
+          </ul>
+        </div>
+
+        <div class="skill-block">
+          <h5>🧱 Build with Core Code Blocks</h5>
+          <ul>
+            <li>Arrange sequence blocks in logical order</li>
+            <li>Use loops for efficient repetition</li>
+            <li>Apply if–else logic for decisions</li>
+          </ul>
+        </div>
+
+        <div class="skill-block">
+          <h5>🔢 Connect Maths with Coding</h5>
+          <ul>
+            <li>Use variables to track scores &amp; values</li>
+            <li>Apply arithmetic using operator blocks</li>
+            <li>Use Vedic Maths strategies in coding tasks</li>
+          </ul>
+        </div>
+
+        <div class="skill-block">
+          <h5>🎮 Build Complete Mini Projects</h5>
+          <ul>
+            <li>A counting game</li>
+            <li>An animated short story</li>
+            <li>A simple score-based quiz</li>
+          </ul>
+        </div>
+
+        <!-- <div class="eyebrow">The Outcome</div> -->
+        <br />
+        <h2 class="page-title">By Year-End, What Changes?</h2>
+        <p class="page-sub">These are the shifts parents notice most:</p>
+
+        <div class="num-list">
+          <div class="num-item">
+            <div class="num-badge">1</div>
+            <div>
+              <h5>More Independent Problem-Solving</h5>
+              <p>Big tasks get broken into clear steps instead of feeling overwhelming.</p>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">2</div>
+            <div>
+              <h5>Healthier Response to Mistakes</h5>
+              <p>Errors become feedback — building a stronger growth mindset.</p>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">3</div>
+            <div>
+              <h5>Ideas Become Real Projects</h5>
+              <p>Imagination turns into working games and animations.</p>
+            </div>
+          </div>
+          <div class="num-item">
+            <div class="num-badge">4</div>
+            <div>
+              <h5>Clearer Communication</h5>
+              <p>Precise expression helps in class, presentations &amp; writing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="badge-2">
+          <div class="takeaway"><span class="ti">🎯</span>
+            <h5>Joy of Building</h5>
+            <p>The confidence of creating projects that move, respond &amp; tell a story.</p>
+          </div>
+          <div class="takeaway"><span class="ti">🏆</span>
+            <h5>Real Portfolio</h5>
+            <p>A visible portfolio of games &amp; animations to share with family.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+
+  <!-- ============ PAGE 8 — PARENT OUTCOMES AT HOME ============ -->
+  <div class="sheet">
+    <div class="a5 brk">
+      <div class="page-pad">
+        <!-- <div class="eyebrow">At Home</div> -->
+        <h2 class="page-title">Parent Outcomes You Can Observe</h2>
+        <p class="page-sub">What families usually notice, term over term.</p>
+
+        <div class="grid2">
+          <div class="mini-card">
+            <h5><span class="mc-icon">👨‍👩‍👧</span>Confidence with Screens</h5>
+            <p>From passive consuming to active creating.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">📚</span>Stronger School Marks</h5>
+            <p>Logic &amp; structure often lift maths, science &amp; writing.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🧘</span>Calmer, Focused Mind</h5>
+            <p>Vedic Maths warm-ups build focus &amp; exam readiness.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🌍</span>Future-Ready Skills</h5>
+            <p>Digital confidence for modern learning &amp; careers.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🎁</span>Healthy Screen Time</h5>
+            <p>Limited weekly screen time, used productively.</p>
+          </div>
+          <div class="mini-card">
+            <h5><span class="mc-icon">🤝</span>Habit of Sharing</h5>
+            <p>Project sharing builds communication &amp; family engagement.</p>
+          </div>
+        </div>
+        <!-- <div class="eyebrow">Questions, Answered</div> -->
+        <h2 class="page-title">Parent FAQ</h2>
+
+        <div class="faq-item">
+          <div class="q">Is Grade 4 too early to start coding?</div>
+          <p class="a">No — ages 9–10 are ideal for pattern-based thinking. Sequencing and logic come naturally at this
+            stage.</p>
+        </div>
+        <div class="faq-item">
+          <div class="q">Will coding increase my child's screen time?</div>
+          <p class="a">The goal is better screen quality, not more of it. Children shift from passive watching to active
+            creating.</p>
+        </div>
+        <div class="faq-item">
+          <div class="q">What if my child has never coded before?</div>
+          <p class="a">This program starts from zero, using beginner-friendly visual blocks first — every child builds
+            confidence.</p>
+        </div>
+        <div class="faq-item">
+          <div class="q">Does this help with school academics too?</div>
+          <p class="a">Yes. Coding builds structured thinking; Vedic Maths builds number speed and problem-solving
+            confidence.</p>
+        </div>
+        <div class="faq-item">
+          <div class="q">How much home practice is expected?</div>
+          <p class="a">Just 15–20 minutes, 2–3 times a week — light, practical tasks focused on revision.</p>
+        </div>
+        <div class="faq-item">
+          <div class="q">How can parents help without coding knowledge?</div>
+          <p class="a">Ask simple questions: "What did you create today?", "What problem did you solve?", "Can you show
+            me?"</p>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- ============ PAGE 9 — FAQ + CONTACT (BACK COVER) ============ -->
+    <div class="sheet">
+      <div class="a5">
+        <div class="page-pad" style="padding-bottom:10px;">
+          <div class="back-a5" style="margin-top:auto;padding-top:22px;">
+            <div class="contact-people" style="padding:0 32px;margin-top:0;">
+              <div class="p-card">
+                <div class="p-name">Aradhana Zaveri</div>
+                <div class="p-detail">📞 +91 99672 00387</div>
+                <div class="p-detail">📧 aradhana.thynk@gmail.com</div>
+              </div>
+              <div class="p-card">
+                <div class="p-name">Pranav Sheth</div>
+                <div class="p-detail">📞 +91 99671 00879</div>
+                <div class="p-detail">📧 pranav.thynk@gmail.com</div>
+              </div>
+            </div>
+            <div class="org-line" style="margin-top:16px;padding-bottom:24px;">THYNK — The Hub for Young Next-gen
+              Knowledge</div>
+          </div>
+          
+        </div>
+      </div>
+
+</body>
+
+</html>

@@ -2438,5 +2438,18 @@
   @media print {
     body { background: #fff; }
     .page { margin: 0; box-shadow: none; }
+    /* Keep chapter main divider pages as a single full A4 print page. */
+    .page.divider {
+      height: calc(297mm - 24mm);
+      min-height: calc(297mm - 24mm);
+      max-height: calc(297mm - 24mm);
+      break-inside: avoid-page;
+      page-break-inside: avoid;
+      overflow: hidden;
+    }
+    .page.divider .div-inner {
+      min-height: 100%;
+      height: 100%;
+    }
     .loop-quiz-html { height: auto; overflow: visible; }
   }
