@@ -72,11 +72,12 @@
   .brand-row{display:flex;align-items:center;gap:14px;margin-bottom:4px;}
   .rocket-badge{font-size:38px;display:inline-block;transform:rotate(-14deg);filter:drop-shadow(0 6px 8px rgba(0,0,0,.25));}
   .wordmark{font-family:'Poppins',sans-serif;font-weight:900;font-size:50px;letter-spacing:1px;line-height:1;text-shadow:0 4px 10px rgba(0,0,0,.15);}
+  .brand-logo{height:56px;width:auto;display:block;filter:drop-shadow(0 6px 12px rgba(0,0,0,.22));}
   .subtitle{font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;letter-spacing:.6px;text-transform:uppercase;opacity:.92;margin:6px 0 16px;}
   .tagline-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:9px 18px;border-radius:999px;font-weight:700;font-size:14px;}
 
-  .banner-illustration{position:absolute;right:36px;bottom:54px;display:flex;align-items:flex-end;z-index:2;}
-  .illo-kid{font-size:44px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.3));}
+  .banner-illustration{position:absolute;right:36px;bottom:42px;display:flex;align-items:flex-end;gap:10px;z-index:2;}
+  .hero-chip{width:116px;height:108px;filter:drop-shadow(0 10px 16px rgba(0,0,0,.28));}
 
   .wave{position:absolute;left:0;right:0;bottom:-2px;line-height:0;z-index:1;}
 
@@ -106,6 +107,7 @@
   .card-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:10px;box-shadow:0 8px 16px -6px rgba(0,0,0,.25);}
   .card.coding .card-icon{background:linear-gradient(135deg,var(--blue),var(--purple));}
   .card.maths .card-icon{background:linear-gradient(135deg,var(--orange),#F97316);}
+  .card.maths .card-icon svg{width:28px;height:28px;display:block;}
   .card h3{font-family:'Poppins',sans-serif;font-weight:800;font-size:18px;margin:0 0 3px;}
   .card .tagline{font-size:13px;color:var(--slate);font-weight:700;margin:0 0 12px;font-style:italic;}
   .card ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px;}
@@ -174,12 +176,13 @@
   @media print{
     html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     body{background:#fff;padding:0;gap:0;}
-    .page{margin:0;}
+    .page{width:148mm;height:210mm;margin:0;overflow:hidden;position:relative;display:block;page-break-after:always;break-after:page;}
+    .page:last-of-type{page-break-after:auto;break-after:auto;}
     .page-label{display:none;}
-    .flyer{box-shadow:none;border-radius:0;width:100%;}
+    .flyer{box-shadow:none;border-radius:0;width:210mm;min-height:297mm;position:absolute;top:0;left:0;transform:scale(0.705);transform-origin:top left;}
     .card:hover{transform:none;box-shadow:none;}
   }
-  @page{size:A4;margin:8mm;}
+  @page{size:A5;margin:0;}
 
   @media (prefers-reduced-motion: reduce){
     .card{transition:none;}
@@ -189,7 +192,7 @@
   @media (max-width:560px){
     .programs{grid-template-columns:1fr;padding:0 24px;}
     .quiz-grid{grid-template-columns:1fr;padding:14px 24px 4px;}
-    .wordmark{font-size:40px;}
+    .brand-logo{height:44px;}
     .quiz-title{font-size:26px;}
     .banner{padding:36px 28px 60px;}
     .why{padding:6px 24px;}
@@ -220,15 +223,41 @@
       <div class="banner-text">
         <div class="brand-row">
           <span class="rocket-badge">🚀</span>
-          <span class="wordmark">THYNK</span>
+          <img class="brand-logo" src="Thynk-02.png" alt="THYNK logo">
         </div>
         <div class="subtitle">The Hub for Young Next-gen Knowledge</div>
         <div class="tagline-pill">🚀 Where Maths Meets Coding. Where Learning Meets Creativity.</div>
       </div>
 
       <div class="banner-illustration">
-        <span class="illo-kid">🧑‍💻</span>
-        <span class="illo-kid" style="margin-left:-8px;">🧮</span>
+        <svg class="hero-chip" viewBox="0 0 120 110" aria-label="Coding project icon" role="img">
+          <defs>
+            <linearGradient id="codingChip" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#93C5FD"/>
+              <stop offset="100%" stop-color="#4F46E5"/>
+            </linearGradient>
+          </defs>
+          <rect x="8" y="8" width="104" height="94" rx="18" fill="url(#codingChip)"/>
+          <rect x="18" y="20" width="84" height="58" rx="10" fill="rgba(255,255,255,0.92)"/>
+          <path d="M46 42 L34 50 L46 58" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M74 42 L86 50 L74 58" fill="none" stroke="#2563EB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M62 40 L58 60" fill="none" stroke="#7C3AED" stroke-width="4" stroke-linecap="round"/>
+          <rect x="40" y="84" width="40" height="7" rx="3.5" fill="rgba(255,255,255,0.85)"/>
+        </svg>
+        <svg class="hero-chip" viewBox="0 0 120 110" aria-label="Vedic maths icon" role="img">
+          <defs>
+            <linearGradient id="vedicChip" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FDE68A"/>
+              <stop offset="100%" stop-color="#F97316"/>
+            </linearGradient>
+          </defs>
+          <rect x="8" y="8" width="104" height="94" rx="18" fill="url(#vedicChip)"/>
+          <rect x="18" y="20" width="84" height="58" rx="10" fill="rgba(255,255,255,0.92)"/>
+          <text x="60" y="42" text-anchor="middle" font-family="Poppins, sans-serif" font-size="13" font-weight="800" fill="#C2410C">VEDIC</text>
+          <text x="60" y="57" text-anchor="middle" font-family="Poppins, sans-serif" font-size="11" font-weight="700" fill="#EA580C">29 × 11</text>
+          <text x="60" y="70" text-anchor="middle" font-family="Poppins, sans-serif" font-size="11" font-weight="800" fill="#2563EB">= 319</text>
+          <rect x="40" y="84" width="40" height="7" rx="3.5" fill="rgba(255,255,255,0.85)"/>
+        </svg>
       </div>
 
       <svg class="wave" viewBox="0 0 794 70" preserveAspectRatio="none">
@@ -259,7 +288,14 @@
         </ul>
       </div>
       <div class="card maths">
-        <div class="card-icon">🧮</div>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 32 32" role="img" aria-label="Vedic maths">
+            <rect x="3" y="4" width="26" height="24" rx="6" fill="rgba(255,255,255,0.92)"/>
+            <text x="16" y="13" text-anchor="middle" font-family="Poppins, sans-serif" font-size="6.2" font-weight="800" fill="#C2410C">VEDIC</text>
+            <text x="16" y="20" text-anchor="middle" font-family="Poppins, sans-serif" font-size="5.4" font-weight="700" fill="#EA580C">13 x 11</text>
+            <text x="16" y="26" text-anchor="middle" font-family="Poppins, sans-serif" font-size="5.8" font-weight="800" fill="#2563EB">= 143</text>
+          </svg>
+        </div>
         <h3>Vedic Maths</h3>
         <div class="tagline">Make calculations faster and smarter!</div>
         <ul>
