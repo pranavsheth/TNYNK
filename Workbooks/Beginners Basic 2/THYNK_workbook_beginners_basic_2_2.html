@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T.H.Y.N.K — My Scratch Adventure · Level 2 · Young Creator · Beginners Basic 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   T.H.Y.N.K — BEGINNERS BASIC 2 · "YOUNG CREATOR"
+   Design system extends Beginners Basic 1: brand blue #008AD4,
+   Scratch-accurate block-family colours, print-ready A4 pages.
+   Book 2 adds: chapter accent = the Scratch colour family that
+   chapter lives in, and a clapperboard "young creator" motif.
+   ============================================================ */
+
+:root{
+  /* --- Brand --- */
+  --thynk-blue:#008AD4;
+  --paper:#FFFCF6;
+  --paper-dim:#FBF6EC;
+  --ink:#1B2A3A;
+  --ink-soft:#4F6070;
+  --ink-faint:#8494A2;
+  --line:#E4DCC9;
+  --line-soft:#EDE7D8;
+
+  /* --- Scratch block-family colours (accurate) --- */
+  --sc-motion:#4C97FF;
+  --sc-looks:#9966FF;
+  --sc-sound:#CF63CF;
+  --sc-events:#FFBF00;
+  --sc-control:#FFAB19;
+  --sc-sensing:#5CB1D6;
+  --sc-operators:#59C059;
+  --sc-variables:#FF8C1A;
+  --sc-myblocks:#FF6680;
+
+  /* --- Chapter accents (= the block family each chapter lives in) --- */
+  --c1:#4C97FF;   /* Sprites & Animation → Motion  */
+  --c1-b:#9966FF; /* secondary → Looks */
+  --c2:#FF6680;   /* Custom Blocks → My Blocks */
+  --c3:#CF63CF;   /* Sound & Storytelling → Sound */
+  --c4:#FFBF00;   /* Broadcasting → Events */
+
+  --radius-s:10px;
+  --radius-m:16px;
+  --radius-l:26px;
+  --shadow-card:0 2px 0 rgba(27,42,58,.06), 0 8px 20px -10px rgba(27,42,58,.18);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Manrope',sans-serif;
+  color:var(--ink);
+  background:#DDD6C4;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+}
+h1,h2,h3,h4{font-family:'Baloo 2',sans-serif; margin:0; line-height:1.15;}
+p{margin:0 0 .7em 0;}
+.mono{font-family:'Space Mono',monospace;}
+img{max-width:100%;display:block;}
+strong{color:var(--ink);}
+
+/* ============ PAGE FRAME ============ */
+@page{ size:A4; margin:0; }
+.page{
+  width:210mm;
+  min-height:297mm;
+  background:var(--paper);
+  margin:0 auto 14mm auto;
+  position:relative;
+  padding:16mm 15mm 15mm 15mm;
+  box-shadow:var(--shadow-card), 0 0 0 1px rgba(27,42,58,.04);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+@media print{
+  body{background:var(--paper);}
+  .page{margin:0; box-shadow:none; page-break-after:always;}
+  .noprint{display:none !important;}
+}
+@media screen{
+  body{padding:10mm 0 30mm 0;}
+}
+.noprint-banner{
+  max-width:210mm; margin:0 auto 10mm auto; padding:10px 16px;
+  background:var(--ink); color:#fff; font-family:'Manrope',sans-serif;
+  font-size:12.5px; border-radius:10px; display:flex; align-items:center; gap:8px;
+}
+.noprint-banner b{color:#FFD37A;}
+
+/* subtle paper grain / dot texture behind content */
+.page::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:radial-gradient(circle, rgba(27,42,58,.05) 1px, transparent 1px);
+  background-size:14px 14px;
+  opacity:.5;
+  pointer-events:none;
+  z-index:0;
+}
+.page > *{position:relative; z-index:1;}
+
+/* ============ HEADER / FOOTER (repeat pattern from Book 1) ============ */
+.page-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-bottom:8mm; margin-bottom:8mm;
+  border-bottom:2px solid var(--line);
+}
+.page-head .brandmark{ display:flex; align-items:center; gap:9px; }
+.page-head .brandmark img{ height:30px; width:auto; }
+.page-head .brandmark .word{ font-family:'Baloo 2'; font-weight:700; font-size:15px; color:var(--thynk-blue); letter-spacing:.2px;}
+.crumb-pill{
+  font-family:'Space Mono',monospace; font-size:10.5px; font-weight:700;
+  color:#fff; background:var(--accent, var(--thynk-blue));
+  padding:6px 14px; border-radius:999px; letter-spacing:.03em;
+  display:flex; align-items:center; gap:6px;
+}
+.page-foot{
+  margin-top:auto; padding-top:6mm; margin-top:8mm;
+  border-top:1.5px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:'Space Mono',monospace; font-size:9.5px; color:var(--ink-faint);
+  letter-spacing:.02em;
+}
+.page-foot .pageno{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--accent, var(--thynk-blue)); color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700; font-size:10px;
+}
+
+/* ============ TYPE + LOCKUPS ============ */
+.eyebrow{
+  font-family:'Space Mono',monospace; font-size:11px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.12em; color:var(--accent, var(--thynk-blue));
+  display:flex; align-items:center; gap:8px; margin-bottom:6px;
+}
+.eyebrow::before{content:"";width:16px;height:2px;background:currentColor;display:inline-block;}
+h1.title{ font-size:28px; font-weight:800; color:var(--ink); }
+h2.sub{ font-family:'Manrope'; font-weight:600; font-size:13.5px; color:var(--ink-soft); margin-top:4px;}
+
+/* ============ BIG IDEA CALLOUT ============ */
+.big-idea{
+  background:linear-gradient(180deg, #fff, var(--paper-dim));
+  border:1.5px solid var(--line);
+  border-left:6px solid var(--accent, var(--thynk-blue));
+  border-radius:var(--radius-m);
+  padding:16px 20px;
+  margin:14px 0;
+}
+.big-idea .lbl{
+  display:flex; align-items:center; gap:8px;
+  font-family:'Baloo 2'; font-weight:700; font-size:14.5px; color:var(--accent, var(--thynk-blue));
+  margin-bottom:6px;
+}
+.big-idea p{font-size:13.5px; color:var(--ink-soft); margin-bottom:0;}
+.big-idea p + p{margin-top:.5em;}
+
+/* ============ GENERIC CARD GRID ============ */
+.grid{display:grid; gap:12px;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:1fr 1fr 1fr;}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+.card{
+  background:#fff; border:1.5px solid var(--line); border-radius:var(--radius-m);
+  padding:13px 15px;
+}
+.card .ic{font-size:19px; display:block; margin-bottom:6px;}
+.card h4{font-size:13px; font-weight:700; margin-bottom:4px; color:var(--ink);}
+.card p{font-size:11.8px; color:var(--ink-soft); margin:0;}
+
+/* ============ SCRATCH BLOCK CHIPS ============ */
+.block-chip{
+  display:inline-flex; align-items:center; gap:6px;
+  font-family:'Space Mono',monospace; font-size:11.5px; font-weight:700; color:#fff;
+  padding:6px 12px; border-radius:8px; margin:2px 4px 2px 0;
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.14);
+}
+.block-chip.notch::before{content:"";width:7px;height:7px;background:rgba(255,255,255,.85);border-radius:2px;display:inline-block;}
+.b-motion{background:var(--sc-motion);}
+.b-looks{background:var(--sc-looks);}
+.b-sound{background:var(--sc-sound);}
+.b-events{background:var(--sc-events); color:#4A3800;}
+.b-control{background:var(--sc-control); color:#4A2E00;}
+.b-sensing{background:var(--sc-sensing);}
+.b-operators{background:var(--sc-operators);}
+.b-variables{background:var(--sc-variables);}
+.b-myblocks{background:var(--sc-myblocks);}
+
+.script{
+  background:#EEF3F8; border:1.5px dashed #C7D3DE; border-radius:var(--radius-m);
+  padding:14px; display:flex; flex-direction:column; gap:5px; align-items:flex-start;
+}
+.script .cap{font-family:'Space Mono'; font-size:10px; color:var(--ink-faint); margin-bottom:4px; text-transform:uppercase; letter-spacing:.06em;}
+
+/* ============ VEDIC ↔ SCRATCH BRIDGE (signature layout) ============ */
+.bridge{
+  display:grid; grid-template-columns:1fr 56px 1fr; align-items:stretch; gap:0;
+  margin:16px 0;
+}
+.bridge .side{
+  border-radius:var(--radius-m); padding:16px 17px; border:1.5px solid var(--line);
+}
+.bridge .side.vedic{ background:#FFF7ED; border-color:#F3DFC0;}
+.bridge .side.scratch{ background:#F1F8FF; border-color:#CFE4F7;}
+.bridge .kicker{font-family:'Space Mono'; font-size:9.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:5px;}
+.bridge .side.vedic .kicker{color:#B4711C;}
+.bridge .side.scratch .kicker{color:#1B72B6;}
+.bridge h4{font-size:14.5px; margin-bottom:6px;}
+.bridge p{font-size:12px; color:var(--ink-soft);}
+.bridge .arrow{
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px; color:var(--accent, var(--thynk-blue)); font-weight:800;
+}
+
+/* ============ TRY IT / ACTIVITY BOX ============ */
+.tryit{
+  background:#fff; border:1.5px solid var(--accent, var(--thynk-blue));
+  border-radius:var(--radius-m); padding:15px 18px; margin:14px 0;
+  position:relative;
+}
+.tryit .tag{
+  position:absolute; top:-11px; left:16px; background:var(--accent, var(--thynk-blue)); color:#fff;
+  font-family:'Space Mono'; font-size:10px; font-weight:700; padding:4px 12px; border-radius:999px;
+  text-transform:uppercase; letter-spacing:.04em;
+}
+.tryit ol{margin:6px 0 0 0; padding-left:19px;}
+.tryit li{font-size:12.6px; margin-bottom:5px; color:var(--ink);}
+.checkbox-line{
+  display:flex; align-items:center; gap:8px; margin-top:10px; font-size:12.5px; font-weight:700; color:var(--ink-soft);
+}
+.checkbox-line .box{width:15px;height:15px;border:2px solid var(--ink-faint);border-radius:4px; flex:none;}
+
+/* ============ REMEMBER / TIP ============ */
+.tip{
+  background:var(--paper-dim); border-left:5px solid var(--sc-operators);
+  border-radius:0 var(--radius-s) var(--radius-s) 0;
+  padding:11px 15px; font-size:12px; color:var(--ink-soft); margin:12px 0;
+}
+.tip b{color:var(--ink);}
+
+/* ============ ASK A.I. BOX (from Book 1) ============ */
+.ask-ai{
+  background:#F6F1FF; border:1.5px solid #D9C9FA; border-radius:var(--radius-m);
+  padding:15px 18px; margin:14px 0;
+}
+.ask-ai .lbl{display:flex; align-items:center; gap:8px; font-family:'Baloo 2'; font-weight:700; color:#6B3FBF; font-size:13.5px; margin-bottom:8px;}
+.ask-ai .prompt{
+  background:#fff; border:1.5px dashed #C9B6EF; border-radius:10px; padding:10px 12px;
+  font-family:'Space Mono'; font-size:11px; color:#3B2A5C; line-height:1.5;
+}
+.ask-ai .hint{font-size:11.3px; color:#6B3FBF; margin-top:8px;}
+
+/* ============ WORKED EXAMPLE TABLE ============ */
+.worked{ border:1.5px solid var(--line); border-radius:var(--radius-m); overflow:hidden; margin:12px 0;}
+.worked .hd{background:var(--accent,var(--thynk-blue)); color:#fff; padding:9px 15px; font-family:'Space Mono'; font-size:11px; font-weight:700;}
+.worked table{width:100%; border-collapse:collapse;}
+.worked td{padding:9px 14px; font-size:12px; border-top:1px solid var(--line-soft); vertical-align:top;}
+.worked td:first-child{font-weight:700; width:34%; color:var(--ink);}
+.worked td:last-child{color:var(--ink-soft);}
+
+/* ============ BADGES ============ */
+.badge{
+  display:inline-flex; align-items:center; gap:5px; font-family:'Space Mono'; font-size:10px; font-weight:700;
+  padding:5px 11px; border-radius:999px; text-transform:uppercase; letter-spacing:.03em;
+}
+.badge-home{background:#FFE3E3; color:#C23B3B;}
+.badge-class{background:#E1F3E6; color:#2C8A4B;}
+.badge-bonus{background:#FFEFC7; color:#9A6B00;}
+
+/* ============ PRACTICE GRID ============ */
+.practice-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; margin:12px 0;}
+.pq{display:flex; align-items:baseline; gap:10px; font-size:12.5px; padding:7px 0; border-bottom:1px dotted var(--line);}
+.pq .n{font-family:'Space Mono'; font-weight:700; color:var(--accent,var(--thynk-blue)); width:16px; flex:none;}
+.pq .ans{margin-left:auto; width:56px; border-bottom:1.5px solid var(--ink-faint);}
+
+/* ============ CHIP ROW (topic teasers on dividers) ============ */
+.chip-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+.chip-row span{
+  background:rgba(255,255,255,.18); border:1.5px solid rgba(255,255,255,.4); color:#fff;
+  font-family:'Space Mono'; font-size:11px; font-weight:700; padding:6px 13px; border-radius:999px;
+}
+
+/* ============ CHAPTER DIVIDER PAGE ============ */
+.divider{ background:var(--accent, var(--thynk-blue)); color:#fff; justify-content:center;}
+.divider::before{background-image:radial-gradient(circle, rgba(255,255,255,.14) 1.5px, transparent 1.5px); opacity:1;}
+.divider .chnum{
+  font-family:'Baloo 2'; font-weight:800; font-size:120px; line-height:.8; opacity:.22;
+  position:absolute; top:26mm; right:14mm;
+}
+.divider .kicker{font-family:'Space Mono'; font-weight:700; letter-spacing:.15em; text-transform:uppercase; font-size:12.5px; opacity:.85; margin-bottom:10px;}
+.divider h1{font-size:42px; font-weight:800; max-width:80%;}
+.divider .tagline{font-size:15px; font-weight:600; opacity:.92; max-width:76%; margin-top:10px; line-height:1.45;}
+.divider .sutra-note{
+  margin-top:22px; display:inline-flex; align-items:center; gap:9px; background:rgba(255,255,255,.15);
+  border:1.5px solid rgba(255,255,255,.4); border-radius:999px; padding:8px 16px; font-size:12px; font-weight:700;
+}
+
+/* ============ COVER ============ */
+.cover{ background:radial-gradient(120% 100% at 15% 0%, #0AA1EF 0%, var(--thynk-blue) 46%, #005E92 100%); color:#fff; align-items:center; text-align:center; justify-content:space-between;}
+.cover::before{background-image:radial-gradient(circle, rgba(255,255,255,.16) 1.6px, transparent 1.6px); opacity:1;}
+.cover .top-row{display:flex; justify-content:space-between; align-items:center; width:100%;}
+.cover .top-row img{height:34px; filter:brightness(0) invert(1);}
+.cover .level-pill{
+  font-family:'Space Mono'; font-weight:700; font-size:11px; letter-spacing:.08em; background:#FFC93C; color:#4A3300;
+  padding:7px 16px; border-radius:999px;
+}
+.cover .hero{display:flex; flex-direction:column; align-items:center; gap:0; margin-top:0;}
+.cover .kicker{font-family:'Space Mono'; letter-spacing:.25em; text-transform:uppercase; font-size:12px; opacity:.85; margin-bottom:14px;}
+.cover h1{font-size:52px; font-weight:800; line-height:1.02; text-shadow:0 4px 0 rgba(0,40,70,.25);}
+.cover h1 span{display:block; color:#FFC93C; font-size:30px; margin-top:8px;}
+.cover .subtitle{font-family:'Manrope'; font-weight:600; font-size:15px; margin-top:16px; opacity:.92; max-width:420px;}
+.cover .stage{width:100%; max-width:480px; margin:8px auto;}
+.cover .bottom-row{display:flex; justify-content:space-between; align-items:flex-end; width:100%; font-family:'Space Mono'; font-size:10.5px; opacity:.85;}
+.cover .bottom-row .grade{ background:rgba(255,255,255,.15); border:1.5px solid rgba(255,255,255,.4); border-radius:10px; padding:8px 14px; text-align:left;}
+.cover .bottom-row .grade b{display:block; font-family:'Baloo 2'; font-size:13px; margin-bottom:2px;}
+
+/* ============ PREFACE / TOC specific ============ */
+.toc-item{ display:grid; grid-template-columns:40px 1fr; gap:14px; padding:13px 0; border-bottom:1px solid var(--line-soft);}
+.toc-item .num{ font-family:'Baloo 2'; font-weight:800; font-size:20px; color:var(--accent, var(--thynk-blue));}
+.toc-item h4{font-size:14px; font-weight:700; margin-bottom:2px;}
+.toc-item p{font-size:12px; color:var(--ink-soft); margin:0;}
+.toc-item .swatch{width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px;}
+
+.spiral-note{
+  display:flex; gap:14px; align-items:flex-start; background:#F1F8FF; border:1.5px solid #CFE4F7;
+  border-radius:var(--radius-m); padding:15px 18px; margin:14px 0;
+}
+.spiral-note .ic{font-size:26px; flex:none;}
+.spiral-note h4{font-size:13.5px; color:#1B72B6; margin-bottom:4px;}
+.spiral-note p{font-size:12.3px; color:var(--ink-soft); margin:0;}
+
+/* ============ SESSION PLAN TABLE ============ */
+.plan-wrap{border:1.5px solid var(--line); border-radius:var(--radius-m); overflow:hidden; margin:14px 0;}
+.plan-table{width:100%; border-collapse:collapse; font-size:11.3px;}
+.plan-table thead th{
+  background:var(--thynk-blue); color:#fff; text-align:left; padding:9px 12px;
+  font-family:'Space Mono'; font-weight:700; font-size:10px; text-transform:uppercase; letter-spacing:.04em;
+}
+.plan-table td{padding:9px 12px; border-top:1px solid var(--line-soft); color:var(--ink-soft); vertical-align:top;}
+.plan-table td:first-child{font-family:'Baloo 2'; font-weight:700; color:var(--thynk-blue); width:26px;}
+.plan-table td.mod b{color:var(--ink); display:block; font-size:12px;}
+.plan-table tr.total td{background:var(--paper-dim); font-weight:700; color:var(--ink);}
+.plan-table tr.exam td{background:#FFF7ED;}
+
+.teacher-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:10px;}
+.teacher-card{background:#fff; border:1.5px solid var(--line); border-radius:var(--radius-m); padding:13px 15px;}
+.teacher-card .head{display:flex; align-items:center; gap:8px; margin-bottom:5px;}
+.teacher-card .head .ic{font-size:17px;}
+.teacher-card h4{font-size:12.8px; font-weight:700;}
+.teacher-card p{font-size:11.5px; color:var(--ink-soft); margin:0;}
+
+/* ============ MASCOT strip ============ */
+.mascot-strip{display:flex; align-items:center; gap:14px; margin:6px 0 4px 0;}
+.mascot-strip svg{flex:none;}
+.mascot-strip .bubble{
+  background:#fff; border:1.5px solid var(--line); border-radius:16px; border-bottom-left-radius:4px;
+  padding:10px 15px; font-size:12.3px; color:var(--ink-soft); position:relative;
+}
+.mascot-strip .bubble b{color:var(--ink);}
+
+/* ============ CREATOR BOXES · Understand→Create→Explain→Teach toolkit ============ */
+.creator-box{
+  border-radius:var(--radius-m); padding:13px 17px; margin:12px 0;
+  border:1.5px solid var(--cb-border); background:var(--cb-bg);
+}
+.creator-box .lbl{display:flex; align-items:center; gap:8px; font-family:'Baloo 2'; font-weight:700; font-size:13px; color:var(--cb-ink); margin-bottom:5px;}
+.creator-box p{font-size:12.2px; color:var(--ink-soft); margin:0;}
+.creator-box p + p{margin-top:6px;}
+.creator-box p b{color:var(--ink);}
+.cb-corner{ --cb-bg:#FFF8E6; --cb-border:#F3DFA3; --cb-ink:#96700A; }
+.cb-program{ --cb-bg:#EEF3F8; --cb-border:#C7D3DE; --cb-ink:#2C4A66; }
+.cb-maths{ --cb-bg:#EAF8EE; --cb-border:#BFE6CB; --cb-ink:#1F7A3D; }
+.cb-yours{ --cb-bg:#FBF0FF; --cb-border:#E7C9F7; --cb-ink:#8134A6; }
+.cb-teach{ --cb-bg:#FFF0EC; --cb-border:#F5C7B8; --cb-ink:#B5501F; }
+.cb-challenge{ --cb-bg:#FFF3E6; --cb-border:#FFC98A; --cb-ink:#B5560A; }
+
+/* ============ CREATOR LEVEL METER (Follow→Change→Combine→Create→Explain→Teach) ============ */
+.level-meter{display:flex; gap:5px; margin:10px 0; flex-wrap:wrap;}
+.level-meter .lv{flex:1; min-width:76px; border-radius:10px; padding:7px 8px; text-align:center; background:var(--paper-dim); border:1.5px solid var(--line);}
+.level-meter .lv .num{font-family:'Space Mono'; font-size:8.5px; font-weight:700; color:var(--ink-faint);}
+.level-meter .lv .lab{font-family:'Baloo 2'; font-size:10px; font-weight:700; color:var(--ink-faint); margin-top:1px; line-height:1.2;}
+.level-meter .lv.active{background:var(--accent, var(--thynk-blue)); border-color:var(--accent, var(--thynk-blue));}
+.level-meter .lv.active .num, .level-meter .lv.active .lab{color:#fff;}
+
+/* ============ EXERCISE ITEM (Predict / Fix-the-Bug / Build-It) ============ */
+.ex-item{background:#fff; border:1.5px solid var(--line); border-radius:var(--radius-m); padding:13px 16px; margin:11px 0;}
+.ex-item .exhd{display:flex; align-items:center; gap:9px; margin-bottom:7px;}
+.ex-item .exhd .exn{width:24px;height:24px;border-radius:50%; background:var(--accent,var(--thynk-blue)); color:#fff; font-family:'Space Mono'; font-weight:700; font-size:11px; display:flex; align-items:center; justify-content:center; flex:none;}
+.ex-item .exhd b{font-size:13px;}
+.ex-item .exhd span.tagline{font-size:11px; color:var(--ink-faint); font-family:'Space Mono';}
+.ex-item p{font-size:12.3px; color:var(--ink-soft);}
+
+/* subtle top corner page-number for divider pages */
+.divider .cornerno{position:absolute; bottom:12mm; right:15mm; width:26px;height:26px;border-radius:50%; background:rgba(255,255,255,.22); border:1.5px solid rgba(255,255,255,.5); color:#fff; font-family:'Space Mono'; font-weight:700; font-size:10.5px; display:flex; align-items:center; justify-content:center;}
+
+/* ============ RECIPE FLOW (input → steps → output) ============ */
+.recipe{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:14px 0; padding:16px; background:#FFF0F4; border:1.5px solid #FFD1DC; border-radius:var(--radius-m);}
+.recipe .rio{background:#fff; border:2px solid var(--c2); border-radius:12px; padding:9px 14px; text-align:center; font-family:'Baloo 2'; font-weight:700; font-size:11.5px; color:var(--c2); min-width:96px;}
+.recipe .rio span{display:block; font-family:'Manrope'; font-weight:500; font-size:10px; color:var(--ink-soft); margin-top:2px;}
+.recipe .rstep{background:#fff; border:1.5px dashed #E4A8B8; border-radius:10px; padding:8px 12px; font-size:11.3px; color:var(--ink); flex:1; min-width:120px;}
+.recipe .rstep b{font-family:'Space Mono'; color:var(--c2); margin-right:4px;}
+.recipe .rarrow{color:var(--c2); font-weight:800; font-size:15px;}
+
+/* ============ COMPARE PANELS (without/with) ============ */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0;}
+.compare .cp{border-radius:var(--radius-m); padding:13px 15px; border:1.5px solid var(--line);}
+.compare .cp.sad{background:#FFF5F5; border-color:#F5D3D3;}
+.compare .cp.glad{background:#F1FBF3; border-color:#C9EAD0;}
+.compare .cp .cphd{font-family:'Baloo 2'; font-weight:700; font-size:12.5px; margin-bottom:8px;}
+.compare .cp.sad .cphd{color:#B5443B;}
+.compare .cp.glad .cphd{color:#2C8A4B;}
+</style>
+</head>
+<body>
+
+<div class="noprint noprint-banner">📖 <b>THYNK — Beginners Basic 2 · Young Creator.</b>&nbsp; On-screen preview — use your browser's Print (Ctrl/Cmd+P) to export as a print-ready A4 PDF.</div>
+
+<!-- ======================================================
+     COVER
+====================================================== -->
+<section class="page cover">
+  <div class="top-row">
+    <img src="https://pranavsheth.com/logo4.png" alt="THYNK logo">
+    <span class="level-pill">LEVEL 2</span>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">T.H.Y.N.K · My Scratch Adventure</div>
+    <h1>Young<br>Creator<span>Beginners Basic 2</span></h1>
+    <p class="subtitle">Lights, camera, sutras! Animate numbers, build your own blocks, record your voice, and direct a team of sprites — all powered by Vedic Maths.</p>
+  </div>
+
+  <div class="stage">
+    <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- ground shadow -->
+      <ellipse cx="240" cy="272" rx="150" ry="14" fill="rgba(0,20,40,.18)"/>
+      <!-- clapperboard body -->
+      <g>
+        <rect x="95" y="120" width="290" height="150" rx="14" fill="#12233A"/>
+        <rect x="95" y="120" width="290" height="150" rx="14" fill="none" stroke="#FFC93C" stroke-width="4"/>
+        <!-- slate lines -->
+        <line x1="120" y1="205" x2="360" y2="205" stroke="#2C4059" stroke-width="2"/>
+        <text x="118" y="165" font-family="Space Mono" font-size="15" fill="#FFC93C" font-weight="700">SCENE  Ekadhikena</text>
+        <text x="118" y="188" font-family="Space Mono" font-size="15" fill="#FFC93C" font-weight="700">TAKE   02</text>
+        <text x="118" y="248" font-family="Baloo 2" font-size="26" fill="#FFFFFF" font-weight="700">T.H.Y.N.K</text>
+        <text x="118" y="270" font-family="Manrope" font-size="12" fill="#9FB4C9">young creator · book 2</text>
+      </g>
+      <!-- clapper top, angled open -->
+      <g transform="rotate(-13 105 122)">
+        <rect x="95" y="90" width="290" height="34" rx="8" fill="#0A1930"/>
+        <rect x="95" y="90" width="36" height="34" fill="#FFC93C"/>
+        <rect x="149" y="90" width="36" height="34" fill="#F4F4F4"/>
+        <rect x="203" y="90" width="36" height="34" fill="#FFC93C"/>
+        <rect x="257" y="90" width="36" height="34" fill="#F4F4F4"/>
+        <rect x="311" y="90" width="36" height="34" fill="#FFC93C"/>
+      </g>
+      <!-- Scratchy the cat, director pose, sitting on the clapperboard -->
+      <g transform="translate(300,40)">
+        <ellipse cx="30" cy="88" rx="30" ry="26" fill="#FFC93C"/>
+        <circle cx="30" cy="34" r="30" fill="#FFC93C"/>
+        <path d="M4 18 L14 -6 L28 16 Z" fill="#FFC93C"/>
+        <path d="M56 18 L46 -6 L32 16 Z" fill="#FFC93C"/>
+        <path d="M9 16 L15 2 L23 15 Z" fill="#E88F1F"/>
+        <path d="M51 16 L45 2 L37 15 Z" fill="#E88F1F"/>
+        <circle cx="20" cy="36" r="4" fill="#12233A"/>
+        <circle cx="40" cy="36" r="4" fill="#12233A"/>
+        <path d="M22 47 Q30 53 38 47" stroke="#12233A" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <!-- beret -->
+        <ellipse cx="14" cy="12" rx="15" ry="8" fill="#008AD4"/>
+        <circle cx="12" cy="6" r="3" fill="#008AD4"/>
+        <!-- little clapperboard in paw -->
+        <g transform="translate(-16,70) rotate(-18)">
+          <rect x="0" y="6" width="26" height="18" rx="3" fill="#12233A"/>
+          <rect x="0" y="0" width="26" height="8" fill="#FFFFFF"/>
+          <rect x="0" y="0" width="6" height="8" fill="#12233A"/>
+          <rect x="12" y="0" width="6" height="8" fill="#12233A"/>
+        </g>
+      </g>
+      <!-- floating numbers / code confetti -->
+      <text x="30" y="60" font-family="Space Mono" font-size="20" fill="#FFFFFF" opacity=".85" font-weight="700">25²</text>
+      <text x="410" y="120" font-family="Space Mono" font-size="18" fill="#FFC93C" opacity=".9" font-weight="700">{ }</text>
+      <text x="20" y="140" font-family="Space Mono" font-size="16" fill="#FFFFFF" opacity=".7">625</text>
+      <text x="415" y="220" font-family="Space Mono" font-size="22" fill="#FFFFFF" opacity=".8">♪</text>
+      <text x="55" y="220" font-family="Space Mono" font-size="18" fill="#FFC93C" opacity=".85">📡</text>
+    </svg>
+  </div>
+
+  <div class="bottom-row">
+    <div class="grade"><b>Grade 5</b>Ages 10–11 · After-school programme</div>
+    <div style="text-align:right">The Hub for Young<br>Next-gen Knowledge</div>
+  </div>
+</section>
+
+<!-- ======================================================
+     PREFACE
+====================================================== -->
+<section class="page">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">PREFACE</span>
+  </div>
+
+  <div class="eyebrow">T.H.Y.N.K · Level 2 · Young Creator</div>
+  <h1 class="title">Welcome Back, Creator</h1>
+  <h2 class="sub">The Hub for Young Next-gen Knowledge</h2>
+
+  <p style="margin-top:16px; font-size:13.5px; color:var(--ink-soft); line-height:1.7;">
+  In <strong>Beginners Basic 1</strong>, you learned to speak the language of Scratch — sequencing, loops, variables,
+  conditionals — and you discovered that Vedic Maths and coding are really the same kind of thinking wearing
+  different clothes. You met sutras like <strong>Ekadhikena Purvena</strong> and <strong>Nikhilam</strong>, and you
+  built your very first sprites.
+  </p>
+  <p style="font-size:13.5px; color:var(--ink-soft); line-height:1.7;">
+  This book asks a bigger question: now that you can code — <strong>what will you create?</strong> A Young Creator
+  doesn't just write scripts, they direct scenes. Over four chapters you will make numbers dance across the stage,
+  package a sutra into a tool you can reuse forever, record your own voice teaching a brand-new sutra, and choreograph
+  a whole cast of sprites that talk to one another. By the final page, you won't just know more Scratch — you'll have
+  <em>made</em> something worth showing your family.
+  </p>
+
+  <div class="spiral-note">
+    <div class="ic">🌀</div>
+    <div>
+      <h4>Our philosophy: Spiral Learning</h4>
+      <p>Notice that this book doesn't rush to new sutras right away. Chapters 1 and 2 <strong>return</strong> to
+      Ekadhikena Purvena — the squaring-numbers-ending-in-5 trick you already know — and look at it through a new
+      lens each time: first as <em>animation</em>, then as a <em>reusable tool</em>. Just like a sutra reveals a new
+      layer each time you revisit it, this workbook spirals back to old ideas before reaching for new ones. One brand
+      new sutra, <strong>Yavadunam</strong>, is waiting for you in Chapter 3 — you've already heard its name once,
+      back in Book 1!</p>
+    </div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:8px;">
+    <div class="card"><span class="ic">🎬</span><h4>Think like a director</h4><p>Every chapter frames its Scratch
+    concept as a film-making job: animator, prop-maker, sound recordist, stage manager.</p></div>
+    <div class="card"><span class="ic">🧵</span><h4>One sutra, many outfits</h4><p>The same maths idea returns
+    in a new costume each chapter — reinforcing, not repeating.</p></div>
+    <div class="card"><span class="ic">🗣️</span><h4>Teach it to learn it</h4><p>In Chapter 3, you'll explain a sutra
+    out loud. Saying it in your own words is how it truly sticks.</p></div>
+    <div class="card"><span class="ic">🤝</span><h4>Sprites that talk</h4><p>By Chapter 4, your sprites won't work
+    alone — they'll pass messages, just like a real team.</p></div>
+  </div>
+
+  <p style="margin-top:auto; padding-top:14px; font-size:12.5px; color:var(--ink-faint); font-style:italic;">
+  Welcome to T.H.Y.N.K — where young minds learn to Think, Create, and Innovate.
+  </p>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Preface</span><span class="pageno">P</span></div>
+</section>
+
+<!-- ======================================================
+     TABLE OF CONTENTS
+====================================================== -->
+<section class="page">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">INDEX</span>
+  </div>
+
+  <div class="eyebrow">Your Map for This Book</div>
+  <h1 class="title">What's Inside My Workbook?</h1>
+  <h2 class="sub">Four modules that turn every coder into a creator — Understand → Explore → Build → Create → Explain → Teach.</h2>
+
+  <div style="margin-top:10px;">
+    <div class="toc-item">
+      <div class="swatch" style="background:var(--c1);">🎞️</div>
+      <div><h4>1 · Sprites &amp; Animation — "Make Maths Move"</h4><p>Making maths visual — numbers dance, sutras animate.
+      Costumes, motion, and a remix of Ekadhikena Purvena you can <em>watch</em> happen. Project: <b>Dancing Numbers</b>.</p></div>
+    </div>
+    <div class="toc-item">
+      <div class="swatch" style="background:var(--c2);">🧩</div>
+      <div><h4>2 · Custom Blocks — "Turn a Sutra into a Superpower"</h4><p>Packaging a sutra as a reusable function —
+      your first taste of abstraction. Project: <b>My Maths Machine</b>.</p></div>
+    </div>
+    <div class="toc-item">
+      <div class="swatch" style="background:var(--c3);">🎙️</div>
+      <div><h4>3 · Sound &amp; Storytelling — "Code That Can Teach"</h4><p>Recording your voice explaining a sutra turns
+      coding into teaching. Meet a brand-new sutra, Yavadunam. Project: <b>My Maths Show</b>.</p></div>
+    </div>
+    <div class="toc-item">
+      <div class="swatch" style="background:var(--c4); color:#4A3800;">📡</div>
+      <div><h4>4 · Broadcasting — "Make Your Sprites Talk"</h4><p>Multi-sprite communication — your first taste of
+      event-driven programming. Project: <b>The Maths Team</b>.</p></div>
+    </div>
+    <div class="toc-item">
+      <div class="swatch" style="background:var(--ink);">⭐</div>
+      <div><h4>Show What You Know</h4><p>Every module closes with a mixed check-in — predict, fix-the-bug, a mental
+      maths moment, and an "explain it in your own words" reflection. Not a traditional exam.</p></div>
+    </div>
+    <div class="toc-item">
+      <div class="swatch" style="background:#FFFFFF; border:1.5px solid var(--line); color:var(--thynk-blue);">🏆</div>
+      <div><h4>Bonus Capstone · The Young Creator Challenge 🎬</h4><p>The grand finale — combine animation, a custom
+      block, sound, and broadcasting into one original project you build with limited instructions, then explain
+      and teach to someone else.</p></div>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:16px;"><b>How to use this workbook —</b> Read the colourful boxes, try the
+  blocks on screen, finish every activity, and tick the <b>"I did it!"</b> box. This is Book 2 — keep Book 1 nearby,
+  because we'll call back to it often!</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Index</span><span class="pageno">01</span></div>
+</section>
+
+<!-- ======================================================
+     YOUR LEARNING JOURNEY · PROGRESSION LEVELS
+====================================================== -->
+<section class="page">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">YOUR LEARNING JOURNEY</span>
+  </div>
+
+  <div class="eyebrow">From Young Explorer to Young Creator</div>
+  <h1 class="title">Your Learning Journey</h1>
+  <h2 class="sub">Six small levels turn "I followed the steps" into "I can teach this to someone else."</h2>
+
+  <p style="font-size:12.8px; color:var(--ink-soft); margin-top:10px;">In Book 1 you mostly worked at Levels 1–2 —
+  following a guided build, then changing a number or a colour. Book 2 keeps stretching you further. By the
+  <strong>Young Creator Challenge</strong> at the very end, you'll move through all six levels in one project.</p>
+
+  <div class="grid grid-3" style="margin-top:12px;">
+    <div class="card" style="border-color:#CFE4F7; background:#F1F8FF;"><span class="ic">1️⃣</span><h4>I Can Follow</h4><p>Build a guided project exactly as shown, one block at a time.</p></div>
+    <div class="card" style="border-color:#CFE4F7; background:#F1F8FF;"><span class="ic">2️⃣</span><h4>I Can Change</h4><p>Swap a number, colour, or costume in a project that already works.</p></div>
+    <div class="card" style="border-color:#D9E9DC; background:#F3FAF4;"><span class="ic">3️⃣</span><h4>I Can Combine</h4><p>Bring together two ideas from different chapters into one script.</p></div>
+    <div class="card" style="border-color:#D9E9DC; background:#F3FAF4;"><span class="ic">4️⃣</span><h4>I Can Create</h4><p>Build something new with only a short brief — no exact steps to copy.</p></div>
+    <div class="card" style="border-color:#F3DFA3; background:#FFF8E6;"><span class="ic">5️⃣</span><h4>I Can Explain</h4><p>Put the maths and the code into your own words, out loud or in writing.</p></div>
+    <div class="card" style="border-color:#F3DFA3; background:#FFF8E6;"><span class="ic">6️⃣</span><h4>I Can Teach</h4><p>Help someone else understand it — the surest sign you've truly learned it.</p></div>
+  </div>
+
+  <div class="creator-box cb-program" style="margin-top:16px;">
+    <div class="lbl">🧠 Mistakes Are Clues</div>
+    <p>Every chapter includes a <b>Fix the Bug</b> moment. A programme that doesn't work isn't a failure — it's a clue
+    pointing straight at what to check next. Ask: <em>"What did I expect? What actually happened? What's one thing
+    I could change?"</em></p>
+  </div>
+
+  <div class="tip" style="margin-top:auto;"><b>Ancient wisdom, modern intelligence —</b> Vedic Maths is the wisdom;
+  Scratch is the modern craft. This book is about learning to use both, together, on purpose. <em>Think deeply.
+  Create freely. Learn by doing.</em></div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Your Learning Journey</span><span class="pageno">02</span></div>
+</section>
+
+<!-- ======================================================
+     FOR THE SCHOOL & TEACHER
+====================================================== -->
+<section class="page">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">FOR THE SCHOOL &amp; TEACHER</span>
+  </div>
+
+  <div class="eyebrow">Grade 5 · Beginners Basic 2 · Session Plan</div>
+  <h1 class="title">Suggested Session Plan</h1>
+  <h2 class="sub">🎓 A project-first sequel to Beginners Basic 1, for 10–11 year-olds already comfortable with sequencing, loops, variables and conditionals.</h2>
+
+  <p style="font-size:12.6px; color:var(--ink-soft); margin-top:10px;">This volume is designed as a
+  <strong>relaxed, create-first</strong> continuation of Scratch coding and Vedic Maths. We recommend spreading it
+  across approximately <strong>22 class sessions of 35 minutes each</strong> — about one term.</p>
+
+  <div class="plan-wrap">
+    <table class="plan-table">
+      <thead><tr><th>#</th><th style="width:30%">Chapter / Module</th><th style="width:10%">Classes</th><th>What gets covered</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td class="mod"><b>Sprites &amp; Animation</b>+ Vedic Recap: Ekadhikena Purvena</td><td>4</td><td>Costumes, coordinates, animation loops · recap sutra as a worked walkthrough · Dancing Numbers mini-project + Show What You Know.</td></tr>
+        <tr><td>2</td><td class="mod"><b>Custom Blocks</b>Packaging the sutra as a function</td><td>4</td><td>My Blocks category, inputs/parameters, abstraction · My Maths Machine mini-project + Show What You Know.</td></tr>
+        <tr><td>3</td><td class="mod"><b>Sound &amp; Storytelling</b>New Sutra: Yavadunam</td><td>5</td><td>Record/play-sound blocks · Yavadunam taught in full for the first time · My Maths Show mini-project + Show What You Know.</td></tr>
+        <tr><td>4</td><td class="mod"><b>Broadcasting</b>Yavadunam as a two-sprite relay</td><td>4</td><td>Broadcast / when-I-receive, multi-sprite events · The Maths Team mini-project + Show What You Know.</td></tr>
+        <tr class="exam"><td>–</td><td class="mod"><b>Bonus Capstone</b>The Young Creator Challenge</td><td>3</td><td>Combine animation + a custom block + sound + broadcasting into one original, independently-built project.</td></tr>
+        <tr class="exam"><td>–</td><td class="mod"><b>Exam 1</b>Mid-term · Ch 1–2</td><td>1</td><td>Concept MCQs + Predict / Fix-the-Bug + a short on-screen Scratch task.</td></tr>
+        <tr class="exam"><td>–</td><td class="mod"><b>Exam 2</b>Final · Ch 3–4 + Capstone</td><td>1</td><td>Yavadunam sums + broadcasting task + Young Creator Challenge demo.</td></tr>
+        <tr class="total"><td></td><td>Total Classes for Volume 2</td><td>22</td><td>≈ one full term (weekly)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="sub" style="margin-top:6px; color:var(--ink); font-weight:700; font-size:13.5px;">👩‍🏫 A note for the class teacher</h2>
+  <div class="teacher-grid">
+    <div class="teacher-card"><div class="head"><span class="ic">📅</span><h4>How to pace each chapter</h4></div>
+      <p>Every chapter keeps the same rhythm as Book 1: concept page → Vedic bridge → mini-project → exercises. Plan
+      ~20 minutes concept/hands-on and ~15 minutes exercises per session.</p></div>
+    <div class="teacher-card"><div class="head"><span class="ic">🏠</span><h4>Mini-projects are homework</h4></div>
+      <p>Dancing Numbers, My Maths Machine, My Maths Show and The Maths Team all carry a red <b>Homework</b> badge.
+      Children build these at home and demo them next class.</p></div>
+    <div class="teacher-card"><div class="head"><span class="ic">🎬</span><h4>Plan a "premiere"</h4></div>
+      <p>The Young Creator Challenge capstone is designed to be screened — a short class "premiere" with the lights
+      dimmed goes a long way for motivation and parent involvement.</p></div>
+    <div class="teacher-card"><div class="head"><span class="ic">🌀</span><h4>Why Chapters 1–2 repeat a sutra</h4></div>
+      <p>This is deliberate spiral learning, not a duplicate. Seeing Ekadhikena Purvena as animation, <em>then</em>
+      as a reusable block, deepens fluency before Yavadunam arrives in Chapter 3.</p></div>
+  </div>
+
+  <div class="tip" style="margin-top:auto;"><b>Flexibility —</b> Sessions are indicative. A class that raced through
+  Book 1 may finish faster; a class new to recording audio may want an extra period in Chapter 3. Keep the
+  <b>Understand → Build → Create → Explain</b> flow inside each chapter for the best outcomes.</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>For the School &amp; Teacher</span><span class="pageno">03</span></div>
+</section>
+
+<!-- ======================================================
+     CHAPTER 1 DIVIDER · SPRITES & ANIMATION
+====================================================== -->
+<section class="page divider chapter-1" style="--accent:var(--c1);">
+  <div class="chnum">01</div>
+  <div class="kicker">Module One · "Make Maths Move"</div>
+  <h1>Sprites &amp;<br>Animation</h1>
+  <p class="tagline">Making maths visual — numbers dance, sutras animate. Your sprite is about to become the most
+  expressive performer on your stage.</p>
+  <div class="sutra-note">🌀&nbsp; Recap sutra: <strong>&nbsp;Ekadhikena Purvena</strong></div>
+  <div class="chip-row">
+    <span>Costumes</span><span>Coordinates</span><span>Animation Loops</span><span>Vedic Bridge</span><span>Dancing Numbers</span><span>Show What You Know</span>
+  </div>
+  <div class="cornerno">04</div>
+</section>
+
+<!-- ======================================================
+     1.1 CONCEPT · WHAT MAKES A SPRITE MOVE
+====================================================== -->
+<section class="page chapter-1" style="--accent:var(--c1);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 1 · SPRITES &amp; ANIMATION</span>
+  </div>
+
+  <div class="eyebrow">1.1 · Costumes, Coordinates &amp; Motion</div>
+  <h1 class="title">What Makes a Sprite Move?</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Big Idea</div>
+    <p>An <strong>animation</strong> is just a fast sequence of slightly-different pictures. Flip a comic book fast
+    enough and it moves. In Scratch, those pictures are called <strong>costumes</strong> — and switching between
+    them quickly is exactly how your sprite comes alive.</p>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><span class="ic">👕</span><h4>Costumes</h4><p>Every sprite can have many costumes — like
+    outfits. Switching costumes fast makes it look like it's moving.</p></div>
+    <div class="card"><span class="ic">🧭</span><h4>Coordinates (x, y)</h4><p>The Stage is a grid. The centre is
+    <span class="mono">(0, 0)</span>. Bigger x = further right. Bigger y = further up.</p></div>
+    <div class="card"><span class="ic">🎞️</span><h4>The Animation Loop</h4><p>Change costume, wait a tiny moment,
+    repeat forever. Three blocks, endless motion.</p></div>
+  </div>
+
+  <h2 class="sub" style="color:var(--ink); font-weight:700; font-size:13px; margin-top:14px;">🔵 Motion vs 🟣 Looks — two families, one performer</h2>
+  <p style="font-size:12.3px; color:var(--ink-soft);">Blue <strong>Motion</strong> blocks move your sprite around the
+  stage. Purple <strong>Looks</strong> blocks change how it appears. A great animation almost always mixes both.</p>
+
+  <div class="script" style="margin-top:6px;">
+    <div class="cap">The animation-loop pattern</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-control notch">forever</span>
+    <span class="block-chip b-looks notch" style="margin-left:18px;">next costume</span>
+    <span class="block-chip b-control notch" style="margin-left:18px;">wait 0.2 seconds</span>
+    <span class="block-chip b-motion notch" style="margin-left:18px;">move 3 steps</span>
+  </div>
+
+  <div class="mascot-strip" style="margin-top:14px;">
+    <svg width="54" height="54" viewBox="0 0 60 60"><circle cx="30" cy="32" r="24" fill="#4C97FF"/><path d="M8 20 L16 0 L26 18 Z" fill="#4C97FF"/><path d="M52 20 L44 0 L34 18 Z" fill="#4C97FF"/><circle cx="22" cy="32" r="3.4" fill="#12233A"/><circle cx="38" cy="32" r="3.4" fill="#12233A"/><path d="M20 42 Q30 48 40 42" stroke="#12233A" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    <div class="bubble"><b>Scratchy says:</b> "Remember me from Book 1? I'm putting on my dancing shoes — this
+    chapter, I'm going to <em>show</em> you a sutra instead of just saying it!"</div>
+  </div>
+
+  <div class="tip"><b>Remember —</b> A sprite with only ONE costume can still move (Motion blocks), but it can never
+  <em>animate</em> (Looks blocks + costume switching). Motion is travel; animation is performance.</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 1 · Sprites &amp; Animation</span><span class="pageno">05</span></div>
+</section>
+
+<!-- ======================================================
+     1.2 VEDIC WARM-UP · EKADHIKENA PURVENA REMIX
+====================================================== -->
+<section class="page chapter-1" style="--accent:var(--c1);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 1 · VEDIC WARM-UP</span>
+  </div>
+
+  <div class="eyebrow">1.2 · Recap from Book 1</div>
+  <h1 class="title">Ekadhikena Purvena — the Remix</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Big Idea · Squaring Numbers Ending in 5</div>
+    <p>Back in Book 1 you met <strong>Ekadhikena Purvena</strong> — "by one more than the previous." For any
+    number ending in 5, say <span class="mono">N5</span>: multiply <span class="mono">N × (N + 1)</span>, then
+    stick <span class="mono">25</span> on the end. That's the whole trick — no long multiplication needed!</p>
+  </div>
+
+  <div class="worked">
+    <div class="hd">QUICK RECAP · WORKED EXAMPLES</div>
+    <table>
+      <tr><td>35²</td><td>N = 3 → 3 × 4 = 12 → write 12, then 25 → <strong>1225</strong></td></tr>
+      <tr><td>75²</td><td>N = 7 → 7 × 8 = 56 → write 56, then 25 → <strong>5625</strong></td></tr>
+      <tr><td>95²</td><td>N = 9 → 9 × 10 = 90 → write 90, then 25 → <strong>9025</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="tryit">
+    <span class="tag">Practice · 5 minutes</span>
+    <p style="margin:6px 0 0 0; font-size:12.5px;">Warm your brain up before we animate it. Solve each square using
+    Ekadhikena Purvena and write the answer.</p>
+    <div class="practice-grid">
+      <div class="pq"><span class="n">1</span> 15² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">2</span> 25² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">3</span> 45² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">4</span> 55² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">5</span> 65² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">6</span> 85² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">7</span> 105² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">8</span> 115² =<span class="ans"></span></div>
+    </div>
+  </div>
+
+  <div class="tip"><b>Extension —</b> Q7 and Q8 go past two digits. Does the rule still work for <span class="mono">N</span>
+  bigger than 9? Try it and see — Vedic sutras are often more powerful than they first look!</div>
+
+  <div class="spiral-note" style="margin-top:14px;">
+    <div class="ic">🎬</div>
+    <div><h4>Where this is going</h4><p>You can already <em>calculate</em> every one of those squares. On the next
+    page, we stop calculating and start <strong>animating</strong> — turning the three steps of the sutra into three
+    costume changes your sprite performs, live, on stage.</p></div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 1 · Vedic Warm-up</span><span class="pageno">06</span></div>
+</section>
+
+<!-- ======================================================
+     1.3 THE VEDIC ↔ SCRATCH BRIDGE
+====================================================== -->
+<section class="page chapter-1" style="--accent:var(--c1);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 1 · THE BRIDGE</span>
+  </div>
+
+  <div class="eyebrow">1.3 · Sutra Meets Storyboard</div>
+  <h1 class="title">Turn the Sutra Into 3 Costumes</h1>
+  <p style="font-size:12.6px; color:var(--ink-soft); margin-top:2px;">A sutra is already a sequence of steps. An
+  animation is already a sequence of costumes. Line them up, step for step, and the maths performs itself.</p>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 1</div><h4>Spot the digit, N</h4>
+      <p>In <span class="mono">65²</span>, the digit before the 5 is <strong>N = 6</strong>. That's the only number
+      we need to remember.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Costume 1</div><h4>"Spotlight" costume</h4>
+      <p>Sprite walks in and holds up a big <strong>6</strong> prop. A spotlight circle grows around it. Nothing else
+      on stage yet.</p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 2</div><h4>Multiply N × (N + 1)</h4>
+      <p><strong>6 × 7 = 42.</strong> "One more than the previous" — six's neighbour, seven — joins in.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Costume 2</div><h4>"Merge" costume</h4>
+      <p>A second prop, <strong>7</strong>, glides in next to the 6. They collide with a little "poof" and merge into
+      a single <strong>42</strong> prop.</p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 3</div><h4>Attach 25</h4>
+      <p>Stick <strong>25</strong> onto the end of 42. <span class="mono">65² = 4225</span>. Every N5-square ends
+      this way — always 25, no exceptions.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Costume 3</div><h4>"Take a bow" costume</h4>
+      <p>A banner unrolls reading <strong>4225</strong>, the sprite takes a bow, and confetti (a Looks graphic
+      effect!) sparkles across the stage.</p></div>
+  </div>
+
+  <div class="script" style="margin-top:6px;">
+    <div class="cap">Stitching the 3 costumes into one script</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-looks notch">switch costume to spotlight</span>
+    <span class="block-chip b-control notch">wait 1 second</span>
+    <span class="block-chip b-looks notch">switch costume to merge</span>
+    <span class="block-chip b-control notch">wait 1 second</span>
+    <span class="block-chip b-looks notch">switch costume to take-a-bow</span>
+    <span class="block-chip b-looks notch">say join front 25 for 2 seconds</span>
+  </div>
+
+  <div class="mascot-strip" style="margin-top:12px;">
+    <svg width="54" height="54" viewBox="0 0 60 60"><circle cx="30" cy="32" r="24" fill="#4C97FF"/><path d="M8 20 L16 0 L26 18 Z" fill="#4C97FF"/><path d="M52 20 L44 0 L34 18 Z" fill="#4C97FF"/><circle cx="22" cy="32" r="3.4" fill="#12233A"/><circle cx="38" cy="32" r="3.4" fill="#12233A"/><path d="M20 42 Q30 48 40 42" stroke="#12233A" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    <div class="bubble"><b>Scratchy says:</b> "Notice <span class="mono">front</span> is just a variable holding
+    N×(N+1) — you calculate it once, then let three costumes perform it. That's the whole build on the next page!"</div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 1 · The Bridge</span><span class="pageno">07</span></div>
+</section>
+
+<!-- ======================================================
+     1.4 MINI-PROJECT · DANCING NUMBERS
+====================================================== -->
+<section class="page chapter-1" style="--accent:var(--c1);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 1 · MINI-PROJECT</span>
+  </div>
+
+  <div class="eyebrow">1.4 · Take-Home Project</div>
+  <h1 class="title">Dancing Numbers <span class="badge badge-home" style="margin-left:6px; vertical-align:middle;">🏠 Homework</span></h1>
+  <h2 class="sub">Build a sprite that squares ANY number ending in 5 — and performs the answer in three acts.</h2>
+
+  <div class="level-meter">
+    <div class="lv active"><div class="num">LV 1</div><div class="lab">Follow</div></div>
+    <div class="lv active"><div class="num">LV 2</div><div class="lab">Change</div></div>
+    <div class="lv"><div class="num">LV 3</div><div class="lab">Combine</div></div>
+    <div class="lv"><div class="num">LV 4</div><div class="lab">Create</div></div>
+    <div class="lv"><div class="num">LV 5</div><div class="lab">Explain</div></div>
+    <div class="lv"><div class="num">LV 6</div><div class="lab">Teach</div></div>
+  </div>
+
+  <svg viewBox="0 0 700 130" style="margin-top:6px; width:100%; height:auto;">
+    <rect x="0" y="0" width="222" height="130" rx="12" fill="#EAF3FF" stroke="#CFE4F7" stroke-width="1.5"/>
+    <rect x="239" y="0" width="222" height="130" rx="12" fill="#EAF3FF" stroke="#CFE4F7" stroke-width="1.5"/>
+    <rect x="478" y="0" width="222" height="130" rx="12" fill="#EAF3FF" stroke="#CFE4F7" stroke-width="1.5"/>
+    <text x="16" y="20" font-family="Space Mono" font-size="10" fill="#1B72B6" font-weight="700">ACT 1 · SPOTLIGHT</text>
+    <text x="255" y="20" font-family="Space Mono" font-size="10" fill="#1B72B6" font-weight="700">ACT 2 · MERGE</text>
+    <text x="494" y="20" font-family="Space Mono" font-size="10" fill="#1B72B6" font-weight="700">ACT 3 · TAKE A BOW</text>
+    <circle cx="111" cy="72" r="30" fill="#FFE8A3" opacity=".7"/>
+    <text x="111" y="80" font-family="Baloo 2" font-size="30" fill="#4C97FF" font-weight="800" text-anchor="middle">6</text>
+    <text x="330" y="80" font-family="Baloo 2" font-size="24" fill="#4C97FF" font-weight="800" text-anchor="middle">6 × 7</text>
+    <text x="330" y="102" font-family="Space Mono" font-size="11" fill="#9966FF" text-anchor="middle">= 42</text>
+    <text x="589" y="70" font-family="Baloo 2" font-size="30" fill="#4C97FF" font-weight="800" text-anchor="middle">4225</text>
+    <text x="589" y="92" font-family="Manrope" font-size="10" fill="#4F6070" text-anchor="middle">🎉 65² = 4225</text>
+  </svg>
+
+  <div class="grid grid-2" style="margin-top:14px;">
+    <div class="card"><span class="ic">🎨</span><h4>Costumes to draw</h4><p>3 costumes on one sprite: <b>spotlight</b>
+    (a big glowing digit), <b>merge</b> (two digits colliding into one), <b>take-a-bow</b> (a banner + a bowing pose).</p></div>
+    <div class="card"><span class="ic">📦</span><h4>Variables to make</h4><p><span class="mono">N5</span> the number
+    typed in, <span class="mono">N</span> the tens digit, <span class="mono">front</span> for N×(N+1), and
+    <span class="mono">answer</span> for the final square.</p></div>
+  </div>
+
+  <div class="script" style="margin-top:12px;">
+    <div class="cap">Sprite: Dancer · runs when 🏳 clicked</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-sensing notch">ask "Give me a 2-digit number ending in 5!" and wait</span>
+    <span class="block-chip b-variables notch">set N5 to answer</span>
+    <span class="block-chip b-variables notch">set N to (letter 1 of N5)</span>
+    <span class="block-chip b-looks notch">switch costume to spotlight</span>
+    <span class="block-chip b-looks notch">say (join "Spotlighting " N) for 1 seconds</span>
+    <span class="block-chip b-variables notch">set front to (N × (N+1))</span>
+    <span class="block-chip b-looks notch">switch costume to merge</span>
+    <span class="block-chip b-looks notch">say (join N " and its neighbour make " front) for 1.5 seconds</span>
+    <span class="block-chip b-variables notch">set answer to (join front "25")</span>
+    <span class="block-chip b-looks notch">switch costume to take-a-bow</span>
+    <span class="block-chip b-looks notch">say (join N5 "² = " answer) for 2 seconds</span>
+  </div>
+
+  <div class="creator-box cb-program"><div class="lbl">🧠 Think Like a Programmer</div><p>What happens if someone types
+  <span class="mono">47</span> instead of a number ending in 5? Your sprite will still perform all three acts — but
+  the answer will be <b>wrong</b>, because Ekadhikena Purvena only works for numbers ending in 5. A real creator
+  always knows the limits of their own trick! <em>What would you add to warn the player before that happens?</em></p></div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 1 · Mini-Project</span><span class="pageno">08</span></div>
+</section>
+
+<section class="page chapter-1" style="--accent:var(--c1);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 1 · MINI-PROJECT</span>
+  </div>
+  <div class="eyebrow">1.4 · Dancing Numbers, continued</div>
+  <h1 class="title" style="font-size:22px;">Your Turn to Direct</h1>
+
+  <div class="bridge" style="margin-top:10px;">
+    <div class="side vedic"><div class="kicker">Vedic Connect</div><h4>Seeing makes it stick</h4>
+      <p>Once you've <em>watched</em> N and its neighbour merge, and watched 25 land every single time, you stop
+      needing to memorise the rule — you can picture it.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">In Scratch</div><h4>Animation is understanding</h4>
+      <p>This is true for coding too: when you can picture what a loop or a variable is doing on stage, debugging
+      stops being scary.</p></div>
+  </div>
+
+  <div class="tryit">
+    <span class="tag">Your Turn · Activity 1.A</span>
+    <ol>
+      <li>Draw your 3 costumes (spotlight, merge, take-a-bow) — pick your own colours and a character, not just plain digits.</li>
+      <li>Build the script from the previous page, using your own variable names if you like.</li>
+      <li>Test it with at least <strong>3 different</strong> numbers ending in 5 (try one two-digit and one three-digit, like 15 and 125).</li>
+      <li>Bonus 🌟: add a Looks <span class="mono">change color effect</span> block during the "merge" costume for extra sparkle.</li>
+    </ol>
+    <div class="checkbox-line"><span class="box"></span> I did it!</div>
+  </div>
+
+  <div class="creator-box cb-yours"><div class="lbl">🎨 Make It Yours</div><p>Give your Dancer sprite a name and a
+  personality. Is it a shy robot, a confident magician, a wobbly jelly? None of this changes the maths — but it's
+  the difference between a script and a <b>show</b>.</p></div>
+
+  <div class="ask-ai">
+    <div class="lbl">🤖 Stuck? Try this prompt —</div>
+    <div class="prompt">"In Scratch, my sprite switches through 3 costumes — spotlight, merge, take-a-bow — with a
+    'wait 1 second' between each. But they flick past too fast to read. I'm using a variable called <b>front</b> with
+    a <b>join</b> block to show the answer. What block or timing change would make each act easier for a 10-year-old
+    audience to follow?"</div>
+    <div class="hint">💡 Naming your exact blocks (join, wait, switch costume) helps A.I. give an answer that matches
+    what's actually on your screen.</div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 1 · Mini-Project</span><span class="pageno">09</span></div>
+</section>
+
+<!-- ======================================================
+     1.5 SHOW WHAT YOU KNOW
+====================================================== -->
+<section class="page chapter-1" style="--accent:var(--c1);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 1 · SHOW WHAT YOU KNOW</span>
+  </div>
+
+  <div class="eyebrow">1.5 · Not a Test — a Check-In</div>
+  <h1 class="title">Show What You Know</h1>
+  <h2 class="sub">A mix of predicting, debugging, mental maths and explaining — because knowing coding means more than getting the right answer.</h2>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">1</span><b>Predict</b><span class="tagline">before you run it</span></div>
+    <p>Milo built this script but changed one number. Before you imagine running it, predict: will this sprite look
+    like a smooth animation, or a slow slideshow?</p>
+    <div class="script">
+      <span class="block-chip b-events notch">when 🏳 clicked</span>
+      <span class="block-chip b-control notch">forever</span>
+      <span class="block-chip b-looks notch" style="margin-left:18px;">next costume</span>
+      <span class="block-chip b-control notch" style="margin-left:18px;">wait 3 seconds</span>
+    </div>
+    <p style="margin-top:6px;"><b>My prediction:</b> ________________________ &nbsp; <b>Why:</b> ________________________</p>
+  </div>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">2</span><b>Fix the Bug</b><span class="tagline">mistakes are clues</span></div>
+    <p>Zara's Dancing Numbers sprite jumps straight to the final answer — the spotlight and merge costumes flash by
+    too fast to see. Here's her script. What's missing?</p>
+    <div class="script">
+      <span class="block-chip b-events notch">when 🏳 clicked</span>
+      <span class="block-chip b-looks notch">switch costume to spotlight</span>
+      <span class="block-chip b-looks notch">switch costume to merge</span>
+      <span class="block-chip b-looks notch">switch costume to take-a-bow</span>
+    </div>
+    <p style="margin-top:6px;"><b>What's missing:</b> ________________________________________________</p>
+  </div>
+
+  <div class="creator-box cb-maths">
+    <div class="lbl">🔢 Maths Moment</div>
+    <p>Solve these in your head using Ekadhikena Purvena — no pencil, no pausing.
+    <b>55² = ___</b> &nbsp; <b>85² = ___</b> &nbsp; <b>25² = ___</b></p>
+  </div>
+
+  <div class="creator-box cb-teach">
+    <div class="lbl">🗣️ Teach It</div>
+    <p>Explain to a partner (or write it here): <b>why does every Ekadhikena Purvena square end in the same two
+    digits, 25?</b> Try to answer without saying "because that's the rule."</p>
+  </div>
+
+  <div class="creator-box cb-challenge">
+    <div class="lbl">🚀 Challenge</div>
+    <p>Stretch your Dancing Numbers project to handle a <b>3-digit</b> N5 number like 125 or 145 — you already
+    proved on page 04 that the maths still works. Does your sprite's costume art need to change too?</p>
+  </div>
+
+  <div class="checkbox-line" style="margin-top:4px;"><span class="box"></span> I showed what I know!</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 1 · Show What You Know</span><span class="pageno">10</span></div>
+</section>
+
+<!-- ======================================================
+     CHAPTER 2 DIVIDER · CUSTOM BLOCKS
+====================================================== -->
+<section class="page divider chapter-2" style="--accent:var(--c2);">
+  <div class="chnum">02</div>
+  <div class="kicker">Module Two · "Turn a Sutra into a Superpower"</div>
+  <h1>Custom<br>Blocks</h1>
+  <p class="tagline">Packaging a sutra as a reusable function — your first taste of abstraction. Build the trick
+  once. Use it forever.</p>
+  <div class="sutra-note">🌀&nbsp; Recap sutra: <strong>&nbsp;Ekadhikena Purvena</strong>&nbsp; — now as a machine</div>
+  <div class="chip-row">
+    <span>My Blocks</span><span>Inputs</span><span>Reusability</span><span>Vedic Bridge</span><span>My Maths Machine</span><span>Show What You Know</span>
+  </div>
+  <div class="cornerno">11</div>
+</section>
+
+<!-- ======================================================
+     2.1 CONCEPT · WHAT IS A CUSTOM BLOCK
+====================================================== -->
+<section class="page chapter-2" style="--accent:var(--c2);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 2 · CUSTOM BLOCKS</span>
+  </div>
+
+  <div class="eyebrow">2.1 · My Blocks &amp; Inputs</div>
+  <h1 class="title">Teach Your Computer a Trick — Once</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Big Idea</div>
+    <p>Imagine teaching your computer a special trick <strong>one time</strong>. After that, you can ask it to
+    perform the trick again and again — on any number you like — just by asking. That's a <strong>custom
+    block</strong>: code you write once and reuse forever.</p>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><span class="ic">💗</span><h4>My Blocks</h4><p>The pink category at the bottom of the
+    palette. Click "Make a Block" and you invent a brand-new one, from scratch.</p></div>
+    <div class="card"><span class="ic">🈳</span><h4>Inputs</h4><p>A blank space in your trick that changes every
+    time you use it — like a Mad Libs blank, but for numbers.</p></div>
+    <div class="card"><span class="ic">♻️</span><h4>Reusability</h4><p>Write the logic once, inside the block's
+    definition. Call it as many times as you want, anywhere in your project.</p></div>
+  </div>
+
+  <h2 class="sub" style="color:var(--ink); font-weight:700; font-size:13px; margin-top:14px;">Why bother building a block at all?</h2>
+  <div class="grid grid-2" style="margin-top:6px;">
+    <div class="card" style="background:#FFF3F0; border-color:#F7D6CC;"><span class="ic">😩</span><h4>Without a custom block</h4>
+    <p>To square 15², 45² <em>and</em> 95², you'd paste the same 4 maths blocks <strong>three separate times</strong>
+    — 12 blocks total. Find a mistake? Fix it in three different places.</p></div>
+    <div class="card" style="background:#F0FBF2; border-color:#CDEBD4;"><span class="ic">🤩</span><h4>With a custom block</h4>
+    <p>Write the 4 maths blocks <strong>once</strong>, inside a definition. Then just call
+    <span class="mono">square ender 5 (15)</span>, <span class="mono">(45)</span>, <span class="mono">(95)</span>.
+    One mistake, one fix.</p></div>
+  </div>
+
+  <div class="mascot-strip" style="margin-top:12px;">
+    <svg width="54" height="54" viewBox="0 0 60 60"><circle cx="30" cy="32" r="24" fill="#FF6680"/><path d="M8 20 L16 0 L26 18 Z" fill="#FF6680"/><path d="M52 20 L44 0 L34 18 Z" fill="#FF6680"/><circle cx="22" cy="32" r="3.4" fill="#12233A"/><circle cx="38" cy="32" r="3.4" fill="#12233A"/><path d="M20 42 Q30 48 40 42" stroke="#12233A" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    <div class="bubble"><b>Scratchy says:</b> "I taught myself the Ekadhikena Purvena trick back in Chapter 1. I'm
+    not doing it the long way ever again — this chapter, I build a machine that remembers it <em>for</em> me."</div>
+  </div>
+
+  <div class="tip"><b>Remember —</b> My Blocks is the only pink category where <em>you</em> decide what goes in it.
+  Every other coloured family came ready-made; this one is yours to invent.</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 2 · Custom Blocks</span><span class="pageno">12</span></div>
+</section>
+
+<!-- ======================================================
+     2.2 VEDIC WARM-UP · ONE MORE LOOK
+====================================================== -->
+<section class="page chapter-2" style="--accent:var(--c2);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 2 · VEDIC WARM-UP</span>
+  </div>
+
+  <div class="eyebrow">2.2 · Ekadhikena Purvena, One More Time</div>
+  <h1 class="title">The Same Trick, a New Job</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Quick Recap</div>
+    <p>For any number ending in 5, <span class="mono">N5</span>: <span class="mono">N × (N+1)</span>, then stick
+    <span class="mono">25</span> on the end. You animated this in Chapter 1 — your fingers should barely need to
+    think now.</p>
+  </div>
+
+  <div class="tryit">
+    <span class="tag">Finger warm-up · 3 minutes</span>
+    <div class="practice-grid">
+      <div class="pq"><span class="n">1</span> 25² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">2</span> 55² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">3</span> 75² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">4</span> 135² =<span class="ans"></span></div>
+    </div>
+  </div>
+
+  <div class="spiral-note" style="margin-top:14px;">
+    <div class="ic">🏭</div>
+    <div><h4>Where this is going</h4><p>In Chapter 1 you <em>performed</em> this trick, once, on stage. This chapter
+    you're not performing it at all — you're building the <strong>machine</strong> that performs it, on command, for
+    any N5 number anyone ever gives it. That's a very different (and much more powerful) job.</p></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:14px;">
+    <div class="card"><span class="ic">🎬</span><h4>Chapter 1 asked</h4><p>"Can I make the computer <em>show</em>
+    this sutra happening?"</p></div>
+    <div class="card"><span class="ic">🏭</span><h4>Chapter 2 asks</h4><p>"Can I make the computer
+    <em>remember</em> this sutra, so I never have to re-write it again?"</p></div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 2 · Vedic Warm-up</span><span class="pageno">13</span></div>
+</section>
+
+<!-- ======================================================
+     2.3 THE BRIDGE · A SUTRA IS ALREADY A FUNCTION
+====================================================== -->
+<section class="page chapter-2" style="--accent:var(--c2);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 2 · THE BRIDGE</span>
+  </div>
+
+  <div class="eyebrow">2.3 · Sutra Meets Function</div>
+  <h1 class="title">A Sutra Is Already a Custom Block</h1>
+  <p style="font-size:12.6px; color:var(--ink-soft); margin-top:2px;">A sutra is a rule you state <em>once</em> and
+  apply to endless numbers. A custom block is a script you write <em>once</em> and call with endless inputs. They're
+  the same idea, wearing different clothes.</p>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 1</div><h4>State the rule once</h4>
+      <p>"Ekadhikena Purvena: N × (N+1), then 25." Written a single time — in one sentence, forever.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Step 1</div><h4>Define the block once</h4>
+      <p>Inside <span class="mono">define square ender 5 (num)</span>, the logic is written a single time — inside
+      one script, forever.</p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 2</div><h4>Plug in any N5 number</h4>
+      <p>65, 15, 195 — the rule never changes. Only the number sliding into it changes.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Step 2</div><h4>Fill in the input</h4>
+      <p><span class="mono">square ender 5 (65)</span> — the script never changes. Only the value sliding into
+      <span class="mono">num</span> changes.</p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 3</div><h4>Get a fresh answer, every time</h4>
+      <p>The same short rule quietly handles every N5 number that will ever exist.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Step 3</div><h4>The block replies, every time</h4>
+      <p>The same short script quietly handles every call you'll ever make to it.</p></div>
+  </div>
+
+  <div class="script" style="margin-top:6px;">
+    <div class="cap">Defining once, calling many times</div>
+    <span class="block-chip b-myblocks notch">define square ender 5 (num)</span>
+    <span class="block-chip b-variables notch" style="margin-left:18px;">set N to (letter 1 of num)</span>
+    <span class="block-chip b-variables notch" style="margin-left:18px;">set front to (N × (N+1))</span>
+    <span class="block-chip b-looks notch" style="margin-left:18px;">say (join front "25") for 1.5 seconds</span>
+  </div>
+  <div class="script" style="margin-top:8px;">
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-myblocks notch">square ender 5 (15)</span>
+    <span class="block-chip b-myblocks notch">square ender 5 (45)</span>
+    <span class="block-chip b-myblocks notch">square ender 5 (95)</span>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 2 · The Bridge</span><span class="pageno">14</span></div>
+</section>
+
+<!-- ======================================================
+     2.4 MINI-PROJECT · MY MATHS MACHINE
+====================================================== -->
+<section class="page chapter-2" style="--accent:var(--c2);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 2 · MINI-PROJECT</span>
+  </div>
+
+  <div class="eyebrow">2.4 · Take-Home Project</div>
+  <h1 class="title">My Maths Machine <span class="badge badge-home" style="margin-left:6px; vertical-align:middle;">🏠 Homework</span></h1>
+  <h2 class="sub">Build ONE reusable block that squares any number ending in 5 — then put it to work three times over.</h2>
+
+  <div class="level-meter">
+    <div class="lv"><div class="num">LV 1</div><div class="lab">Follow</div></div>
+    <div class="lv active"><div class="num">LV 2</div><div class="lab">Change</div></div>
+    <div class="lv active"><div class="num">LV 3</div><div class="lab">Combine</div></div>
+    <div class="lv"><div class="num">LV 4</div><div class="lab">Create</div></div>
+    <div class="lv"><div class="num">LV 5</div><div class="lab">Explain</div></div>
+    <div class="lv"><div class="num">LV 6</div><div class="lab">Teach</div></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:10px;">
+    <div class="card"><span class="ic">🈳</span><h4>Input to add</h4><p><span class="mono">num</span> — the whole
+    N5 number someone gives your machine, e.g. 65.</p></div>
+    <div class="card"><span class="ic">📦</span><h4>Variables inside the block</h4><p><span class="mono">N</span>
+    the tens digit, <span class="mono">front</span> for N×(N+1). No <span class="mono">ask</span> block needed —
+    the input does that job now.</p></div>
+  </div>
+
+  <div class="script" style="margin-top:12px;">
+    <div class="cap">Step 1 · The definition (build this once)</div>
+    <span class="block-chip b-myblocks notch">define square ender 5 (num)</span>
+    <span class="block-chip b-variables notch" style="margin-left:18px;">set N to (letter 1 of num)</span>
+    <span class="block-chip b-variables notch" style="margin-left:18px;">set front to (N × (N+1))</span>
+    <span class="block-chip b-looks notch" style="margin-left:18px;">say (join num "² = " (join front "25")) for 1.5 seconds</span>
+  </div>
+
+  <div class="script" style="margin-top:10px;">
+    <div class="cap">Step 2 · Put the machine to work</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-myblocks notch">square ender 5 (15)</span>
+    <span class="block-chip b-control notch">wait 2 seconds</span>
+    <span class="block-chip b-myblocks notch">square ender 5 (85)</span>
+    <span class="block-chip b-control notch">wait 2 seconds</span>
+    <span class="block-chip b-myblocks notch">square ender 5 (135)</span>
+  </div>
+
+  <div class="creator-box cb-program"><div class="lbl">🧠 Think Like a Programmer</div><p>What happens if you call
+  <span class="mono">square ender 5 (47)</span>? The machine doesn't know 47 isn't a valid N5 number — it will
+  compute a confidently <b>wrong</b> answer. A good machine, like a good sutra, only ever promises to work within
+  its own rules.</p></div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 2 · Mini-Project</span><span class="pageno">15</span></div>
+</section>
+
+<section class="page chapter-2" style="--accent:var(--c2);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 2 · MINI-PROJECT</span>
+  </div>
+  <div class="eyebrow">2.4 · My Maths Machine, continued</div>
+  <h1 class="title" style="font-size:22px;">Your Turn to Build the Machine</h1>
+
+  <div class="bridge" style="margin-top:10px;">
+    <div class="side vedic"><div class="kicker">Vedic Connect</div><h4>One rule, infinite numbers</h4>
+      <p>Ekadhikena Purvena never needed to be re-written for 25² versus 195² — the same sentence covers both.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">In Scratch</div><h4>Abstraction is generosity to future-you</h4>
+      <p>A well-built block saves the you of tomorrow from re-solving a problem you already solved today.</p></div>
+  </div>
+
+  <div class="tryit">
+    <span class="tag">Your Turn · Activity 2.A</span>
+    <ol>
+      <li>Click <span class="mono">Make a Block</span>, name it <span class="mono">square ender 5</span>, and add
+      one number input called <span class="mono">num</span>.</li>
+      <li>Build the definition script from the previous page inside it.</li>
+      <li>Call your block <strong>3 times</strong> with 3 different N5 numbers — try one your teacher hasn't seen.</li>
+      <li>Bonus 🌟: add a second input, <span class="mono">colour</span>, and use a <span class="mono">set pen
+      colour</span> block so every call looks a little different.</li>
+    </ol>
+    <div class="checkbox-line"><span class="box"></span> I did it!</div>
+  </div>
+
+  <div class="creator-box cb-yours"><div class="lbl">🎨 Make It Yours</div><p>Rename the block to something that
+  sounds like <em>your</em> invention — "Riya's Speedy Squarer," "The 5-Ender 3000" — anything but the plain
+  textbook name. A creator names their own tools.</p></div>
+
+  <div class="ask-ai">
+    <div class="lbl">🤖 Stuck? Try this prompt —</div>
+    <div class="prompt">"In Scratch, I made a custom block called <b>square ender 5</b> with one number input called
+    <b>num</b>. Inside it I use <b>letter 1 of num</b> to get the tens digit, but for a 3-digit input like 135 this
+    gives me the wrong digit. How do I get the <em>correct</em> 'digit before the 5' for numbers of different
+    lengths?"</div>
+    <div class="hint">💡 Telling A.I. the exact input name (num) and the exact block you used (letter 1 of) helps
+    it debug the block you actually built, not a generic one.</div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 2 · Mini-Project</span><span class="pageno">16</span></div>
+</section>
+
+<!-- ======================================================
+     2.5 SHOW WHAT YOU KNOW
+====================================================== -->
+<section class="page chapter-2" style="--accent:var(--c2);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 2 · SHOW WHAT YOU KNOW</span>
+  </div>
+
+  <div class="eyebrow">2.5 · Not a Test — a Check-In</div>
+  <h1 class="title">Show What You Know</h1>
+  <h2 class="sub">Custom blocks only do exactly what you taught them — nothing more, nothing less.</h2>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">1</span><b>Predict</b><span class="tagline">before you run it</span></div>
+    <p>Aarav calls <span class="mono">square ender 5 (47)</span> — a number that does NOT end in 5. Predict: will
+    Scratch stop him with an error, or will it happily show an answer anyway? What number will it show?</p>
+    <p style="margin-top:6px;"><b>My prediction:</b> ________________________________________________</p>
+  </div>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">2</span><b>Fix the Bug</b><span class="tagline">mistakes are clues</span></div>
+    <p>Priya copied her working Chapter 1 script into a new custom block called <span class="mono">square ender 5
+    (num)</span> — but forgot to update one line. It still says <span class="mono">set N to (letter 1 of
+    answer)</span> instead of using her new input. Why won't her machine ever work now?</p>
+    <div class="script">
+      <span class="block-chip b-myblocks notch">define square ender 5 (num)</span>
+      <span class="block-chip b-variables notch" style="margin-left:18px;">set N to (letter 1 of answer)</span>
+      <span class="block-chip b-variables notch" style="margin-left:18px;">set front to (N × (N+1))</span>
+    </div>
+    <p style="margin-top:6px;"><b>What's wrong:</b> ________________________________________________</p>
+  </div>
+
+  <div class="creator-box cb-maths">
+    <div class="lbl">🔢 Maths Moment</div>
+    <p>Mentally: <b>115² = ___</b> &nbsp; <b>65² = ___</b> &nbsp; <b>35² = ___</b></p>
+  </div>
+
+  <div class="creator-box cb-teach">
+    <div class="lbl">🗣️ Teach It</div>
+    <p>Explain to a partner: <b>why is a custom block WITH an input more useful than one without?</b> Think about
+    how many separate blocks you'd need to build if "square ender 5" couldn't take any input at all.</p>
+  </div>
+
+  <div class="creator-box cb-challenge">
+    <div class="lbl">🚀 Challenge</div>
+    <p>Build a <b>second</b> custom block, <span class="mono">double it (num)</span>, that just doubles whatever
+    number goes in. Then call <span class="mono">square ender 5</span> and <span class="mono">double it</span> back
+    to back in one script. Two machines, working together.</p>
+  </div>
+
+  <div class="checkbox-line" style="margin-top:4px;"><span class="box"></span> I showed what I know!</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 2 · Show What You Know</span><span class="pageno">17</span></div>
+</section>
+
+<!-- ======================================================
+     CHAPTER 3 DIVIDER · SOUND & STORYTELLING
+====================================================== -->
+<section class="page divider chapter-3" style="--accent:var(--c3);">
+  <div class="chnum">03</div>
+  <div class="kicker">Module Three · "Code That Can Teach"</div>
+  <h1>Sound &amp;<br>Storytelling</h1>
+  <p class="tagline">Recording your voice explaining a sutra turns coding into teaching. Meet a brand-new sutra —
+  and become the teacher.</p>
+  <div class="sutra-note">✨&nbsp; New sutra: <strong>&nbsp;Yavadunam</strong></div>
+  <div class="chip-row">
+    <span>Record &amp; Play</span><span>Yavadunam</span><span>Narrated Bridge</span><span>My Maths Show</span><span>Show What You Know</span>
+  </div>
+  <div class="cornerno">18</div>
+</section>
+
+<!-- ======================================================
+     3.1 CONCEPT · CODE THAT CAN TEACH
+====================================================== -->
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · SOUND &amp; STORYTELLING</span>
+  </div>
+
+  <div class="eyebrow">3.1 · Recording, Sound &amp; Narration</div>
+  <h1 class="title">When You Can Teach It, You Know It</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Big Idea</div>
+    <p>So far your sprites have moved, danced and calculated — but they've never spoken in <strong>your own
+    voice</strong>. This chapter, you'll record yourself explaining a brand-new sutra. If you can explain a rule
+    clearly enough for someone else to follow, you've proven — to yourself, not just your teacher — that you truly
+    understand it.</p>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><span class="ic">🎙️</span><h4>Record</h4><p>The Sounds tab has a microphone. Click it,
+    speak, and Scratch saves your voice as a brand-new sound.</p></div>
+    <div class="card"><span class="ic">▶️</span><h4>Play sound until done</h4><p>Unlike a fixed <span class="mono">wait</span>,
+    this purple block waits exactly as long as your recording takes — no more, no less.</p></div>
+    <div class="card"><span class="ic">📖</span><h4>Storytelling</h4><p>Pairing narration with costumes turns a
+    calculation into a mini lesson anyone could follow.</p></div>
+  </div>
+
+  <div class="script" style="margin-top:6px;">
+    <div class="cap">Why "play sound until done" beats a fixed wait</div>
+    <span class="block-chip b-sound notch">play sound my-voice-1 until done</span>
+    <span class="block-chip b-looks notch" style="margin-left:18px;">next costume</span>
+  </div>
+
+  <div class="creator-box cb-program" style="margin-top:10px;"><div class="lbl">🧠 Think Like a Programmer</div>
+  <p>In Chapter 1 you used <span class="mono">wait 1 second</span> — a guess at how long a costume should stay up.
+  A recording has no guessing: <span class="mono">play sound until done</span> waits for exactly as long as
+  <em>you</em> spoke. Your code adapts to your voice, not the other way round.</p></div>
+
+  <div class="mascot-strip" style="margin-top:10px;">
+    <svg width="54" height="54" viewBox="0 0 60 60"><circle cx="30" cy="32" r="24" fill="#CF63CF"/><path d="M8 20 L16 0 L26 18 Z" fill="#CF63CF"/><path d="M52 20 L44 0 L34 18 Z" fill="#CF63CF"/><circle cx="22" cy="32" r="3.4" fill="#12233A"/><circle cx="38" cy="32" r="3.4" fill="#12233A"/><path d="M20 42 Q30 48 40 42" stroke="#12233A" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+    <div class="bubble"><b>Scratchy says:</b> "I've been quiet this whole book, just saying things in speech
+    bubbles. This chapter I finally get to sound like <em>you</em>!"</div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · Sound &amp; Storytelling</span><span class="pageno">19</span></div>
+</section>
+
+<!-- ======================================================
+     3.2 NEW SUTRA · YAVADUNAM
+====================================================== -->
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · NEW SUTRA</span>
+  </div>
+
+  <div class="eyebrow">3.2 · Meet a Brand-New Sutra</div>
+  <h1 class="title">Yavadunam — Squaring Near 100</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Big Idea · "Whatever the Deficiency…"</div>
+    <p><strong>Yavadunam Tavadunikritya Vargam Cha Yojayet</strong> — "whatever the deficiency, lessen it further by
+    that much, and set up the square of the deficiency." You actually heard this sutra's name once already, back in
+    Book 1's Conditionals chapter — this time, you'll learn the full trick.</p>
+    <p>It squares any number <strong>close to 100</strong> in three steps — no long multiplication needed.</p>
+  </div>
+
+  <div class="grid grid-3" style="margin-top:4px;">
+    <div class="card"><span class="ic">1️⃣</span><h4>Find the deficiency, D</h4><p><span class="mono">D = 100 − N</span>.
+    How far below 100 does your number sit?</p></div>
+    <div class="card"><span class="ic">2️⃣</span><h4>Subtract D again</h4><p><span class="mono">N − D</span> gives
+    the <strong>left</strong> part of your answer.</p></div>
+    <div class="card"><span class="ic">3️⃣</span><h4>Square D, attach it</h4><p><span class="mono">D²</span>
+    (as 2 digits) becomes the <strong>right</strong> part of your answer.</p></div>
+  </div>
+
+  <div class="worked">
+    <div class="hd">WORKED EXAMPLES</div>
+    <table>
+      <tr><td>98²</td><td>D = 100−98 = 2 → left = 98−2 = 96 → right = 2² = 04 → <strong>9604</strong></td></tr>
+      <tr><td>97²</td><td>D = 3 → left = 97−3 = 94 → right = 3² = 09 → <strong>9409</strong></td></tr>
+      <tr><td>94²</td><td>D = 6 → left = 94−6 = 88 → right = 6² = 36 → <strong>8836</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="tip"><b>Above 100 works too —</b> for a number like 104, find the <em>surplus</em> instead: S = 104−100 = 4.
+  Left = 104+4 = 108. Right = 4² = 16. Answer: <span class="mono">10816</span>. Same idea, opposite direction!</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · New Sutra</span><span class="pageno">20</span></div>
+</section>
+
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · PRACTICE</span>
+  </div>
+
+  <div class="eyebrow">3.2 · Yavadunam, continued</div>
+  <h1 class="title" style="font-size:22px;">Your Turn — Squares Near 100</h1>
+
+  <div class="tryit">
+    <span class="tag">Practice · 10 minutes</span>
+    <p style="margin:6px 0 0 0; font-size:12.5px;">Find D (or S if above 100), then work out left and right. Every
+    right-hand part here is a clean 2 digits — no carrying needed yet.</p>
+    <div class="practice-grid">
+      <div class="pq"><span class="n">1</span> 99² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">2</span> 96² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">3</span> 93² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">4</span> 92² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">5</span> 91² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">6</span> 103² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">7</span> 104² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">8</span> 95² =<span class="ans"></span></div>
+    </div>
+  </div>
+
+  <div class="tip"><b>Notice anything about Q8? —</b> You already know a different way to square 95! Solve it both
+  ways — with Ekadhikena Purvena <em>and</em> with Yavadunam. Two completely different sutras, one matching
+  answer. That's not a coincidence — it's mathematics agreeing with itself.</div>
+
+  <div class="spiral-note" style="margin-top:14px;">
+    <div class="ic">🎙️</div>
+    <div><h4>Where this is going</h4><p>You've now solved Yavadunam with a pencil. Next, you'll say the three steps
+    <strong>out loud</strong>, record your own voice explaining them, and let your sprite perform the maths while
+    your voice teaches it.</p></div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · Practice</span><span class="pageno">21</span></div>
+</section>
+
+<!-- ======================================================
+     3.3 THE BRIDGE · EXPLAINING OUT LOUD
+====================================================== -->
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · THE BRIDGE</span>
+  </div>
+
+  <div class="eyebrow">3.3 · Sutra Meets Narration</div>
+  <h1 class="title">Say Each Step As You Show It</h1>
+  <p style="font-size:12.6px; color:var(--ink-soft); margin-top:2px;">Yavadunam already comes in three clean steps.
+  Record one short voice clip per step, and your sprite becomes a teacher — not just a calculator.</p>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 1</div><h4>Find the deficiency</h4>
+      <p>For 98: "It's 2 away from 100." D = 2.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Recording 1</div><h4>"Spotting the gap" costume</h4>
+      <p>Sprite points at a number line. Your recorded voice: <em>"This number is 98 — so it's 2 away from
+      100."</em></p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 2</div><h4>Subtract D again</h4>
+      <p>98 − 2 = 96. This becomes the left half of the answer.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Recording 2</div><h4>"Stepping back" costume</h4>
+      <p>Sprite hops backward 2 spaces. Voice: <em>"Take 2 away one more time — 98 minus 2 is 96."</em></p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Step 3</div><h4>Square D, attach it</h4>
+      <p>2² = 4, written as 04. Final answer: 9604.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Recording 3</div><h4>"Big reveal" costume</h4>
+      <p>Banner unrolls: 9604. Voice: <em>"And 2 squared is 4 — so 98 squared is nine thousand, six hundred and
+      four!"</em></p></div>
+  </div>
+
+  <div class="script" style="margin-top:6px;">
+    <div class="cap">Chaining three recordings with "play sound until done"</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-looks notch">switch costume to spotting-the-gap</span>
+    <span class="block-chip b-sound notch">play sound step-1 until done</span>
+    <span class="block-chip b-looks notch">switch costume to stepping-back</span>
+    <span class="block-chip b-sound notch">play sound step-2 until done</span>
+    <span class="block-chip b-looks notch">switch costume to big-reveal</span>
+    <span class="block-chip b-sound notch">play sound step-3 until done</span>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · The Bridge</span><span class="pageno">22</span></div>
+</section>
+
+<!-- ======================================================
+     3.4 MINI-PROJECT · MY MATHS SHOW
+====================================================== -->
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · MINI-PROJECT</span>
+  </div>
+
+  <div class="eyebrow">3.4 · Take-Home Project</div>
+  <h1 class="title">My Maths Show <span class="badge badge-home" style="margin-left:6px; vertical-align:middle;">🏠 Homework</span></h1>
+  <h2 class="sub">Record a 3-part narrated show where you teach Yavadunam while your sprite performs it.</h2>
+
+  <div class="level-meter">
+    <div class="lv"><div class="num">LV 1</div><div class="lab">Follow</div></div>
+    <div class="lv active"><div class="num">LV 2</div><div class="lab">Change</div></div>
+    <div class="lv active"><div class="num">LV 3</div><div class="lab">Combine</div></div>
+    <div class="lv"><div class="num">LV 4</div><div class="lab">Create</div></div>
+    <div class="lv active"><div class="num">LV 5</div><div class="lab">Explain</div></div>
+    <div class="lv"><div class="num">LV 6</div><div class="lab">Teach</div></div>
+  </div>
+
+  <div class="grid grid-2" style="margin-top:10px;">
+    <div class="card"><span class="ic">👕</span><h4>3 costumes to draw</h4><p><b>spotting-the-gap</b>,
+    <b>stepping-back</b>, <b>big-reveal</b> — one per step of Yavadunam.</p></div>
+    <div class="card"><span class="ic">🎙️</span><h4>3 sounds to record</h4><p>Open the <b>Sounds</b> tab, click the
+    microphone, and record a short line for each step — in your own words.</p></div>
+  </div>
+
+  <div class="tryit" style="margin-top:10px;">
+    <span class="tag">Write your script first</span>
+    <p style="margin:6px 0 0 0; font-size:12.5px;">Pick your own N close to 100 (not 98 — make it yours). Write what
+    you'll say for each recording <em>before</em> you hit record:</p>
+    <ol>
+      <li>Recording 1 (find the deficiency): "This number is ___, so it's ___ away from 100."</li>
+      <li>Recording 2 (subtract again): "Take ___ away one more time — ___ minus ___ is ___."</li>
+      <li>Recording 3 (square + attach): "And ___ squared is ___ — so the answer is ___!"</li>
+    </ol>
+  </div>
+
+  <div class="script" style="margin-top:10px;">
+    <div class="cap">The full show script</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-looks notch">switch costume to spotting-the-gap</span>
+    <span class="block-chip b-sound notch">play sound step-1 until done</span>
+    <span class="block-chip b-looks notch">switch costume to stepping-back</span>
+    <span class="block-chip b-sound notch">play sound step-2 until done</span>
+    <span class="block-chip b-looks notch">switch costume to big-reveal</span>
+    <span class="block-chip b-sound notch">play sound step-3 until done</span>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · Mini-Project</span><span class="pageno">23</span></div>
+</section>
+
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · MINI-PROJECT</span>
+  </div>
+  <div class="eyebrow">3.4 · My Maths Show, continued</div>
+  <h1 class="title" style="font-size:22px;">Lights, Camera, Explain</h1>
+
+  <div class="bridge" style="margin-top:10px;">
+    <div class="side vedic"><div class="kicker">Vedic Connect</div><h4>Explaining is a kind of proof</h4>
+      <p>If you can say <em>why</em> D gets subtracted twice, you're not reciting Yavadunam — you understand
+      it.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">In Scratch</div><h4>Narrating is a kind of debugging</h4>
+      <p>Saying your steps out loud, in order, is exactly what happens when you trace through code to find a
+      bug.</p></div>
+  </div>
+
+  <div class="tryit">
+    <span class="tag">Your Turn · Activity 3.A</span>
+    <ol>
+      <li>Choose your own N close to 100 (try something above 100, like 106, for a change).</li>
+      <li>Draw your 3 costumes and record your 3 lines using the script you wrote.</li>
+      <li>Build the full show script and watch it end-to-end without stopping it.</li>
+      <li>Bonus 🌟: add a fourth costume + recording where your sprite explains <em>why</em> Yavadunam works, not
+      just <em>how</em>.</li>
+    </ol>
+    <div class="checkbox-line"><span class="box"></span> I did it!</div>
+  </div>
+
+  <div class="creator-box cb-teach"><div class="lbl">🗣️ Teach It</div><p>Play your finished show for a parent,
+  sibling, or friend who has <em>never</em> heard of Yavadunam. Can they repeat the three steps back to you
+  afterwards? If not, that's not a failure — it's a clue about which recording to re-do.</p></div>
+
+  <div class="ask-ai">
+    <div class="lbl">🤖 Stuck? Try this prompt —</div>
+    <div class="prompt">"In Scratch, I recorded 3 sounds and I'm using <b>play sound _ until done</b> before each
+    <b>switch costume</b> block. But my sprite's costume changes before my recording finishes playing. What order
+    should the <b>play sound</b> and <b>switch costume</b> blocks be in to fix this?"</div>
+    <div class="hint">💡 Describing the exact ORDER of your blocks (not just which blocks you used) helps A.I. spot
+    sequencing bugs like this one.</div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · Mini-Project</span><span class="pageno">24</span></div>
+</section>
+
+<!-- ======================================================
+     3.5 SHOW WHAT YOU KNOW
+====================================================== -->
+<section class="page chapter-3" style="--accent:var(--c3);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CHAPTER 3 · SHOW WHAT YOU KNOW</span>
+  </div>
+
+  <div class="eyebrow">3.5 · Not a Test — a Check-In</div>
+  <h1 class="title">Show What You Know</h1>
+  <h2 class="sub">A good show needs the right order, the right timing, and an explanation that actually lands.</h2>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">1</span><b>Predict</b><span class="tagline">before you run it</span></div>
+    <p>Kabir's script says <span class="mono">switch costume to big-reveal</span> BEFORE <span class="mono">play
+    sound step-3 until done</span>. Predict: will the audience see the answer before or after they hear the
+    explanation for it?</p>
+    <p style="margin-top:6px;"><b>My prediction:</b> ________________________________________________</p>
+  </div>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">2</span><b>Fix the Bug</b><span class="tagline">mistakes are clues</span></div>
+    <p>Meera's recordings are about 4 seconds each, but she used <span class="mono">wait 1 second</span> instead of
+    <span class="mono">play sound until done</span>. What happens to her voice — and to the timing of her whole
+    show?</p>
+    <div class="script">
+      <span class="block-chip b-sound notch">start sound step-1</span>
+      <span class="block-chip b-control notch">wait 1 seconds</span>
+      <span class="block-chip b-looks notch">switch costume to stepping-back</span>
+    </div>
+    <p style="margin-top:6px;"><b>What's wrong:</b> ________________________________________________</p>
+  </div>
+
+  <div class="creator-box cb-maths">
+    <div class="lbl">🔢 Maths Moment</div>
+    <p>Mentally, using Yavadunam: <b>96² = ___</b> &nbsp; <b>102² = ___</b> &nbsp; <b>99² = ___</b></p>
+  </div>
+
+  <div class="creator-box cb-teach">
+    <div class="lbl">🗣️ Teach It</div>
+    <p>In your own words: <b>why does "play sound until done" fit a recorded voice better than a fixed wait
+    time?</b> What could go wrong if two people recorded lines of very different lengths?</p>
+  </div>
+
+  <div class="creator-box cb-challenge">
+    <div class="lbl">🚀 Challenge</div>
+    <p>Add a fourth, final recording where you solve <b>95²</b> using Yavadunam <em>and</em> mention that Chapter
+    1's Ekadhikena Purvena gets the exact same answer. Explain out loud why two different sutras can agree.</p>
+  </div>
+
+  <div class="checkbox-line" style="margin-top:4px;"><span class="box"></span> I showed what I know!</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 3 · Show What You Know</span><span class="pageno">25</span></div>
+</section>
+
+<!-- ======================================================
+     CHAPTER 4 DIVIDER · BROADCASTING
+====================================================== -->
+<section class="page divider chapter-4" style="--accent:var(--c4); color:#4A3800;">
+  <div class="chnum" style="opacity:.28;">04</div>
+  <div class="kicker" style="opacity:.75;">Module Four · "Make Your Sprites Talk"</div>
+  <h1>Broadcast-<br>ing</h1>
+  <p class="tagline" style="opacity:.85;">Multi-sprite communication — your first taste of event-driven programming.
+  One sprite shouts; the whole team knows what to do next.</p>
+  <div class="sutra-note" style="background:rgba(74,56,0,.12); border-color:rgba(74,56,0,.35); color:#4A3800;">🔁&nbsp; Sutra relay: <strong>&nbsp;Yavadunam</strong>&nbsp; across a team of sprites</div>
+  <div class="chip-row">
+    <span style="background:rgba(74,56,0,.12); border-color:rgba(74,56,0,.35); color:#4A3800;">Broadcast</span><span style="background:rgba(74,56,0,.12); border-color:rgba(74,56,0,.35); color:#4A3800;">When I Receive</span><span style="background:rgba(74,56,0,.12); border-color:rgba(74,56,0,.35); color:#4A3800;">Vedic Bridge</span><span style="background:rgba(74,56,0,.12); border-color:rgba(74,56,0,.35); color:#4A3800;">The Maths Team</span><span style="background:rgba(74,56,0,.12); border-color:rgba(74,56,0,.35); color:#4A3800;">Show What You Know</span>
+  </div>
+  <div class="cornerno" style="background:rgba(74,56,0,.18); border-color:rgba(74,56,0,.4); color:#4A3800;">26</div>
+</section>
+
+<!-- ======================================================
+     4.1 CONCEPT · MAKE YOUR SPRITES TALK
+====================================================== -->
+<section class="page chapter-4" style="--accent:var(--c4);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill" style="color:#4A3800;">CHAPTER 4 · BROADCASTING</span>
+  </div>
+
+  <div class="eyebrow">4.1 · Events &amp; Messages</div>
+  <h1 class="title">Make Your Sprites Talk</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Big Idea</div>
+    <p>Imagine one player on a team shouting <strong>"Go!"</strong> — everyone else instantly knows what to do next,
+    without being told individually. That's a <strong>broadcast</strong>: one sprite sends a message, and every
+    sprite listening can react.</p>
+  </div>
+
+  <div class="grid grid-3">
+    <div class="card"><span class="ic">📣</span><h4>broadcast</h4><p>Sends a named message to every sprite in the
+    project, instantly. Doesn't wait for a reply.</p></div>
+    <div class="card"><span class="ic">✋</span><h4>broadcast and wait</h4><p>Same message — but pauses the sender
+    until every listener has finished reacting.</p></div>
+    <div class="card"><span class="ic">👂</span><h4>when I receive</h4><p>A hat block that wakes up the instant its
+    named message arrives — this sprite's turn to act.</p></div>
+  </div>
+
+  <div class="script" style="margin-top:6px;">
+    <div class="cap">Two sprites, one conversation</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-looks notch" style="margin-left:18px;">say "97 is 3 away from 100!" for 2 seconds</span>
+    <span class="block-chip b-events notch" style="margin-left:18px;">broadcast subtract-again</span>
+  </div>
+  <div class="script" style="margin-top:8px;">
+    <span class="block-chip b-events notch">when I receive subtract-again</span>
+    <span class="block-chip b-looks notch" style="margin-left:18px;">say "97 minus 3 is 94!" for 2 seconds</span>
+  </div>
+
+  <div class="creator-box cb-program" style="margin-top:10px;"><div class="lbl">🧠 Think Like a Programmer</div>
+  <p>Notice the second sprite never asks "has the first sprite finished?" — it just waits, silently, until its
+  message arrives. This is exactly how a relay runner waits for the baton: not by watching the clock, but by
+  waiting for the hand-off.</p></div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 4 · Broadcasting</span><span class="pageno">27</span></div>
+</section>
+
+<!-- ======================================================
+     4.2 VEDIC WARM-UP · YAVADUNAM RECAP
+====================================================== -->
+<section class="page chapter-4" style="--accent:var(--c4);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill" style="color:#4A3800;">CHAPTER 4 · VEDIC WARM-UP</span>
+  </div>
+
+  <div class="eyebrow">4.2 · Yavadunam, Warmed Up</div>
+  <h1 class="title">Ready the Relay</h1>
+
+  <div class="big-idea">
+    <div class="lbl">★ Quick Recap</div>
+    <p><span class="mono">D = 100 − N</span> → left = <span class="mono">N − D</span> → right =
+    <span class="mono">D²</span> (as 2 digits). Three clean steps — perfect for splitting across a team.</p>
+  </div>
+
+  <div class="tryit">
+    <span class="tag">Finger warm-up · 3 minutes</span>
+    <div class="practice-grid">
+      <div class="pq"><span class="n">1</span> 98² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">2</span> 94² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">3</span> 91² =<span class="ans"></span></div>
+      <div class="pq"><span class="n">4</span> 106² =<span class="ans"></span></div>
+    </div>
+  </div>
+
+  <div class="spiral-note" style="margin-top:14px;">
+    <div class="ic">🏃</div>
+    <div><h4>Where this is going</h4><p>You've solved Yavadunam alone (pencil), watched it narrated by one sprite
+    (Chapter 3) — now you'll split its <strong>three steps across three different sprites</strong>, passing the
+    "baton" with broadcasts. No single sprite will know the whole trick — only the <em>team</em> will.</p></div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 4 · Vedic Warm-up</span><span class="pageno">28</span></div>
+</section>
+
+<!-- ======================================================
+     4.3 THE BRIDGE · A SUTRA IS A RELAY RACE
+====================================================== -->
+<section class="page chapter-4" style="--accent:var(--c4);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill" style="color:#4A3800;">CHAPTER 4 · THE BRIDGE</span>
+  </div>
+
+  <div class="eyebrow">4.3 · Sutra Meets Relay</div>
+  <h1 class="title">A Sutra Is Already a Relay Race</h1>
+  <p style="font-size:12.6px; color:var(--ink-soft); margin-top:2px;">Yavadunam's three steps must happen in
+  order — you can't square the deficiency before you've found it. A broadcast chain works exactly the same way:
+  each sprite must wait for its cue.</p>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Runner 1</div><h4>Find the deficiency</h4>
+      <p>Nobody can move to step 2 until D is known. Step 1 must finish first.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Sprite 1</div><h4>Announcer</h4>
+      <p>Says the number, works out D, then <span class="mono">broadcast find-gap-done</span> — passing the
+      baton.</p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Runner 2</div><h4>Subtract D again</h4>
+      <p>Waits for D, then computes the left half. Can't start early — there's nothing to subtract yet.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Sprite 2</div><h4>Calculator</h4>
+      <p><span class="mono">when I receive find-gap-done</span> — computes N−D, then
+      <span class="mono">broadcast left-half-done</span>.</p></div>
+  </div>
+
+  <div class="bridge">
+    <div class="side vedic"><div class="kicker">Vedic · Runner 3</div><h4>Square D, attach, celebrate</h4>
+      <p>The anchor leg — crosses the finish line with the completed answer.</p></div>
+    <div class="arrow">→</div>
+    <div class="side scratch"><div class="kicker">Scratch · Sprite 3</div><h4>Reveal &amp; Cheer</h4>
+      <p><span class="mono">when I receive left-half-done</span> — squares D, joins both halves, shows the answer
+      with confetti.</p></div>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 4 · The Bridge</span><span class="pageno">29</span></div>
+</section>
+
+<!-- ======================================================
+     4.4 MINI-PROJECT · THE MATHS TEAM
+====================================================== -->
+<section class="page chapter-4" style="--accent:var(--c4);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill" style="color:#4A3800;">CHAPTER 4 · MINI-PROJECT</span>
+  </div>
+
+  <div class="eyebrow">4.4 · Take-Home Project</div>
+  <h1 class="title">The Maths Team <span class="badge badge-home" style="margin-left:6px; vertical-align:middle;">🏠 Homework</span></h1>
+  <h2 class="sub">Three sprites, one relay. No single sprite knows the whole trick — only the team does.</h2>
+
+  <div class="level-meter">
+    <div class="lv"><div class="num">LV 1</div><div class="lab">Follow</div></div>
+    <div class="lv active"><div class="num">LV 2</div><div class="lab">Change</div></div>
+    <div class="lv active"><div class="num">LV 3</div><div class="lab">Combine</div></div>
+    <div class="lv active"><div class="num">LV 4</div><div class="lab">Create</div></div>
+    <div class="lv"><div class="num">LV 5</div><div class="lab">Explain</div></div>
+    <div class="lv"><div class="num">LV 6</div><div class="lab">Teach</div></div>
+  </div>
+
+  <div class="card" style="margin-top:10px; background:#FFFBEF; border-color:#F3DFA3;"><span class="ic">📦</span>
+  <h4>Variables — make these "for all sprites," not just one</h4><p><span class="mono">N</span>,
+  <span class="mono">D</span>, <span class="mono">left</span>, <span class="mono">right</span>,
+  <span class="mono">answer</span>. A broadcast only carries a <em>signal</em>, never a number — shared variables
+  are how the team actually passes the maths along.</p></div>
+
+  <div class="script" style="margin-top:10px;">
+    <div class="cap">Sprite 1 · Announcer</div>
+    <span class="block-chip b-events notch">when 🏳 clicked</span>
+    <span class="block-chip b-sensing notch">ask "Give me a number close to 100!" and wait</span>
+    <span class="block-chip b-variables notch">set N to answer</span>
+    <span class="block-chip b-variables notch">set D to (100 − N)</span>
+    <span class="block-chip b-looks notch">say (join N (join " is " (join D " away from 100!"))) for 2 seconds</span>
+    <span class="block-chip b-events notch">broadcast find-gap-done</span>
+  </div>
+
+  <div class="script" style="margin-top:10px;">
+    <div class="cap">Sprite 2 · Calculator</div>
+    <span class="block-chip b-events notch">when I receive find-gap-done</span>
+    <span class="block-chip b-variables notch">set left to (N − D)</span>
+    <span class="block-chip b-looks notch">say (join "The left part is " left) for 2 seconds</span>
+    <span class="block-chip b-events notch">broadcast left-half-done</span>
+  </div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 4 · Mini-Project</span><span class="pageno">30</span></div>
+</section>
+
+<section class="page chapter-4" style="--accent:var(--c4);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill" style="color:#4A3800;">CHAPTER 4 · MINI-PROJECT</span>
+  </div>
+  <div class="eyebrow">4.4 · The Maths Team, continued</div>
+  <h1 class="title" style="font-size:22px;">The Anchor Leg — Reveal &amp; Cheer</h1>
+
+  <div class="script">
+    <div class="cap">Sprite 3 · Reveal &amp; Cheer</div>
+    <span class="block-chip b-events notch">when I receive left-half-done</span>
+    <span class="block-chip b-variables notch">set right to (D × D)</span>
+    <span class="block-chip b-control notch">if &lt;right &lt; 10&gt; then</span>
+    <span class="block-chip b-variables notch" style="margin-left:18px;">set right to (join "0" right)</span>
+    <span class="block-chip b-variables notch">set answer to (join left right)</span>
+    <span class="block-chip b-looks notch">say (join N "² = " answer) for 2 seconds</span>
+  </div>
+
+  <div class="tip"><b>Why the if-block? —</b> Try N = 99: D = 1, so D² is just <span class="mono">1</span> — a single
+  digit. Joined straight onto <span class="mono">left</span> (98), you'd wrongly get <span class="mono">981</span>
+  instead of <span class="mono">9801</span>. The <span class="mono">if right &lt; 10</span> check pads it to
+  <span class="mono">"01"</span> first — a callback to Book 1's Conditionals chapter!</div>
+
+  <div class="tryit">
+    <span class="tag">Your Turn · Activity 4.A</span>
+    <ol>
+      <li>Build all 3 sprites and their 5 shared variables.</li>
+      <li>Run it with at least 2 different numbers close to 100 — one that needs the padding fix, one that
+      doesn't.</li>
+      <li>Bonus 🌟: add a 4th sprite, <span class="mono">Judge</span>, that receives a final broadcast and checks
+      the answer is correct by re-multiplying N × N with the green Operators block.</li>
+    </ol>
+    <div class="checkbox-line"><span class="box"></span> I did it!</div>
+  </div>
+
+  <div class="creator-box cb-yours"><div class="lbl">🎨 Make It Yours</div><p>Give your three sprites a real team
+  identity — matching costumes, a team name, even a little victory dance when Sprite 3 reveals the answer.</p></div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 4 · Mini-Project</span><span class="pageno">31</span></div>
+</section>
+
+<!-- ======================================================
+     4.5 SHOW WHAT YOU KNOW
+====================================================== -->
+<section class="page chapter-4" style="--accent:var(--c4);">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill" style="color:#4A3800;">CHAPTER 4 · SHOW WHAT YOU KNOW</span>
+  </div>
+
+  <div class="eyebrow">4.5 · Not a Test — a Check-In</div>
+  <h1 class="title">Show What You Know</h1>
+  <h2 class="sub">A relay only works if every runner is listening for the right name.</h2>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">1</span><b>Predict</b><span class="tagline">before you run it</span></div>
+    <p>Sprite 1 broadcasts <span class="mono">"find-gap-done"</span>. Sprite 2's hat block says
+    <span class="mono">when I receive "find-gap-Done"</span> (capital D). Predict: does Sprite 2 react — and does
+    Scratch show an error if it doesn't?</p>
+    <p style="margin-top:6px;"><b>My prediction:</b> ________________________________________________</p>
+  </div>
+
+  <div class="ex-item">
+    <div class="exhd"><span class="exn">2</span><b>Fix the Bug</b><span class="tagline">mistakes are clues</span></div>
+    <p>The Reveal &amp; Cheer sprite never speaks. Sprite 1 and 2 both run fine. Here's Sprite 3's only script:</p>
+    <div class="script">
+      <span class="block-chip b-events notch">when I receive left-half-Done</span>
+      <span class="block-chip b-variables notch">set right to (D × D)</span>
+    </div>
+    <p style="margin-top:6px;"><b>What's wrong:</b> ________________________________________________</p>
+  </div>
+
+  <div class="creator-box cb-maths">
+    <div class="lbl">🔢 Maths Moment</div>
+    <p>Mentally: <b>93² = ___</b> &nbsp; <b>107² = ___</b> &nbsp; <b>99² = ___</b></p>
+  </div>
+
+  <div class="creator-box cb-teach">
+    <div class="lbl">🗣️ Teach It</div>
+    <p>Explain to a partner: <b>why do the three sprites need shared variables, when they already have
+    broadcasts?</b> What job does a broadcast do that a variable can't, and what job does a variable do that a
+    broadcast can't?</p>
+  </div>
+
+  <div class="creator-box cb-challenge">
+    <div class="lbl">🚀 Challenge</div>
+    <p>Add the <b>Judge</b> sprite from the Bonus step: when it receives the final broadcast, it multiplies N × N
+    directly with a green Operators block and says "Confirmed!" only if that matches <span class="mono">answer</span>
+    exactly.</p>
+  </div>
+
+  <div class="checkbox-line" style="margin-top:4px;"><span class="box"></span> I showed what I know!</div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Chapter 4 · Show What You Know</span><span class="pageno">32</span></div>
+</section>
+
+<!-- ======================================================
+     CAPSTONE DIVIDER · THE YOUNG CREATOR CHALLENGE
+====================================================== -->
+<section class="page divider" style="--accent:var(--thynk-blue); background:radial-gradient(120% 100% at 15% 0%, #0AA1EF 0%, var(--thynk-blue) 46%, #005E92 100%);">
+  <div class="chnum">★</div>
+  <div class="kicker">Bonus Capstone · Take-Home Project</div>
+  <h1>The Young<br>Creator Challenge</h1>
+  <p class="tagline">You've animated, built, narrated and broadcast. Now combine all four into ONE original show —
+  built substantially by you, with only a short brief to follow.</p>
+  <div class="sutra-note">🏆&nbsp; Every sutra you've met so far, your choice</div>
+  <div class="chip-row">
+    <span>Animation</span><span>Custom Block</span><span>Sound</span><span>Broadcasting</span><span>Your Own Sutra Pick</span><span>Explain + Teach</span>
+  </div>
+  <div class="cornerno">33</div>
+</section>
+
+<!-- ======================================================
+     CAPSTONE BRIEF & STORYBOARD
+====================================================== -->
+<section class="page">
+  <div class="page-head">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CAPSTONE · THE BRIEF</span>
+  </div>
+
+  <div class="eyebrow">Take-Home Project · Levels 4, 5 &amp; 6</div>
+  <h1 class="title">Build Your Own Vedic Maths Show</h1>
+  <h2 class="sub">Short brief, big freedom. This is where "I Can Follow" finally becomes "I Can Teach."</h2>
+
+  <div class="big-idea">
+    <div class="lbl">★ The Brief</div>
+    <p>Pick ONE sutra from this book or Book 1. Build ONE original Scratch project, with a beginning, a middle, and
+    an end, that uses <strong>all four</strong> ingredients below. Nobody will hand you the blocks this time — you
+    already know how each one works.</p>
+  </div>
+
+  <div class="grid grid-4" style="margin-top:4px;">
+    <div class="card"><span class="ic">🎞️</span><h4>Animation</h4><p>At least one sprite with multiple
+    costumes.</p></div>
+    <div class="card"><span class="ic">🧩</span><h4>Custom Block</h4><p>At least one reusable "My Blocks"
+    definition.</p></div>
+    <div class="card"><span class="ic">🎙️</span><h4>Sound</h4><p>At least one recorded-voice explanation.</p></div>
+    <div class="card"><span class="ic">📡</span><h4>Broadcasting</h4><p>At least two sprites talking via
+    broadcast.</p></div>
+  </div>
+
+  <h2 class="sub" style="color:var(--ink); font-weight:700; font-size:13px; margin-top:16px;">📝 Storyboard it before you build it</h2>
+  <div class="grid grid-3" style="margin-top:6px;">
+    <div class="card" style="min-height:90px;"><span class="ic">🎬</span><h4>Beginning</h4><p>What number or problem
+    does your show open with? ________________</p></div>
+    <div class="card" style="min-height:90px;"><span class="ic">⚙️</span><h4>Middle</h4><p>Which sutra, and which
+    sprite(s) do the work? ________________</p></div>
+    <div class="card" style="min-height:90px;"><span class="ic">🏆</span><h4>End</h4><p>How does the answer get
+    revealed — and celebrated? ________________</p></div>
+  </div>
+
+  <div class="creator-box cb-corner" style="margin-top:14px;"><div class="lbl">💡 Creator's Corner</div><p>Stuck on
+  which sutra to pick? Choose the one you found <em>hardest</em> to explain in Chapter 3's Teach It box — building a
+  show around it is the fastest way to finally make it click.</p></div>
+
+  <div class="page-foot"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Capstone · The Brief</span><span class="pageno">34</span></div>
+</section>
+
+<!-- ======================================================
+     ACHIEVEMENT / COMPLETION PAGE
+====================================================== -->
+<section class="page" style="align-items:center; text-align:center; justify-content:center; background:radial-gradient(120% 100% at 50% 0%, #FFFCF6 0%, #FBF6EC 100%);">
+  <div class="page-head" style="width:100%;">
+    <div class="brandmark"><img src="https://pranavsheth.com/logo4.png" alt=""><span class="word">T.H.Y.N.K</span></div>
+    <span class="crumb-pill">CERTIFICATE</span>
+  </div>
+
+  <div style="margin-top:18px;">
+    <div class="eyebrow" style="justify-content:center;">Level 2 · Beginners Basic 2 · Complete</div>
+    <h1 class="title" style="font-size:32px;">You Are Now a<br><span style="color:var(--thynk-blue);">Young Creator</span></h1>
+  </div>
+
+  <svg viewBox="0 0 200 60" style="width:180px; margin:14px auto;"><path d="M20 30 Q60 -6 100 30 T180 30" stroke="#FFC93C" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="20" cy="30" r="6" fill="#008AD4"/><circle cx="100" cy="30" r="6" fill="#CF63CF"/><circle cx="180" cy="30" r="6" fill="#FF6680"/></svg>
+
+  <p style="font-size:12.8px; color:var(--ink-soft); max-width:420px;">This certifies that</p>
+  <div style="border-bottom:2px solid var(--ink-faint); width:320px; margin:6px 0 18px 0; height:28px;"></div>
+
+  <p style="font-size:12.8px; color:var(--ink-soft); max-width:440px; line-height:1.7;">has animated a sutra, packaged one into a reusable block, recorded their own voice teaching Yavadunam, choreographed
+  a team of broadcasting sprites, and built an original Young Creator Challenge project — start to finish.</p>
+
+  <div class="level-meter" style="max-width:520px; margin-top:16px;">
+    <div class="lv active"><div class="num">LV 1</div><div class="lab">Follow</div></div>
+    <div class="lv active"><div class="num">LV 2</div><div class="lab">Change</div></div>
+    <div class="lv active"><div class="num">LV 3</div><div class="lab">Combine</div></div>
+    <div class="lv active"><div class="num">LV 4</div><div class="lab">Create</div></div>
+    <div class="lv active"><div class="num">LV 5</div><div class="lab">Explain</div></div>
+    <div class="lv active"><div class="num">LV 6</div><div class="lab">Teach</div></div>
+  </div>
+
+  <div class="grid grid-2" style="max-width:420px; margin-top:22px; text-align:left;">
+    <div><div style="border-bottom:1.5px solid var(--ink-faint); height:26px;"></div><p style="font-size:10.5px; color:var(--ink-faint); margin-top:4px;">Young Creator's signature</p></div>
+    <div><div style="border-bottom:1.5px solid var(--ink-faint); height:26px;"></div><p style="font-size:10.5px; color:var(--ink-faint); margin-top:4px;">Teacher / parent signature</p></div>
+  </div>
+
+  <p style="margin-top:auto; padding-top:20px; font-size:12px; color:var(--ink-faint); font-style:italic; max-width:400px;">
+  Ancient wisdom. Modern intelligence. Think deeply. Create freely. Learn by doing.<br>See you in Level 3.
+  </p>
+
+  <div class="page-foot" style="width:100%;"><span>T.H.Y.N.K · Level 2 · Young Creator</span><span>Certificate of Completion</span><span class="pageno">35</span></div>
+</section>
+<!-- SECTION_INSERT_POINT -->
+
+</body>
+</html>
