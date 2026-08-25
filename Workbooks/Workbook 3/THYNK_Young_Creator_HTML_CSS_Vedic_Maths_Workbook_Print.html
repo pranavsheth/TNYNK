@@ -1,0 +1,1637 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THYNK Young Creator Workbook - Print</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 10mm;
+    }
+
+    :root {
+      --navy: #0a1a3a;
+      --navy-2: #12306a;
+      --gold: #d4a017;
+      --ink: #1a1f2b;
+      --ink-soft: #475569;
+      --line: #dbe5f4;
+      --paper: #ffffff;
+
+      --sky: #3ec1ff;
+      --mint: #2ec4b6;
+      --coral: #ff6b6b;
+      --sun: #ffb703;
+      --grape: #8e6cd5;
+      --leaf: #5fc06b;
+
+      --sky-soft: #e6f7ff;
+      --mint-soft: #e0faf6;
+      --coral-soft: #ffe8e8;
+      --sun-soft: #fff5d7;
+      --grape-soft: #efe9ff;
+      --leaf-soft: #e6f8e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Trebuchet MS", "Segoe UI", Verdana, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(62, 193, 255, 0.28) 0 12px, transparent 13px),
+        radial-gradient(circle at 92% 18%, rgba(255, 183, 3, 0.26) 0 10px, transparent 11px),
+        radial-gradient(circle at 22% 90%, rgba(142, 108, 213, 0.24) 0 11px, transparent 12px),
+        linear-gradient(180deg, #f7fbff 0%, #eef5ff 100%);
+      counter-reset: sheet;
+      line-height: 1.38;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 8mm;
+      background: var(--paper);
+      border: 1px solid #cfdcf2;
+      border-radius: 5mm;
+      padding: 8mm 9mm 13mm;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4mm 9mm rgba(12, 31, 78, 0.12);
+      page-break-after: always;
+      break-after: page;
+      counter-increment: sheet;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(62, 193, 255, 0.08) 0%, rgba(46, 196, 182, 0.05) 40%, rgba(255, 255, 255, 0) 75%),
+        radial-gradient(circle at 94% 86%, rgba(255, 107, 107, 0.12) 0 22mm, transparent 22.5mm);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .page-header {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--navy);
+      background: linear-gradient(90deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid #d8e6fb;
+      border-left: 5px solid var(--sky);
+      border-radius: 9px;
+      padding: 6px 10px;
+      margin-bottom: 8px;
+      letter-spacing: 0.15px;
+      text-transform: uppercase;
+      box-shadow: 0 1.2mm 2.8mm rgba(15, 46, 96, 0.08);
+    }
+
+    .page:nth-of-type(6n + 1) .page-header { border-left-color: var(--sky); }
+    .page:nth-of-type(6n + 2) .page-header { border-left-color: var(--mint); }
+    .page:nth-of-type(6n + 3) .page-header { border-left-color: var(--coral); }
+    .page:nth-of-type(6n + 4) .page-header { border-left-color: var(--sun); }
+    .page:nth-of-type(6n + 5) .page-header { border-left-color: var(--grape); }
+    .page:nth-of-type(6n) .page-header { border-left-color: var(--leaf); }
+
+    .page-body h1,
+    .page-body h2,
+    .page-body h3,
+    .page-body h4,
+    .page-body h5,
+    .page-body h6 {
+      margin: 8px 0 5px;
+      color: var(--navy-2);
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .page-body h1 { font-size: 23px; }
+    .page-body h2 { font-size: 19px; }
+    .page-body h3 { font-size: 16px; }
+
+    .page-body p {
+      margin: 4px 0;
+      color: #1d2939;
+    }
+
+    .page-body ul,
+    .page-body ol {
+      margin: 5px 0 7px 20px;
+      padding: 0;
+    }
+
+    .page-body li {
+      margin: 2px 0;
+      padding-left: 1px;
+    }
+
+    .page-body code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.94em;
+      background: #edf3ff;
+      border: 1px solid #d4e0fb;
+      border-radius: 4px;
+      padding: 0 4px;
+      color: #153d7a;
+    }
+
+    .page-body pre {
+      margin: 7px 0;
+      background: linear-gradient(180deg, #f8fbff 0%, #f1f6ff 100%);
+      border: 1px solid #d4e1f6;
+      border-left: 4px solid #60a5fa;
+      border-radius: 6px;
+      padding: 8px 9px;
+      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-word;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      font-size: 12px;
+      line-height: 1.35;
+      box-shadow: inset 0 0.8mm 1.2mm rgba(255, 255, 255, 0.65);
+    }
+
+    .page-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 7px 0;
+      font-size: 12px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .page-body th,
+    .page-body td {
+      border: 1px solid #cad8ee;
+      padding: 5px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .page-body th {
+      background: linear-gradient(180deg, #edf4ff 0%, #e4efff 100%);
+      color: #183b70;
+      font-weight: 700;
+    }
+
+    .page-body hr {
+      border: 0;
+      border-top: 1px dashed #b9cbeb;
+      margin: 8px 0;
+    }
+
+    .line-gap {
+      height: 4px;
+    }
+
+    .page-footer {
+      position: absolute;
+      left: 9mm;
+      right: 9mm;
+      bottom: 5mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--ink-soft);
+      border-top: 1px solid #dce5f3;
+      padding-top: 3px;
+      letter-spacing: 0.2px;
+      font-weight: 600;
+    }
+
+    .page-footer::before {
+      content: "THYNK • THINK CODE CREATE";
+      color: #29508a;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      margin-right: 8px;
+    }
+
+    .page-footer::after {
+      content: "Page " counter(sheet);
+      font-weight: 700;
+      color: #27497f;
+    }
+
+    @media print {
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 210mm;
+        min-height: 297mm;
+        background: #fff;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        margin: 0;
+        width: auto;
+        min-height: auto;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+<section class="page">
+<div class="page-header">PAGE 1 - Cover</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<h1>THYNK Young Creator Workbook</h1>
+<div class="line-gap"></div>
+<h2>HTML + CSS x Vedic Maths + AI</h2>
+<div class="line-gap"></div>
+<p>Grade 4-5</p>
+<div class="line-gap"></div>
+<p>Student Name: ____________________________</p>
+<div class="line-gap"></div>
+<p>Class/Section: ____________________________</p>
+<div class="line-gap"></div>
+<p>School: _________________________________</p>
+<div class="line-gap"></div>
+<p>Teacher: ________________________________</p>
+<div class="line-gap"></div>
+<p>Academic Year: ___________________________</p>
+<div class="line-gap"></div>
+<p>Workbook Promise:</p>
+<div class="line-gap"></div>
+<p>I will THINK, CALCULATE, CODE, CREATE, and IMPROVE.</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 2 - How to Use This Workbook</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Each chapter has:</p>
+<div class="line-gap"></div>
+<ul>
+<li>THINK</li>
+<li>CODE IT</li>
+<li>MATH LINK</li>
+<li>AI CORNER</li>
+<li>HOMEWORK</li>
+<li>REFLECT</li>
+</ul>
+<div class="line-gap"></div>
+<p>Rules:</p>
+<div class="line-gap"></div>
+<ol>
+<li>Type your own code.</li>
+<li>Use AI for ideas, not copying.</li>
+<li>Check your maths.</li>
+<li>Test your webpage.</li>
+</ol>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 3 - My Coding Vocabulary</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>HTML words:</p>
+<div class="line-gap"></div>
+<p>html, head, body, h1, h2, h3, p, ul, li, img, a, div</p>
+<div class="line-gap"></div>
+<p>CSS words:</p>
+<div class="line-gap"></div>
+<p>color, background-color, font-size, font-family, text-align, border, padding, margin</p>
+<div class="line-gap"></div>
+<p>Activity:</p>
+<div class="line-gap"></div>
+<ol>
+<li>Circle 3 words you already know.</li>
+<li>Star 3 words you want to learn first.</li>
+</ol>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 4 - Chapter 1 Worksheet A (What is a website?)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>THINK:</p>
+<div class="line-gap"></div>
+<p>What is a website in your own words?</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>DISCOVER:</p>
+<div class="line-gap"></div>
+<p>Write one example each:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Heading: ______________________</li>
+<li>Picture: ______________________</li>
+<li>Paragraph: ____________________</li>
+<li>Link: _________________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Give me 5 website ideas for kids.&quot;</p>
+<div class="line-gap"></div>
+<p>My best idea: ______________________________________________</p>
+<div class="line-gap"></div>
+<p>Why I chose it: ____________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 5 - Chapter 1 Worksheet B (First HTML Skeleton)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>CODE IT:</p>
+<div class="line-gap"></div>
+<p>Complete:</p>
+<div class="line-gap"></div>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;___________________&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;___________________&lt;/h1&gt;
+    &lt;p&gt;___________________&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<div class="line-gap"></div>
+<p>HOMEWORK:</p>
+<div class="line-gap"></div>
+<p>Write 3 websites you visit:</p>
+<div class="line-gap"></div>
+<ol>
+<li>____________________</li>
+<li>____________________</li>
+<li>____________________</li>
+</ol>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 x 4 = ______</li>
+<li>50 x 3 = ______</li>
+<li>125 x 2 = ______</li>
+<li>99 + 1 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 6 - Chapter 2 Worksheet A (Headings and Paragraphs)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Sort into heading levels:</p>
+<div class="line-gap"></div>
+<ul>
+<li>My Favourite Animals</li>
+<li>Dogs</li>
+<li>Cats</li>
+<li>Why I Love Animals</li>
+</ul>
+<div class="line-gap"></div>
+<p>Write as HTML:</p>
+<div class="line-gap"></div>
+<pre><code>&lt;h1&gt;___________________&lt;/h1&gt;
+&lt;h2&gt;___________________&lt;/h2&gt;
+&lt;h2&gt;___________________&lt;/h2&gt;
+&lt;p&gt;___________________&lt;/p&gt;</code></pre>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI to simplify this sentence:</p>
+<div class="line-gap"></div>
+<p>&quot;I enjoy solving maths puzzles and building websites.&quot;</p>
+<div class="line-gap"></div>
+<p>My simpler version:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 7 - Chapter 2 Worksheet B (Lists)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Create:</p>
+<div class="line-gap"></div>
+<p>My Top 5 Favourite Things</p>
+<div class="line-gap"></div>
+<pre><code>&lt;h2&gt;___________________&lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;___________________&lt;/li&gt;
+    &lt;li&gt;___________________&lt;/li&gt;
+    &lt;li&gt;___________________&lt;/li&gt;
+    &lt;li&gt;___________________&lt;/li&gt;
+    &lt;li&gt;___________________&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<div class="line-gap"></div>
+<p>HOMEWORK:</p>
+<div class="line-gap"></div>
+<p>Draw your webpage layout with one heading, one paragraph, one list.</p>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>5 x 2 = ______</li>
+<li>5 x 4 = ______</li>
+<li>5 x 6 = ______</li>
+<li>5 x 8 = ______</li>
+<li>25 + 25 + 25 + 25 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 8 - Chapter 3 Worksheet A (Profile Page Build)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Build your profile with:</p>
+<div class="line-gap"></div>
+<ul>
+<li>My Name</li>
+<li>About Me</li>
+<li>My Hobbies</li>
+<li>My Favourite Things</li>
+</ul>
+<div class="line-gap"></div>
+<p>Write your HTML plan before coding:</p>
+<div class="line-gap"></div>
+<ul>
+<li>My h1: _________________________________________________</li>
+<li>My first paragraph topic: ________________________________</li>
+<li>My hobbies list items: ___________________________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Suggest 3 section names for my profile page.&quot;</p>
+<div class="line-gap"></div>
+<p>Section 1: __________________</p>
+<p>Section 2: __________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 9 - Chapter 3 Worksheet B (Image and Link)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>CODE IT:</p>
+<div class="line-gap"></div>
+<pre><code>&lt;img src=&quot;___________________&quot; alt=&quot;___________________&quot;&gt;
+
+&lt;a href=&quot;https://___________________&quot;&gt;___________________&lt;/a&gt;</code></pre>
+<div class="line-gap"></div>
+<p>HOMEWORK:</p>
+<div class="line-gap"></div>
+<p>Add one new section with 3 sentences:</p>
+<div class="line-gap"></div>
+<p>Section title: ______________________________</p>
+<div class="line-gap"></div>
+<p>Sentence 1: ________________________________________________</p>
+<div class="line-gap"></div>
+<p>Sentence 2: ________________________________________________</p>
+<div class="line-gap"></div>
+<p>Sentence 3: ________________________________________________</p>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>20 x 5 = ______</li>
+<li>40 x 5 = ______</li>
+<li>60 x 5 = ______</li>
+<li>18 + 12 = ______</li>
+<li>45 + 55 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 10 - Chapter 4 Worksheet A (Maths Content in HTML)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Create your maths block:</p>
+<div class="line-gap"></div>
+<pre><code>&lt;h1&gt;My Speed Maths Challenge&lt;/h1&gt;
+&lt;p&gt;Q1: __________________&lt;/p&gt;
+&lt;p&gt;A1: __________________&lt;/p&gt;
+&lt;p&gt;Q2: __________________&lt;/p&gt;
+&lt;p&gt;A2: __________________&lt;/p&gt;
+&lt;p&gt;Q3: __________________&lt;/p&gt;
+&lt;p&gt;A3: __________________&lt;/p&gt;
+&lt;p&gt;My Score: ____ / 3&lt;/p&gt;</code></pre>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Create 5 easy mental maths questions using 5, 10, and 25.&quot;</p>
+<div class="line-gap"></div>
+<p>Pick 3 and write them:</p>
+<div class="line-gap"></div>
+<ol>
+<li>_________________________________________</li>
+<li>_________________________________________</li>
+<li>_________________________________________</li>
+</ol>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 11 - Chapter 4 Worksheet B (Challenge for a Friend)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Create 3 new questions for your friend:</p>
+<div class="line-gap"></div>
+<ol>
+<li>_________________________________________</li>
+<li>_________________________________________</li>
+<li>_________________________________________</li>
+</ol>
+<div class="line-gap"></div>
+<p>Answer key:</p>
+<div class="line-gap"></div>
+<ol>
+<li>______</li>
+<li>______</li>
+<li>______</li>
+</ol>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 x 8 = ______</li>
+<li>125 x 4 = ______</li>
+<li>99 + 99 = ______</li>
+<li>1000 - 125 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<p>Reflection:</p>
+<div class="line-gap"></div>
+<p>The shortcut I used was ____________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 12 - Chapter 5 Worksheet A (CSS Basics)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Apply CSS:</p>
+<div class="line-gap"></div>
+<pre><code>body {
+    background-color: __________________;
+}
+
+h1 {
+    color: __________________;
+    font-size: __________________;
+    text-align: __________________;
+}</code></pre>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Suggest 3 readable color palettes for a kids maths website.&quot;</p>
+<div class="line-gap"></div>
+<p>My chosen palette:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Background: __________________</li>
+<li>Heading: _____________________</li>
+<li>Text: ________________________</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 13 - Chapter 5 Worksheet B (Fonts and Readability)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>TRY:</p>
+<div class="line-gap"></div>
+<ul>
+<li>font-size: ______</li>
+<li>font-family: ______</li>
+<li>text-align: ______</li>
+</ul>
+<div class="line-gap"></div>
+<p>HOMEWORK:</p>
+<div class="line-gap"></div>
+<p>Fill your style table:</p>
+<div class="line-gap"></div>
+<table>
+<thead><tr>
+<th>Element</th>
+<th>Property</th>
+<th>Value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>250 + 250 = ______</li>
+<li>500 - 125 = ______</li>
+<li>75 + 25 = ______</li>
+<li>48 + 52 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 14 - Chapter 6 Worksheet A (Boxes)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Write what each means:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Border: _________________________________________________</li>
+<li>Padding: ________________________________________________</li>
+<li>Margin: _________________________________________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>CODE IT:</p>
+<div class="line-gap"></div>
+<pre><code>div {
+    border: __________________;
+    padding: __________________;
+    margin: __________________;
+}</code></pre>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Give me 3 simple profile card design ideas for kids.&quot;</p>
+<div class="line-gap"></div>
+<p>My chosen design idea:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 15 - Chapter 6 Worksheet B (Profile Card)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Create card details:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Name: __________________</li>
+<li>Grade: _________________</li>
+<li>Favourite hobby: _______</li>
+<li>Favourite number: ______</li>
+</ul>
+<div class="line-gap"></div>
+<p>Spacing Maths:</p>
+<div class="line-gap"></div>
+<p>Card width = 300px</p>
+<div class="line-gap"></div>
+<p>Left padding = 20px</p>
+<div class="line-gap"></div>
+<p>Right padding = 20px</p>
+<div class="line-gap"></div>
+<p>Content width = ______ px</p>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 + 25 + 25 + 25 = ______</li>
+<li>100 - 40 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 16 - Chapter 7 Worksheet A (Vedic Maths Magic Page)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>My trick title:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>Example problem:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>Step-by-step:</p>
+<div class="line-gap"></div>
+<ol>
+<li>__________________________________________</li>
+<li>__________________________________________</li>
+<li>__________________________________________</li>
+<li>__________________________________________</li>
+</ol>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Explain multiply-by-5 trick in 4 short steps for Grade 4.&quot;</p>
+<div class="line-gap"></div>
+<p>Write your own improved version:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 17 - Chapter 7 Worksheet B (Practice Board)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Write 5 questions:</p>
+<div class="line-gap"></div>
+<ol>
+<li>______________________</li>
+<li>______________________</li>
+<li>______________________</li>
+<li>______________________</li>
+<li>______________________</li>
+</ol>
+<div class="line-gap"></div>
+<p>Answers:</p>
+<div class="line-gap"></div>
+<ol>
+<li>______</li>
+<li>______</li>
+<li>______</li>
+<li>______</li>
+<li>______</li>
+</ol>
+<div class="line-gap"></div>
+<p>HOMEWORK:</p>
+<div class="line-gap"></div>
+<p>Ask one family member to solve.</p>
+<div class="line-gap"></div>
+<p>Most common mistake: ______________________________________</p>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>14 x 5 = ______</li>
+<li>36 x 5 = ______</li>
+<li>48 x 5 = ______</li>
+<li>84 x 5 = ______</li>
+<li>125 x 8 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 18 - Chapter 8 Worksheet A (Mini Website Plan)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Website Name: _____________________________________________</p>
+<div class="line-gap"></div>
+<p>Topic: ____________________________________________________</p>
+<div class="line-gap"></div>
+<p>Main Heading: _____________________________________________</p>
+<div class="line-gap"></div>
+<p>Section 1: ________________________________________________</p>
+<p>Section 2: ________________________________________________</p>
+<p>Section 3: ________________________________________________</p>
+<div class="line-gap"></div>
+<p>Colors:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Background: __________________</li>
+<li>Heading: _____________________</li>
+<li>Text: ________________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>AI CORNER:</p>
+<div class="line-gap"></div>
+<p>Ask AI: &quot;Suggest 3 improvements for my website plan.&quot;</p>
+<div class="line-gap"></div>
+<p>One improvement I used:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 19 - Chapter 8 Worksheet B (Build Checklist)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Must include:</p>
+<div class="line-gap"></div>
+<ul>
+<li>[ ] 3 headings</li>
+<li>[ ] 2 paragraphs</li>
+<li>[ ] 1 list</li>
+<li>[ ] 1 image</li>
+<li>[ ] 1 link</li>
+<li>[ ] CSS styling</li>
+</ul>
+<div class="line-gap"></div>
+<p>Code Detective:</p>
+<div class="line-gap"></div>
+<ul>
+<li>[ ] Missing &lt; &gt; checked</li>
+<li>[ ] Closing tags checked</li>
+<li>[ ] CSS braces checked</li>
+<li>[ ] Semicolons checked</li>
+</ul>
+<div class="line-gap"></div>
+<p>HOMEWORK:</p>
+<div class="line-gap"></div>
+<p>Write 2 mistakes you found and fixed.</p>
+<div class="line-gap"></div>
+<ol>
+<li>________________________________________________</li>
+<li>________________________________________________</li>
+</ol>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 20 - Chapter 8 Worksheet C (Score and Time Maths)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>If Round 1 = 7/10 and Round 2 = 8/10</p>
+<div class="line-gap"></div>
+<p>Total = ______ / 20</p>
+<div class="line-gap"></div>
+<p>Percentage = ______ %</p>
+<div class="line-gap"></div>
+<p>If one shortcut takes 30 seconds instead of 60 seconds,</p>
+<div class="line-gap"></div>
+<p>time saved per question = ______ sec</p>
+<div class="line-gap"></div>
+<p>for 5 questions = ______ sec</p>
+<div class="line-gap"></div>
+<p>VEDIC MATHS HOMEWORK:</p>
+<div class="line-gap"></div>
+<ul>
+<li>75 + 25 = ______</li>
+<li>250 + 750 = ______</li>
+<li>999 + 1 = ______</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 21 - Chapter 9 Worksheet A (Final Project Choice)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Choose one:</p>
+<div class="line-gap"></div>
+<ul>
+<li>[ ] Space Explorer</li>
+<li>[ ] My Favourite Sport</li>
+<li>[ ] Vedic Maths Magic 2.0</li>
+<li>[ ] Amazing Animals</li>
+<li>[ ] Save Our Planet</li>
+<li>[ ] My Dream Invention</li>
+</ul>
+<div class="line-gap"></div>
+<p>Project title:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>Why I chose this:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 22 - Chapter 9 Worksheet B (Final Project Plan)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Must Have plan:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Title: _________________________________________________</li>
+<li>Section 1: _____________________________________________</li>
+<li>Section 2: _____________________________________________</li>
+<li>Paragraph 1 topic: _____________________________________</li>
+<li>Paragraph 2 topic: _____________________________________</li>
+<li>List topic: ____________________________________________</li>
+<li>Image file name: _______________________________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>Should Have plan:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Link text: _____________________________________________</li>
+<li>Profile card topic: ____________________________________</li>
+<li>Maths challenge idea: __________________________________</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 23 - Chapter 9 Worksheet C (AI Use Evidence)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>I used AI for:</p>
+<div class="line-gap"></div>
+<ul>
+<li>[ ] Idea generation</li>
+<li>[ ] Sentence improvement</li>
+<li>[ ] Color palette</li>
+<li>[ ] Other: __________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>My AI prompt:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>AI output summary:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>What I changed myself:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 24 - Chapter 9 Worksheet D (Space Explorer Template)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Suggested headings:</p>
+<div class="line-gap"></div>
+<pre><code>&lt;h1&gt;Space Explorer&lt;/h1&gt;
+&lt;h2&gt;Planets I Like&lt;/h2&gt;
+&lt;h2&gt;Space Facts&lt;/h2&gt;
+&lt;h2&gt;Space Maths Challenge&lt;/h2&gt;</code></pre>
+<div class="line-gap"></div>
+<p>Space maths:</p>
+<div class="line-gap"></div>
+<ol>
+<li>25 km per minute for 4 minutes = ______ km</li>
+<li>3 stages and 5 tasks each = ______ tasks</li>
+<li>125 stars + 125 stars = ______ stars</li>
+</ol>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 25 - Chapter 9 Worksheet E (Presentation Prep)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Write your 5-line presentation:</p>
+<div class="line-gap"></div>
+<ol>
+<li>My project title is ______________________________________</li>
+<li>My best section is ______________________________________</li>
+<li>My best coding idea is __________________________________</li>
+<li>My maths section is _____________________________________</li>
+<li>Next time I will improve _________________________________</li>
+</ol>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 26 - Reflection Page 1</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Complete:</p>
+<div class="line-gap"></div>
+<ul>
+<li>I can write these HTML tags: ______________________________</li>
+<li>I can use these CSS properties: ___________________________</li>
+<li>The project I am proud of: ________________________________</li>
+</ul>
+<div class="line-gap"></div>
+<p>One challenge I solved:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 27 - Reflection Page 2</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Coding confidence meter (circle one):</p>
+<div class="line-gap"></div>
+<p>1 2 3 4 5</p>
+<div class="line-gap"></div>
+<p>Maths confidence meter (circle one):</p>
+<div class="line-gap"></div>
+<p>1 2 3 4 5</p>
+<div class="line-gap"></div>
+<p>AI confidence meter (circle one):</p>
+<div class="line-gap"></div>
+<p>1 2 3 4 5</p>
+<div class="line-gap"></div>
+<p>I learned best when:</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 28 - Parent Signature Page</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Parent/Guardian Feedback:</p>
+<div class="line-gap"></div>
+<p>What improvement did you notice in your child?</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>____________________________________________________________</p>
+<div class="line-gap"></div>
+<p>Parent/Guardian Name: _____________________________________</p>
+<div class="line-gap"></div>
+<p>Signature: ________________________________________________</p>
+<div class="line-gap"></div>
+<p>Date: _____________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 29 - Student Achievement Page</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>I completed:</p>
+<div class="line-gap"></div>
+<ul>
+<li>[ ] My first HTML page</li>
+<li>[ ] My styled CSS page</li>
+<li>[ ] My maths challenge page</li>
+<li>[ ] My final project</li>
+<li>[ ] My project presentation</li>
+</ul>
+<div class="line-gap"></div>
+<p>Teacher initials: _______________________</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 30 - Certificate Page</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<h1>THYNK Young Creator</h1>
+<div class="line-gap"></div>
+<p>This certifies that</p>
+<div class="line-gap"></div>
+<p>____________________________________</p>
+<div class="line-gap"></div>
+<p>has successfully completed</p>
+<div class="line-gap"></div>
+<p>HTML + CSS x Vedic Maths + AI Foundation</p>
+<div class="line-gap"></div>
+<p>and demonstrated the ability to THINK, CODE, CREATE, and SHARE.</p>
+<div class="line-gap"></div>
+<p>Date: ___________________</p>
+<div class="line-gap"></div>
+<p>Teacher Signature: ___________________</p>
+<div class="line-gap"></div>
+<p>School Seal:</p>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<h2>TEACHER ANSWER KEYS (PRINT AFTER STUDENT PAGES)</h2>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 31 - Answer Key Index</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>This section provides expected answers and acceptable variations.</p>
+<div class="line-gap"></div>
+<p>Marking guidance:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Full credit for correct logic, even with minor spelling errors.</li>
+<li>For AI tasks, evaluate originality and reflection, not exact text.</li>
+<li>For open design tasks, check completeness and readability.</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 32 - Answer Key (Chapter 1)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 5 Vedic answers:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 x 4 = 100</li>
+<li>50 x 3 = 150</li>
+<li>125 x 2 = 250</li>
+<li>99 + 1 = 100</li>
+</ul>
+<div class="line-gap"></div>
+<p>Expected understanding:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Student can identify at least 3 webpage elements.</li>
+<li>Student can complete basic HTML skeleton with title, h1, p.</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 33 - Answer Key (Chapter 2)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 7 Vedic answers:</p>
+<div class="line-gap"></div>
+<ul>
+<li>5 x 2 = 10</li>
+<li>5 x 4 = 20</li>
+<li>5 x 6 = 30</li>
+<li>5 x 8 = 40</li>
+<li>25 + 25 + 25 + 25 = 100</li>
+</ul>
+<div class="line-gap"></div>
+<p>Expected HTML:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Valid use of h1/h2/p structure</li>
+<li>ul containing li items</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 34 - Answer Key (Chapter 3)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 9 Vedic answers:</p>
+<div class="line-gap"></div>
+<ul>
+<li>20 x 5 = 100</li>
+<li>40 x 5 = 200</li>
+<li>60 x 5 = 300</li>
+<li>18 + 12 = 30</li>
+<li>45 + 55 = 100</li>
+</ul>
+<div class="line-gap"></div>
+<p>Expected project:</p>
+<div class="line-gap"></div>
+<ul>
+<li>At least one valid img tag</li>
+<li>At least one valid a tag with href</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 35 - Answer Key (Chapter 4)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 11 Vedic answers:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 x 8 = 200</li>
+<li>125 x 4 = 500</li>
+<li>99 + 99 = 198</li>
+<li>1000 - 125 = 875</li>
+</ul>
+<div class="line-gap"></div>
+<p>Acceptable shortcut explanations:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Doubling and halving</li>
+<li>Breaking numbers into parts</li>
+<li>Near-100 compensation</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 36 - Answer Key (Chapter 5)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 13 Vedic answers:</p>
+<div class="line-gap"></div>
+<ul>
+<li>250 + 250 = 500</li>
+<li>500 - 125 = 375</li>
+<li>75 + 25 = 100</li>
+<li>48 + 52 = 100</li>
+</ul>
+<div class="line-gap"></div>
+<p>CSS success criteria:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Correct use of property:value format</li>
+<li>Semicolons mostly correct</li>
+<li>Text remains readable</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 37 - Answer Key (Chapter 6)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 15 spacing answer:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Content width = 260 px</li>
+</ul>
+<div class="line-gap"></div>
+<p>Because:</p>
+<div class="line-gap"></div>
+<ul>
+<li>300 - 20 - 20 = 260</li>
+</ul>
+<div class="line-gap"></div>
+<p>Page 15 Vedic:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 + 25 + 25 + 25 = 100</li>
+<li>100 - 40 = 60</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 38 - Answer Key (Chapter 7)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 17 Vedic:</p>
+<div class="line-gap"></div>
+<ul>
+<li>14 x 5 = 70</li>
+<li>36 x 5 = 180</li>
+<li>48 x 5 = 240</li>
+<li>84 x 5 = 420</li>
+<li>125 x 8 = 1000</li>
+</ul>
+<div class="line-gap"></div>
+<p>Project checks:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Trick title present</li>
+<li>Worked example present</li>
+<li>3 or more practice questions</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 39 - Answer Key (Chapter 8)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 20:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Total = 15/20</li>
+<li>Percentage = 75%</li>
+<li>Time saved per question = 30 sec</li>
+<li>For 5 questions = 150 sec</li>
+</ul>
+<div class="line-gap"></div>
+<p>Additional Vedic:</p>
+<div class="line-gap"></div>
+<ul>
+<li>75 + 25 = 100</li>
+<li>250 + 750 = 1000</li>
+<li>999 + 1 = 1000</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 40 - Answer Key (Chapter 9 Final Project)</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>Page 24 Space maths:</p>
+<div class="line-gap"></div>
+<ul>
+<li>25 x 4 = 100 km</li>
+<li>3 x 5 = 15 tasks</li>
+<li>125 + 125 = 250 stars</li>
+</ul>
+<div class="line-gap"></div>
+<p>Final project rubric (20 marks):</p>
+<div class="line-gap"></div>
+<ul>
+<li>HTML structure: 4</li>
+<li>CSS styling: 4</li>
+<li>Content clarity: 4</li>
+<li>Maths integration: 4</li>
+<li>Creativity and presentation: 4</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 41 - Suggested Rubric Bands</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>18-20:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Complete, accurate, creative, clearly explained</li>
+</ul>
+<div class="line-gap"></div>
+<p>14-17:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Mostly complete, minor errors, good explanation</li>
+</ul>
+<div class="line-gap"></div>
+<p>10-13:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Partial completion, several errors, limited explanation</li>
+</ul>
+<div class="line-gap"></div>
+<p>Below 10:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Needs teacher support and rework plan</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+<section class="page">
+<div class="page-header">PAGE 42 - Remediation and Extension Tasks</div>
+<div class="page-body">
+<div class="line-gap"></div>
+<p>For students needing support:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Rebuild one basic page with h1, p, ul, li</li>
+<li>Solve 5 x table and 25 x table drills</li>
+<li>Use code detective checklist with partner</li>
+</ul>
+<div class="line-gap"></div>
+<p>For advanced students:</p>
+<div class="line-gap"></div>
+<ul>
+<li>Build 2-page mini site with linked pages</li>
+<li>Add second maths game page</li>
+<li>Improve visual consistency with repeated styles</li>
+</ul>
+<div class="line-gap"></div>
+<hr>
+<div class="line-gap"></div>
+<h2>Print Production Checklist</h2>
+<div class="line-gap"></div>
+<p>Before print:</p>
+<div class="line-gap"></div>
+<ol>
+<li>Confirm headings start on new pages.</li>
+<li>Keep answer key pages teacher-only.</li>
+<li>Add school logo on Page 1 and Page 30.</li>
+<li>Add footer: THYNK Young Creator | Page __.</li>
+<li>Export to PDF and check page breaks.</li>
+</ol>
+<div class="line-gap"></div>
+
+</div>
+<div class="page-footer">THYNK Young Creator Workbook</div>
+</section>
+
+</body>
+</html>
