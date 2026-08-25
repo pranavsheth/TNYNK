@@ -1,0 +1,1474 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THYNK Young Creator — HTML + CSS × Vedic Maths Workbook</title>
+<style>
+@page { size: A4 portrait; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background:#e9edf1; color:#17324D; font-family: "Arial", "Helvetica", sans-serif; }
+body { font-size: 10.5pt; }
+.page {
+  width:210mm; min-height:297mm; height:297mm; background:#fff;
+  margin:0 auto 5mm; padding:14mm 15mm 13mm;
+  position:relative; overflow:hidden; page-break-after:always;
+}
+.page:last-child { page-break-after:auto; }
+@media print {
+  body { background:#fff; }
+  .page { margin:0; }
+}
+.page-head { height:12mm; border-bottom:1px solid #d6e2e8; display:flex; align-items:center; gap:5mm; margin-bottom:6mm; }
+.brand-mini { font-weight:800; letter-spacing:2px; color:#0B6E99; }
+.brand-mini span { color:#D5A83D; }
+.page-title { font-size:9.5pt; font-weight:700; color:#667b8c; flex:1; }
+.page-no { font-size:9pt; font-weight:700; color:#D5A83D; }
+.eyebrow { text-transform:uppercase; letter-spacing:1.4px; font-size:8pt; color:#0B6E99; font-weight:800; margin-bottom:3mm; }
+h1 { font-family:Georgia, serif; font-size:25pt; line-height:1.05; margin:0 0 4mm; color:#17324D; }
+h2 { font-family:Georgia, serif; font-size:17pt; margin:7mm 0 3mm; color:#17324D; }
+h3 { font-size:13pt; margin:0 0 2mm; }
+p { line-height:1.45; margin:2mm 0; }
+.subtitle { font-size:12pt; color:#5b7182; max-width:125mm; }
+.lesson-hero { display:flex; justify-content:space-between; align-items:center; background:#f4f8fb; border-radius:6mm; padding:6mm 8mm; border:1px solid #d9e7ee; margin-bottom:5mm; }
+.hero-svg { width:55mm; height:30mm; }
+.columns { display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
+.card, .activity, .mathbox, .challenge, .note-box, .teacher, .big-idea { border-radius:4mm; padding:4mm; margin-bottom:4mm; }
+.card { background:#f8fbfc; border:1px solid #d9e7ee; }
+.activity { background:#fff9e9; border:1px solid #eed99d; }
+.mathbox { background:#eef8fb; border:1px solid #c5e3ee; }
+.challenge { background:#f1f7ee; border-left:4px solid #6b9e59; }
+.teacher { background:#f5f2fa; border-left:4px solid #7c6ca8; font-size:9pt; margin-top:4mm; }
+.note-box { background:#fff9e9; border:1px solid #eed99d; }
+.big-idea { background:#17324D; color:white; }
+.box-title { font-weight:800; color:#0B6E99; margin-bottom:2mm; }
+.mathbox .box-title { color:#0B6E99; }
+.activity-line, .qline { margin:2.2mm 0; line-height:1.35; }
+.qline span { display:inline-block; width:7mm; font-weight:700; color:#0B6E99; }
+.code-label { font-size:7.5pt; font-weight:800; letter-spacing:1px; color:#fff; background:#17324D; padding:1.5mm 3mm; display:inline-block; border-radius:2mm 2mm 0 0; }
+.code { background:#102538; color:#f6fbff; padding:4mm; margin:0 0 4mm; border-radius:0 3mm 3mm 3mm; min-height:28mm; font-size:9pt; line-height:1.45; white-space:pre-wrap; font-family:Consolas, "Courier New", monospace; }
+.smallcode { background:#102538; color:#fff; padding:2mm; font-size:8pt; margin:0; border-radius:2mm; }
+.didit { position:absolute; left:15mm; right:15mm; bottom:10mm; border-top:1px solid #d6e2e8; padding-top:3mm; font-weight:700; color:#637a8b; }
+.preface { max-width:175mm; margin:auto; }
+.two-cards { display:grid; grid-template-columns:1fr 1fr; gap:5mm; margin:5mm 0; }
+.big-card { border:2px solid #0B6E99; border-radius:5mm; padding:6mm; text-align:center; font-size:14pt; background:#eef8fb; }
+.big-card.gold { border-color:#D5A83D; background:#fff9e9; }
+.quote { background:#17324D; color:#fff; padding:6mm; border-radius:5mm; text-align:center; font-family:Georgia,serif; font-size:15pt; line-height:1.4; margin:6mm 0; }
+.journey { padding:5mm; border:2px dashed #0B6E99; border-radius:5mm; text-align:center; font-weight:800; color:#0B6E99; }
+.six-grid { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.six-grid > div { padding:5mm; border-radius:4mm; background:#f4f8fb; border:1px solid #d9e7ee; min-height:30mm; }
+.timeline { padding:5mm; background:#fff9e9; border-radius:4mm; line-height:2; }
+.timeline span { font-weight:800; color:#0B6E99; }
+.write-large { border:1px solid #d6e2e8; border-radius:4mm; padding:7mm; min-height:45mm; line-height:2; }
+.plan, .tool { width:100%; border-collapse:collapse; margin-top:4mm; font-size:8.3pt; }
+.plan th, .plan td, .tool th, .tool td { border:1px solid #d3dfe6; padding:2.2mm; vertical-align:top; }
+.plan th, .tool th { background:#17324D; color:#fff; }
+.plan tr:nth-child(even), .tool tr:nth-child(even) { background:#f7fafb; }
+.teacher-list { line-height:1.8; }
+.success-row { display:grid; grid-template-columns:repeat(5,1fr); gap:2mm; }
+.success-row span { background:#eef8fb; border:1px solid #c5e3ee; padding:3mm; text-align:center; border-radius:3mm; font-size:8.5pt; font-weight:700; }
+.toc-row { display:grid; grid-template-columns:18mm 1fr 35mm; padding:4mm 0; border-bottom:1px solid #d6e2e8; align-items:center; }
+.toc-row b { color:#D5A83D; }
+.toc-row em { color:#718494; font-size:9pt; text-align:right; }
+.cover { background:linear-gradient(145deg,#17324D 0%,#0B6E99 70%,#0b6e99 100%); color:white; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.cover-orbit { position:absolute; width:150mm; height:150mm; border:1px solid rgba(255,255,255,.16); border-radius:50%; top:-20mm; right:-40mm; }
+.cover-brand { font-size:18pt; font-weight:900; letter-spacing:6px; }
+.cover-brand span { color:#D5A83D; }
+.cover-kicker { margin-top:8mm; text-transform:uppercase; letter-spacing:2px; font-size:9pt; color:#d9eef7; }
+.cover h1 { color:#fff; font-size:47pt; margin-top:8mm; margin-bottom:0; }
+.cover-x { font-size:20pt; color:#D5A83D; margin:2mm 0; }
+.cover h2 { color:#fff; font-size:29pt; margin:0; }
+.cover-tag { font-size:15pt; letter-spacing:3px; font-weight:800; color:#D5A83D; }
+.cover-visual { display:flex; gap:4mm; margin:8mm 0; background:rgba(255,255,255,.08); padding:4mm 7mm; border-radius:7mm; }
+.cover-visual .hero-svg { width:50mm; }
+.cover-note { max-width:130mm; font-size:11pt; color:#e5f1f5; }
+.name-box { border:1px solid rgba(255,255,255,.5); padding:4mm 8mm; border-radius:3mm; margin-top:8mm; width:145mm; }
+.practice-grid { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.practice-card { border:1px solid #d6e2e8; border-radius:4mm; padding:5mm; min-height:45mm; background:#fbfdfe; }
+.answer-line { border-bottom:1px solid #8da3b2; margin-top:9mm; width:100%; }
+.answer-line.short { width:65%; margin-top:5mm; }
+.didyou { background:#eef8fb; border-left:4px solid #0B6E99; padding:4mm; margin-top:6mm; border-radius:3mm; }
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:5mm; }
+.form-grid .full { grid-column:1/-1; }
+.write { border:1px solid #cbd9e1; border-radius:3mm; height:16mm; margin-top:2mm; }
+.write.tall { height:30mm; }
+.wireframe { border:2px solid #0B6E99; border-radius:4mm; padding:6mm; min-height:185mm; background:#fbfdfe; }
+.wf-title { border:2px dashed #0B6E99; padding:5mm; text-align:center; font-weight:800; }
+.wf-row { display:grid; grid-template-columns:1fr 2fr; gap:5mm; margin-top:5mm; }
+.wf-image, .wf-text, .wf-section { border:2px dashed #c3d4dd; padding:10mm; min-height:42mm; display:flex; align-items:center; justify-content:center; text-align:center; }
+.wf-section { margin-top:5mm; min-height:30mm; }
+.checklist-big { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.checklist-big div { border:1px solid #d6e2e8; padding:4mm; border-radius:3mm; }
+.scorebox { margin-top:7mm; padding:6mm; background:#fff9e9; border:1px solid #eed99d; border-radius:4mm; line-height:1.9; }
+.journey-check { display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+.journey-check div { border:1px solid #d6e2e8; border-radius:3mm; padding:4mm; display:grid; grid-template-columns:9mm 1fr; }
+.journey-check span { background:#0B6E99; color:#fff; width:7mm; height:7mm; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; }
+.journey-check small { grid-column:2; color:#718494; margin-top:1mm; }
+.reflection p { font-weight:700; margin-top:4mm; }
+.certificate { height:225mm; border:5px double #D5A83D; border-radius:5mm; text-align:center; padding:25mm 15mm; background:linear-gradient(180deg,#fffdf8,#f5fbfd); }
+.cert-brand { font-size:20pt; font-weight:900; letter-spacing:6px; color:#0B6E99; }
+.cert-small { margin-top:12mm; letter-spacing:3px; font-size:9pt; color:#718494; }
+.certificate h1 { font-size:35pt; color:#17324D; margin:8mm 0; }
+.cert-name { font-size:20pt; font-family:Georgia,serif; border-bottom:2px solid #17324D; display:inline-block; padding:2mm 15mm; }
+.cert-pill { display:inline-block; background:#17324D; color:#fff; padding:4mm 9mm; border-radius:10mm; font-weight:800; margin-top:12mm; }
+.cert-sign { display:flex; justify-content:space-around; margin-top:30mm; color:#718494; }
+.answer-grid { display:grid; grid-template-columns:1fr 1fr; gap:4mm; }
+.answer-grid div { padding:4mm; border:1px solid #d6e2e8; border-radius:3mm; background:#f8fbfc; }
+</style>
+</head>
+<body>
+
+<section class="page cover">
+  <div class="cover-orbit"></div>
+  <div class="cover-brand">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+  <div class="cover-kicker">Level 2 · Young Creator</div>
+  <h1>HTML + CSS</h1>
+  <div class="cover-x">×</div>
+  <h2>Vedic Maths</h2>
+  <p class="cover-tag">Think • Code • Create</p>
+  <div class="cover-visual"><svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg> <svg viewBox="0 0 220 120" class="hero-svg" aria-label="math illustration">
+          <circle cx="70" cy="60" r="43" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <text x="70" y="71" text-anchor="middle" font-size="34" font-family="Arial" fill="#0B6E99" font-weight="700">×</text>
+          <circle cx="150" cy="42" r="22" fill="#f3c969"/><text x="150" y="50" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">25</text>
+          <circle cx="150" cy="82" r="22" fill="#dceef5"/><text x="150" y="90" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">4</text>
+        </svg> <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg></div>
+  <p class="cover-note">My first real coding adventure — from a blank page to my own website.</p>
+  <div class="name-box">This workbook belongs to: ______________________________</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Welcome, Young Creator</div>
+      <div class="page-no">02</div>
+    </div>
+<div class="preface">
+<h1>Welcome to THYNK Young Creator!</h1>
+<p>You already use websites every day. Now it is your turn to <b>build one</b>.</p>
+<p>In this workbook, you will learn two simple web languages:</p>
+<div class="two-cards">
+  <div class="big-card"><b>HTML</b><br>builds the structure of a webpage.</div>
+  <div class="big-card gold"><b>CSS</b><br>makes the webpage look beautiful.</div>
+</div>
+<p>Along the way, your Vedic Maths skills will help you practise <b>patterns, speed, accuracy and problem-solving</b>.</p>
+<div class="quote">“Vedic Maths helps me THINK.<br>HTML helps me BUILD.<br>CSS helps me CREATE.”</div>
+<p>Do not worry if the code looks strange at first. Coding is like learning a new language. Start small, try it, make mistakes, fix them — and keep going.</p>
+<h2>Your journey</h2>
+<div class="journey">THINK → CALCULATE → PLAN → CODE → DESIGN → TEST → IMPROVE → CREATE → SHARE</div>
+</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">How to Use This Workbook</div>
+      <div class="page-no">03</div>
+    </div>
+<div class="eyebrow">Your six recurring THYNK steps</div>
+<div class="six-grid">
+<div><b>🧠 THINK</b><p>Answer a question before you touch the code.</p></div>
+<div><b>🔍 DISCOVER</b><p>Learn one small idea.</p></div>
+<div><b>💻 CODE IT</b><p>Type the code and see what happens.</p></div>
+<div><b>🎨 MAKE IT</b><p>Change it and make it yours.</p></div>
+<div><b>🧮 MATH LINK</b><p>Use your Vedic Maths thinking.</p></div>
+<div><b>🚀 LEVEL UP</b><p>Try an extra challenge when you are ready.</p></div>
+</div>
+<h2>One class = one small win</h2>
+<div class="timeline"><span>5 min</span> Think & explain → <span>10 min</span> Demo → <span>15 min</span> Build → <span>5 min</span> Challenge & reflect</div>
+<div class="note-box"><b>Remember:</b> You do not need to memorise everything. Use the Code Toolbox at the back of the book.</div>
+<h2>My coding promise</h2>
+<div class="write-large">I will be curious. I will try. I will make mistakes. I will fix them.<br><br>
+Signature: ____________________ &nbsp;&nbsp; Date: ____________________</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">For the School &amp; Teacher — 24-Period Plan</div>
+      <div class="page-no">04</div>
+    </div>
+<div class="big-idea"><b>Suggested format:</b> 24 sessions × 35 minutes. This is a project-first introduction to HTML/CSS and Vedic Maths for Grade 4–5 learners.</div>
+<table class="plan"><thead><tr><th>Period</th><th>Focus</th><th>Output</th><th>Math / Thinking Link</th></tr></thead><tbody>
+<tr><td>1</td><td>Meet the Web</td><td>Identify webpage parts</td><td>Classification</td></tr><tr><td>2</td><td>HTML is the skeleton</td><td>First page structure</td><td>Structure</td></tr><tr><td>3</td><td>First tags</td><td>Heading + paragraph</td><td>Sequencing</td></tr><tr><td>4</td><td>Headings</td><td>Organise information</td><td>Hierarchy</td></tr><tr><td>5</td><td>Lists</td><td>Top 5 list</td><td>Counting</td></tr><tr><td>6</td><td>Profile page</td><td>About Me page</td><td>Self-expression</td></tr><tr><td>7</td><td>Images</td><td>Add an image</td><td>Observation</td></tr><tr><td>8</td><td>Links</td><td>Add a link</td><td>Connections</td></tr><tr><td>9</td><td>Numbers on the Web</td><td>Maths results page</td><td>Calculation</td></tr><tr><td>10</td><td>Maths Challenge</td><td>Friend challenge</td><td>Speed + accuracy</td></tr><tr><td>11</td><td>Meet CSS</td><td>First styling</td><td>Cause/effect</td></tr><tr><td>12</td><td>Colours</td><td>Colourful page</td><td>Patterns/choice</td></tr><tr><td>13</td><td>Fonts & text</td><td>Styled text</td><td>Comparison</td></tr><tr><td>14</td><td>Boxes</td><td>Card layout</td><td>Shape/space</td></tr><tr><td>15</td><td>Profile card</td><td>Styled card</td><td>Data organisation</td></tr><tr><td>16</td><td>Spacing</td><td>Padding + margin</td><td>Mental maths</td></tr><tr><td>17</td><td>Vedic Maths Magic</td><td>Maths poster</td><td>Calculation → code</td></tr><tr><td>18</td><td>Challenge Board</td><td>Interactive-looking board</td><td>Scoring</td></tr><tr><td>19</td><td>Plan website</td><td>Wireframe</td><td>Planning</td></tr><tr><td>20</td><td>Build HTML</td><td>Website skeleton</td><td>Sequencing</td></tr><tr><td>21</td><td>Style website</td><td>Finished visual design</td><td>Measurement</td></tr><tr><td>22</td><td>Code Detective</td><td>Fix bugs</td><td>Accuracy</td></tr><tr><td>23</td><td>Young Creator Project</td><td>Independent website</td><td>Problem solving</td></tr><tr><td>24</td><td>Showcase</td><td>Presentation</td><td>Reflection</td></tr>
+</tbody></table>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Teacher Notes — Teaching Principles</div>
+      <div class="page-no">05</div>
+    </div>
+<h2>Keep the experience light</h2>
+<ul class="teacher-list">
+<li>Never introduce more than one major new coding idea in a single class.</li>
+<li>Let students type and change code themselves; avoid long copying exercises.</li>
+<li>Show the result immediately after each small change.</li>
+<li>Celebrate errors as clues, not failures.</li>
+<li>Pair faster students with a challenge rather than giving them more theory.</li>
+<li>For students who need support, provide a partially completed code block.</li>
+</ul>
+<h2>Vedic Maths integration</h2>
+<p>The workbook does not assume a particular Vedic Maths syllabus. Use the Vedic technique already being taught in your THYNK class and adapt the questions accordingly.</p>
+<div class="note-box"><b>Core connection:</b> Vedic Maths develops speed, accuracy, patterns and flexible thinking. Coding asks students to use those same habits when planning, typing and debugging.</div>
+<h2>What students should NOT learn yet</h2>
+<p>Do not add JavaScript, Flexbox, Grid, media queries, complex selectors, forms or animations in this level.</p>
+<h2>Success by Period 24</h2>
+<div class="success-row"><span>Understand a webpage</span><span>Write basic HTML</span><span>Style with CSS</span><span>Debug</span><span>Build + explain a project</span></div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">What&#x27;s Inside?</div>
+      <div class="page-no">06</div>
+    </div>
+<div class="toc">
+<h1>Your map for the adventure</h1>
+<div class="toc-row"><b>1–2</b><span>Meet the Web</span><em>Pages 7–8</em></div>
+<div class="toc-row"><b>3–5</b><span>My First HTML</span><em>Pages 9–11</em></div>
+<div class="toc-row"><b>6–8</b><span>Build My First Page</span><em>Pages 12–14</em></div>
+<div class="toc-row"><b>9–10</b><span>Maths on the Web</span><em>Pages 15–16</em></div>
+<div class="toc-row"><b>11–13</b><span>Make It Beautiful with CSS</span><em>Pages 17–19</em></div>
+<div class="toc-row"><b>14–16</b><span>CSS Design</span><em>Pages 20–22</em></div>
+<div class="toc-row"><b>17–18</b><span>Vedic Maths + Web Design</span><em>Pages 23–24</em></div>
+<div class="toc-row"><b>19–22</b><span>Build a Mini Website</span><em>Pages 25–28</em></div>
+<div class="toc-row"><b>23–24</b><span>Young Creator Project + Showcase</span><em>Pages 29–30</em></div>
+<div class="toc-row"><b>—</b><span>Code Toolbox & Practice</span><em>Pages 31–38</em></div>
+<div class="toc-row"><b>—</b><span>Final Project, Reflection & Certificate</span><em>Pages 39–44</em></div>
+</div>
+<div class="quote">By the end, you will have built something that is yours.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 1 · Welcome to the World of Websites</div>
+      <div class="page-no">07</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Welcome to the World of Websites</h1>
+    <p class="subtitle">Websites are made of many visible parts. Today you will learn to spot them.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A webpage is like a digital book. The things you see — headings, pictures, words, lists and colours — are all parts of the page. Later, you will learn how HTML and CSS create those parts.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Amazing Website&lt;/h1&gt;
+&lt;p&gt;Welcome to my page!&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Find &amp; Label</div><div class="activity-line">☐ Circle the heading on a webpage.</div><div class="activity-line">☐ Point to one picture.</div><div class="activity-line">☐ Find one paragraph.</div><div class="activity-line">☐ Find one list.</div><div class="activity-line">☐ Name one colour you can see.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Think Like a Designer</div><div class="qline"><span>1.</span> What would your website be about?</div><div class="qline"><span>2.</span> What would you put at the top?</div><div class="qline"><span>3.</span> What picture would you choose?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Choose one website idea: My School, Space, Animals, Maths, Sport, Games or My Hobby.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Start by asking students to describe a webpage before mentioning code. The goal is curiosity, not terminology.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 2 · HTML Is the Skeleton</div>
+      <div class="page-no">08</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>HTML Is the Skeleton</h1>
+    <p class="subtitle">HTML gives a webpage its structure. Think of it as the skeleton of a digital body.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>HTML means HyperText Markup Language. You do not need to memorise the long name today. Just remember: HTML tells the browser what belongs on the page.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;html&gt;
+&lt;head&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  My page goes here.
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Spot the Body</div><div class="activity-line">☐ Underline the part that a visitor can see.</div><div class="activity-line">☐ Put a star beside &lt;body&gt;.</div><div class="activity-line">☐ Draw what you think belongs inside &lt;body&gt;.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Structure Challenge</div><div class="qline"><span>1.</span> If HTML is the skeleton, what could CSS be?</div><div class="qline"><span>2.</span> Which part would hold the visible content?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Complete the sentence: HTML gives a webpage its __________.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Keep the explanation conceptual. Avoid teaching document metadata or technical browser details.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 3 · Meet Your First Tags</div>
+      <div class="page-no">09</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Meet Your First Tags</h1>
+    <p class="subtitle">Tags are little instructions that tell the browser what something is.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="coding illustration">
+      <rect x="35" y="20" width="150" height="80" rx="9" fill="#17324D"/>
+      <text x="110" y="68" text-anchor="middle" font-size="28" font-family="monospace" fill="#fff">&lt;/&gt;</text>
+      <rect x="78" y="102" width="64" height="6" rx="3" fill="#0B6E99"/>
+    </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A tag usually has an opening part and a closing part. The text sits between them. Think of a tag as a pair of brackets holding an idea.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Amazing World&lt;/h1&gt;
+
+&lt;p&gt;I love learning new things.&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Build It</div><div class="activity-line">☐ Change the heading to your name.</div><div class="activity-line">☐ Change the paragraph to one sentence about yourself.</div><div class="activity-line">☐ Type the code instead of copying it.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Tag Detective</div><div class="qline"><span>1.</span> Which tag makes the big heading?</div><div class="qline"><span>2.</span> Which tag makes the paragraph?</div><div class="qline"><span>3.</span> What happens if you remove a closing tag?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Create a heading that says: I AM A CREATOR!</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Ask students to type the two tags and immediately view the result.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 4 · Headings &amp; Paragraphs</div>
+      <div class="page-no">10</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Headings &amp; Paragraphs</h1>
+    <p class="subtitle">A good webpage is organised. Headings tell us what each section is about.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Use headings for important topics and paragraphs for the details. h1 is the main heading; h2 and h3 can organise smaller sections.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;Animals&lt;/h1&gt;
+&lt;h2&gt;Big Cats&lt;/h2&gt;
+&lt;p&gt;Lions and tigers are big cats.&lt;/p&gt;
+&lt;h2&gt;Sea Animals&lt;/h2&gt;
+&lt;p&gt;Dolphins are intelligent sea animals.&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Organise It</div><div class="activity-line">☐ Make Animals the h1.</div><div class="activity-line">☐ Make Big Cats and Sea Animals h2 headings.</div><div class="activity-line">☐ Write one new paragraph for your favourite animal.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Order Challenge</div><div class="qline"><span>1.</span> Which should be the main heading: Animals or Lions?</div><div class="qline"><span>2.</span> Which should be smaller: h1 or h2?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Create h1, h2 and p for a topic called My Favourite Sport.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Use a notebook/chapter analogy to explain hierarchy.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 5 · Lists — My Top 5</div>
+      <div class="page-no">11</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Lists — My Top 5</h1>
+    <p class="subtitle">Lists help us show information clearly and neatly.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="coding illustration">
+      <rect x="35" y="20" width="150" height="80" rx="9" fill="#17324D"/>
+      <text x="110" y="68" text-anchor="middle" font-size="28" font-family="monospace" fill="#fff">&lt;/&gt;</text>
+      <rect x="78" y="102" width="64" height="6" rx="3" fill="#0B6E99"/>
+    </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A bullet list uses <ul> for the list and <li> for each item. The browser creates the bullets for you.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h2&gt;My Favourite Things&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Cricket&lt;/li&gt;
+  &lt;li&gt;Pizza&lt;/li&gt;
+  &lt;li&gt;Space&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Make a List</div><div class="activity-line">☐ Write five favourite things.</div><div class="activity-line">☐ Put each one inside &lt;li&gt;.</div><div class="activity-line">☐ Check that every &lt;li&gt; has a closing tag.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Counting Link</div><div class="qline"><span>1.</span> How many items did you add?</div><div class="qline"><span>2.</span> Can you make a list of exactly 7 items?</div><div class="qline"><span>3.</span> Which item is first?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Create a list called My Weekend Plan with at least 4 items.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Connect the list count to simple mental counting.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 6 · Build My Profile Page</div>
+      <div class="page-no">12</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Build My Profile Page</h1>
+    <p class="subtitle">Today you combine headings, paragraphs and lists into your first personal page.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Your first webpage can be about you. This is not about making a perfect website — it is about combining the pieces you know.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;About Me&lt;/h1&gt;
+&lt;p&gt;My name is ________.&lt;/p&gt;
+&lt;h2&gt;My Hobbies&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;________&lt;/li&gt;
+  &lt;li&gt;________&lt;/li&gt;
+  &lt;li&gt;________&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 My Profile</div><div class="activity-line">☐ Add your name.</div><div class="activity-line">☐ Write two sentences about yourself.</div><div class="activity-line">☐ Add three hobbies.</div><div class="activity-line">☐ Add one favourite thing.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Maths About Me</div><div class="qline"><span>1.</span> My favourite number is ______.</div><div class="qline"><span>2.</span> I can count by ______.</div><div class="qline"><span>3.</span> My mental-maths goal is ______ seconds.</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Add one more section called My Dream.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Allow students to personalise content. This is the first mini-project.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 7 · Add Images</div>
+      <div class="page-no">13</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Add Images</h1>
+    <p class="subtitle">Pictures make a webpage more interesting. HTML can tell the browser which image to show.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>The <img> tag displays an image. The src part tells the browser where the image file is.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;img src=&quot;cat.jpg&quot; alt=&quot;A cat&quot;&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Image Mission</div><div class="activity-line">☐ Choose a picture for your page.</div><div class="activity-line">☐ Add an alt description.</div><div class="activity-line">☐ Change the filename and see what happens if it is wrong.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Picture + Number</div><div class="qline"><span>1.</span> How many images are on your page?</div><div class="qline"><span>2.</span> How many words describe your image?</div><div class="qline"><span>3.</span> Can you add 2 images?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Add an image connected to your favourite hobby.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Use a local classroom image folder if possible so students do not need to manage web URLs.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 8 · Add Links</div>
+      <div class="page-no">14</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Add Links</h1>
+    <p class="subtitle">Links connect pages and ideas. Today you will make one piece of text clickable.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>The <a> tag creates a link. The href attribute tells the browser where the link should go.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;a href=&quot;https://example.com&quot;&gt;Visit a Website&lt;/a&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Make It Clickable</div><div class="activity-line">☐ Create a link called My Favourite Website.</div><div class="activity-line">☐ Create a second link called Learn More.</div><div class="activity-line">☐ Change the words inside the link.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Connection Thinking</div><div class="qline"><span>1.</span> What two things could your website connect?</div><div class="qline"><span>2.</span> Why are links useful?</div><div class="qline"><span>3.</span> How many links do you have?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Add a link to a safe website your teacher approves.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Use teacher-approved links. Focus on the idea of connection, not internet navigation.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 9 · Numbers Become Content</div>
+      <div class="page-no">15</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Numbers Become Content</h1>
+    <p class="subtitle">HTML can display maths questions, answers, scores and patterns.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="math illustration">
+          <circle cx="70" cy="60" r="43" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <text x="70" y="71" text-anchor="middle" font-size="34" font-family="Arial" fill="#0B6E99" font-weight="700">×</text>
+          <circle cx="150" cy="42" r="22" fill="#f3c969"/><text x="150" y="50" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">25</text>
+          <circle cx="150" cy="82" r="22" fill="#dceef5"/><text x="150" y="90" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">4</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Your Vedic Maths work can become webpage content. First calculate. Then type the result into HTML. This is our first strong Maths → Code connection.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Maths Challenge&lt;/h1&gt;
+&lt;p&gt;25 × 4 = 100&lt;/p&gt;
+&lt;p&gt;50 × 6 = 300&lt;/p&gt;
+&lt;p&gt;125 × 8 = 1000&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Calculate → Code</div><div class="activity-line">☐ Solve the questions first.</div><div class="activity-line">☐ Type only the answers you are sure about.</div><div class="activity-line">☐ Compare your screen with your worksheet.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Vedic Speed Round</div><div class="qline"><span>1.</span> 25 × 4 = ?</div><div class="qline"><span>2.</span> 50 × 6 = ?</div><div class="qline"><span>3.</span> 125 × 8 = ?</div><div class="qline"><span>4.</span> 75 × 4 = ?</div><div class="qline"><span>5.</span> 24 × 5 = ?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Add your own maths question and answer to the page.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Use the Vedic technique already taught in class. The coding step comes after calculation.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 10 · My Speed Maths Challenge</div>
+      <div class="page-no">16</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>My Speed Maths Challenge</h1>
+    <p class="subtitle">Create a maths challenge that another student can read and solve.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="math illustration">
+          <circle cx="70" cy="60" r="43" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <text x="70" y="71" text-anchor="middle" font-size="34" font-family="Arial" fill="#0B6E99" font-weight="700">×</text>
+          <circle cx="150" cy="42" r="22" fill="#f3c969"/><text x="150" y="50" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">25</text>
+          <circle cx="150" cy="82" r="22" fill="#dceef5"/><text x="150" y="90" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">4</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A good challenge has clear questions, enough space and a score. You are now thinking like both a maths learner and a web designer.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Speed Maths Challenge&lt;/h1&gt;
+&lt;h2&gt;Round 1&lt;/h2&gt;
+&lt;p&gt;25 × 4 = ______&lt;/p&gt;
+&lt;p&gt;36 × 5 = ______&lt;/p&gt;
+&lt;p&gt;48 × 5 = ______&lt;/p&gt;
+&lt;h2&gt;My Score&lt;/h2&gt;
+&lt;p&gt;____ / 3&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Create Your Challenge</div><div class="activity-line">☐ Write 3 questions.</div><div class="activity-line">☐ Solve them yourself.</div><div class="activity-line">☐ Leave blanks for your friend.</div><div class="activity-line">☐ Add a score line.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Speed + Accuracy</div><div class="qline"><span>1.</span> 12 × 5 = ?</div><div class="qline"><span>2.</span> 32 × 5 = ?</div><div class="qline"><span>3.</span> 44 × 5 = ?</div><div class="qline"><span>4.</span> 75 × 4 = ?</div><div class="qline"><span>5.</span> 25 × 8 = ?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Make a second round with 3 new questions.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Emphasise that a correct question is more important than a difficult question.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 11 · What Is CSS?</div>
+      <div class="page-no">17</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>What Is CSS?</h1>
+    <p class="subtitle">HTML gives us structure. CSS changes how that structure looks.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>CSS means Cascading Style Sheets. For today, remember one thing: HTML is the structure; CSS is the style.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>h1 {
+  color: blue;
+}</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Try a Style</div><div class="activity-line">☐ Change blue to red.</div><div class="activity-line">☐ Try green.</div><div class="activity-line">☐ Try a colour your teacher approves.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Cause &amp; Effect</div><div class="qline"><span>1.</span> What changed when you changed the CSS?</div><div class="qline"><span>2.</span> What did not change?</div><div class="qline"><span>3.</span> Why is this useful?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Style the paragraph too.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Show the same HTML before and after CSS so students see the difference.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 12 · Colours</div>
+      <div class="page-no">18</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Colours</h1>
+    <p class="subtitle">Colours can make information easier to notice and understand.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>CSS can change text colour and the background colour of the page. Choose colours that are easy to read.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: darkblue;
+}</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Build a Colour Palette</div><div class="activity-line">☐ Choose a page background.</div><div class="activity-line">☐ Choose a heading colour.</div><div class="activity-line">☐ Choose a text colour.</div><div class="activity-line">☐ Check that the words are easy to read.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Maths Link — Patterns</div><div class="qline"><span>1.</span> 2, 4, 6, 8, ___</div><div class="qline"><span>2.</span> 5, 10, 15, 20, ___</div><div class="qline"><span>3.</span> 10, 20, 30, ___</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Try a second colour palette and decide which is easier to read.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Introduce contrast in simple language: light text on dark background or dark text on light background.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 13 · Fonts &amp; Text</div>
+      <div class="page-no">19</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Fonts &amp; Text</h1>
+    <p class="subtitle">CSS can change the size, font and alignment of your text.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>You can make a heading bigger, choose a font and move text to the centre. Small changes can make a page feel completely different.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>h1 {
+  font-size: 40px;
+  text-align: center;
+  font-family: Arial;
+}</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Style Your Name</div><div class="activity-line">☐ Make your name bigger.</div><div class="activity-line">☐ Centre it.</div><div class="activity-line">☐ Try a different font.</div><div class="activity-line">☐ Compare before and after.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Compare</div><div class="qline"><span>1.</span> Which is easier to read: 12px or 40px for a heading?</div><div class="qline"><span>2.</span> Which looks better for a title: left or centre?</div><div class="qline"><span>3.</span> Why?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Create a heading that looks like a poster title.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Keep font choices simple and readable.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 14 · Boxes</div>
+      <div class="page-no">20</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Boxes</h1>
+    <p class="subtitle">Webpages often group information into boxes or cards.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A border can draw a box around content. Padding gives the content some breathing room. Think of a lunchbox: border is the outside; padding is the space around the food.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>div {
+  border: 2px solid navy;
+  padding: 20px;
+}</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Draw the Box</div><div class="activity-line">☐ Draw a rectangle.</div><div class="activity-line">☐ Write MY PROFILE inside it.</div><div class="activity-line">☐ Draw arrows showing inside space and outside space.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Shape &amp; Space</div><div class="qline"><span>1.</span> A box has 4 sides. How many sides do 3 boxes have altogether?</div><div class="qline"><span>2.</span> If each box has 20px of padding on one side, what is 20 + 20 + 20?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Make two different boxes with different headings.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Avoid teaching the full CSS box model. Use the visual analogy.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 15 · My Profile Card</div>
+      <div class="page-no">21</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>My Profile Card</h1>
+    <p class="subtitle">Combine HTML and CSS to make a simple profile card.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Today your HTML content becomes a designed card. The important idea is that HTML and CSS work together.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;div&gt;
+  &lt;h1&gt;My Profile&lt;/h1&gt;
+  &lt;p&gt;Name: ______&lt;/p&gt;
+  &lt;p&gt;Grade: ______&lt;/p&gt;
+  &lt;p&gt;Favourite Hobby: ______&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Profile Card Checklist</div><div class="activity-line">☐ Add your name.</div><div class="activity-line">☐ Add your grade.</div><div class="activity-line">☐ Add your favourite hobby.</div><div class="activity-line">☐ Add your favourite food.</div><div class="activity-line">☐ Add your favourite number.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Number in My Card</div><div class="qline"><span>1.</span> My favourite number: ____</div><div class="qline"><span>2.</span> Double it: ____</div><div class="qline"><span>3.</span> Half of it (if possible): ____</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Add a border, padding and a background colour.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>If students are comfortable, demonstrate one CSS rule at a time.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 16 · The Magic of Spacing</div>
+      <div class="page-no">22</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>The Magic of Spacing</h1>
+    <p class="subtitle">Padding is inside the box. Margin is outside the box.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Spacing helps a page breathe. Without space, everything feels crowded. With the right space, information is easier to read.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>.card {
+  padding: 20px;
+  margin: 20px;
+}</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Inside or Outside?</div><div class="activity-line">☐ Draw a box.</div><div class="activity-line">☐ Shade the padding area inside the box.</div><div class="activity-line">☐ Draw an arrow outside the box for margin.</div><div class="activity-line">☐ Write one sentence explaining the difference.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Vedic Maths + Space</div><div class="qline"><span>1.</span> 25 + 25 + 25 + 25 = ?</div><div class="qline"><span>2.</span> 50 + 25 + 25 = ?</div><div class="qline"><span>3.</span> 100 − 20 − 20 = ?</div><div class="qline"><span>4.</span> 300 − 20 − 20 = ?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Change padding from 20px to 30px. What changes visually?</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Use simple arithmetic. The aim is spatial reasoning, not pixel arithmetic mastery.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 17 · Vedic Maths Magic</div>
+      <div class="page-no">23</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Vedic Maths Magic</h1>
+    <p class="subtitle">Turn one Vedic Maths idea into a colourful web poster.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="math illustration">
+          <circle cx="70" cy="60" r="43" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <text x="70" y="71" text-anchor="middle" font-size="34" font-family="Arial" fill="#0B6E99" font-weight="700">×</text>
+          <circle cx="150" cy="42" r="22" fill="#f3c969"/><text x="150" y="50" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">25</text>
+          <circle cx="150" cy="82" r="22" fill="#dceef5"/><text x="150" y="90" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">4</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A great THYNK project connects a thinking skill to a creation skill. Today: calculate with a Vedic technique, then teach the idea on a webpage.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;Vedic Maths Magic&lt;/h1&gt;
+&lt;h2&gt;Multiply by 5&lt;/h2&gt;
+&lt;p&gt;24 × 5 = 120&lt;/p&gt;
+&lt;p&gt;36 × 5 = 180&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Build the Poster</div><div class="activity-line">☐ Write the name of your technique.</div><div class="activity-line">☐ Show one worked example.</div><div class="activity-line">☐ Add three practice questions.</div><div class="activity-line">☐ Style the heading.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Practice</div><div class="qline"><span>1.</span> 12 × 5 = ?</div><div class="qline"><span>2.</span> 36 × 5 = ?</div><div class="qline"><span>3.</span> 48 × 5 = ?</div><div class="qline"><span>4.</span> 72 × 5 = ?</div><div class="qline"><span>5.</span> 84 × 5 = ?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Highlight the answers using a different style.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Use the exact Vedic method students have already learned; do not introduce a new sutra just for the workbook.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 18 · Maths Challenge Board</div>
+      <div class="page-no">24</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Maths Challenge Board</h1>
+    <p class="subtitle">Design a challenge board another student can use.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="math illustration">
+          <circle cx="70" cy="60" r="43" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <text x="70" y="71" text-anchor="middle" font-size="34" font-family="Arial" fill="#0B6E99" font-weight="700">×</text>
+          <circle cx="150" cy="42" r="22" fill="#f3c969"/><text x="150" y="50" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">25</text>
+          <circle cx="150" cy="82" r="22" fill="#dceef5"/><text x="150" y="90" text-anchor="middle" font-size="18" font-family="Arial" fill="#17324D" font-weight="700">4</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Your board should be clear enough that another student can understand it without your help. That is the beginning of user-experience thinking.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;Maths Challenge Board&lt;/h1&gt;
+&lt;h2&gt;Round 1&lt;/h2&gt;
+&lt;p&gt;1. ______&lt;/p&gt;
+&lt;p&gt;2. ______&lt;/p&gt;
+&lt;p&gt;3. ______&lt;/p&gt;
+&lt;h2&gt;My Score&lt;/h2&gt;
+&lt;p&gt;____ / 3&lt;/p&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Challenge Board</div><div class="activity-line">☐ Create Round 1 with 3 questions.</div><div class="activity-line">☐ Create Round 2 with 3 questions.</div><div class="activity-line">☐ Add a score line.</div><div class="activity-line">☐ Add one instruction for your friend.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Score Maths</div><div class="qline"><span>1.</span> If you get 5 out of 6 correct, what is your score?</div><div class="qline"><span>2.</span> If you get 3 out of 6, what fraction is that?</div><div class="qline"><span>3.</span> What is 5 + 3?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Swap challenges with a partner and test whether the instructions are clear.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Have students test each other's pages if computers are available.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 19 · Plan Your Website</div>
+      <div class="page-no">25</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Plan Your Website</h1>
+    <p class="subtitle">Before good coders build, they plan.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Planning saves time. Today you will sketch your website before writing the full code.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>PLAN → CODE → TEST → IMPROVE</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 My Website Plan</div><div class="activity-line">☐ Website name: __________________</div><div class="activity-line">☐ Topic: __________________</div><div class="activity-line">☐ Main heading: __________________</div><div class="activity-line">☐ Section 1: __________________</div><div class="activity-line">☐ Section 2: __________________</div><div class="activity-line">☐ Picture: __________________</div><div class="activity-line">☐ Colours: __________________</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Planning Maths</div><div class="qline"><span>1.</span> If your page has 3 sections and each section has 2 ideas, how many ideas?</div><div class="qline"><span>2.</span> If you have 2 colours for each of 3 sections, how many colour choices?</div><div class="qline"><span>3.</span> What should come first: plan or code?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Draw a small wireframe showing where the title, picture and sections will go.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Do not let students code yet. Planning is the lesson outcome.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 20 · Build the HTML</div>
+      <div class="page-no">26</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Build the HTML</h1>
+    <p class="subtitle">Turn your plan into a clean HTML skeleton.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="coding illustration">
+      <rect x="35" y="20" width="150" height="80" rx="9" fill="#17324D"/>
+      <text x="110" y="68" text-anchor="middle" font-size="28" font-family="monospace" fill="#fff">&lt;/&gt;</text>
+      <rect x="78" y="102" width="64" height="6" rx="3" fill="#0B6E99"/>
+    </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Your website does not need to look beautiful yet. Today we are building the structure.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Website&lt;/h1&gt;
+&lt;h2&gt;About&lt;/h2&gt;
+&lt;p&gt;Write about your topic here.&lt;/p&gt;
+&lt;h2&gt;My Favourite Part&lt;/h2&gt;
+&lt;p&gt;Write more here.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Idea 1&lt;/li&gt;
+  &lt;li&gt;Idea 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 HTML Must-Haves</div><div class="activity-line">☐ 1 main heading.</div><div class="activity-line">☐ 2 section headings.</div><div class="activity-line">☐ 2 paragraphs.</div><div class="activity-line">☐ 1 list.</div><div class="activity-line">☐ 1 image.</div><div class="activity-line">☐ 1 link if ready.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Sequence Check</div><div class="qline"><span>1.</span> What should come first: h1 or p?</div><div class="qline"><span>2.</span> What belongs inside li?</div><div class="qline"><span>3.</span> How many sections did you plan?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Add one extra section if you finish early.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Keep the build aligned with each student's plan.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 21 · Style the Website</div>
+      <div class="page-no">27</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Style the Website</h1>
+    <p class="subtitle">Now your structure gets a visual identity.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="css illustration">
+          <rect x="20" y="25" width="70" height="70" rx="10" fill="#17324D"/>
+          <text x="55" y="70" text-anchor="middle" font-size="26" font-family="Arial" fill="#fff" font-weight="700">&lt;/&gt;</text>
+          <path d="M98 60 H125" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <polygon points="125,60 115,53 115,67" fill="#0B6E99"/>
+          <rect x="135" y="25" width="65" height="70" rx="10" fill="#f3c969"/>
+          <text x="167" y="67" text-anchor="middle" font-size="22" font-family="Arial" fill="#17324D" font-weight="700">Aa</text>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>HTML says what each part is. CSS says how it looks. Use the toolbox to create a consistent design.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>body { background-color: #f4f8fb; }
+h1 { color: navy; text-align: center; }
+.card { border: 2px solid navy; padding: 20px; margin: 20px; }</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Style Checklist</div><div class="activity-line">☐ Choose a background.</div><div class="activity-line">☐ Style your main heading.</div><div class="activity-line">☐ Add a border to one section.</div><div class="activity-line">☐ Add padding.</div><div class="activity-line">☐ Centre one important heading.</div><div class="activity-line">☐ Check readability.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Measurement Link</div><div class="qline"><span>1.</span> If you add 20px padding to two sides, what is 20 + 20?</div><div class="qline"><span>2.</span> If three cards each have 10px margin, what is 10 + 10 + 10?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Create a second visual style and choose your favourite.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Encourage consistency: repeat the same visual rules instead of random styling.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 22 · Code Detective</div>
+      <div class="page-no">28</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Code Detective</h1>
+    <p class="subtitle">Real coders make mistakes. Real coders know how to find them.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="code detective illustration">
+          <circle cx="110" cy="60" r="28" fill="#f3c969" stroke="#17324D" stroke-width="3"/>
+          <circle cx="101" cy="55" r="4" fill="#17324D"/><circle cx="119" cy="55" r="4" fill="#17324D"/>
+          <path d="M100 72 Q110 80 120 72" fill="none" stroke="#17324D" stroke-width="3"/>
+          <path d="M82 42 L70 30 M138 42 L150 30 M82 78 L68 88 M138 78 L152 88" stroke="#0B6E99" stroke-width="5" stroke-linecap="round"/>
+          <path d="M96 25 L91 12 M124 25 L129 12" stroke="#0B6E99" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A missing bracket, closing tag or semicolon can change what the browser does. Debugging means finding the clue and fixing it.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Page&lt;h1&gt;
+&lt;p&gt;Hello!&lt;/p&gt;
+
+h1 {
+  color: blue
+}</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Find the Bugs</div><div class="activity-line">☐ Find the missing closing tag.</div><div class="activity-line">☐ Find the CSS symbol that is missing.</div><div class="activity-line">☐ Rewrite the corrected code.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Accuracy Challenge</div><div class="qline"><span>1.</span> If you find 2 bugs in 5 minutes and your friend finds 3, how many bugs were found?</div><div class="qline"><span>2.</span> Why should we check our work?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Create one tiny bug in your code and then fix it yourself.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Never shame mistakes. Treat debugging as a normal part of coding.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 23 · Young Creator Challenge</div>
+      <div class="page-no">29</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>Young Creator Challenge</h1>
+    <p class="subtitle">Build a small website that shows what you can do.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>Choose a topic you care about. Your project should show structure, style and your own ideas.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>&lt;h1&gt;My Project&lt;/h1&gt;
+&lt;h2&gt;About My Topic&lt;/h2&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;h2&gt;My Favourite Part&lt;/h2&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Project Choices</div><div class="activity-line">☐ 🚀 My Space Explorer</div><div class="activity-line">☐ ⚽ My Favourite Sport</div><div class="activity-line">☐ 🧮 Vedic Maths Magic</div><div class="activity-line">☐ 🐯 Amazing Animals</div><div class="activity-line">☐ 🎮 My Favourite Game</div><div class="activity-line">☐ 🌱 Save Our Planet</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Project Maths Link</div><div class="qline"><span>1.</span> Add at least one number, score, measurement or maths fact.</div><div class="qline"><span>2.</span> Solve any calculation you include before you publish it.</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Super Creator: add a profile card or a second maths challenge.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Give students choice. Assess the process as well as the final page.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Period 24 · THYNK Web Showcase</div>
+      <div class="page-no">30</div>
+    </div>
+<div class="eyebrow">Young Creator · Grade 4–5 · 35 minutes</div>
+<div class="lesson-hero">
+  <div>
+    <h1>THYNK Web Showcase</h1>
+    <p class="subtitle">You built it. Now explain it.</p>
+  </div>
+  <svg viewBox="0 0 220 120" class="hero-svg" aria-label="webpage illustration">
+          <rect x="20" y="18" width="180" height="84" rx="8" fill="#fff" stroke="#0B6E99" stroke-width="4"/>
+          <circle cx="35" cy="31" r="4" fill="#0B6E99"/><circle cx="49" cy="31" r="4" fill="#0B6E99"/><circle cx="63" cy="31" r="4" fill="#0B6E99"/>
+          <rect x="35" y="48" width="62" height="8" rx="4" fill="#0B6E99" opacity=".9"/>
+          <rect x="35" y="65" width="135" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="35" y="78" width="100" height="6" rx="3" fill="#dbe9ef"/>
+          <rect x="145" y="48" width="25" height="25" rx="5" fill="#f3c969" opacity=".9"/>
+        </svg>
+</div>
+<div class="columns">
+  <div>
+    <div class="card">
+      <div class="box-title">🔍 DISCOVER</div>
+      <p>A creator should be able to explain what they made, what they learned and what they would improve next.</p>
+    </div>
+    <div class="code-label">HTML</div><pre class="code"><code>I THINK.
+I CODE.
+I CREATE.
+I IMPROVE.</code></pre>
+  </div>
+  <div>
+    <div class="activity"><div class="box-title">🎨 Showcase Checklist</div><div class="activity-line">☐ My website has a title.</div><div class="activity-line">☐ I can point to my HTML.</div><div class="activity-line">☐ I can show one CSS rule.</div><div class="activity-line">☐ I can explain my Maths connection.</div><div class="activity-line">☐ I can name one challenge I solved.</div><div class="activity-line">☐ I can name one thing I would improve.</div></div>
+    <div class="mathbox"><div class="box-title">🧮 Reflection Maths</div><div class="qline"><span>1.</span> How many HTML tags can you name?</div><div class="qline"><span>2.</span> How many CSS properties can you name?</div><div class="qline"><span>3.</span> How many periods did you complete?</div><div class="qline"><span>4.</span> What is your project score: ____ / 10?</div></div>
+    <div class="challenge"><b>🚀 LEVEL UP</b><br>Give your project a creator name and a one-line slogan.</div>
+  </div>
+</div>
+<div class="teacher"><b>Teacher Note</b><br>Celebrate every student. Presentation can be 30–60 seconds per child.</div>
+<div class="didit">☐ I did it! &nbsp;&nbsp; ☐ I tried the challenge! &nbsp;&nbsp; ☐ I can explain it!</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">HTML Toolbox</div>
+      <div class="page-no">31</div>
+    </div>
+<div class="big-idea">HTML is your webpage structure.</div>
+<table class="tool"><thead><tr><th>Tool</th><th>What it does</th><th>Example</th></tr></thead><tbody><tr><td><code>h1</code></td><td>Main heading</td><td><pre class="smallcode"><code>&lt;h1&gt;My Title&lt;/h1&gt;</code></pre></td></tr><tr><td><code>h2</code></td><td>Section heading</td><td><pre class="smallcode"><code>&lt;h2&gt;My Section&lt;/h2&gt;</code></pre></td></tr><tr><td><code>h3</code></td><td>Smaller heading</td><td><pre class="smallcode"><code>&lt;h3&gt;My Topic&lt;/h3&gt;</code></pre></td></tr><tr><td><code>p</code></td><td>Paragraph</td><td><pre class="smallcode"><code>&lt;p&gt;My sentence goes here.&lt;/p&gt;</code></pre></td></tr><tr><td><code>ul</code></td><td>Bullet list</td><td><pre class="smallcode"><code>&lt;ul&gt; ... &lt;/ul&gt;</code></pre></td></tr><tr><td><code>li</code></td><td>List item</td><td><pre class="smallcode"><code>&lt;li&gt;One idea&lt;/li&gt;</code></pre></td></tr><tr><td><code>img</code></td><td>Image</td><td><pre class="smallcode"><code>&lt;img src=&quot;cat.jpg&quot; alt=&quot;A cat&quot;&gt;</code></pre></td></tr><tr><td><code>a</code></td><td>Link</td><td><pre class="smallcode"><code>&lt;a href=&quot;https://example.com&quot;&gt;Visit&lt;/a&gt;</code></pre></td></tr><tr><td><code>div</code></td><td>Group / box</td><td><pre class="smallcode"><code>&lt;div&gt; ... &lt;/div&gt;</code></pre></td></tr></tbody></table>
+<div class="note-box"><b>Tip:</b> Change one thing at a time. Then look at the webpage and see what happened.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">CSS Toolbox</div>
+      <div class="page-no">32</div>
+    </div>
+<div class="big-idea">CSS changes how your HTML looks.</div>
+<table class="tool"><thead><tr><th>Tool</th><th>What it does</th><th>Example</th></tr></thead><tbody><tr><td><code>color</code></td><td>Text colour</td><td><pre class="smallcode"><code>h1 { color: blue; }</code></pre></td></tr><tr><td><code>background-color</code></td><td>Background</td><td><pre class="smallcode"><code>body { background-color: lightblue; }</code></pre></td></tr><tr><td><code>font-size</code></td><td>Text size</td><td><pre class="smallcode"><code>h1 { font-size: 40px; }</code></pre></td></tr><tr><td><code>font-family</code></td><td>Font</td><td><pre class="smallcode"><code>p { font-family: Arial; }</code></pre></td></tr><tr><td><code>text-align</code></td><td>Alignment</td><td><pre class="smallcode"><code>h1 { text-align: center; }</code></pre></td></tr><tr><td><code>border</code></td><td>Line around a box</td><td><pre class="smallcode"><code>.card { border: 2px solid navy; }</code></pre></td></tr><tr><td><code>padding</code></td><td>Space inside</td><td><pre class="smallcode"><code>.card { padding: 20px; }</code></pre></td></tr><tr><td><code>margin</code></td><td>Space outside</td><td><pre class="smallcode"><code>.card { margin: 20px; }</code></pre></td></tr></tbody></table>
+<div class="note-box"><b>Tip:</b> Change one thing at a time. Then look at the webpage and see what happened.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">HTML Tag Match</div>
+      <div class="page-no">33</div>
+    </div>
+<div class="eyebrow">Self-practice · Try first, check later</div>
+<div class="practice-grid"><div class="practice-card"><b>1.</b> Main heading<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>2.</b> Paragraph<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>3.</b> Bullet item<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>4.</b> Link<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>5.</b> Image<div class="answer-line"></div><div class="answer-line short"></div></div></div>
+<div class="didyou"><b>THYNK habit:</b> Do not immediately ask for the answer. First inspect the brackets, tags, spelling and punctuation.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Complete the Code</div>
+      <div class="page-no">34</div>
+    </div>
+<div class="eyebrow">Self-practice · Try first, check later</div>
+<div class="practice-grid"><div class="practice-card"><b>1.</b> &lt;h1&gt;__________&lt;/h1&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>2.</b> &lt;p&gt;__________&lt;/p&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>3.</b> &lt;li&gt;__________&lt;/li&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>4.</b> &lt;a href=&quot;__________&quot;&gt;Learn&lt;/a&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>5.</b> &lt;img src=&quot;__________&quot;&gt;<div class="answer-line"></div><div class="answer-line short"></div></div></div>
+<div class="didyou"><b>THYNK habit:</b> Do not immediately ask for the answer. First inspect the brackets, tags, spelling and punctuation.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">CSS Match</div>
+      <div class="page-no">35</div>
+    </div>
+<div class="eyebrow">Self-practice · Try first, check later</div>
+<div class="practice-grid"><div class="practice-card"><b>1.</b> Change text colour<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>2.</b> Change background<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>3.</b> Make text bigger<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>4.</b> Add space inside<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>5.</b> Add space outside<div class="answer-line"></div><div class="answer-line short"></div></div></div>
+<div class="didyou"><b>THYNK habit:</b> Do not immediately ask for the answer. First inspect the brackets, tags, spelling and punctuation.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Code Detective Practice</div>
+      <div class="page-no">36</div>
+    </div>
+<div class="eyebrow">Self-practice · Try first, check later</div>
+<div class="practice-grid"><div class="practice-card"><b>1.</b> &lt;h1&gt;Hello&lt;h1&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>2.</b> p { color: blue }<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>3.</b> &lt;ul&gt;&lt;li&gt;One&lt;/ul&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>4.</b> &lt;h2&gt;Title&lt;/h3&gt;<div class="answer-line"></div><div class="answer-line short"></div></div><div class="practice-card"><b>5.</b> &lt;p&gt;Hello&lt;/p<div class="answer-line"></div><div class="answer-line short"></div></div></div>
+<div class="didyou"><b>THYNK habit:</b> Do not immediately ask for the answer. First inspect the brackets, tags, spelling and punctuation.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">My Final Project — Plan It</div>
+      <div class="page-no">37</div>
+    </div>
+<h1>My Website Blueprint</h1>
+<div class="form-grid">
+<div><b>Website Name</b><div class="write"></div></div>
+<div><b>My Topic</b><div class="write"></div></div>
+<div class="full"><b>Who is my website for?</b><div class="write"></div></div>
+<div><b>My Main Heading</b><div class="write"></div></div>
+<div><b>My Colours</b><div class="write"></div></div>
+<div class="full"><b>Section 1</b><div class="write tall"></div></div>
+<div class="full"><b>Section 2</b><div class="write tall"></div></div>
+<div class="full"><b>My Maths Connection</b><div class="write tall"></div></div>
+</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">My Final Project — Wireframe</div>
+      <div class="page-no">38</div>
+    </div>
+<h1>Draw Before You Code</h1>
+<p>Sketch where each part of your webpage will go. It does not need to be perfect.</p>
+<div class="wireframe">
+<div class="wf-title">MY MAIN HEADING</div>
+<div class="wf-row"><div class="wf-image">IMAGE</div><div class="wf-text">ABOUT<br><br>Write your idea here.</div></div>
+<div class="wf-section">SECTION 2</div>
+<div class="wf-section">MATHS / CHALLENGE</div>
+</div>
+<div class="note-box"><b>Creator question:</b> If a friend saw only your wireframe, would they understand the page?</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">My Final Project — Quality Check</div>
+      <div class="page-no">39</div>
+    </div>
+<h1>Before I Say “Done”</h1>
+<div class="checklist-big">
+<div>☐ My title is clear.</div>
+<div>☐ I have at least 2 sections.</div>
+<div>☐ I have 2 paragraphs.</div>
+<div>☐ I have a list.</div>
+<div>☐ I added an image.</div>
+<div>☐ I used CSS.</div>
+<div>☐ My colours are easy to read.</div>
+<div>☐ I checked my spelling.</div>
+<div>☐ I checked my HTML tags.</div>
+<div>☐ I checked my CSS punctuation.</div>
+<div>☐ I included a Maths connection.</div>
+<div>☐ I tested my page.</div>
+</div>
+<div class="scorebox"><b>My creator score</b><br>Structure: ____ / 3 &nbsp; Style: ____ / 3 &nbsp; Creativity: ____ / 2 &nbsp; Maths Link: ____ / 2<br><strong>Total: ____ / 10</strong></div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">My Coding Journey</div>
+      <div class="page-no">40</div>
+    </div>
+<h1>Look How Far I Came!</h1>
+<div class="journey-check">
+<div><span>1</span><b>I can identify parts of a webpage.</b><small>☐ I can do this</small></div><div><span>2</span><b>I can explain HTML.</b><small>☐ I can do this</small></div><div><span>3</span><b>I can use headings and paragraphs.</b><small>☐ I can do this</small></div><div><span>4</span><b>I can make a list.</b><small>☐ I can do this</small></div><div><span>5</span><b>I can add an image.</b><small>☐ I can do this</small></div><div><span>6</span><b>I can add a link.</b><small>☐ I can do this</small></div><div><span>7</span><b>I can display Maths.</b><small>☐ I can do this</small></div><div><span>8</span><b>I can explain CSS.</b><small>☐ I can do this</small></div><div><span>9</span><b>I can change colours and text.</b><small>☐ I can do this</small></div><div><span>10</span><b>I can make a box/card.</b><small>☐ I can do this</small></div><div><span>11</span><b>I understand padding and margin.</b><small>☐ I can do this</small></div><div><span>12</span><b>I can plan a website.</b><small>☐ I can do this</small></div><div><span>13</span><b>I can debug a mistake.</b><small>☐ I can do this</small></div><div><span>14</span><b>I can build my own webpage.</b><small>☐ I can do this</small></div><div><span>15</span><b>I can explain my creation.</b><small>☐ I can do this</small></div>
+</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Reflection — Think Like a Creator</div>
+      <div class="page-no">41</div>
+    </div>
+<h1>My Best Learning Moment</h1>
+<div class="reflection">
+<p>Something I created that I am proud of:</p><div class="write tall"></div>
+<p>The hardest part was:</p><div class="write"></div>
+<p>I solved it by:</p><div class="write"></div>
+<p>My favourite HTML tag is __________ because:</p><div class="write"></div>
+<p>My favourite CSS property is __________ because:</p><div class="write"></div>
+<p>My Vedic Maths helped me when:</p><div class="write"></div>
+</div>
+<div class="quote">“A mistake is not the end of the code. It is a clue.”</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Achievement</div>
+      <div class="page-no">42</div>
+    </div>
+<div class="certificate">
+<div class="cert-brand">T.H.Y.N.K</div>
+<div class="cert-small">CERTIFICATE OF CREATION</div>
+<h1>YOUNG CREATOR</h1>
+<p>This certificate is proudly presented to</p>
+<div class="cert-name">______________________________</div>
+<p>for completing the THYNK HTML + CSS × Vedic Maths journey and creating an original webpage.</p>
+<div class="cert-pill">THINK • CODE • CREATE</div>
+<div class="cert-sign"><span>Teacher</span><span>Date</span></div>
+</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Answer Key · Maths Quick Answers</div>
+      <div class="page-no">43</div>
+    </div>
+<div class="answer-grid">
+<div><b>1.</b> 25×4=100</div><div><b>2.</b> 50×6=300</div><div><b>3.</b> 125×8=1000</div><div><b>4.</b> 75×4=300</div><div><b>5.</b> 24×5=120</div><div><b>6.</b> 12×5=60</div><div><b>7.</b> 36×5=180</div><div><b>8.</b> 48×5=240</div><div><b>9.</b> 72×5=360</div><div><b>10.</b> 84×5=420</div>
+</div>
+<div class="note-box"><b>Teacher note:</b> Use the answer key after students have attempted the task. The goal is self-checking, not racing to the answer.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Answer Key · Debugging Guide</div>
+      <div class="page-no">44</div>
+    </div>
+<div class="answer-grid">
+<div><b>1.</b> &lt;h1&gt;My Page&lt;/h1&gt;</div><div><b>2.</b> h1 { color: blue; }</div><div><b>3.</b> &lt;ul&gt;&lt;li&gt;One&lt;/li&gt;&lt;/ul&gt;</div><div><b>4.</b> &lt;h2&gt;Title&lt;/h2&gt;</div><div><b>5.</b> &lt;p&gt;Hello&lt;/p&gt;</div>
+</div>
+<div class="note-box"><b>Teacher note:</b> Use the answer key after students have attempted the task. The goal is self-checking, not racing to the answer.</div>
+</section>
+<section class="page">
+
+    <div class="page-head">
+      <div class="brand-mini">T<span>.</span>H<span>.</span>Y<span>.</span>N<span>.</span>K</div>
+      <div class="page-title">Answer Key · Core Vocabulary Check</div>
+      <div class="page-no">45</div>
+    </div>
+<div class="answer-grid">
+<div><b>1.</b> h1 = main heading</div><div><b>2.</b> p = paragraph</div><div><b>3.</b> ul = unordered list</div><div><b>4.</b> li = list item</div><div><b>5.</b> img = image</div><div><b>6.</b> a = link</div><div><b>7.</b> color = text colour</div><div><b>8.</b> padding = inside space</div><div><b>9.</b> margin = outside space</div>
+</div>
+<div class="note-box"><b>Teacher note:</b> Use the answer key after students have attempted the task. The goal is self-checking, not racing to the answer.</div>
+</section>
+</body>
+</html>
