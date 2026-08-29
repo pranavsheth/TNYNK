@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THYNK Young Creator &mdash; HTML + CSS &times; Vedic Maths (Grade 4&ndash;5)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Fira+Code:wght@400;500&family=Caveat:wght@600;700&display=swap');
+
+:root{
+  --brand:#008AD4; --brand-dk:#04628F; --ink:#232842; --sub:#5B6178;
+  --paper:#FFFDF8; --canvas:#E7ECF3;
+
+  --think:#7C3AED;    --think-bg:#F4EEFF;
+  --discover:#0E9AA7; --discover-bg:#E1F8FA;
+  --code:#3454D1;     --code-bg:#EAEEFC;
+  --create:#FB7A3C;   --create-bg:#FFEEE3;
+  --math:#1F9D55;     --math-bg:#E4F8EC;
+  --challenge:#E63971;--challenge-bg:#FFE7EE;
+  --ai:#5B5FEF;       --ai-bg:#EFECFF;
+  --home:#D98324;     --home-bg:#FFF3DC;
+
+  --edbg:#1E1E2E; --edbar:#15151F; --edtext:#F4F4F8;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--canvas);
+  font-family:'Nunito',sans-serif;
+  color:var(--ink);
+  font-size:15px;
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+h1,h2,h3{font-family:'Baloo 2',sans-serif; margin:0;}
+p{margin:0 0 8px; line-height:1.5;}
+b,strong{color:var(--brand-dk);}
+.inline-code{
+  font-family:'Fira Code',monospace; background:#EEF1F8; color:#3454D1;
+  border-radius:5px; padding:1px 6px; font-size:0.92em; border:1px solid #D9E0F5;
+}
+
+/* ---------- top bar (screen only) ---------- */
+.topbar{
+  max-width:210mm; margin:0 auto; display:flex; justify-content:space-between; align-items:center;
+  padding:14px 6px; font-family:'Baloo 2',sans-serif; color:var(--brand-dk);
+}
+.topbar button{
+  font-family:'Baloo 2',sans-serif; font-weight:700; font-size:14px; color:#fff; background:var(--brand);
+  border:none; border-radius:999px; padding:10px 20px; cursor:pointer; box-shadow:0 4px 14px rgba(0,138,212,.35);
+}
+.topbar button:hover{background:var(--brand-dk);}
+.topbar button:focus-visible, a:focus-visible, .chk:focus-visible{outline:3px solid #FFC46B; outline-offset:2px;}
+
+/* ---------- page shell ---------- */
+.page{
+  width:210mm; min-height:297mm; margin:0 auto 10mm; background:var(--paper);
+  box-shadow:0 6px 28px rgba(20,30,60,.16); border-radius:6px;
+  padding:14mm 15mm 12mm; position:relative;
+}
+@media print{
+  body{background:#fff;}
+  .page{box-shadow:none; margin:0; border-radius:0; width:auto; min-height:0;}
+  .no-print{display:none !important;}
+  .card{break-inside:avoid;}
+  @page{ size:A4; margin:12mm 14mm; }
+}
+@media (max-width:850px){
+  .page{width:100%; padding:8mm; min-height:0;}
+}
+
+/* ---------- period header ---------- */
+.period-top{display:flex; align-items:center; gap:14px; margin-bottom:10px; border-bottom:3px dashed #D9DEEA; padding-bottom:12px;}
+.period-badge{
+  font-family:'Baloo 2',sans-serif; font-weight:800; font-size:19px; color:#fff; background:var(--brand);
+  width:52px; height:52px; min-width:52px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 10px rgba(0,138,212,.4);
+}
+.period-part{font-family:'Baloo 2',sans-serif; font-weight:700; font-size:11.5px; letter-spacing:.06em; color:var(--brand-dk);}
+.period-title{font-size:24px; color:var(--ink); font-weight:700;}
+.period-title .contd{font-size:14px; color:var(--sub); font-weight:600; font-family:'Nunito',sans-serif;}
+
+/* ---------- bot + speech ---------- */
+.bot-row{display:flex; align-items:flex-start; gap:12px; margin:6px 0 16px;}
+.bot-svg{width:54px; height:54px; flex:none; filter:drop-shadow(0 3px 5px rgba(0,0,0,.15));}
+.speech{
+  font-family:'Caveat',cursive; font-size:20px; line-height:1.28; font-weight:600;
+  background:#fff; border:2.5px solid var(--brand); border-radius:4px 16px 16px 16px;
+  padding:9px 16px; flex:1; color:var(--brand-dk); position:relative;
+}
+
+/* ---------- cards ---------- */
+.card{border-radius:16px; padding:12px 16px 14px; margin:12px 0; border:2px solid; position:relative;}
+.card-head{
+  display:flex; align-items:center; gap:8px; font-family:'Baloo 2',sans-serif; font-weight:700;
+  text-transform:uppercase; letter-spacing:.04em; font-size:12.5px; margin-bottom:7px;
+}
+.card-icon{font-size:18px;}
+.card-body{font-size:14px; line-height:1.55;}
+.card-body ul{margin:6px 0 6px 4px; padding-left:18px;}
+.card-body li{margin-bottom:4px;}
+
+.card-think{border-color:var(--think); background:var(--think-bg);} .card-think .card-head{color:var(--think);}
+.card-discover{border-color:var(--discover); background:var(--discover-bg);} .card-discover .card-head{color:var(--discover);}
+.card-code{border-color:var(--code); background:var(--code-bg);} .card-code .card-head{color:var(--code);}
+.card-create{border-color:var(--create); background:var(--create-bg);} .card-create .card-head{color:var(--create);}
+.card-math{border-color:var(--math); background:var(--math-bg);} .card-math .card-head{color:var(--math);}
+.card-challenge{border-color:var(--challenge); background:var(--challenge-bg);} .card-challenge .card-head{color:var(--challenge);}
+.card-ai{border-color:var(--ai); background:var(--ai-bg);} .card-ai .card-head{color:var(--ai);}
+.card-home{border-color:var(--home); background:var(--home-bg);} .card-home .card-head{color:var(--home);}
+
+/* ---------- code window ---------- */
+.code-window{background:var(--edbg); border-radius:12px; overflow:hidden; margin:8px 0; box-shadow:0 6px 18px rgba(20,20,40,.3);}
+.code-titlebar{display:flex; align-items:center; gap:6px; padding:7px 12px; background:var(--edbar);}
+.cd{width:10px; height:10px; border-radius:50%; display:inline-block;}
+.cd.red{background:#FF5F56;} .cd.yel{background:#FFBD2E;} .cd.grn{background:#27C93F;}
+.code-filename{margin-left:8px; font-family:'Fira Code',monospace; font-size:11px; color:#9aa0b4;}
+.code-body{margin:0; padding:13px 15px; font-family:'Fira Code',monospace; font-size:12.6px; line-height:1.65; color:var(--edtext); white-space:pre-wrap; word-break:break-word;}
+.tk-tag{color:#FF7AC6;} .tk-attr{color:#8BE28B;} .tk-str{color:#F4E285;} .tk-punc{color:#8891B3;} .tk-prop{color:#79D9FF;} .tk-val{color:#FFC46B;}
+
+/* ---------- misc widgets ---------- */
+.fill-blank{display:inline-block; border-bottom:2px solid #A9B1C6; height:1.1em; margin:0 3px -2px;}
+.checklist{list-style:none; margin:6px 0; padding:0;}
+.checklist li{display:flex; align-items:flex-start; gap:8px; margin-bottom:6px;}
+.chk{width:16px; height:16px; min-width:16px; border:2.5px solid var(--ink); border-radius:5px; margin-top:2px;}
+.dashlist{margin:6px 0 6px 4px; padding-left:18px;}
+.opt-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px;}
+.opt{display:flex; align-items:center; gap:6px; background:#fff; border:2px solid #C9D0E3; border-radius:999px; padding:5px 12px; font-weight:700; font-size:13px;}
+.opt-dot{width:12px; height:12px; border-radius:50%; border:2px solid #A9B1C6;}
+table.toolbox{width:100%; border-collapse:collapse; margin:6px 0; font-size:13.5px;}
+table.toolbox th{font-family:'Baloo 2',sans-serif; text-align:left; background:#fff; padding:6px 8px; border-bottom:2px solid #C9D0E3;}
+table.toolbox td{padding:6px 8px; border-bottom:1px solid #DEE3EE;}
+.hw-split{display:flex; gap:14px;}
+.hw-col{flex:1;}
+.hw-label{font-family:'Baloo 2',sans-serif; font-weight:700; font-size:12px; margin-bottom:3px; color:var(--home);}
+.ascii-box{font-family:'Fira Code',monospace; background:#fff; border:2px dashed #C9D0E3; border-radius:10px; padding:10px 14px; white-space:pre; font-size:12px; color:var(--sub); margin:6px 0;}
+.page-footer{position:absolute; left:15mm; right:15mm; bottom:8mm; display:flex; justify-content:space-between; font-family:'Baloo 2',sans-serif; font-size:10px; letter-spacing:.03em; color:#B7BECF;}
+
+/* ---------- cover ---------- */
+.cover{height:265mm; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative;}
+.cover-eyebrow{font-family:'Baloo 2',sans-serif; font-weight:700; letter-spacing:.12em; color:var(--brand); font-size:14px; margin-bottom:6px;}
+.cover-title{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:52px; color:var(--ink); line-height:1.05;}
+.cover-title span{color:var(--brand);}
+.cover-sub{font-family:'Baloo 2',sans-serif; font-weight:600; font-size:20px; color:var(--sub); margin-top:10px;}
+.cover-grade{display:inline-block; margin-top:18px; background:var(--brand); color:#fff; font-family:'Baloo 2',sans-serif; font-weight:700; padding:8px 22px; border-radius:999px; font-size:14px; letter-spacing:.04em;}
+.cover-bot{width:130px; margin:26px 0;}
+.cover-tagline{font-family:'Caveat',cursive; font-size:26px; color:var(--brand-dk); margin-top:6px;}
+.cover-fields{margin-top:40px; font-family:'Baloo 2',sans-serif; font-size:14px; color:var(--sub);}
+.cover-fields .fill-blank{width:220px; margin-left:8px;}
+.cover-fields div{margin:8px 0;}
+
+/* ---------- divider pages ---------- */
+.divider-page{background:var(--brand); color:#fff;}
+.divider{height:265mm; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
+.divider-num{font-family:'Baloo 2',sans-serif; font-weight:700; letter-spacing:.15em; font-size:15px; opacity:.85;}
+.divider-emoji{font-size:64px; margin:14px 0;}
+.divider-title{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:36px; max-width:140mm;}
+.divider-range{font-family:'Baloo 2',sans-serif; font-weight:600; font-size:14px; margin-top:10px; opacity:.9;}
+.divider-blurb{max-width:120mm; margin-top:18px; font-size:15.5px; line-height:1.6; opacity:.95;}
+.divider-bot{width:74px; margin-top:26px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));}
+
+/* ---------- front matter ---------- */
+.fm-title{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:26px; color:var(--brand-dk); margin-bottom:14px;}
+.legend-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;}
+.legend-item{border:2px solid; border-radius:14px; padding:10px 12px;}
+.legend-item .lh{font-family:'Baloo 2',sans-serif; font-weight:700; font-size:13px; display:flex; gap:7px; align-items:center; margin-bottom:3px;}
+.legend-item p{font-size:12.6px; margin:0; color:var(--sub);}
+.quote-box{background:#fff; border-left:6px solid var(--brand); border-radius:10px; padding:14px 18px; margin:16px 0; font-family:'Baloo 2',sans-serif; font-size:16px; color:var(--brand-dk); font-weight:600; line-height:1.5;}
+.journey-flow{font-family:'Baloo 2',sans-serif; font-weight:700; color:var(--brand-dk); text-align:center; font-size:15px; line-height:2.4;}
+.vocab-cols{display:flex; gap:18px;}
+.vocab-col{flex:1;}
+.vocab-col h3{font-family:'Baloo 2',sans-serif; color:var(--brand-dk); font-size:15px; margin-bottom:6px;}
+.vocab-pill-row{display:flex; flex-wrap:wrap; gap:7px;}
+.vocab-pill{font-family:'Fira Code',monospace; background:var(--edbg); color:#F4E285; border-radius:7px; padding:5px 10px; font-size:12.5px;}
+.avoid-box{margin-top:14px; background:#FFF3DC; border:2px dashed #D98324; border-radius:12px; padding:10px 14px; font-size:13px; color:#7A4E10;}
+
+/* ---------- certificate & journey ---------- */
+.cert{height:265mm; border:6px solid var(--brand); border-radius:18px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20mm; position:relative; box-sizing:border-box;}
+.cert:before{content:"";position:absolute; inset:10px; border:2px dashed #B9DDF2; border-radius:12px;}
+.cert-trophy{font-size:64px;}
+.cert-title{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:30px; color:var(--brand-dk); margin-top:10px;}
+.cert-line{font-family:'Caveat',cursive; font-size:22px; margin-top:26px; color:var(--ink);}
+.cert-name{font-family:'Baloo 2',sans-serif; font-size:26px; border-bottom:2.5px solid var(--ink); padding:4px 40px; margin-top:6px; min-width:260px;}
+.cert-tagline{font-family:'Baloo 2',sans-serif; font-weight:700; color:var(--brand); margin-top:30px; font-size:16px; letter-spacing:.05em;}
+.cert-sign-row{display:flex; gap:60px; margin-top:50px;}
+.cert-sign{font-family:'Baloo 2',sans-serif; font-size:12px; color:var(--sub); border-top:2px solid #C9D0E3; padding-top:6px; width:150px;}
+
+.spotlight{border:3px solid var(--brand); border-radius:18px; padding:14px 18px; margin:14px 0; background:linear-gradient(180deg,#0B1834,#132A55); color:#fff;}
+.spotlight .card-head{color:#8FD3FF; font-family:'Baloo 2',sans-serif; font-weight:700; text-transform:uppercase; font-size:13px; letter-spacing:.04em; margin-bottom:8px; display:flex; gap:8px; align-items:center;}
+.spotlight p, .spotlight li{color:#E5ECFA;}
+.spotlight b, .spotlight strong{color:#8FD3FF;}
+.spotlight .inline-code{background:rgba(255,255,255,.12); color:#8FD3FF; border-color:rgba(255,255,255,.2);}
+.opt-mini-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+.opt-mini{background:rgba(255,255,255,.08); border:1.5px solid rgba(255,255,255,.35); border-radius:10px; padding:6px 10px; font-size:12.5px;}
+</style>
+</head>
+<body>
+<div class="topbar no-print">
+  <span>THYNK Young Creator &mdash; Workbook Preview</span>
+  <button onclick="window.print()">🖨️ Print / Save as PDF</button>
+</div>
+<article class="page ">
+<div class="cover">
+  <div class="cover-eyebrow">THYNK PRESENTS</div>
+  <div class="cover-title">Young <span>Creator</span></div>
+  <div class="cover-sub">HTML + CSS &times; Vedic Maths</div>
+  <div class="cover-grade">GRADE 4&ndash;5 &nbsp;&bull;&nbsp; 24 PERIODS</div>
+  <svg class="bot-svg cover-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+  <div class="cover-tagline">&ldquo;I can THINK &bull; CODE &bull; CREATE&rdquo;</div>
+  <div class="cover-fields">
+    <div>This workbook belongs to: <span class="fill-blank" style="width:240px"></span></div>
+    <div>Grade / Section: <span class="fill-blank" style="width:240px"></span></div>
+  </div>
+</div>
+</article><article class="page ">
+<div class="fm-title">Welcome, Young Creator!</div>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Hi there! I&rsquo;m THYNK BOT, and I&rsquo;ll be popping up on every page to help, hint, and cheer you on. Ready to build your very first website?</div></div>
+<p>This workbook is not really about learning &lsquo;computer rules.&rsquo; It&rsquo;s about turning an idea inside your head into something real that anyone in the world could visit. Along the way, your Vedic Maths tricks will help you think faster, sharper, and more confidently &mdash; on the page AND on the screen.</p>
+<div class="quote-box">Vedic Maths helps you think about numbers.<br>HTML helps you structure your ideas.<br>CSS helps you make your ideas beautiful.</div>
+<p>Here&rsquo;s the journey you&rsquo;re about to go on:</p>
+<div class="journey-flow">THINK &rarr; CALCULATE &rarr; PLAN &rarr; CODE &rarr; DESIGN &rarr; TEST &rarr; IMPROVE &rarr; CREATE &rarr; SHARE</div>
+<p style="margin-top:14px;">By the end, you won&rsquo;t just know some HTML and CSS &mdash; you&rsquo;ll have proof, in your own website, that you can turn an idea into something real.</p>
+</article><article class="page ">
+<div class="fm-title">Meet Your 8 Guides</div>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Every single lesson uses these same 8 friends. Once you know them, you&rsquo;ll never feel lost in this workbook!</div></div>
+<div class="legend-grid"><div class="legend-item card-think"><div class="lh"><span class="card-icon">&#129504;</span>THINK</div><p>A question or puzzle to get your brain moving before anything else.</p></div><div class="legend-item card-discover"><div class="lh"><span class="card-icon">&#128269;</span>DISCOVER</div><p>A brand-new idea or tag, explained in plain, simple words.</p></div><div class="legend-item card-code"><div class="lh"><span class="card-icon">&#128187;</span>CODE IT</div><p>Your turn! A little code window where you actually type.</p></div><div class="legend-item card-create"><div class="lh"><span class="card-icon">&#127912;</span>CREATE</div><p>Build something real and visible &mdash; a page, a card, a list.</p></div><div class="legend-item card-math"><div class="lh"><span class="card-icon">&#129518;</span>MATH LINK</div><p>A Vedic Maths trick or sum that connects to today&rsquo;s lesson.</p></div><div class="legend-item card-challenge"><div class="lh"><span class="card-icon">&#128640;</span>CHALLENGE</div><p>An optional extra level for when you want to go further.</p></div><div class="legend-item card-ai"><div class="lh"><span class="card-icon">&#129302;</span>AI CORNER</div><p>A simple, honest look at how today&rsquo;s idea connects to AI.</p></div><div class="legend-item card-home"><div class="lh"><span class="card-icon">&#127968;</span>HOMEWORK</div><p>Two mini tasks for home &mdash; one coding, one Vedic Maths.</p></div></div>
+<p style="margin-top:16px;">You&rsquo;ll notice a brand-new guide in this workbook: <b>🤖 AI CORNER</b>. You already hear the word &lsquo;AI&rsquo; everywhere &mdash; in apps, games, even cartoons. This corner gives you one honest, simple fact per lesson about how coding, maths and AI really connect &mdash; no confusing jargon, just the truth in plain words.</p>
+</article><article class="page ">
+<div class="fm-title">Your Coding Toolbox</div>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Here&rsquo;s every single tag and property you&rsquo;ll need for this whole workbook. That&rsquo;s it &mdash; a small toolbox is all a Young Creator needs!</div></div>
+<div class="vocab-cols">
+  <div class="vocab-col"><h3>HTML tags</h3><div class="vocab-pill-row"><span class="vocab-pill">html</span><span class="vocab-pill">head</span><span class="vocab-pill">body</span><span class="vocab-pill">h1</span><span class="vocab-pill">h2</span><span class="vocab-pill">h3</span><span class="vocab-pill">p</span><span class="vocab-pill">ul</span><span class="vocab-pill">li</span><span class="vocab-pill">img</span><span class="vocab-pill">a</span><span class="vocab-pill">div</span></div></div>
+  <div class="vocab-col"><h3>CSS properties</h3><div class="vocab-pill-row"><span class="vocab-pill">color</span><span class="vocab-pill">background-color</span><span class="vocab-pill">font-size</span><span class="vocab-pill">font-family</span><span class="vocab-pill">text-align</span><span class="vocab-pill">border</span><span class="vocab-pill">padding</span><span class="vocab-pill">margin</span></div></div>
+</div>
+<div class="avoid-box">🔮 <b>Coming in a future THYNK level:</b> JavaScript, CSS Grid, Flexbox, Animations, Forms. You don&rsquo;t need any of these yet &mdash; save them for when you level up!</div>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 1</div>
+  <div class="divider-emoji">🌐</div>
+  <h1 class="divider-title">Meet the Web</h1>
+  <div class="divider-range">Periods 1&ndash;2</div>
+  <p class="divider-blurb">Before we write any code, let&rsquo;s explore what a website really is &mdash; and dream up what YOUR first website could be about.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P1</div>
+  <div class="period-titles">
+    <div class="period-part">PART 1 &middot; MEET THE WEB</div>
+    <h1 class="period-title">Welcome to the World of Websites</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Hi, I&rsquo;m THYNK BOT! Every website you love started as someone&rsquo;s very first webpage. Today, that someone is <b>you</b>.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body"><p>If YOU made a website, what would it be about?</p>
+    <div class="opt-row"><span class="opt"><span class="opt-dot"></span>My School</span><span class="opt"><span class="opt-dot"></span>Sport</span><span class="opt"><span class="opt-dot"></span>Space</span><span class="opt"><span class="opt-dot"></span>Animals</span><span class="opt"><span class="opt-dot"></span>Maths</span><span class="opt"><span class="opt-dot"></span>Games</span><span class="opt"><span class="opt-dot"></span>My Hobby</span></div></div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>A website is like a digital book. <code class="inline-code">HTML</code> tells the browser <b>WHAT</b> is on the page.
+    <code class="inline-code">CSS</code> tells the browser <b>HOW</b> it should look.</p>
+    <p>Websites you already know: YouTube, Google, Wikipedia, online games, your school&rsquo;s website, shopping websites.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><p>You haven&rsquo;t typed any code yet &mdash; and that&rsquo;s OK! Play <b>webpage detective</b> instead. Open any website with a grown-up and find:</p>
+    <ul class="checklist"><li><span class="chk"></span><span>A heading</span></li><li><span class="chk"></span><span>A picture</span></li><li><span class="chk"></span><span>A paragraph</span></li><li><span class="chk"></span><span>A button</span></li><li><span class="chk"></span><span>A list</span></li><li><span class="chk"></span><span>A colour you like</span></li></ul></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 1 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P1</div>
+  <div class="period-titles">
+    <div class="period-part">PART 1 &middot; MEET THE WEB</div>
+    <h2 class="period-title">Welcome to the World of Websites <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Draw a quick sketch on paper of what your dream website&rsquo;s front page could look like.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>Warm up your brain &mdash; find the missing number that makes 10:</p>
+    <p>5 + <span class="fill-blank" style="width:40px"></span> = 10 &nbsp;&nbsp; 6 + <span class="fill-blank" style="width:40px"></span> = 10 &nbsp;&nbsp; 8 + <span class="fill-blank" style="width:40px"></span> = 10 &nbsp;&nbsp; 9 + <span class="fill-blank" style="width:40px"></span> = 10</p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">With a grown-up, visit 3 different websites. On each one, spot ONE heading, ONE picture and ONE list.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Did you know? Some websites use AI to guess which videos or songs you might like next. But every website &mdash; AI-powered or not &mdash; is still built using code, just like you&rsquo;re about to learn!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Look at 3 websites at home with a grown-up. Write down one heading, one picture and one button you found on each.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>Find the missing number:</p><p>12 + <span class="fill-blank" style="width:40px"></span> = 20 &nbsp; 15 + <span class="fill-blank" style="width:40px"></span> = 20 &nbsp; 17 + <span class="fill-blank" style="width:40px"></span> = 20</p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 1 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P2</div>
+  <div class="period-titles">
+    <div class="period-part">PART 1 &middot; MEET THE WEB</div>
+    <h1 class="period-title">HTML Is the Skeleton</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Psst &mdash; want to know a secret? Every webpage has a skeleton, just like YOU. Let&rsquo;s go find it.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">What holds your body up and gives it its shape?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><b>Skeleton &rarr; HTML.</b> &nbsp; <b>Clothes &rarr; CSS.</b> Every webpage begins with this shape,
+    and <code class="inline-code">&lt;body&gt;</code> is where the things we <i>see</i> on the page go.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">skeleton.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">html</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">head</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">head</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">body</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;/</span><span class="tk-tag">body</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">html</span><span class="tk-punc">&gt;</span></pre>
+</div><p>Type this exact skeleton into a new file. Don&rsquo;t skip a single bracket!</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 2 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P2</div>
+  <div class="period-titles">
+    <div class="period-part">PART 1 &middot; MEET THE WEB</div>
+    <h2 class="period-title">HTML Is the Skeleton <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Draw your own body outline on paper and label which part matches &lt;html&gt;, which matches &lt;head&gt;, and which matches &lt;body&gt;.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Double it!</b> 2&times;2=<span class="fill-blank" style="width:30px"></span> &nbsp; 2&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 2&times;9=<span class="fill-blank" style="width:30px"></span> &nbsp; 2&times;13=<span class="fill-blank" style="width:30px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Can you build the skeleton from memory, with your eyes closed for the tag names? Try it, then check.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">A robot&rsquo;s instructions are a bit like HTML&rsquo;s skeleton too &mdash; a clear structure that tells it what to do, step by step, before anything fancy happens.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>From memory (no peeking!), write out the html/head/body skeleton on paper at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>Double it: 2&times;4=<span class="fill-blank" style="width:30px"></span> &nbsp; 2&times;6=<span class="fill-blank" style="width:30px"></span> &nbsp; 2&times;11=<span class="fill-blank" style="width:30px"></span> &nbsp; 2&times;15=<span class="fill-blank" style="width:30px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 2 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 2</div>
+  <div class="divider-emoji">🧱</div>
+  <h1 class="divider-title">My First HTML</h1>
+  <div class="divider-range">Periods 3&ndash;5</div>
+  <p class="divider-blurb">Meet your first tags! You&rsquo;ll learn the building blocks every webpage in the world is made from.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P3</div>
+  <div class="period-titles">
+    <div class="period-part">PART 2 &middot; MY FIRST HTML</div>
+    <h1 class="period-title">Meet Your First Tags</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Two tiny tags, ONE big webpage. Meet <code class="inline-code">&lt;h1&gt;</code> and <code class="inline-code">&lt;p&gt;</code> &mdash; your new best coding friends.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">If your webpage could shout ONE big thing, what would it say?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">&lt;h1&gt;</code> makes a big heading. <code class="inline-code">&lt;p&gt;</code> makes a paragraph of writing.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">first-tags.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>My Amazing World<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>I love learning new things.<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">fill-in.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div><p>Fill in the blanks with your own words on paper, then type your version for real.</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 3 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P3</div>
+  <div class="period-titles">
+    <div class="period-part">PART 2 &middot; MY FIRST HTML</div>
+    <h2 class="period-title">Meet Your First Tags <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build <b>My First Webpage</b> &mdash; one &lt;h1&gt; heading about yourself, and one &lt;p&gt; sentence about something you love.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Add a zero!</b> 7&times;10=<span class="fill-blank" style="width:30px"></span> &nbsp; 12&times;10=<span class="fill-blank" style="width:30px"></span> &nbsp; 25&times;10=<span class="fill-blank" style="width:30px"></span> &nbsp; 40&times;10=<span class="fill-blank" style="width:30px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add a SECOND &lt;p&gt; paragraph to your first webpage.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI writing tools often put a big heading first, then details after &mdash; just like your &lt;h1&gt; and &lt;p&gt;! Clear structure helps computers AND people understand faster.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>At home, write 1 &lt;h1&gt; and 2 &lt;p&gt; tags about your family.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>8&times;10=<span class="fill-blank" style="width:30px"></span> &nbsp; 15&times;10=<span class="fill-blank" style="width:30px"></span> &nbsp; 30&times;10=<span class="fill-blank" style="width:30px"></span> &nbsp; 45&times;10=<span class="fill-blank" style="width:30px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 3 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P4</div>
+  <div class="period-titles">
+    <div class="period-part">PART 2 &middot; MY FIRST HTML</div>
+    <h1 class="period-title">Headings & Paragraphs</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Big idea, smaller idea, smallest idea &mdash; headings work like a family tree!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Which is the BIGGER idea &mdash; &lsquo;Animals&rsquo; or &lsquo;Dogs&rsquo;?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">&lt;h1&gt;</code> is the biggest heading, <code class="inline-code">&lt;h2&gt;</code> a bit smaller, <code class="inline-code">&lt;h3&gt;</code> smaller still &mdash;
+    just like a notebook: Main Topic &rarr; Chapter &rarr; Subtopic.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">headings.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>Animals<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>Dogs<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">h3</span><span class="tk-punc">&gt;</span>My Favourite Dog<span class="tk-punc">&lt;/</span><span class="tk-tag">h3</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 4 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P4</div>
+  <div class="period-titles">
+    <div class="period-part">PART 2 &middot; MY FIRST HTML</div>
+    <h2 class="period-title">Headings & Paragraphs <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Take these four words &mdash; Animals, Dogs, Cats, My Favourite Animal &mdash; and decide which is &lt;h1&gt;, which are &lt;h2&gt;, and which is &lt;h3&gt;.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>&times;5 warm-up</b> &mdash; multiply by 10, then cut in half! 8&times;5 = (8&times;10)&divide;2 = <span class="fill-blank" style="width:30px"></span>.
+    Now try: 14&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 20&times;5=<span class="fill-blank" style="width:30px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add ONE more &lt;h2&gt; level to your Animals page (like &lsquo;Birds&rsquo;).</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Search engines &mdash; including AI-powered ones &mdash; read your BIGGEST heading first to understand what your whole page is about. Good headings help your page get noticed!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Build a 3-level heading page (h1 &rarr; h2 &rarr; h3) about a topic YOU choose.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>&times;5 practice: 6&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 16&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 24&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 30&times;5=<span class="fill-blank" style="width:30px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 4 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P5</div>
+  <div class="period-titles">
+    <div class="period-part">PART 2 &middot; MY FIRST HTML</div>
+    <h1 class="period-title">Lists</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Top-5 lists aren&rsquo;t just for countdown videos &mdash; they&rsquo;re one of your new coding superpowers!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">What are YOUR top 3 favourite games, foods or animals?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">&lt;ul&gt;</code> starts a list. <code class="inline-code">&lt;li&gt;</code> is one item inside it.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">list.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>My Favourite Things<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>Cricket<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>Pizza<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>Space<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span></pre>
+</div><p>Type this list, then swap in YOUR three favourite things.</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 5 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P5</div>
+  <div class="period-titles">
+    <div class="period-part">PART 2 &middot; MY FIRST HTML</div>
+    <h2 class="period-title">Lists <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build <b>My Top 5</b> &mdash; a list of your 5 favourite games, foods, or animals.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>&times;5 practice: 18&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 22&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 40&times;5=<span class="fill-blank" style="width:30px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Make a SECOND list on the same page (Top 5 Foods AND Top 5 Games).</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">When you ask a voice assistant for &lsquo;my top 5 songs,&rsquo; it usually answers with a list too &mdash; lists organise information clearly for people and AI alike!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Build a new Top 5 list at home about a topic you didn&rsquo;t use in class.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>12&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 26&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 34&times;5=<span class="fill-blank" style="width:30px"></span> &nbsp; 50&times;5=<span class="fill-blank" style="width:30px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 5 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 3</div>
+  <div class="divider-emoji">🙋</div>
+  <h1 class="divider-title">Build My First Page</h1>
+  <div class="divider-range">Periods 6&ndash;8</div>
+  <p class="divider-blurb">Time to build something real &mdash; your very own About Me page, complete with a picture and a link.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P6</div>
+  <div class="period-titles">
+    <div class="period-part">PART 3 &middot; BUILD MY FIRST PAGE</div>
+    <h1 class="period-title">Build a Profile Page</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Headings, paragraphs, lists &mdash; you already know enough to build something amazing: YOU, the webpage!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">What are 3 things that make YOU special?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body">Combine everything so far into an <b>About Me</b> page: My Name, About Me, My Hobbies, My Favourite Things.</div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">about-me.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>About Me<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>My Hobbies<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span></pre>
+</div><p>Build it piece by piece &mdash; don&rsquo;t copy a finished page, type your own!</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 6 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P6</div>
+  <div class="period-titles">
+    <div class="period-part">PART 3 &middot; BUILD MY FIRST PAGE</div>
+    <h2 class="period-title">Build a Profile Page <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build your full About Me page with your name, hobbies and favourite things.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>&times;11 trick</b> &mdash; add the two digits, slot the answer in the middle! 23&times;11: 2+3=5 &rarr; 2<u>5</u>3 = 253.
+    Try: 14&times;11=<span class="fill-blank" style="width:40px"></span> &nbsp; 32&times;11=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add a &lsquo;My Dream Job&rsquo; section to your About Me page.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Streaming apps build a &lsquo;profile&rsquo; of your favourites too &mdash; but yours is special, because YOU control every word on it, not an algorithm.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Add ONE more section to your About Me page at home &mdash; &lsquo;My Favourite Book&rsquo; or &lsquo;My Dream Job&rsquo;.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>&times;11 practice: 12&times;11=<span class="fill-blank" style="width:40px"></span> &nbsp; 21&times;11=<span class="fill-blank" style="width:40px"></span> &nbsp; 43&times;11=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 6 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P7</div>
+  <div class="period-titles">
+    <div class="period-part">PART 3 &middot; BUILD MY FIRST PAGE</div>
+    <h1 class="period-title">Images</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">A picture is worth a thousand tags! Let&rsquo;s add your first image.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Why do webpages look better with pictures?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">&lt;img&gt;</code> shows a picture. The <code class="inline-code">src</code> tells the browser WHERE to find it.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">image.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">img</span> <span class="tk-attr">src</span><span class="tk-punc">=</span><span class="tk-str">&quot;cat.jpg&quot;</span><span class="tk-punc">&gt;</span></pre>
+</div><p>Add an image tag pointing to a picture of your own (ask a grown-up to help save one).</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 7 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P7</div>
+  <div class="period-titles">
+    <div class="period-part">PART 3 &middot; BUILD MY FIRST PAGE</div>
+    <h2 class="period-title">Images <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Add a picture to your About Me page &mdash; a photo, or even a picture you draw and scan.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Squares ending in 5</b> &mdash; 15&times;15: 1&times;2=2, then stick on 25 &rarr; 225.
+    Try: 25&times;25=<span class="fill-blank" style="width:40px"></span> &nbsp; 35&times;35=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add a SECOND image to your page.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI can now even create pictures from written descriptions &mdash; that&rsquo;s called &lsquo;AI image generation&rsquo;! For your page though, you&rsquo;ll use a real photo or your own drawing.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>With a grown-up, add 1 picture to your website at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>Squares ending in 5: 15&times;15=<span class="fill-blank" style="width:40px"></span> &nbsp; 45&times;45=<span class="fill-blank" style="width:40px"></span> &nbsp; 55&times;55=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 7 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P8</div>
+  <div class="period-titles">
+    <div class="period-part">PART 3 &middot; BUILD MY FIRST PAGE</div>
+    <h1 class="period-title">Links</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Click! Links are the magic thread that turns lots of pages into ONE big World Wide Web.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">How do you jump from one webpage to another?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">&lt;a href="..."&gt;...&lt;/a&gt;</code> makes a clickable link. The web address goes inside the quotes.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">link.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">a</span> <span class="tk-attr">href</span><span class="tk-punc">=</span><span class="tk-str">&quot;https://www.wikipedia.org&quot;</span><span class="tk-punc">&gt;</span>Learn More<span class="tk-punc">&lt;/</span><span class="tk-tag">a</span><span class="tk-punc">&gt;</span></pre>
+</div><p>Add a link with the words &lsquo;Learn More&rsquo; or &lsquo;My Favourite Website&rsquo;.</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 8 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P8</div>
+  <div class="period-titles">
+    <div class="period-part">PART 3 &middot; BUILD MY FIRST PAGE</div>
+    <h2 class="period-title">Links <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Add ONE link to your page &mdash; pick a website you love (ask a grown-up first!).</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Mixed review</b> &mdash; use any trick you like: 16&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; double of 23=<span class="fill-blank" style="width:40px"></span> &nbsp; 15&times;15=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add a SECOND link to your page.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Links connect pages together like a giant spider&rsquo;s web &mdash; that&rsquo;s literally why it&rsquo;s called the World Wide Web! AI search tools follow millions of links every second to find answers.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Add 1 more link to your page at home (with a grown-up&rsquo;s OK).</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>22&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; double of 27=<span class="fill-blank" style="width:40px"></span> &nbsp; 14&times;11=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 8 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 4</div>
+  <div class="divider-emoji">🔢</div>
+  <h1 class="divider-title">Maths on the Web</h1>
+  <div class="divider-range">Periods 9&ndash;10</div>
+  <p class="divider-blurb">This is where coding and Vedic Maths shake hands. Get ready to put your mental-maths answers ON a webpage.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P9</div>
+  <div class="period-titles">
+    <div class="period-part">PART 4 &middot; MATHS ON THE WEB</div>
+    <h1 class="period-title">Numbers Become Content</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Get ready &mdash; this is the day Maths and Code shake hands for the first time!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Can you solve 125&times;8 in your head? Let&rsquo;s find out how.</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body">HTML can show maths facts too! A paragraph can hold a sum, and a whole page can hold your scores.</div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">maths-content.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>My Maths Challenge<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>25 × 4 = 100<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">my-score.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>My Score<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>Round 1: 18<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>Round 2: 25<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>Round 3: 32<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 9 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P9</div>
+  <div class="period-titles">
+    <div class="period-part">PART 4 &middot; MATHS ON THE WEB</div>
+    <h2 class="period-title">Numbers Become Content <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Solve 5 mental-maths questions with your tricks, then type each answer into a webpage using &lt;p&gt; tags.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>25&times;4=<span class="fill-blank" style="width:40px"></span> &nbsp; 50&times;6=<span class="fill-blank" style="width:40px"></span> &nbsp; 125&times;8=<span class="fill-blank" style="width:40px"></span> &nbsp; 15&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; double 34=<span class="fill-blank" style="width:40px"></span><br>
+    <i>Hint: 125 is one-eighth of 1000, so 125&times;8 jumps straight to 1000!</i></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add ONE more maths fact of your own to the page.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Calculators and AI can solve maths in a flash &mdash; but YOUR brain, using Vedic Maths tricks, can be just as fast, with no batteries needed!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>At home, add 3 more solved sums to your maths webpage.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>50&times;4=<span class="fill-blank" style="width:40px"></span> &nbsp; 25&times;8=<span class="fill-blank" style="width:40px"></span> &nbsp; 125&times;4=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 9 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P10</div>
+  <div class="period-titles">
+    <div class="period-part">PART 4 &middot; MATHS ON THE WEB</div>
+    <h1 class="period-title">My Maths Challenge Page</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Ready to build a challenge even YOU can&rsquo;t solve too fast?</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Can you beat your own best time solving these three sums?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body">Build a Speed Maths Challenge page that shows your questions, answers, and final score.</div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">speed-challenge.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>🧮 My Speed Maths Challenge<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>25 × 4 = 100<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>50 × 8 = 400<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>125 × 8 = 1000<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span><span class="tk-punc">&lt;</span><span class="tk-tag">b</span><span class="tk-punc">&gt;</span>My Score = 4/5<span class="tk-punc">&lt;/</span><span class="tk-tag">b</span><span class="tk-punc">&gt;</span><span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 10 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P10</div>
+  <div class="period-titles">
+    <div class="period-part">PART 4 &middot; MATHS ON THE WEB</div>
+    <h2 class="period-title">My Maths Challenge Page <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Style your Speed Maths Challenge page and solve all three questions on it.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>25&times;4=<span class="fill-blank" style="width:40px"></span> &nbsp; 50&times;8=<span class="fill-blank" style="width:40px"></span> &nbsp; 125&times;8=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">From your workbook: create YOUR OWN 3-question maths challenge for a friend to solve!</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Quiz apps (some powered by AI) can create maths questions automatically for students &mdash; but a challenge made by a FRIEND feels extra special, doesn&rsquo;t it?</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Give your maths challenge page to a family member. Write down their score!</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>Write 3 brand-new challenge questions of your own, using any trick you&rsquo;ve learned.</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 10 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 5</div>
+  <div class="divider-emoji">🎨</div>
+  <h1 class="divider-title">Make It Beautiful With CSS</h1>
+  <div class="divider-range">Periods 11&ndash;13</div>
+  <p class="divider-blurb">HTML built the house &mdash; now CSS paints it! Discover how a few lines of code transform the look of a page.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P11</div>
+  <div class="period-titles">
+    <div class="period-part">PART 5 &middot; MAKE IT BEAUTIFUL WITH CSS</div>
+    <h1 class="period-title">What Is CSS?</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">HTML built the house. Now it&rsquo;s time to grab the paintbrush!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">If HTML is a house&rsquo;s structure, what makes a house feel cosy and pretty?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>CSS tells HTML how things should look. <code class="inline-code">color</code> changes text colour, <code class="inline-code">background-color</code> changes the background, <code class="inline-code">font-size</code> changes the size.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">style.css</span></div>
+  <pre class="code-body"><span class="tk-tag">h1</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">color</span><span class="tk-punc">:</span> <span class="tk-val">blue</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div><p>Type this CSS rule and watch your heading change colour.</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 11 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P11</div>
+  <div class="period-titles">
+    <div class="period-part">PART 5 &middot; MAKE IT BEAUTIFUL WITH CSS</div>
+    <h2 class="period-title">What Is CSS? <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Change the colour of your &lt;h1&gt; heading using CSS.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>&times;9 trick</b> &mdash; multiply by 10, then subtract the number! 9&times;9 = 90&minus;9 = 81.
+    Try: 12&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 15&times;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Change the colour of TWO different elements on your page.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI design tools can suggest a colour palette in seconds &mdash; but a great designer (like you!) builds their OWN colour sense by trying things out, just like today.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Style ONE more element with a CSS colour rule at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>&times;9 practice: 11&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 13&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 20&times;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 11 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P12</div>
+  <div class="period-titles">
+    <div class="period-part">PART 5 &middot; MAKE IT BEAUTIFUL WITH CSS</div>
+    <h1 class="period-title">Colours</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Time to paint your page! Which colours make YOU feel happy, calm, or excited?</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Which colours make YOU feel happy, calm, or excited?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">background-color</code> changes the page&rsquo;s background. <code class="inline-code">color</code> changes the text.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">colours.css</span></div>
+  <pre class="code-body"><span class="tk-tag">body</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">background-color</span><span class="tk-punc">:</span> <span class="tk-val">lightblue</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span>
+
+<span class="tk-tag">h1</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">color</span><span class="tk-punc">:</span> <span class="tk-val">darkblue</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 12 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P12</div>
+  <div class="period-titles">
+    <div class="period-part">PART 5 &middot; MAKE IT BEAUTIFUL WITH CSS</div>
+    <h2 class="period-title">Colours <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build a <b>My Favourite Colour Page</b> and experiment with at least 2 colours.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>&times;9 practice: 14&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 18&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 21&times;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Think about it: which colours make a webpage easy to READ, not just pretty? Try light text on a dark background, then swap it.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Some AI-powered tools check if a website&rsquo;s colours are easy for EVERYONE to read, including people who see colours differently. Good design always thinks about every reader.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Test 3 colour combinations at home and circle your favourite.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>16&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 19&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 23&times;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 12 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P13</div>
+  <div class="period-titles">
+    <div class="period-part">PART 5 &middot; MAKE IT BEAUTIFUL WITH CSS</div>
+    <h1 class="period-title">Fonts & Text</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Bold? Curvy? Tiny? Your text has a personality too &mdash; let&rsquo;s give it one!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">If your name were a font, would it be bold, curvy, or simple?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">font-size</code> changes text size. <code class="inline-code">text-align</code> can centre it on the page.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">fonts.css</span></div>
+  <pre class="code-body"><span class="tk-tag">h1</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">font-size</span><span class="tk-punc">:</span> <span class="tk-val">40px</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">text-align</span><span class="tk-punc">:</span> <span class="tk-val">center</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 13 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P13</div>
+  <div class="period-titles">
+    <div class="period-part">PART 5 &middot; MAKE IT BEAUTIFUL WITH CSS</div>
+    <h2 class="period-title">Fonts & Text <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Style your name heading: bigger, centred, and in a different colour.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>&times;3 trick</b> &mdash; double it, then add one more! 12&times;3 = (12&times;2)+12 = 36.
+    Try: 21&times;3=<span class="fill-blank" style="width:40px"></span> &nbsp; 23&times;3=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Try 3 different font sizes on your heading and pick your favourite.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI tools can suggest fonts that pair well together &mdash; but every THYNK Young Creator gets to be their OWN designer.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Style 2 headings with different sizes at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>&times;3 practice: 13&times;3=<span class="fill-blank" style="width:40px"></span> &nbsp; 22&times;3=<span class="fill-blank" style="width:40px"></span> &nbsp; 31&times;3=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 13 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 6</div>
+  <div class="divider-emoji">📦</div>
+  <h1 class="divider-title">CSS Design</h1>
+  <div class="divider-range">Periods 14&ndash;16</div>
+  <p class="divider-blurb">Every webpage is made of boxes. Learn to control space, style a profile card, and think like a designer.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P14</div>
+  <div class="period-titles">
+    <div class="period-part">PART 6 &middot; CSS DESIGN</div>
+    <h1 class="period-title">Boxes</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Zoom out and look around &mdash; everything you see is secretly a BOX.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Can you spot 5 rectangle or square &lsquo;boxes&rsquo; in the room right now?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><code class="inline-code">border</code> draws a line around a box. <code class="inline-code">padding</code> adds space INSIDE it. <code class="inline-code">margin</code> adds space OUTSIDE it.</p>
+    <div class="ascii-box">+----------------------+
+|      MY PROFILE      |
++----------------------+</div></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">box.css</span></div>
+  <pre class="code-body"><span class="tk-tag">div</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">border</span><span class="tk-punc">:</span> <span class="tk-val">2px solid blue</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 14 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P14</div>
+  <div class="period-titles">
+    <div class="period-part">PART 6 &middot; CSS DESIGN</div>
+    <h2 class="period-title">Boxes <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Start your Profile Card box &mdash; just the border for now.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Mixed review</b>: 16&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 13&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 24&times;3=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add padding AND a background colour to your box.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI programs that &lsquo;see&rsquo; pictures (called computer vision) often break an image into boxes and shapes to understand it &mdash; computers love boxes just as much as web designers do!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Add a border and background colour to one box at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>22&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 17&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 32&times;3=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 14 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P15</div>
+  <div class="period-titles">
+    <div class="period-part">PART 6 &middot; CSS DESIGN</div>
+    <h1 class="period-title">My Profile Card</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Name, grade, favourite number&hellip; let&rsquo;s build a card that&rsquo;s 100% YOU.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">What makes a card (like an ID card or a game card) look neat and organised?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>Combine <code class="inline-code">&lt;div&gt;</code>, <code class="inline-code">&lt;h1&gt;</code>, <code class="inline-code">&lt;p&gt;</code> with <code class="inline-code">background-color</code>, <code class="inline-code">border</code>, <code class="inline-code">padding</code> and <code class="inline-code">text-align</code> to build a card.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">card.css</span></div>
+  <pre class="code-body"><span class="tk-tag">div</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">background-color</span><span class="tk-punc">:</span> <span class="tk-val">#FFF6E0</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">border</span><span class="tk-punc">:</span> <span class="tk-val">3px solid #E8A33D</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">padding</span><span class="tk-punc">:</span> <span class="tk-val">16px</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">text-align</span><span class="tk-punc">:</span> <span class="tk-val">center</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 15 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P15</div>
+  <div class="period-titles">
+    <div class="period-part">PART 6 &middot; CSS DESIGN</div>
+    <h2 class="period-title">My Profile Card <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body"><p>Build your 👤 <b>MY PROFILE CARD</b> with:</p><ul class="dashlist"><li>Name</li><li>Grade</li><li>Favourite Hobby</li><li>Favourite Food</li><li>Favourite Number</li></ul></div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body">Pick YOUR favourite number (1&ndash;50). Find its double, its half (if it splits evenly), and &mdash; if it ends in 5 &mdash; its square using your trick!</div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Give your card a colourful border that matches your favourite colour.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Apps and games often show a &lsquo;profile card&rsquo; with your name and score &mdash; you just hand-built your OWN version, with real code!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Polish your profile card at home &mdash; add a 6th detail of your choice.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>Do the same double / half / square check for TWO more numbers you like.</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 15 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P16</div>
+  <div class="period-titles">
+    <div class="period-part">PART 6 &middot; CSS DESIGN</div>
+    <h1 class="period-title">The Magic of Spacing</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Padding hugs the inside. Margin gives space outside. Time for some box maths!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">A card is 300px wide. Padding on each side is 20px. How much space is left for the content?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p><b>Padding</b> = space INSIDE the box. <b>Margin</b> = space OUTSIDE the box.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">spacing.css</span></div>
+  <pre class="code-body"><span class="tk-tag">div</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">padding</span><span class="tk-punc">:</span> <span class="tk-val">20px</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">margin</span><span class="tk-punc">:</span> <span class="tk-val">15px</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 16 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P16</div>
+  <div class="period-titles">
+    <div class="period-part">PART 6 &middot; CSS DESIGN</div>
+    <h2 class="period-title">The Magic of Spacing <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Adjust the padding and margin on your Profile Card and see what changes.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>300px wide, 20px padding on EACH side: 300 &minus; 20 &minus; 20 = <span class="fill-blank" style="width:40px"></span><br>
+    Four boxes each 25px apart: 25+25+25+25 = <span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Measure a box of your own choosing at home and calculate its content space.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Warehouse robots (many use AI) calculate the exact space needed to pack boxes tightly &mdash; just like you calculated space in your CSS box today!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Measure the padding and margin on ONE more box element at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>5 boxes each 20px apart, total space = <span class="fill-blank" style="width:40px"></span><br>400px wide, 30px padding each side, space left = <span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 16 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 7</div>
+  <div class="divider-emoji">🧮</div>
+  <h1 class="divider-title">Vedic Maths + Web Design</h1>
+  <div class="divider-range">Periods 17&ndash;18</div>
+  <p class="divider-blurb">Turn your favourite maths trick into a colourful poster, and build a challenge board for a friend to solve.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P17</div>
+  <div class="period-titles">
+    <div class="period-part">PART 7 &middot; VEDIC MATHS + WEB DESIGN</div>
+    <h1 class="period-title">Design a Maths Poster</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Show off your favourite trick in style &mdash; a heading, an example, and a challenge for others!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">What&rsquo;s the coolest maths trick you&rsquo;ve learned so far?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>Build a 🧮 <b>VEDIC MATHS MAGIC</b> poster with three parts: My Trick, an Example, and Try It Yourself.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">poster.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>My Trick: Multiply by 5<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>Example: 24 × 5 = 120<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>Try It Yourself<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>12 × 5 = ?<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 17 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P17</div>
+  <div class="period-titles">
+    <div class="period-part">PART 7 &middot; VEDIC MATHS + WEB DESIGN</div>
+    <h2 class="period-title">Design a Maths Poster <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build your full poster page using the &times;5 trick (or pick a different favourite trick you&rsquo;ve learned!).</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>Solve: 12&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 36&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 48&times;5=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">CSS challenge: make your heading colourful, put each question in its own box, and highlight the answers!</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI-powered study apps often turn tricks like this one into colourful flashcards &mdash; you just designed like a real EdTech creator!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Add ONE more &lsquo;Try It Yourself&rsquo; question to your poster at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>Using your poster&rsquo;s trick, solve 3 brand-new numbers of your own choosing.</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 17 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P18</div>
+  <div class="period-titles">
+    <div class="period-part">PART 7 &middot; VEDIC MATHS + WEB DESIGN</div>
+    <h1 class="period-title">Maths Challenge Board</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Round 1&hellip; Round 2&hellip; are YOU ready to keep score?</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">If a friend played your maths game, what would make it FUN, not boring?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body">Build a 2-round Challenge Board: Round 1 (5 questions), Round 2 (5 questions), and My Score ___ / 10.</div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">board.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>ROUND 1<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>MY SCORE<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>____ / 10<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 18 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P18</div>
+  <div class="period-titles">
+    <div class="period-part">PART 7 &middot; VEDIC MATHS + WEB DESIGN</div>
+    <h2 class="period-title">Maths Challenge Board <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build your full Maths Challenge Board, write 10 questions using tricks you know, and style it with CSS.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body">Solve your OWN 10 questions! Mix tricks &mdash; try at least one &times;5, one &times;9, one &times;11, and one square-ending-in-5.</div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Bonus: design your board so a FRIEND could solve it too &mdash; think about what might confuse them, and fix it.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">A quiz app (sometimes AI-powered) checks answers automatically. Today, your FRIEND is the checker &mdash; a human touch no AI can fully replace!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Swap Challenge Boards with a family member and have them try solving yours at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>Write 5 brand-new questions using a trick of your choice.</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 18 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 8</div>
+  <div class="divider-emoji">🛠️</div>
+  <h1 class="divider-title">Mini Website</h1>
+  <div class="divider-range">Periods 19&ndash;22</div>
+  <p class="divider-blurb">Plan it, build it, style it, test it. You&rsquo;re about to create your first independent website from scratch.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P19</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h1 class="period-title">Plan Your Website</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Every great website starts with a plan &mdash; even before ONE line of code!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">If you could teach the whole world about ONE thing, what would it be?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><b>PLAN &rarr; CODE &rarr; TEST &rarr; IMPROVE.</b> Great creators always plan first &mdash; grab a pencil, not a keyboard, today.</div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><p>No typing today! Fill in your plan on paper instead:</p>
+    <p>Website Name: <span class="fill-blank" style="width:200px"></span><br>Topic: <span class="fill-blank" style="width:200px"></span><br>Main Heading: <span class="fill-blank" style="width:200px"></span><br>About: <span class="fill-blank" style="width:200px"></span></p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 19 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P19</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h2 class="period-title">Plan Your Website <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body"><p>My 3 Sections: 1) <span class="fill-blank" style="width:140px"></span> 2) <span class="fill-blank" style="width:140px"></span> 3) <span class="fill-blank" style="width:140px"></span><br>Colours: <span class="fill-blank" style="width:160px"></span> &nbsp; Picture: <span class="fill-blank" style="width:160px"></span></p></div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>Mixed review: 28&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; double 19=<span class="fill-blank" style="width:40px"></span> &nbsp; 17&times;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Sketch a rough drawing of what your homepage layout will look like.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Even professional design teams &mdash; and AI design tools &mdash; start with a PLAN before building anything. Planning first saves time later!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Show your plan to a family member and ask for ONE idea to make it even better.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>32&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; double 24=<span class="fill-blank" style="width:40px"></span> &nbsp; 19&times;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 19 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P20</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h1 class="period-title">Build the HTML</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Skeleton time! Let&rsquo;s turn your plan into real HTML, piece by piece.</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Which part of your website will you build FIRST?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>Recommended tags: <code class="inline-code">h1</code> <code class="inline-code">h2</code> <code class="inline-code">p</code> <code class="inline-code">ul</code> <code class="inline-code">li</code> <code class="inline-code">img</code> <code class="inline-code">a</code></p>
+    <p>⭐ <b>Must Have:</b> 3 headings, 2 paragraphs, 1 list, 1 image.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">mini-site.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 20 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P20</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h2 class="period-title">Build the HTML <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build your mini-website&rsquo;s HTML skeleton using your Period 19 plan.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p>Mixed review: 40&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 15&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; double 33=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">🚀 Super Creator: add a link, a profile card, AND a maths challenge to your site.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Big websites are usually built by TEAMS &mdash; and today, some professional coders even use AI helpers to write code faster. Right now though, YOU are the whole team!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Add one more paragraph or list item to your mini website at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>26&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 21&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; double 28=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 20 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P21</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h1 class="period-title">Style the Website</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Your Maths Toolbox has tricks. Your CSS Toolbox has properties. Let&rsquo;s use both!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">What&rsquo;s ONE word you want people to feel when they see your website?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><table class="toolbox"><tr><th>Want to&hellip;</th><th>Use</th></tr>
+    <tr><td>Change text colour</td><td>color</td></tr>
+    <tr><td>Change background</td><td>background-color</td></tr>
+    <tr><td>Make text bigger</td><td>font-size</td></tr>
+    <tr><td>Centre text</td><td>text-align</td></tr>
+    <tr><td>Add a line around something</td><td>border</td></tr>
+    <tr><td>Add space inside</td><td>padding</td></tr>
+    <tr><td>Add space outside</td><td>margin</td></tr></table></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">mini-site.css</span></div>
+  <pre class="code-body"><span class="tk-tag">h1</span> <span class="tk-punc">{</span>
+    
+    <span class="tk-prop">color</span><span class="tk-punc">:</span> <span class="tk-val">#008AD4</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">text-align</span><span class="tk-punc">:</span> <span class="tk-val">center</span><span class="tk-punc">;</span>
+    
+    <span class="tk-prop">font-size</span><span class="tk-punc">:</span> <span class="tk-val">42px</span><span class="tk-punc">;</span>
+
+<span class="tk-punc">}</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 21 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P21</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h2 class="period-title">Style the Website <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Style your mini-website using at least 4 CSS properties from your toolbox.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Your Maths Toolbox</b> &mdash; pick any trick: 34&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 16&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 45&times;45=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Style 3 elements creatively &mdash; try something you haven&rsquo;t tried before!</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI style-checkers can test if text and background colours are easy to read together. Good design &mdash; human or AI-assisted &mdash; always thinks about the reader.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Style 2 more elements on your mini website at home.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div><p>38&times;5=<span class="fill-blank" style="width:40px"></span> &nbsp; 12&times;9=<span class="fill-blank" style="width:40px"></span> &nbsp; 25&times;25=<span class="fill-blank" style="width:40px"></span></p></div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 21 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P22</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h1 class="period-title">Test & Improve</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Put on your detective hat &mdash; it&rsquo;s time to hunt for bugs!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Have you ever found a mistake and felt PROUD fixing it?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>🕵️ <b>CODE DETECTIVE checklist</b>:</p>
+    <ul class="checklist"><li><span class="chk"></span><span>Did I forget &lt; &gt; ?</span></li><li><span class="chk"></span><span>Did I close my tag?</span></li><li><span class="chk"></span><span>Did I spell the tag correctly?</span></li><li><span class="chk"></span><span>Did I put my CSS inside { }?</span></li><li><span class="chk"></span><span>Did I use a semicolon ; ?</span></li></ul></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><p>Spot the bug in each snippet, then fix it on paper:</p><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">bug1.html</span></div>
+  <pre class="code-body">&lt;h1&gt;My Page&lt;h1&gt;</pre>
+</div><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">bug2.css</span></div>
+  <pre class="code-body">h1 {
+    color: blue;
+    font-size: 40px</pre>
+</div><p>(Hint: one tag forgot its slash. One rule forgot its closing bracket.)</p></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 22 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P22</div>
+  <div class="period-titles">
+    <div class="period-part">PART 8 &middot; MINI WEBSITE</div>
+    <h2 class="period-title">Test & Improve <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Use the checklist to find and fix at least ONE real mistake on YOUR OWN website.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><p><b>Check your maths backwards!</b> If 24&times;5=120, does 120&divide;5=24? &nbsp; Check: is 13&times;9=117 correct? 117&divide;9=<span class="fill-blank" style="width:40px"></span></p></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Swap pages with a friend and find ONE bug on THEIR page.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">AI coding helpers can spot bugs in code too (sometimes called an &lsquo;AI code assistant&rsquo;) &mdash; but learning to debug yourself, like a detective, makes YOU a stronger coder.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Ask a family member to try to &lsquo;break&rsquo; your website by finding something confusing &mdash; then fix it!</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>Use the backwards-check trick on 3 of your earlier answers. Did you get them all right?</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 22 of 24</span></footer>
+</article><article class="page divider-page">
+<div class="divider">
+  <div class="divider-num">PART 9</div>
+  <div class="divider-emoji">🏆</div>
+  <h1 class="divider-title">Final THYNK Project</h1>
+  <div class="divider-range">Periods 23&ndash;24</div>
+  <p class="divider-blurb">The big one! Choose your final project, build it your way, and show the world what a THYNK Young Creator can do.</p>
+  <svg class="bot-svg divider-bot" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg>
+</div>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P23</div>
+  <div class="period-titles">
+    <div class="period-part">PART 9 &middot; FINAL THYNK PROJECT</div>
+    <h1 class="period-title">Young Creator Challenge</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">This is it &mdash; YOUR final project. Ready to build something amazing?</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">Which final project idea excites you the most?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>Pick ONE theme for your final website:</p>
+    <div class="opt-mini-row" style="margin-top:8px;"><span class="opt-mini" style="background:#EAEEFC;border-color:#C9D0E3;color:#232842;">🚀 My Space Explorer</span><span class="opt-mini" style="background:#EAEEFC;border-color:#C9D0E3;color:#232842;">⚽ My Favourite Sport</span><span class="opt-mini" style="background:#EAEEFC;border-color:#C9D0E3;color:#232842;">🧮 Vedic Maths Magic</span><span class="opt-mini" style="background:#EAEEFC;border-color:#C9D0E3;color:#232842;">🐯 Amazing Animals</span><span class="opt-mini" style="background:#EAEEFC;border-color:#C9D0E3;color:#232842;">🎮 My Favourite Game</span><span class="opt-mini" style="background:#EAEEFC;border-color:#C9D0E3;color:#232842;">🌱 Save Our Planet</span></div>
+    <p style="margin-top:10px;"><b>Required:</b> Title &middot; 2 sections &middot; 2 paragraphs &middot; a list &middot; an image &middot; CSS styling.</p>
+    <p><b>Bonus:</b> a link, a profile card, a maths challenge.</p></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body"><div class="code-window">
+  <div class="code-titlebar"><span class="cd red"></span><span class="cd yel"></span><span class="cd grn"></span><span class="code-filename">final-project.html</span></div>
+  <pre class="code-body"><span class="tk-punc">&lt;</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">h1</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">h2</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">p</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>__________<span class="tk-punc">&lt;/</span><span class="tk-tag">li</span><span class="tk-punc">&gt;</span>
+<span class="tk-punc">&lt;/</span><span class="tk-tag">ul</span><span class="tk-punc">&gt;</span>
+
+<span class="tk-punc">&lt;</span><span class="tk-tag">img</span> <span class="tk-attr">src</span><span class="tk-punc">=</span><span class="tk-str">&quot;__________&quot;</span><span class="tk-punc">&gt;</span></pre>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 23 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P23</div>
+  <div class="period-titles">
+    <div class="period-part">PART 9 &middot; FINAL THYNK PROJECT</div>
+    <h2 class="period-title">Young Creator Challenge <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body">Build your chosen final project &mdash; type every tag yourself, and style it with CSS.</div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body"><div class="spotlight"><div class="card-head">🚀 Spotlight: My Space Explorer</div>
+    <p>Section 1 &mdash; <b>My Mission</b>: 2 paragraphs about your adventure as a space explorer.<br>
+    Section 2 &mdash; <b>Planets I Want to Visit</b>: a list. Add 1 rocket or planet image. Style it with a dark background and bright &lsquo;star&rsquo; colours.</p>
+    <p><b>Space Maths Challenge</b> &mdash; a rocket travels 125km every minute. How far in 8 minutes? <code class="inline-code">125 × 8 = ?</code><br>
+    A second rocket travels 45km a minute for 5 minutes &mdash; how far? <code class="inline-code">45 × 5 = ?</code></p>
+    <p style="opacity:.85; font-size:12.5px;">Picked a different theme? Invent 2 maths facts to match it instead &mdash; sports scores, animal speeds, or game points all work!</p></div></div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Add the bonus items: a link, a profile card, and a maths challenge, all matching your project&rsquo;s theme.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">Real space agencies like NASA use AI to study photos from telescopes and rovers, and to help plan safe rocket paths. If you picked Space Explorer, you&rsquo;re joining a long tradition of using technology to explore the unknown!</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Keep building and polishing your final project at home this week.</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>Solve your project&rsquo;s maths challenge fully, and bring your BEST score to the Showcase!</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 23 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P24</div>
+  <div class="period-titles">
+    <div class="period-part">PART 9 &middot; FINAL THYNK PROJECT</div>
+    <h1 class="period-title">THYNK Web Showcase</h1>
+  </div>
+</header>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">You built a whole website. Today, the whole world gets to see it. Take a bow!</div></div>
+<section class="card card-think">
+  <div class="card-head"><span class="card-icon">&#129504;</span><span>THINK</span></div>
+  <div class="card-body">How does it feel to show off something YOU built, all by yourself?</div>
+</section>
+<section class="card card-discover">
+  <div class="card-head"><span class="card-icon">&#128269;</span><span>DISCOVER</span></div>
+  <div class="card-body"><p>Presentation time! Get ready to answer:</p>
+    <ul class="dashlist"><li>What did I create?</li><li>What HTML did I use?</li><li>What CSS did I use?</li><li>Where did I use Maths?</li><li>What was difficult?</li><li>What would I improve?</li></ul></div>
+</section>
+<section class="card card-code">
+  <div class="card-head"><span class="card-icon">&#128187;</span><span>CODE IT</span></div>
+  <div class="card-body">No new code today &mdash; instead, run through the Code Detective checklist from Period 22 one LAST time before you present.</div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 24 of 24</span></footer>
+</article><article class="page ">
+<header class="period-top">
+  <div class="period-badge">P24</div>
+  <div class="period-titles">
+    <div class="period-part">PART 9 &middot; FINAL THYNK PROJECT</div>
+    <h2 class="period-title">THYNK Web Showcase <span class="contd">(continued)</span></h2>
+  </div>
+</header>
+<section class="card card-create">
+  <div class="card-head"><span class="card-icon">&#127912;</span><span>CREATE</span></div>
+  <div class="card-body"><p>Say &lsquo;<b>This is my website</b>&rsquo; to your class, and walk them through what you built.</p></div>
+</section>
+<section class="card card-math">
+  <div class="card-head"><span class="card-icon">&#129518;</span><span>MATH LINK</span></div>
+  <div class="card-body">Which Vedic Maths trick did YOU use the most this year? Write it down, with one example.</div>
+</section>
+<section class="card card-challenge">
+  <div class="card-head"><span class="card-icon">&#128640;</span><span>CHALLENGE</span></div>
+  <div class="card-body">Teach a family member ONE thing you learned about HTML, CSS, or Vedic Maths.</div>
+</section>
+<section class="card card-ai">
+  <div class="card-head"><span class="card-icon">&#129302;</span><span>AI CORNER</span></div>
+  <div class="card-body">You&rsquo;ve learned to code AND calculate &mdash; two superpowers that even power today&rsquo;s AI systems. Remember: AI is a tool, but the thinking, creating and improving? That part is 100% YOU.</div>
+</section>
+<section class="card card-home">
+  <div class="card-head"><span class="card-icon">&#127968;</span><span>HOMEWORK</span></div>
+  <div class="card-body"><div class="hw-split">
+  <div class="hw-col"><div class="hw-label">&#128187; Coding</div>Share your finished website with someone outside class this week!</div>
+  <div class="hw-col"><div class="hw-label">&#129518; Vedic Maths</div>No new sums today &mdash; you&rsquo;ve earned a well-deserved victory lap! 🎉</div>
+</div></div>
+</section>
+<footer class="page-footer"><span>THYNK Young Creator</span><span>Period 24 of 24</span></footer>
+</article><article class="page ">
+<div class="fm-title">My Coding Journey</div>
+<div class="bot-row"><svg class="bot-svg " viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <line x1="32" y1="4" x2="32" y2="12" stroke="#008AD4" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="4" r="4" fill="#FFC46B"/>
+  <rect x="10" y="12" width="44" height="36" rx="14" fill="#FFFFFF" stroke="#008AD4" stroke-width="3"/>
+  <circle cx="23" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="41" cy="30" r="5" fill="#1F2430"/>
+  <circle cx="24.5" cy="28.5" r="1.6" fill="#fff"/>
+  <circle cx="42.5" cy="28.5" r="1.6" fill="#fff"/>
+  <path d="M22 39 Q32 46 42 39" stroke="#008AD4" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="16" y="50" width="32" height="8" rx="4" fill="#008AD4"/>
+  <rect x="4" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+  <rect x="54" y="24" width="6" height="12" rx="3" fill="#008AD4"/>
+</svg><div class="speech">Look how far you&rsquo;ve come! Tick each box the moment it feels true for YOU.</div></div>
+<ul class="checklist" style="font-size:15px;"><li><span class="chk"></span><span><b>After Period 1</b> &mdash; &ldquo;I understand websites.&rdquo;</span></li><li><span class="chk"></span><span><b>After Period 4</b> &mdash; &ldquo;I can write HTML.&rdquo;</span></li><li><span class="chk"></span><span><b>After Period 8</b> &mdash; &ldquo;I built my first webpage.&rdquo;</span></li><li><span class="chk"></span><span><b>After Period 13</b> &mdash; &ldquo;I can make it beautiful.&rdquo;</span></li><li><span class="chk"></span><span><b>After Period 18</b> &mdash; &ldquo;I can combine Maths + Coding.&rdquo;</span></li><li><span class="chk"></span><span><b>After Period 22</b> &mdash; &ldquo;I can find and fix mistakes.&rdquo;</span></li><li><span class="chk"></span><span><b>After Period 24</b> &mdash; &ldquo;I built my own website!&rdquo;</span></li></ul>
+<p style="margin-top:18px;">Look back at Period 1 for a moment. Could that version of you have imagined building an entire website? That&rsquo;s the THYNK journey &mdash; a little bit of THINK, a little bit of CODE, and a whole lot of CREATE.</p>
+</article><article class="page ">
+<div class="cert">
+  <div class="cert-trophy">🏆</div>
+  <div class="cert-title">THYNK YOUNG CREATOR</div>
+  <div class="cert-line">This certifies that</div>
+  <div class="cert-name"><span class="fill-blank" style="width:280px"></span></div>
+  <div class="cert-line" style="margin-top:18px;">has learned to THINK, CODE and CREATE &mdash; combining HTML, CSS and Vedic Maths to build a website from scratch.</div>
+  <div class="cert-tagline">I CAN THINK &bull; CODE &bull; CREATE</div>
+  <div class="cert-sign-row">
+    <div class="cert-sign">Teacher / Facilitator</div>
+    <div class="cert-sign">Date</div>
+  </div>
+</div>
+</article>
+</body>
+</html>

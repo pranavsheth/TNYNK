@@ -1,0 +1,222 @@
+:root {
+  --bg-deep: #031423;
+  --bg-mid: #09243a;
+  --bg-soft: #0d3450;
+  --ink: #e8f4ff;
+  --cyan: #45d7ff;
+  --amber: #ffb35c;
+  --panel: rgba(6, 28, 45, 0.78);
+  --panel-stroke: rgba(126, 203, 248, 0.35);
+  --panel-shadow: 0 34px 90px rgba(1, 10, 18, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Sora", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 18%, rgba(69, 215, 255, 0.28), transparent 38%),
+    radial-gradient(circle at 82% 76%, rgba(255, 179, 92, 0.2), transparent 40%),
+    linear-gradient(160deg, var(--bg-deep), var(--bg-mid) 52%, var(--bg-soft));
+  overflow: hidden;
+}
+
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 8px;
+  z-index: 50;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  color: #001220;
+  background: #ffffff;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 8px;
+}
+
+.scene {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  perspective: 1400px;
+  padding: 18px;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(10px);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.orb-a {
+  width: min(36vw, 420px);
+  aspect-ratio: 1;
+  left: -10vw;
+  top: -8vh;
+  background: radial-gradient(circle, rgba(69, 215, 255, 0.55), rgba(69, 215, 255, 0));
+  animation: drift 8.5s ease-in-out infinite alternate;
+}
+
+.orb-b {
+  width: min(34vw, 400px);
+  aspect-ratio: 1;
+  right: -8vw;
+  bottom: -10vh;
+  background: radial-gradient(circle, rgba(255, 179, 92, 0.45), rgba(255, 179, 92, 0));
+  animation: drift 9.5s ease-in-out infinite alternate-reverse;
+}
+
+.stage {
+  --rx: 9deg;
+  --ry: -10deg;
+  position: relative;
+  z-index: 1;
+  width: min(840px, 100%);
+  display: grid;
+  gap: 22px;
+  justify-items: center;
+  text-align: center;
+  padding: clamp(30px, 6vw, 62px) clamp(16px, 4vw, 42px);
+  border-radius: 30px;
+  border: 1px solid var(--panel-stroke);
+  background: linear-gradient(145deg, rgba(12, 45, 72, 0.65), var(--panel));
+  box-shadow: var(--panel-shadow);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  animation: panel-rise 900ms ease both;
+  transition: transform 260ms ease, box-shadow 260ms ease;
+}
+
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(174, 231, 255, 0.2);
+  transform: translateZ(14px);
+}
+
+.logo-wrap,
+h1 {
+  transform-style: preserve-3d;
+}
+
+.logo-wrap {
+  transform: translateZ(74px);
+  animation: float-logo 4.2s ease-in-out infinite;
+}
+
+.logo-wrap img {
+  width: min(660px, 90vw);
+  height: auto;
+  filter: drop-shadow(0 16px 26px rgba(4, 12, 24, 0.46));
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 4.1rem);
+  letter-spacing: 0.14em;
+  font-weight: 800;
+  color: #f2fbff;
+  text-shadow: 0 6px 26px rgba(69, 215, 255, 0.24);
+  transform: translateZ(54px);
+  animation: glow-breathe 3.6s ease-in-out infinite;
+}
+
+@keyframes panel-rise {
+  from {
+    opacity: 0;
+    transform: rotateX(16deg) rotateY(-16deg) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(9deg) rotateY(-10deg) translateY(0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(-10px, -8px, 0) scale(1);
+  }
+  to {
+    transform: translate3d(12px, 10px, 0) scale(1.08);
+  }
+}
+
+@keyframes float-logo {
+  0%,
+  100% {
+    transform: translateZ(74px) translateY(0);
+  }
+  50% {
+    transform: translateZ(74px) translateY(-7px);
+  }
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    text-shadow: 0 6px 26px rgba(69, 215, 255, 0.2);
+  }
+  50% {
+    text-shadow: 0 10px 34px rgba(69, 215, 255, 0.34);
+  }
+}
+
+@media (max-width: 768px) {
+  .stage {
+    --rx: 6deg;
+    --ry: -6deg;
+    border-radius: 24px;
+  }
+
+  h1 {
+    letter-spacing: 0.09em;
+  }
+}
+
+@media (max-width: 375px) {
+  .scene {
+    padding: 10px;
+  }
+
+  .stage {
+    padding: 26px 12px;
+    border-radius: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .stage {
+    transform: none;
+  }
+
+  .logo-wrap,
+  h1 {
+    animation: none;
+  }
+}
